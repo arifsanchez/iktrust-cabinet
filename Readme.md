@@ -1,9 +1,9 @@
-TrustXE System | 2013
-========================
+IK Trust Traders Cabinet | 2013
+===============================
 
-[![Trust XE](http://ikglobal.easyweb.asia/files/2012/12/txe-ikgb-logo.png)](http://www.trustxe.com)
+[![IK Trust](http://iktrust.my/templates/shaper_express/images/styles/style6/logo.png)](http://www.iktrust.com)
 
-New Homepage and platform for Trust Exchange
+New Homepage and traders cabinet
 
 + CakePHP 2.3.0
 + Twitter Bootstrap
