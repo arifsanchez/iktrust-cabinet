@@ -31,8 +31,24 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
 
-	public $components = array('DebugKit.Toolbar');
+class AppController extends Controller {
 	
+	var $helpers = array('Form', 'Html', 'Session',	'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
+	
+	public $components = array('DebugKit.Toolbar','Session','RequestHandler', 'Usermgmt.UserAuth');
+	
+	function beforeFilter(){
+		$this->userAuth();
+	}
+	
+	private	function userAuth(){
+		$this->UserAuth->beforeFilter($this);
+	}
+	
+	function beforeRender(){
+		if(!defined("SITE_URL")) {
+			UsermgmtInIt($this);
+		}
+	}
 }

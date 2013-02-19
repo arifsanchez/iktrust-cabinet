@@ -22,6 +22,10 @@ $cakeDescription = __d('cake_dev', 'IKT [CABINET]');
 <!DOCTYPE html>
 <html>
 <head>
+	<script language="javascript">
+		var urlForJs="<?php echo SITE_URL ?>";
+    </script>
+
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
@@ -35,16 +39,20 @@ $cakeDescription = __d('cake_dev', 'IKT [CABINET]');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+
+		echo $this->Html->css('/usermgmt/css/umstyle.css?q='.QRDN);
+	    echo $this->Html->script('/usermgmt/js/jquery-1.7.2.min.js');
+	    echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
 	?>
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?></h1>
+			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?>&nbsp;|&nbsp;<?php if ($this->UserAuth->isLogged()) { echo $this->Html->link('Dashboard', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'dashboard')); } else { echo $this->Html->link('Login', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'login')); }; ?></h1>
 		</div>
 		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+			<div class="messageHolder"><?php echo $this->Session->flash(); ?></div>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>

@@ -93,7 +93,10 @@ Configure::write('Dispatcher.filters', array(
 	'CacheDispatcher'
 ));
 
-CakePlugin::load('DebugKit');
+CakePlugin::load(array(
+	'DebugKit',
+	'Usermgmt' => array('routes' => true, 'bootstrap' => true)
+));
 
 /**
  * Configures default file logging options
