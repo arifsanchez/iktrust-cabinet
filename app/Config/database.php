@@ -55,7 +55,7 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array(
+	var $development = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'us-cdbr-east-03.cleardb.com',
@@ -65,6 +65,27 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+	
+	var $production = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'us-cdbr-east-03.cleardb.com',
+		'login' => 'b9c78850a0818d',
+		'password' => '3a9127c7',
+		'database' => 'heroku_084542947a871a7',
+		'prefix' => '',
+		#'port' => '6199',
+		'encoding' => 'utf8',
+	);
+
+	public function __construct()
+	{
+	    if (!$_SERVER['SERVER_NAME'] == 'localhost') {
+	        $this->default = $this->development;
+	    } else {
+	        $this->default = $this->production;
+	    }
+	}
 
 	#mysql://b85eadea7f676c:11fd9bdd@us-cdbr-east-03.cleardb.com/heroku_9f2a562c4bcc93f?reconnect=true
 }
