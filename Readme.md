@@ -13,5 +13,5 @@ New Homepage and traders cabinet
 
 Team Members
 +Arif
-+Faiz
++Faiz~
 +Intan
