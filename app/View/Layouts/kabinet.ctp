@@ -1,41 +1,32 @@
 <!DOCTYPE html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
-    <link rel="icon" href="http://iktrust.com/img/favicon.png" type="image/png">
-    <link rel="shortcut icon" href="http://iktrust.com/img/favicon.png" type="image/png" />
-    <meta name="google-site-verification" content="N2qGggHrf0WVxXtNgrF54jL6GB8W49MYLaqE7MN-Ir4" />
-    <title>IK Trust | Cabinet</title>
-  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IKtrust Cabinet</title>
+<link rel="stylesheet" href="css/style.default.css" type="text/css" />
+<link rel="stylesheet" href="prettify/prettify.css" type="text/css" />
 
-    <?php 
-      echo $this->Html->css('style.default.css');
+ <?php 
+ 		echo $this->Html->meta('icon');
+
+		
+
+	  echo $this->fetch('meta');
+	  echo $this->fetch('css');
+	  echo $this->fetch('script');
+ 		
+      echo $this->Html->css('bootstrap.css');
       echo $this->Html->css('prettify.css');
-      echo $this->Html->script('prettify.js');
-      echo $this->Html->script('jquery-1.8.3.min.js');
-      echo $this->Html->script('jquery-ui-1.9.2.min.js');
-      echo $this->Html->script('jquery.flot.min.js');
-      echo $this->Html->script('jquery.flot.resize.min.js');
-      echo $this->Html->script('bootstrap.min.js');
-      echo $this->Html->script('jquery.cookie.js');
-      echo $this->Html->script('custom.js');
-      
-
-      echo $this->Html->meta(
-        'keywords',
-        'iktrust, ik trust, forex, forex broker, metatrader 4, mt4,'
-    );
-
-    echo $this->Html->meta(
-        'description',
-        'Register today for a FX, CFD, Indices & Commodities trading and Asset Management with Islamic Accounts'
-    );
-    
-    
-  ?>
-  
-  <style type="text/css" media="all">
+      echo $this->Html->js('prettify.js');
+      echo $this->Html->js('jquery-1.8.3.min.js');
+      echo $this->Html->js('jquery-ui-1.9.2.min.js');
+      echo $this->Html->js('jquery.flot.min.js');
+      echo $this->Html->js('jquery.flot.resize.min.js');
+      echo $this->Html->js('bootstrap.min.js');
+      echo $this->Html->js('jquery.cookie.js');
+      echo $this->Html->js('custom.js');
+?>
+<style type="text/css" media="all">
 .frm {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 11px;
@@ -180,9 +171,7 @@
         </div><!--breadcrumbwidget-->
 
         <!--Kandungan dalam-->
-        
         <?php echo $this->fetch('content'); ?>
-        
         <!--Tamat kandungan dalam-->
 
     </div><!--mainright-->
