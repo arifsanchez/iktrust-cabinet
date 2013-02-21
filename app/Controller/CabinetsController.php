@@ -18,10 +18,17 @@ class CabinetsController extends AppController {
 	}	
 	
 	
-	public function withdrawalfund(){}
+	public function withdrawfund(){
+		$this->layout = 'kabinet';
+	}
 	
-	public function myaccount(){}	
+	public function myaccount(){
+		$this->layout = 'kabinet';
+	}	
 	
+	public function platformdownload(){
+		$this->layout = 'kabinet';
+	}	
 		
 		
 	}

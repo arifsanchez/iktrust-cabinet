@@ -2,9 +2,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>IKtrust Cabinet</title>
-<link rel="stylesheet" href="css/style.default.css" type="text/css" />
-<link rel="stylesheet" href="prettify/prettify.css" type="text/css" />
+<title>IKtrust | Cabinet</title>
+
 
  <?php 
  		echo $this->Html->meta('icon');
@@ -15,16 +14,16 @@
 	  echo $this->fetch('css');
 	  echo $this->fetch('script');
  		
-      echo $this->Html->css('bootstrap.css');
       echo $this->Html->css('prettify.css');
-      echo $this->Html->js('prettify.js');
-      echo $this->Html->js('jquery-1.8.3.min.js');
-      echo $this->Html->js('jquery-ui-1.9.2.min.js');
-      echo $this->Html->js('jquery.flot.min.js');
-      echo $this->Html->js('jquery.flot.resize.min.js');
-      echo $this->Html->js('bootstrap.min.js');
-      echo $this->Html->js('jquery.cookie.js');
-      echo $this->Html->js('custom.js');
+      echo $this->Html->css('style.default.css');
+      echo $this->Html->script('prettify.js');
+      echo $this->Html->script('jquery-1.8.3.min.js');
+      echo $this->Html->script('jquery-ui-1.9.2.min.js');
+      echo $this->Html->script('jquery.flot.min.js');
+      echo $this->Html->script('jquery.flot.resize.min.js');
+      echo $this->Html->script('bootstrap.min.js');
+      echo $this->Html->script('jquery.cookie.js');
+      echo $this->Html->script('custom.js');
 ?>
 <style type="text/css" media="all">
 .frm {

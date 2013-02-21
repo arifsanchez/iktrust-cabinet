@@ -22,7 +22,7 @@
 @import url('jquery.chosen.css');
 @import url('fullcalendar.css');
 @import url('font-awesome-ie7.css');
-@import url('../roboto/roboto.css');
+@import url('roboto/roboto.css');
 
 
 /***** RESET BROWSER STYLES *****/
@@ -82,7 +82,7 @@ h4 { font-size: 16px; line-height: 26px; }
 .logopanel h1 a:hover { text-decoration: none; }
 .logopanel h1 a span { font-size: 11px; }
 
-.datewidget { background: #232323; font-size: 11px; color: #999; padding: 5px 22px; border-right: 1px solid #1e1e1e; }
+.datewidget { background: #232323; font-size: 11px; color: #999; padding: 5px 20px; border-right: 1px solid #1e1e1e; }
 
 .searchwidget { padding: 10px; border-bottom: 1px solid #bbb; }
 .searchwidget input.search-query { border: 1px solid #bbb; outline: none; padding: 7px 10px; width: 178px; }
