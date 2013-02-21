@@ -60,8 +60,8 @@
     	
         <div class="logopanel">
         	
-        	        	
-        	<h1><a href="#"><img alt="logo iktrust" src="img/inner/logo.png"/></a></h1>
+        	        	 
+        	<h1><a class="brand" href="#"><?php echo $this->Html->image('inner/logo.png', array('alt' => 'Trust XE Logo'));?></a></h1>
         </div><!--logopanel-->
         
         <div class="datewidget">Now
