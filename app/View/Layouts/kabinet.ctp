@@ -106,13 +106,24 @@
             </form>
         </div><!--searchwidget-->
         
-        <!--div class="plainwidget">
-        	<small>Using 16.8 GB of your 51.7 GB </small>
-        	<div class="progress progress-info">
-                <div class="bar" style="width: 20%"></div>
-            </div>
-            <small><strong>38% full</strong></small>
-        </div--><!--plainwidget-->
+        <div class="plainwidget">
+        	        <ul class="nav nav-tabs nav-stacked samplenavs">
+<li class="active">
+<a href="#">
+<i class="icon-home"></i>
+  Home
+</a>
+</li>
+<li>
+<a href="#">
+<i class="icon-user"></i>
+  Profile
+</a>
+</li>
+</ul>        </div><!--plainwidget-->
+        
+     
+        
         
         <div class="leftmenu">        
             <ul class="nav nav-tabs nav-stacked">
