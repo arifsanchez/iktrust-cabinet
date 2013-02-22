@@ -86,76 +86,122 @@
 												<div class="control-group">
 													<label class="control-label" for="#" id="">*Name :</label>
 													<div class="controls">
-															<!--input type="text" id="#" placeholder="Full Name" name=""-->
-															<?php echo $this->Form->input('Model.year', array(
-    'type' => 'text',
-	'placeholder' => 'Full Name',
-	'label' => ""
-)); ?>
-													</div>
+													<!--input type="text" id="#" placeholder="Full Name" name=""-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Name',
+														'label' => "")); 
+													?>
+												</div>
 												</div>
 											
 												<div class="control-group">
 													<label class="control-label" for="#">*Surname :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="Surname">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="Surname"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Surname',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Address :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="Address">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="Address"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Address',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*City :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="City">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="City"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'City',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*State/Province :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="State/Province">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="State/Province"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'State/Province',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Postal/Zip Code :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="Postal/Zip Code">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="Postal/Zip Code"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Postal/Zip Code',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Telephone Number(+) :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="Telephone Number(+)">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="Telephone Number(+)"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Telephone Number(+)',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Email :</label>
-														<div class="controls">
-															<input type="text" id="#" placeholder="Email">
-														</div>
+													<div class="controls">
+													<!--input type="text" id="#" placeholder="Email"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Email',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Country :</label>
-														<div class="controls">
-															<select>
-																<option>-- Country --</option>
-																<option>Russia</option>
-																<option>Malaysia</option>
-																<option>Indonesia</option>
-																<option>United State</option>
-																<option>Saudi Arabia</option>
-															</select>
-														</div>
+													<div class="controls">
+													<?php
+														echo $this->Form->input('P.edit', array(
+															'label' => "",'options' => array(
+															'title'=> '-- Select Country --',
+															'opt1' => 'Russia', 
+															'opt2' => 'Malaysia', 
+															'opt3' => 'Indonesia', 
+															'opt4' => 'United State', 
+															'opt5' => 'Saudi Arabia')
+														));
+													?>
+													<!--select>
+														<option>-- Country --</option>
+														<option>Russia</option>
+														<option>Malaysia</option>
+														<option>Indonesia</option>
+														<option>United State</option>
+														<option>Saudi Arabia</option>
+													</select-->
+													</div>
 												</div>
 												
 												<div class="control-group">
@@ -180,37 +226,62 @@
 											<form class="form-horizontal">
 												<div class="control-group">
 													<label class="control-label" for="#">*Full Name</label>
-														<div class="controls">
-															<input type="password" id="#" placeholder="Full Name">
-														</div>
+													<div class="controls">
+													<!--input type="password" id="#" placeholder="Full Name"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Full Name',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Email</label>
-														<div class="controls">
-															<input type="password" id="#" placeholder="Valid Email">
-														</div>
+													<div class="controls">
+													<!--input type="password" id="#" placeholder="Valid Email"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Valid Email',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Enter Current Password</label>
-														<div class="controls">
-															<input type="password" id="#" placeholder="Enter Current Password">
-														</div>
+													<div class="controls">
+													<!--input type="password" id="#" placeholder="Enter Current Password"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Current Password',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*New Password</label>
-														<div class="controls">
-															<input type="password" id="#" placeholder="New Password">
-														</div>
+													<div class="controls">
+													<!--input type="password" id="#" placeholder="New Password"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'New Password',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
 													<label class="control-label" for="#">*Re-Enter New Password</label>
-														<div class="controls">
-															<input type="password" id="#" placeholder="Re-Enter New Password">
-														</div>
+													<div class="controls">
+													<!--input type="password" id="#" placeholder="Re-Enter New Password"-->
+													<?php echo $this->Form->input('P.edit', array(
+														'type' => 'text',
+														'placeholder' => 'Re-Enter New Password',
+														'label' => "")); 
+													?>
+													</div>
 												</div>
 												
 												<div class="control-group">
@@ -224,7 +295,7 @@
 										<div class="span4">
 											<br>
 											<p>
-												<h6>Important Notes</h6><br>
+												<h6>Important Notes</h6>
 												To reset your Account Password, please enter a new password
 											</p>
 										</div>
@@ -330,8 +401,16 @@
 											</label>
 										</div>
 										
-										<div class="span7">
+										<!--div class="span7">
 											<input type="checkbox" id="inlineCheckbox3" value="option3">
+										</div-->
+										
+										<div class="span7">
+											<div id="sub_chck" class="checker">
+												<span class="unchecked">
+													<input type="checkbox" checked="checked" name="check2" style="opacity: 0;">
+												</span>
+											</div>
 										</div>
 									</div>
 									
@@ -342,8 +421,16 @@
 											</label>
 										</div>
 										
+										<!--div class="span7">
+											<input type="checkbox" id="inlineCheckbox4" value="option4">
+										</div-->
+										
 										<div class="span7">
-											<input type="checkbox" id="inlineCheckbox3" value="option3">
+											<div id="sub_chck" class="checker">
+												<span class="unchecked">
+													<input type="checkbox" checked="checked" name="check3" style="opacity: 0;">
+												</span>
+											</div>
 										</div>
 									</div>
 									
@@ -354,8 +441,16 @@
 											</label>
 										</div>
 										
+										<!--div class="span7">
+											<input type="checkbox" id="inlineCheckbox5" value="option5">
+										</div-->
+										
 										<div class="span7">
-											<input type="checkbox" id="inlineCheckbox3" value="option3">
+											<div id="sub_chck" class="checker">
+												<span class="unchecked">
+													<input type="checkbox" checked="checked" name="check4" style="opacity: 0;">
+												</span>
+											</div>
 										</div>
 									</div>
 									
@@ -366,9 +461,18 @@
 											</label>
 										</div>
 										
+										<!--div class="span7">
+											<input type="checkbox" id="inlineCheckbox6" value="option6">
+										</div-->
+										
 										<div class="span7">
-											<input type="checkbox" id="inlineCheckbox3" value="option3">
+											<div id="sub_chck" class="checker">
+												<span class="unchecked">
+													<input type="checkbox" checked="checked" name="check5" style="opacity: 0;">
+												</span>
+											</div>
 										</div>
+										
 									</div>
 									
 									<div class='row-fluid'>
