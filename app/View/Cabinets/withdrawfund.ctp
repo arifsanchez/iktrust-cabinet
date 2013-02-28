@@ -1,6 +1,6 @@
     <div class="maincontent">
 		<div class="contentinner">
-				
+				<?php echo $this->element('newsticker'); ?>
 				<div class="row-fluid">
 					<div class="span4"><br>
 						<!--img src="img/deposit_img/img1.png" alt="Visa.img" height="100" width="100"-->

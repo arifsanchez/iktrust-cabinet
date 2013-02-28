@@ -1,6 +1,8 @@
 
 <div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
+			<?php echo $this->element('newsticker'); ?>
+			
 				<br>
 				<div class="row-fluid">
 					<div class="span12"><h2>IK Trust Ctrader Platforms</h2></div>

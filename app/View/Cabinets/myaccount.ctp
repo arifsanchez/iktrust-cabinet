@@ -1,7 +1,7 @@
         
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
-		
+				<?php echo $this->element('newsticker'); ?>
 				<!--FIRST TTLE/HEADER-->
 				<br>
 				<br>

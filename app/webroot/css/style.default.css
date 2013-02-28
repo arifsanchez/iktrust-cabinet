@@ -63,7 +63,7 @@ h3 { font-size: 18px; line-height: 28px; }
 h4 { font-size: 16px; line-height: 26px; }
 
 .mainwrapper { 
-	width: 1280px; margin: auto; background: #f7f7f7 url(../img/mainbg.png) repeat-y 0 0; position: relative; 
+	width: 95%; margin: auto; background: #f7f7f7 url(../img/mainbg.png) repeat-y 0 0; position: relative; 
 	border-left: 1px solid #aaa; overflow: hidden; border-right: 1px solid #aaa; -moz-box-shadow: 0 0 5px rgba(0,0,0,0.1); 
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.1); box-shadow: 0 0 5px rgba(0,0,0,0.1); padding-bottom: 60px; 
 }
