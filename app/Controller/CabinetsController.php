@@ -30,8 +30,12 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 	}	
 		
-		
+	public function register(){
+
 	}
+	
+	
+}
 	
 	
 	

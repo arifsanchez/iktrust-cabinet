@@ -1,0 +1,64 @@
+.ac_results {
+	background: #ffffff;
+	background: -moz-linear-gradient(top,  #ffffff,  #f2f2f2);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f2f2f2));
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ffffff', EndColorStr='#f2f2f2', GradientType=0);
+	
+	border-top-right-radius 	: 0;
+	-moz-border-radius-topright	: 0;
+	-khtml-border-radius-topright: 0;
+	-webkit-border-top-right-radius: 0;
+	border-top-left-radius 	: 0;
+	-moz-border-radius-topleft	: 0;
+	-khtml-border-radius-topleft: 0;
+	-webkit-border-top-left-radius: 0;
+	
+	border-top: none;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: pointer;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font: menu;
+	font-size: 12px;
+	line-height: 16px;
+	overflow: hidden;
+}
+
+.ac_loading {
+	background: white url('indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+	background-color: #eee;
+}
+
+.ac_over {
+	border-radius : 5px;
+	-moz-border-radius : 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+/*
+#country-type {
+	background: 5px 5px no-repeat;
+	padding:3px 3px 3px 27px;
+}
+#country-type_hidden {
+    visibility: hidden;
+}

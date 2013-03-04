@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>jQuery Autocomplete - Countries Plugin</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type='text/javascript' src='jquery.autocomplete.js'></script>
+<script type='text/javascript' src='jquery.bgiframe.min.js'></script>
+<script type='text/javascript' src='countries.en.js'></script>
+<link rel="stylesheet" type="text/css" href="jquery.autocomplete.css" />
+<link rel="stylesheet" type="text/css" href="jquery.autocomplete.country.css" />
+<style>
+body {
+	font-family:arial;
+}
+input {
+	border: 1px solid #ccc;
+}
+</style>
+<script type="text/javascript">
+
+//Simply clear field on click and re-assign default value if nothing was typed
+//I like this "feature", makes the interface a bit more usable without the hassle for the coder ;)
+$.fn.clearField = function() {
+    return this.focus(function() {
+        if( this.value == this.defaultValue ) {
+            this.value = "";
+        }
+    }).blur(function() {
+        if( !this.value.length ) {
+            this.value = this.defaultValue;
+        }
+    });
+};	
+
+$().ready(function() {
+
+	//Change this to the ID of the country input you want to be autocompleted
+	//make sure to update the CSS for this ID as well
+	var ac_country = "#ac_country";
+
+	//options are the same as the JQuery Autocomplete plugin
+	$(ac_country).autocomplete(countries, {
+		minChars: 2,
+		width: 320,
+		matchContains: true,
+		scroll: true,
+		max:0,
+		formatItem: function(row, i, max, term) {
+			return "<img src='images/flags/" + row.code.toLowerCase() + ".gif'/> " + row.name;
+		},
+		formatResult: function(row) {
+			return row.name;
+		},
+		formatMatch: function(row, i, max) {
+			return row.name;
+		}
+	});
+
+	$(ac_country).after($(ac_country).clone().attr('value','').attr('id', $(ac_country).attr('id') + '_hidden'));
+	$(ac_country).removeAttr('name', '').clearField();
+	$(ac_country).result(function(event, data, formatted) {
+		if(data) {
+			$(ac_country + '_hidden').val(data.code.toLowerCase());
+		}
+		var src = 'images/flags/' + data.code.toLowerCase() + '.gif';
+		$(ac_country).css('backgroundImage', 'url(' + src + ')');
+	});
+});
+	
+</script>
+</head>
+<body>
+<div id="content">
+	<h1>JQuery Autocomplete Plugin extension for country list</h1>
+	<p>I created this quick extension to the excellent jQuery autocomplete plugin to facilitate country selection in a form.</p>
+	<p>Comments, ideas, suggestions and bugs are welcome, use this <a href="/2008/12/21/country-jquery-autocomplete-plugin/">blog post</a>.</p>
+	<h2>Demo</h2>	
+	<form autocomplete="off" action="" method="get">
+		<p>
+			<label for="ac_country">Country:</label>
+			<input type="text" id='ac_country' name='country' value='Enter country letters' />
+		</p>
+		<p>
+			<button type="submit" value="Submit" >Submit</button>
+		</p>
+	</form>
+	<h3>Download</h3>	
+	<ul>
+		<li><a href="accountry.0.2.zip">ZIP</a></li>
+	</ul>
+	<h3>Todo</h3>
+	<ul>
+		<li>Figure out how to search on accented characters</li>
+		<li>Speed up first parse</li>
+		<li>Enable pre-selected country</li>
+		<li>Find icons for the missing countries: Antartica, Guernsey, Isle of Man, Jersey, Saint-Barth&eacute;lemy, Saint-Martin</li>
+	</ul>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="hidden" name="hosted_button_id" value="6329918">
+	<input type="image" src="http://www.devtaxi.com/tools/donate.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+	<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>	
+	<h3>Credits &amp; special thanks to</h3>
+	<ul>
+		<li>J&ouml;rn Zaefferer for the <a href="http://bassistance.de/jquery-plugins/jquery-plugin-autocomplete/" target="_blank">Autocomplete plugin</a></li>
+		<li>Fam Fam Fam for the <a href="http://www.famfamfam.com/lab/icons/flags/" target="_blank">flag icons</a></li>
+		<li>Aral Balkan for the <a href="http://opencountrycodes.appspot.com/" target="_blank">ISO country data in JSon</a></li>
+		<li>Chris Brunelle for fixing a bug in Internet Exploder 7/8
+	</ul>
+	<h3>License</h3>
+	<p>Like jQuery, this code is licensed under both the <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">MIT</a> and <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPL</a> licenses.</p>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6757016-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
