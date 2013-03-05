@@ -71,10 +71,28 @@
 	   <!--plainwidget-->
         
      
+    
         
-        
-        <div class="leftmenu">        
-            <ul class="nav nav-tabs nav-stacked">
+     <div class="leftmenu"> 
+	 <li class="nav-header">Main Navigation</li>
+	 <?php
+		 
+				$menu = array(
+								'options'=>array('class'=>'nav nav-tabs nav-stacked'),
+								'items'=>	array(
+											array('title'=>'My Accounts', 'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'myaccount')),
+											array('title'=>'My Profile',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'myprofile')),
+											array('title'=>'Deposit Fund',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'depositfund')),
+											array('title'=>'Withdraw Fund',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'withdrawfund')),
+											array('title'=>'Platform Download',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'platformdownload')),
+										),
+									);
+								 
+		
+		//debug($menu);die();
+		echo $this->Menu->render($menu);
+		?>
+           <!-- <ul class="nav nav-tabs nav-stacked">
             	<li class="nav-header">Main Navigation</li>
                 <li class="active"><a href="#"><span class="icon-user"></span> My Accounts</a></li>
                 <li><a href="#"><span class="icon-briefcase"></span> My Profile</a></li>
@@ -82,7 +100,7 @@
                 <li><a href="#"><span class="icon-arrow-down"></span> Withdraw Funds</a></li>
                 <li><a href="#"><span class="iconsweets-download2"></span> Platform Downloads</a></li>
                 
-            </ul>
+            </ul>-->
         </div><!--leftmenu-->
         
     </div><!--mainleft-->

@@ -3,6 +3,7 @@ App::uses('AppController', 'Controller');
 
 
 class CabinetsController extends AppController {
+	public $helpers = array('Menu');
 	
 	public function myprofile(){
 		$this->layout = 'kabinet';
