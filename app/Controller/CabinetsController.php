@@ -18,7 +18,7 @@ class CabinetsController extends AppController {
 		$this->layout = 'logmasuk';
 	}	
 	
-	
+	 
 	public function withdrawfund(){
 		$this->layout = 'kabinet';
 	}

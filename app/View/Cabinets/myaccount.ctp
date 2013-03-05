@@ -1,4 +1,4 @@
-        <?php //echo $user['User']['email_verified'] ;?>
+       
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
 				<?php echo $this->element('newsticker'); ?>
@@ -10,12 +10,13 @@
 						<h2>My Accounts</h2>
 					</div>
 					<div class="span6" align="right">
-					<?php  if($user['User']['email_verified'] == 0){
+					<?php  if($user['User']['email_verified'] == 1){
 					
 						echo $this->Html->link('Open Trading Account', '/pages/home', array('class' => 'btn btn-large btn-success enable span6', 'target' => '_blank'));
 						echo $this->Html->link('Open Demo Account', '/pages/home', array('class' => 'btn btn-large btn-success enable span6', 'target' => '_blank'));
 						
 						}else{
+						
 							echo  "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
 								<strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>";
 						}
