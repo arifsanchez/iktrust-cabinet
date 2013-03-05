@@ -56,8 +56,7 @@
             
             <div class="headerright">
             	<!--dropdown-->
-                   
-                
+                                  
                 
                 
     			<div class="dropdown userinfo">
@@ -69,7 +68,7 @@
                         <li><a href=""><span class="icon-wrench"></span> Account Settings</a></li>
                         <li><a href=""><span class="icon-eye-open"></span> Privacy Settings</a></li>
                         <li class="divider"></li>
-                        <li><a href="/logout"><span class="icon-off"></span> Sign Out</a></li>
+                        <li><?php echo $this->Html->link('<span class="icon-off"></span> Sign Out',array('controller' => '', 'action' => 'logout'),array('escape' => false)); ?></li>         
                     </ul>
                 </div><!--dropdown-->
     		

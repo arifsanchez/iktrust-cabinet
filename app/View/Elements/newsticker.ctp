@@ -8,7 +8,7 @@ echo $this->Html->script('jnews/newsticker.jquery.min');
 
 ?>
 
-
+<div class="hidden-phone">
 
 <ul id="newsticker_1" class="newsticker">
 
@@ -32,3 +32,4 @@ echo $this->Html->script('jnews/newsticker.jquery.min');
 	 });
 })(jQuery);
 </script> 
+</div>

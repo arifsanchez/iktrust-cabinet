@@ -49,14 +49,14 @@
 				</script>
 
 		</div>							    
-    	<div class="searchwidget">
+    	<!--div class="searchwidget">
         	<form action="results.html" method="post">
             	<div class="input-append">
                     <input type="text" class="span2 search-query" placeholder="Search here...">
                     <button type="submit" class="btn"><span class="icon-search"></span></button>
                 </div>
             </form>
-        </div><!--searchwidget-->
+        </div--> <!--searchwidget tak guna-->
         
         <!--div class="plainwidget">
         	        <ul class="nav nav-tabs nav-stacked samplenavs">
@@ -80,11 +80,11 @@
 				$menu = array(
 								'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 								'items'=>	array(
-											array('title'=>'My Accounts', 'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'myaccount')),
-											array('title'=>'My Profile',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'myprofile')),
-											array('title'=>'Deposit Fund',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'depositfund')),
-											array('title'=>'Withdraw Fund',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'withdrawfund')),
-											array('title'=>'Platform Download',  'class' => 'icon-user' ,'url'=> array('controller'=>'cabinets', 'action'=>'platformdownload')),
+											array('title'=>'My Accounts',  'url'=> array('controller'=>'cabinets', 'action'=>'myaccount')),
+											array('title'=>'My Profile',  'url'=> array('controller'=>'cabinets', 'action'=>'myprofile')),
+											array('title'=>'Deposit Fund',  'url'=> array('controller'=>'cabinets', 'action'=>'depositfund')),
+											array('title'=>'Withdraw Fund',  'url'=> array('controller'=>'cabinets', 'action'=>'withdrawfund')),
+											array('title'=>'Platform Download', 'url'=> array('controller'=>'cabinets', 'action'=>'platformdownload')),
 										),
 									);
 								 

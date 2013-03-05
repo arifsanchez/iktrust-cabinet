@@ -1,8 +1,8 @@
 /* Main CSS - Register5! */
 
 @import url('reset.css');
-@font-face { font-family: 'font-face museo sans'; src: url(../fonts/MuseoSans.otf); }
-@font-face { font-family: 'font-face chunkfive'; src: url(../fonts/Chunkfive.otf); }
+@font-face { font-family: 'font-face museo sans'; src: url(../../font/MuseoSans.otf); }
+@font-face { font-family: 'font-face chunkfive'; src: url(../../font/Chunkfive.otf); }
 
 body, a {
 	color: #403d3a;
