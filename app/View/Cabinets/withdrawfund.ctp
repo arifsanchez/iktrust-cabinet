@@ -111,7 +111,7 @@
 											<?php 
 												echo $this->Html->image('deposit_img/img10.png', array('class'=>'' , 'alt'=>'photo'));
 											?>
-											<p>You can transfer funds between your FxPro real accounts using internal transfers.<br>
+											<p>You can transfer funds between your IK Trust real accounts using internal transfers.<br>
 												<a href="http://www.w3schools.com/">Withdraw Internal Transfers</a> 
 											</p>
 										</div>

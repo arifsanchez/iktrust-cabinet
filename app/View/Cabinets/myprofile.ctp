@@ -1,5 +1,4 @@
-
-		
+<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
 			<?php echo $this->element('newsticker'); ?>
@@ -17,7 +16,6 @@
 				<div class="tabbable"> <!-- Only required for left/right tabs -->
 					<div class="row-fluid"> 
 						<div class="span10">
-						
 							<ul class="nav nav-tabs">
 							<!--TAB TITLE ONLY-->
 								<li class="active">
@@ -47,174 +45,99 @@
 							<div class="tab-content">
 								<!--TAB CONTENT ONLY-->
 								<div class="tab-pane active" id="tab1">
-									<div class="row-fluid" align="horizontal">
-										<div class="span12">
-											<div class="media"><!-- Header Align -->
-												<!-- Avatar Icon-->
-												<div class="media-body">
-							  <!-- START CONTENT --><div>
-													<a class="pull-left" href="#">
-													<?php 
-														echo $this->Html->image('icon/avatar.gif', array('class'=>'' , 'alt'=>'photo'));
-													?>
-													</a>
-													
-													<p>
-													<button type="button" class="btn btn-default span3">
-														Browse...
-													</button> 
-
-													<button type="button" class="btn btn-default span3">
-														Remove Avatar
-													</button> 
-													</p>
-								<!-- END CONTENT --></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									
-									
 									<!-- Form Details -->
-									<br>
-									<div class="row-fluid">
-										<div class="span12">
-											<form class="form-horizontal">
-											
-	
+										<h4 class="widgettitle nomargin">Edit Profile</h4>
+										<div class="widgetcontent ">
+											<div class="row-fluid">
+												<div class="span3 profile-left">
+												<p>
+													<h4>Your Profile Photo</h4>
+													<div class="profilethumb">
+														<a href="">Change Thumbnail</a>
+														<img src="img/profilethumb.png" alt="" class="img-polaroid" />
+													</div><!--profilethumb-->
+													</p>
+												</div><!--span3-->
+												<div class="span9">
 												
-												<div class="control-group">
-													<label class="control-label" for="#" id="">*Name :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Full Name" name=""-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Name',
-														'label' => "")); 
-													?>
-												</div>
-												</div>
-											
-												<div class="control-group">
-													<label class="control-label" for="#">*Surname :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Surname"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Surname',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Address :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Address"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Address',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*City :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="City"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'City',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*State/Province :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="State/Province"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'State/Province',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Postal/Zip Code :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Postal/Zip Code"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Postal/Zip Code',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Telephone Number(+) :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Telephone Number(+)"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Telephone Number(+)',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Email :</label>
-													<div class="controls">
-													<!--input type="text" id="#" placeholder="Email"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Email',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Country :</label>
-													<div class="controls">
-													<?php
-														echo $this->Form->input('P.edit', array(
-															'label' => "",'options' => array(
-															'title'=> '-- Select Country --',
-															'opt1' => 'Russia', 
-															'opt2' => 'Malaysia', 
-															'opt3' => 'Indonesia', 
-															'opt4' => 'United State', 
-															'opt5' => 'Saudi Arabia')
-														));
-													?>
-													<!--select>
-														<option>-- Country --</option>
-														<option>Russia</option>
-														<option>Malaysia</option>
-														<option>Indonesia</option>
-														<option>United State</option>
-														<option>Saudi Arabia</option>
-													</select-->
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<div class="controls">
-														<button type="submit" class="btn">Submit</button>
-													</div>
-												</div>
-												
-
-											</form>
-										</div>
+													<?php echo $this->Form->create('User', array('type' => 'file', 'id'=>'editProfileForm' , 'class' => 'editprofileform')); ?>
+													<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
+													<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
+														<p>
+														<h4>Login Information</h4>
+														<p>
+															<label>Email:</label>
+															<?php echo $this->Form->input('User.email' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label style="padding:0">Password</label>
+															<a href="">Change Password?</a>
+														</p>
+														
+														<br />
+														
+														<h4>Personal Information</h4>
+														<p>
+															<label>Firstname:</label>
+															<?php echo $this->Form->input('User.first_name' ,array('label' => false,'div' => false,'class'=>'input-xlarge',))?>
+															
+														</p>
+														<p>
+															<label>Lastname:</label>
+															<?php echo $this->Form->input('User.last_name' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>Location:</label>
+															<?php echo $this->Form->input('UserDetail.location' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>Address</label>
+															<?php echo $this->Form->input('UserDetail.address' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>City</label>
+															<?php echo $this->Form->input('UserDetail.city' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>State/Province</label>
+															<?php echo $this->Form->input('UserDetail.state' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>Postal/Zip Code</label>
+															<?php echo $this->Form->input('UserDetail.postal' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>Country</label>
+															<?php	echo $this->Form->input('P.edit', array(
+																					'label' => "",'class' =>'input-xlarge','options' => array(
+																					'title'=> '-- Select Country --',
+																					'opt1' => 'Russia', 
+																					'opt2' => 'Malaysia', 
+																					'opt3' => 'Indonesia', 
+																					'opt4' => 'United State', 
+																					'opt5' => 'Saudi Arabia')
+																				));
+																			?>
+														</p>
+														<p>
+															<label>Telephone No#</label>
+															<?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														
+														<br/>
+														<br />
+														<p>
+															<?php echo $this->Form->Submit(__('Update Profile'), array('class'=>'btn btn-primary'));?>
+														</p>
+													<?php echo $this->Form->end(); ?>
+													
+												</div><!--span9-->
+											</div><!--row-fluid-->
+										</div><!--widgetcontent-->
+									
 									</div>
-								</div>
+								
+								
 							
 								<!-- CHANGE PASSWORD PANE-->
 								<div class="tab-pane" id="tab2">
@@ -533,4 +456,5 @@
 				</div>
 
 			</div><!--contentinner close-->
+			
 		</div><!--mainconten closet-->
