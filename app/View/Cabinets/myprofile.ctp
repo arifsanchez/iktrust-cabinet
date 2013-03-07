@@ -53,8 +53,9 @@
 												<p>
 													<h4>Your Profile Photo</h4>
 													<div class="profilethumb">
-														<a href="">Change Thumbnail</a>
-														<img src="img/profilethumb.png" alt="" class="img-polaroid" />
+														<img  src= "<?php echo $this->Image->resize('img/'.IMG_DIR, $user['UserDetail']['photo'], 200, null, true) ?>">
+														
+														
 													</div><!--profilethumb-->
 													</p>
 												</div><!--span3-->
@@ -122,6 +123,10 @@
 														<p>
 															<label>Telephone No#</label>
 															<?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+														</p>
+														<p>
+															<label>photo</label>
+															<?php echo $this->Form->input('UserDetail.photo' ,array('type' => 'file' ,'label' => false,'div' => false,'class'=>'fileupload fileupload-new' ))?>
 														</p>
 														
 														<br/>

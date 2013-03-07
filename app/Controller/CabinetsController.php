@@ -7,9 +7,15 @@ class CabinetsController extends AppController {
 	
 	public function myprofile(){
 		$this->layout = 'kabinet';
+		$userId = $this->UserAuth->getUserId();
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
-		$userId = $this->UserAuth->getUserId();
+		$user = $this->UserDetail->Find('first',array(
+					'conditions' =>array( 'UserDetail.user_id' => $userId),
+					'field'			=> 'UserDetail.photo',
+					'recursive' 	=> -1,));
+		//debug($user);die();
+		$this->set('user',$user);
 		if (!empty($userId)) {
 				if ($this->request -> isPut() || $this->request -> isPost()) {
 				$this->User->set($this->data);
