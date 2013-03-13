@@ -369,9 +369,11 @@ jQuery(document).ready(function(){
 		jQuery('.skin-layout').each(function(){ jQuery(this).parent().removeClass('selected'); });
 		if(jQuery(this).hasClass('fixed')) {
 			jQuery('.mainwrapper').removeClass('fullwrapper');
+			if(jQuery('.stickyheaderinner').length > 0) jQuery('.stickyheaderinner').removeClass('wideheader');
 			jQuery.cookie("skin-layout", 'fixed', { path: '/' });
 		} else {
 			jQuery('.mainwrapper').addClass('fullwrapper');
+			if(jQuery('.stickyheaderinner').length > 0) jQuery('.stickyheaderinner').addClass('wideheader');
 			jQuery.cookie("skin-layout", 'wide', { path: '/' });
 		}
 		return false;
@@ -380,10 +382,13 @@ jQuery(document).ready(function(){
 	// load selected layout from cookie
 	if(jQuery.cookie('skin-layout')) {
 		var layout = jQuery.cookie('skin-layout');
-		if(layout == 'fixed')
+		if(layout == 'fixed') {
 			jQuery('.mainwrapper').removeClass('fullwrapper');
-		else
+			if(jQuery('.stickyheaderinner').length > 0) jQuery('.stickyheaderinner').removeClass('wideheader');
+		} else {
 			jQuery('.mainwrapper').addClass('fullwrapper');
+			if(jQuery('.stickyheaderinner').length > 0) jQuery('.stickyheaderinner').addClass('wideheader');
+		}	
 	}
 	
 	

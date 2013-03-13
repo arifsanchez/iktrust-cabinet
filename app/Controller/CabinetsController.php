@@ -51,6 +51,7 @@ class CabinetsController extends AppController {
 	public function register(){
 	
 		$this->layout = 'register_kabinet';
+	
 	}
 	
 	

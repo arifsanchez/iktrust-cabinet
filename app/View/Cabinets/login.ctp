@@ -26,19 +26,35 @@ img.floatLeft {
     <div class="loginshadow animate3 fadeInUp"></div>
 </div>
 
+<script>
+jQuery.noConflict();
 
-<?php //echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
-<?php //echo $this->element('Usermgmt.ajax_validation', array("formId" => "cloginForm", "submitButtonId" => "cloginSubmitBtn")); ?>
-<!--div id="umLogin">
-	<div class='title'><?php echo __('Sign In');?></div>
-	<?php echo $this->Form->create('User', array('url'=>array('controller' => 'users', 'action' => 'login', 'plugin'=>'usermgmt'), 'id'=>'cloginForm')); ?>
-	<div class="umstyle4"><?php echo $this->Form->input("email" ,array('label' => false,'div' => false,'class'=>"umstyle5", 'placeholder'=>__('Email / Username'), 'title'=>__('Email / Username')))?></div>
-	<div class="umstyle4"><?php echo $this->Form->input("password" ,array("type"=>"password", 'label' => false,'div' => false,'class'=>"umstyle5", 'placeholder'=>__('Password'), 'title'=>__('Password')))?></div>
-	<?php if(!isset($this->request->data['User']['remember'])) { $this->request->data['User']['remember']=true; } ?>
-	<div class="umstyle4"><?php echo $this->Form->input("remember" ,array("type"=>"checkbox", 'label' => false,'div' => false, 'title'=>__('Remember Me')))?><?php echo __('Remember Me');?></div>
-	<div class="umstyle4"><?php echo $this->Form->button(__('Sign In'), array('id'=>'cloginSubmitBtn', 'class'=>"btn btn-danger btn-block"));?></div>
-	<?php echo $this->Form->end(); ?>
-	<div  align="left"><?php echo $this->Html->link(__("Register"),"/register",array("class"=>"style30")) ?></div>
-	<div  align="left"><?php echo $this->Html->link(__("Forgot Password?"),"/forgotPassword",array("class"=>"style30")) ?></div>
-	<div  align="left"><?php echo $this->Html->link(__("Email Verification"),"/emailVerification",array("class"=>"style30")) ?></div>
-</div-->
+jQuery(document).ready(function(){
+	
+	var anievent = (jQuery.browser.webkit)? 'webkitAnimationEnd' : 'animationend';
+	jQuery('.loginwrap').bind(anievent,function(){
+		jQuery(this).removeClass('animate2 bounceInDown');
+	});
+	
+	jQuery('#username,#password').focus(function(){
+		if(jQuery(this).hasClass('error')) jQuery(this).removeClass('error');
+	});
+	
+	jQuery('#loginform button').click(function(){
+		if(!jQuery.browser.msie) {
+			if(jQuery('#username').val() == '' || jQuery('#password').val() == '') {
+				if(jQuery('#username').val() == '') jQuery('#username').addClass('error'); else jQuery('#username').removeClass('error');
+				if(jQuery('#password').val() == '') jQuery('#password').addClass('error'); else jQuery('#password').removeClass('error');
+				jQuery('.loginwrap').addClass('animate0 wobble').bind(anievent,function(){
+					jQuery(this).removeClass('animate0 wobble');
+				});
+			} else {
+				jQuery('.loginwrapper').addClass('animate0 fadeOutUp').bind(anievent,function(){
+					jQuery('#loginform').submit();
+				});
+			}
+			return false;
+		}
+	});
+});
+</script>

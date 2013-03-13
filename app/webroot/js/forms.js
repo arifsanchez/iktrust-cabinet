@@ -12,7 +12,7 @@
 jQuery(document).ready(function(){
 	
 	// Transform upload file
-	jQuery('input:file').uniform();
+	jQuery('.uniform-file').uniform();
 	
 	// Dual Box Select
 	var db = jQuery('#dualselect').find('.ds_arrow button');	//get arrows of dual select
@@ -89,5 +89,7 @@ jQuery(document).ready(function(){
 	    		.closest('.control-group').addClass('success');
 	    }
 	});
+	
+	jQuery('#timepicker1').timepicker();
 	
 });
