@@ -4,23 +4,23 @@
                     <form class="stdform stdform2" method="post" action="forms.html">
  							<p>
                                 <label>Username</label>
-                                <span class="field"><input type="text" name="email" id="email2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="text" name="email" id="email2" class="input-xlarge" /></span>
                             </p>                   
                     
                             <p>
                                 <label>First Name</label>
-                                <span class="field"><input type="text" name="firstname" id="firstname2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="text" name="firstname" id="firstname2" class="input-xlarge" /></span>
                             </p>
                           
                             
                             <p>
                                 <label>Last Name</label>
-                                <span class="field"><input type="text" name="lastname" id="lastname2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="text" name="lastname" id="lastname2" class="input-xlarge" /></span>
                             </p>
                             
                             <p>
                                 <label>Email</label>
-                                <span class="field"><input type="text" name="email" id="email2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="text" name="email" id="email2" class="input-xlarge" /></span>
                             </p>
                           
                       
@@ -277,11 +277,11 @@
                             </p>
                               <p>
                                 <label>Password</label>
-                                <span class="field"><input type="password" name="email" id="email2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="password" name="email" id="email2" class="input-xlarge" /></span>
                             </p>
                               <p>
                                 <label>Comfirm Password</label>
-                                <span class="field"><input type="password" name="email" id="email2" class="input-xxlarge" /></span>
+                                <span class="field"><input type="password" name="email" id="email2" class="input-xlarge" /></span>
                             </p>
                                                     
                             <p class="stdformbutton">
