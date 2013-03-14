@@ -7,8 +7,85 @@ class CabinetsController extends AppController {
 	
 	public function myprofile(){
 		$this->layout = 'kabinet';
-			
+		$userId = $this->UserAuth->getUserId();
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		$user = $this->UserDetail->Find('first',array(
+					'conditions' =>array( 'UserDetail.user_id' => $userId),
+					'field'			=> 'UserDetail.photo',
+					'recursive' 	=> -1,));
+		//debug($user);die();
+		$this->set('user',$user);
+		if (!empty($userId)) {
+				if ($this->request -> isPut() || $this->request -> isPost()) {
+				$this->User->set($this->data);
+				$this->UserDetail->set($this->data);
+				$UserRegisterValidate = $this->User->RegisterValidate();
+				$UserDetailRegisterValidate = $this->UserDetail->RegisterValidate();
+				if($this->RequestHandler->isAjax()) {
+					$this->layout = 'ajax';
+					$this->autoRender = false;
+					if ($UserRegisterValidate && $UserDetailRegisterValidate) {
+						$response = array('error' => 0, 'message' => 'Succes');
+						return json_encode($response);
+					} else {
+						$response = array('error' => 1,'message' => 'failure');
+						$response['data']['User']   = $this->User->validationErrors;
+						$response['data']['UserDetail'] = $this->UserDetail->validationErrors;
+						return json_encode($response);
+					}
+				} else {
+					if ($UserRegisterValidate && $UserDetailRegisterValidate) {
+						if(is_uploaded_file($this->request->data['UserDetail']['photo']['tmp_name']) && !empty($this->request->data['UserDetail']['photo']['tmp_name'])) {
+							$path_info = pathinfo($this->request->data['UserDetail']['photo']['name']);
+							chmod ($this->request->data['UserDetail']['photo']['tmp_name'], 0644);
+							$photo=time().mt_rand().".".$path_info['extension'];
+							$fullpath= WWW_ROOT."img".DS.IMG_DIR;
+							$res1 = is_dir($fullpath);
+							if($res1 != 1)
+								$res2= mkdir($fullpath, 0777, true);
+							move_uploaded_file($this->request->data['UserDetail']['photo']['tmp_name'],$fullpath.DS.$photo);
+							$this->request->data['UserDetail']['photo']=$photo;
+						} else {
+							unset($this->request->data['UserDetail']['photo']);
+						}
+						if(!ALLOW_CHANGE_USERNAME) {
+							unset($this->request->data['User']['username']);
+						}
+						unset($this->request->data['User']['user_group_id']);
+						$user =$this->User->getUserById($userId);
+						if($user['User']['email'] != $this->request->data['User']['email']) {
+							$this->request->data['User']['email_verified']=0;
+							$user['User']['email']= $this->request->data['User']['email'];
+							$this->User->sendVerificationMail($user);
+							$this->LoginToken->deleteAll(array('LoginToken.user_id'=>$userId), false);
+						}
+						if(empty($user['User']['ip_address'])) {
+							if(isset($_SERVER['REMOTE_ADDR'])) {
+								$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+							}
+						}
+						$this->User->saveAssociated($this->request->data);
+						$this->Session->setFlash(__('Your profile has been successfully updated'));
+						$this->redirect(array('controller' => 'cabinets' , 'index' => 'myprofile'));
+					}
+				}
+			} else {
+				$this->User->unbindModel(array('hasMany' => array('LoginToken')));
+				$user = $this->User->read(null, $userId);
+				$this->request->data=null;
+				if (!empty($user)) {
+					$user['User']['password']='';
+					$this->request->data = $user;
+				}
+			}
+		} else {
+			$this->redirect(array('controller' => 'cabinets' , 'index' => 'myprofile'));
+		}
+		
 	}
+	
+	
 	
 	public function depositfund(){
 		$this->layout = 'kabinet';
