@@ -1,26 +1,31 @@
+<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
+
+
 <div class="contentinner animate6 shake">      
        <h4 class="widgettitle nomargin shadowed">Register Form</h4>
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form class="stdform stdform2" method="post" action="forms.html">
+                    
+					<?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2")); ?>
+					
  							<p>
                                 <label>Username</label>
-                                <span class="field"><input type="text" name="email" id="email2" class="input-xlarge" /></span>
+                              <span class="field">  <?php echo $this->Form->input("username" ,array('label' => false ,'div' => false,'class'=>'input-xlarge' ))?></span>
                             </p>                   
                     
                             <p>
                                 <label>First Name</label>
-                                <span class="field"><input type="text" name="firstname" id="firstname2" class="input-xlarge" /></span>
+                                <span class="field"><?php echo $this->Form->input("first_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
                           
                             
                             <p>
                                 <label>Last Name</label>
-                                <span class="field"><input type="text" name="lastname" id="lastname2" class="input-xlarge" /></span>
+                                <span class="field"><?php echo $this->Form->input("last_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
                             
                             <p>
                                 <label>Email</label>
-                                <span class="field"><input type="text" name="email" id="email2" class="input-xlarge" /></span>
+                                <span class="field"><?php echo $this->Form->input("email" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
                           
                       
@@ -277,18 +282,18 @@
                             </p>
                               <p>
                                 <label>Password</label>
-                                <span class="field"><input type="password" name="email" id="email2" class="input-xlarge" /></span>
+                                <span class="field"><?php echo $this->Form->input("password" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
                               <p>
                                 <label>Comfirm Password</label>
-                                <span class="field"><input type="password" name="email" id="email2" class="input-xlarge" /></span>
+                                <span class="field"><?php echo $this->Form->input("cpassword" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
                                                     
                             <p class="stdformbutton">
-                                <button class="btn btn-danger">Submit Button</button>
-                                <button type="reset" class="btn">Reset Button</button>
+                               <?php echo $this->Form->Submit(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
+                                 <?php echo $this->Form->Submit(__('Reset'), array('name' => 'reset' ,'id' => 'reset ' ,'class' => "btn btn-danger"));?>
                             </p>
                             
-                        </form>
+                       
                     </div><!--widgetcontent-->
 </div>
