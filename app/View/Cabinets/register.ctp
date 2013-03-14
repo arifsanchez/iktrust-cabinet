@@ -1,7 +1,9 @@
 <?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 
 
-<div class="contentinner animate6 shake">      
+<div class="contentinner animate6 shake">  
+	<div class="row-fluid">
+		<div class="span8">  
        <h4 class="widgettitle nomargin shadowed">Register Form</h4>
                 <div class="widgetcontent bordered shadowed nopadding">
                     
@@ -296,4 +298,6 @@
                             
                        
                     </div><!--widgetcontent-->
+              </div>
+              </div>
 </div>
