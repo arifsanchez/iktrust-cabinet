@@ -1,4 +1,4 @@
-<div class="contentinner">      
+<div class="contentinner animate6 shake">      
        <h4 class="widgettitle nomargin shadowed">Register Form</h4>
                 <div class="widgetcontent bordered shadowed nopadding">
                     <form class="stdform stdform2" method="post" action="forms.html">
@@ -285,7 +285,7 @@
                             </p>
                                                     
                             <p class="stdformbutton">
-                                <button class="btn btn-primary">Submit Button</button>
+                                <button class="btn btn-danger">Submit Button</button>
                                 <button type="reset" class="btn">Reset Button</button>
                             </p>
                             
