@@ -291,7 +291,7 @@ ul.list-nostyle li span, ol.list-nostyle li span { vertical-align: top; }
 .stdform2 label { display: inline-block; padding: 15px 0 0 15px; vertical-align: top; text-align: left; font-weight: bold; }
 .stdform2 label.error { margin-left: 0; padding: 0; }
 .stdform2 label small { font-size: 11px; color: #999; display: block; font-weight: normal; line-height: 16px; }
-.stdform2 span.field, .stdform2 div.field { margin-left: 220px; display: block; background: #fff; padding: 15px; border-left: 1px solid #ddd; }
+.stdform2 span.field, .stdform2 div.field { margin-left: 220px; display: block; background: none; padding: 15px; border-left: none; }
 .stdform2 .stdformbutton { margin-left: 0; padding: 15px; background: #fff; }
 .stdform2 input[type=checkbox], .stdform2 input[type=radio] { margin: 10px; }
 
@@ -1607,3 +1607,15 @@ body.loginbody { background: #f7f7f7 url(../img/gray_jean.png); }
 	.verwizard .verticalmenu { float: none; width: auto; margin-bottom: 20px; }
 	.verwizard .stepContainer, .verwizard .actionBar { margin-left: 0; }
 }
+
+ .error-message {
+	 padding-left: 15px;
+	    color: #FF0000;
+    display: block;
+    float: none;
+    font-size: 11px;
+    margin-left: 220px;
+ 
+    text-align: left;
+    width: auto;
+ }
