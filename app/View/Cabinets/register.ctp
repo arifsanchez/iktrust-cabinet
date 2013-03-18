@@ -1,9 +1,9 @@
 <?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 
 
-<div class="contentinner animate6 flipInX">  
+<div class="contentinner">  
 	<div class="row-fluid">
-		<div class="span8">  
+		<div class="span7">  
        <h4 class="widgettitle nomargin shadowed">Register Form</h4>
                 <div class="widgetcontent bordered shadowed nopadding">
                     
@@ -299,5 +299,43 @@
       
                     </div><!--widgetcontent-->
               </div>
+              <div class="span5">
+              <div class="widgetcontent">
+              <h2><span style="color:red;">IK Trust</span>&nbsp;Trading Benefits</h2>
+              <div class="divider30"></div>	             
+               <ul class="list-unordered list-checked2">
+						<li>
+						<strong>Trade FX with a Market Leader.</strong>
+						We are one of the first brokers to employ full Agency Model, streaming prices from the world’s top banks.
+						</li>
+						
+						<li>
+						<strong>Trade desktop, Web or Mobile.</strong>
+						Whatever your style we have a platform option to suit you.
+						</li>
+						
+						<li>
+						<strong>Trade with complete security.</strong>
+						We are focused on the security of all clients’ funds - authorised by 3 regulators in different jurisdictions - FSA, ASIC and CySEC.
+						</li>
+						
+						<li>
+						<strong>Trade Live or unlimited Demo.</strong>
+						We offer completely risk-free Demo accounts.
+						</li>
+						
+						<li>
+						<strong>Trade with full support.</strong>
+						We have a multilingual Customer Support team available 24/5. They’re available via email, phone and Live Chat.
+						</li>
+					
+						<li>
+						<strong>Fast and easy payments options.</strong>
+						Credit/Debit Cards, Bank Wire and e-Payments.
+						</li>
+						
+					</ul>              
+				 </div>
               </div>
+       </div>
 </div>
