@@ -1436,8 +1436,8 @@ body.loginbody { background: #f7f7f7 url(../img/gray_jean.png); }
 .logintitle span.iconfa-lock { font-size: 48px; margin-top: 14px; float: left; margin-right: 10px; }
 .logintitle span.subtitle { font-size: 12px; font-weight: normal; display: block; margin-left: 32px; text-transform: none; color: #999; }
 .loginwrapperinner { 
-	padding: 20px; background: #444; 
-	-moz-border-radius: 0 0 2px 2px; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px;
+	padding: 20px; background: #ffffff; 
+	-moz-border-radius: 0 0 2px 2px; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px; border: 1px solid #bbbbbb;
 }
 .loginshadow { background: url(../img/loginshadow.png) no-repeat center center; height: 30px; }
 .loginwrapper input { 

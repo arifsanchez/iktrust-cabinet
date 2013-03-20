@@ -301,7 +301,7 @@
               </div>
               <div class="span5">
               <div class="widgetcontent">
-              <h2><span style="color:red;">IK Trust</span>&nbsp;Trading Benefits</h2>
+              <h2><span style="color:red;">IK Trust</span>&nbsp;Cabinet Benefits</h2>
               <div class="divider30"></div>	             
                <ul class="list-unordered list-checked2">
 						<li>
