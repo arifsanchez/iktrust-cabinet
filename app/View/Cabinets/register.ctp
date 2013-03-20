@@ -303,32 +303,32 @@
               <div class="widgetcontent">
               <h2><span style="color:red;">IK Trust</span>&nbsp;Cabinet Benefits</h2>
               <div class="divider30"></div>	             
-               <ul class="list-unordered list-checked2">
+               <ul class="list-unordered list-checked">
 						<li>
 						<strong>Trade FX with a Market Leader.</strong>
 						We are one of the first brokers to employ full Agency Model, streaming prices from the world’s top banks.
 						</li>
-						
+						 <div class="divider15"></div>	 
 						<li>
 						<strong>Trade desktop, Web or Mobile.</strong>
 						Whatever your style we have a platform option to suit you.
 						</li>
-						
+						 <div class="divider15"></div>	
 						<li>
 						<strong>Trade with complete security.</strong>
 						We are focused on the security of all clients’ funds - authorised by 3 regulators in different jurisdictions - FSA, ASIC and CySEC.
 						</li>
-						
+						 <div class="divider15"></div>	
 						<li>
 						<strong>Trade Live or unlimited Demo.</strong>
 						We offer completely risk-free Demo accounts.
 						</li>
-						
+						 <div class="divider15"></div>	
 						<li>
 						<strong>Trade with full support.</strong>
 						We have a multilingual Customer Support team available 24/5. They’re available via email, phone and Live Chat.
 						</li>
-					
+					     <div class="divider15"></div>	
 						<li>
 						<strong>Fast and easy payments options.</strong>
 						Credit/Debit Cards, Bank Wire and e-Payments.
