@@ -11,6 +11,17 @@ class CabinetsController extends AppController {
 				//get userid
 				$userId = $this->UserAuth->getUserId();
 				//get tradersid
+				// save data
+				if($this->request->is('post')){
+					$this->accType->create();
+					if($this->accType->save($this->request-data)){
+						$this->session->setFlash(_('The account details have been saved'));
+						$this->redirect(array('action' => 'client'));
+					}else{
+						$this->session->setFlash(_('The account details could not be saved.Please,try gain.'));
+					}
+					
+				}
 			}
 			
 			public function client(){
