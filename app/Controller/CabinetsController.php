@@ -5,6 +5,35 @@ App::uses('AppController', 'Controller');
 class CabinetsController extends AppController {
 	public $helpers = array('Menu');
 	
+			
+			public function acc_type(){
+				$this->layout = 'kabinet';
+				//get userid
+				$userId = $this->UserAuth->getUserId();
+				//get tradersid
+			}
+			
+			public function client(){
+				$this->layout = 'kabinet';
+			}
+			
+			public function bank(){
+				$this->layout = 'kabinet';
+				
+			}
+			
+			public function ecurrency(){
+				$this->layout = 'kabinet';
+			}
+			
+			public function document(){
+				$this->layout = 'kabinet';
+			}
+						
+			public function acknowledge(){
+				$this->layout = 'kabinet';
+			}
+	
 			public function myprofile(){
 				$this->layout = 'kabinet';
 				$userId = $this->UserAuth->getUserId();
