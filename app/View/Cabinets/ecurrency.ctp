@@ -10,43 +10,45 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<h3 class="widgettitle nomargin">Bank Details</h3>	
+						
+						<p>
+						<div class="row-fluid">
+							<div class="span6">
+								<?php echo $this->Form->create('User', array('type' => '#', 'id'=>'#' , 'class' => '#')); ?>
+								<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
+								<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
+									<p>
+										<div><strong>E-Currency Provider Name</strong></div>
+										<?php echo $this->Form->input('pro_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+									</p>
+									
+									<p>
+										<div><strong>E-Currency Account Number</strong></div>
+										<?php echo $this->Form->input('acc_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+									</p>
+									
+									<p>
+										<div><strong>E-Currency Account Name</strong></div>
+										<?php echo $this->Form->input('acc_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+									</p>
+										
+									<p>
+										<div><strong>Authorized E-Currency Account For Withdrawal</strong></div>
+										<?php
+											echo $this->Form->input('auth_e', array('label' => false, 'div' => false, 'type' => 'checkbox'));
+									   ?>
+										I hereby agree to allow only e-currency account
+										registered above for funds withdrawal purposes.
+									</p> 
+							</div>
+						</div>
+						</p>
+						
 					</div>
 				</div>
-
-			<div class="row-fluid">
-				<div class="span6">
-					<?php echo $this->Form->create('User', array('type' => '#', 'id'=>'#' , 'class' => '#')); ?>
-					<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
-					<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
-						<p>
-							<div><strong>E-Currency Provider Name</strong></div>
-							<?php echo $this->Form->input('#' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
-						</p>
-						
-						<p>
-							<div><strong>E-Currency Account Number</strong></div>
-							<?php echo $this->Form->input('#' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
-						</p>
-						
-						<p>
-							<div><strong>E-Currency Account Name</strong></div>
-							<?php echo $this->Form->input('#' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
-						</p>
-							
-						<p>
-							<div><strong>Authorized E-Currency Account For Withdrawal</strong></div>
-							<?php
-								echo $this->Form->input('#', array('label' => false, 'div' => false, 'type' => 'checkbox'));
-						   ?>
-							I hereby agree to allow only e-currency account
-							registered above for funds withdrawal purposes.
-						</p> 
-						
-						<p>
-							<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-primary span2'));?>
-						</p>
+				<p>
+					<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
 					<?php echo $this->Form->end(); ?>
-				</div>
-			</div>
+				</p>
 		</div><!--contentinner close-->
 	</div><!--mainconten closet-->
