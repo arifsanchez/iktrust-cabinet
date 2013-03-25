@@ -13,47 +13,49 @@
 						
 						<p>
 						<div class="row-fluid">
-							<div class="span6">
-								<?php echo $this->Form->create('Bank', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
+							<div class="span12 well">
+								<?php echo $this->Form->create('Bank', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 								
 									<p>
-										<div><strong>Name Of Bank</strong></div>
+										<label>Name Of Bank : </label>
 										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
-								
+									
 									<p>
-										<div><strong>Bank Account Number</strong></div>
-										<?php echo $this->Form->input('acc_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<label>Bank Account Number  : </label>
+										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
-										<div><strong>Bank Account Name</strong></div>
-										<?php echo $this->Form->input('acc_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<label>Bank Account Name  : </label>
+										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
-										<div><strong>* IBAN Number</strong></div>
-										<?php echo $this->Form->input('iban_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<label>*IBAN Number  : </label>
+										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>*Swift Number  : </label>
+										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 
+									<br>
 									<p>
-										<div><strong>* Swift Number</strong></div>
-										<?php echo $this->Form->input('swift_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
-									</p>
-										
-									<p>
-										<div><strong>Authorized Bank Account For Withdrawal</strong></div>
+										<div><strong>Authorized Bank Account For Withdrawal : </strong></div>
 										<?php echo $this->Form->input('auth_val', array('label' => false, 'div' => false, 'type' => 'checkbox')); ?>
-										I hereby agree to allow only bank account registered above for funds withdrawal purposes.
+										I hereby agree to allow only bank account registered above for
+										<div>funds withdrawal purposes.</div>
 									</p> 
+								<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
 							</div>
 						</div>
 						</p>
 					</div>
 				</div>
 				<p>
-					<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
 					<?php echo $this->Form->end(); ?>
 				</p>
 		</div><!--contentinner close-->

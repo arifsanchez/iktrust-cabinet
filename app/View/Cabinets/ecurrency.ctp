@@ -12,32 +12,33 @@
 						<h3 class="widgettitle nomargin">Bank Details</h3>	
 						
 						<p>
-						<div class="row-fluid">
-							<div class="span6">
-								<?php echo $this->Form->create('Ecr', array('type' => '#', 'id'=>'#' , 'class' => '#')); ?>
+						<div class="row-fluid"> 
+							<div class="span12 well">
+								<?php echo $this->Form->create('Ecr', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 									<p>
-										<div><strong>E-Currency Provider Name</strong></div>
+										<label>E-Currency Provider Name</label>
 										<?php echo $this->Form->input('pro_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
 									</p>
 									
 									<p>
-										<div><strong>E-Currency Account Number</strong></div>
+										<label>E-Currency Account Number</label>
 										<?php echo $this->Form->input('acc_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
 									</p>
 									
 									<p>
-										<div><strong>E-Currency Account Name</strong></div>
+										<label>E-Currency Account Name</label>
 										<?php echo $this->Form->input('acc_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
 									</p>
-										
+									
+									<br>									
 									<p>
 										<div><strong>Authorized E-Currency Account For Withdrawal</strong></div>
 										<?php
 											echo $this->Form->input('auth_e', array('label' => false, 'div' => false, 'type' => 'checkbox'));
 									   ?>
-										I hereby agree to allow only e-currency account
-										registered above for funds withdrawal purposes.
+										I hereby agree to allow only e-currency account registered above
+										<div>for funds withdrawal purposes.</div>
 									</p> 
 							</div>
 						</div>

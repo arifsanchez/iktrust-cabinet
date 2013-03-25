@@ -14,63 +14,56 @@
 						<p>
 						<div class="row-fluid">
 							<div class="span6">
-									<?php echo $this->Form->create('User', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
+									<?php echo $this->Form->create('User', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 									<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' => $user))?>
 									<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' =>$detail))?>
 										<p>
-											<div><strong>Full Name</strong></div>
+											<label>Full Name</label>
 											<?php echo $this->Form->input('User.first_name' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
 										</p>
 										
 										<p>
-											<div><strong>Date Of Birth (Ex. 20/02/1970)</strong></div>
+											<label>Date Of Birth (Ex. 20/02/1970)</label>
 											<?php echo $this->Form->input('UserDetail.bday' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
 										</p>
 										
 										<p>
-											<div><strong>Passport / Identity Card Number</strong></div>
+											<label>Passport / Identity Card Number</label>
 											<?php echo $this->Form->input('UserDetail.ic' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
 										</p>
 										
-										<p>
 										<div class="row-fluid">
-											<div><strong>Gender</strong></div>
-											
-											<div class="span1 align="left">
+											<label>Gender</label>
+											<div class="span1>
 												<label class="radio">	
-													<input type="radio" name="gender" id="genderM" value="male" checked>
-													Male
-												</label>
-											</div>
-
-											<div class="span1">
-												<label class="radio">
-													<input type="radio" name="gender" id="genderF" value="female">
-													Female
+													<?php
+														$options=array('male'=>'Male','female'=>'Female');
+														$attributes=array('legend'=>false);
+														echo $this->Form->radio('UserDetail.gender',$options,$attributes);
+													?>
 												</label>
 											</div>
 										</div>
-										</p>
 										
 										<div>
 										<p>
-											<div><strong>Occupation / Career</strong></div>
+											<label>Occupation / Career</label>
 											<?php echo $this->Form->input('UserDetail.occupation' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
 										</p>
 										</div>
 
 										<p>
-											<div><strong>Mailing Address</strong></div>
-											<?php echo $this->Form->input('UserDetail.address', array('address' => false, 'div' => false, 'type' => 'textarea', 'class'=>'input-xlarge')); ?>
+											<label>Mailing Address</label>
+											<?php echo $this->Form->input('UserDetail.address', array('label' => false, 'div' => false, 'type' => 'textarea', 'class'=>'input-xlarge')); ?>
 										</p>
 										
 										<p>
-											<div><strong>Authorized Contact Email</strong></div>
+											<label>Authorized Contact Email</label>
 											<?php echo $this->Form->input('User.email' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
 										</p>
 										 
 										<p>
-											<div><strong>Authorized Mobile Number</strong></div>
+											<label>Authorized Mobile Number</label>
 											<?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
 										</p>
 							</div>
@@ -79,6 +72,7 @@
 						
 					</div>
 				</div>
+				<br>
 				<p>
 					<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
 					<?php echo $this->Form->end(); ?>
