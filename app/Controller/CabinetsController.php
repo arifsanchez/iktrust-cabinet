@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class CabinetsController extends AppController {
 	public $helpers = array('Menu');
-	
+	public $components = array();
 			
 			public function acc_type(){
 				$this->layout = 'kabinet';
@@ -26,15 +26,78 @@ class CabinetsController extends AppController {
 			
 			public function client(){
 				$this->layout = 'kabinet';
+				$this->loadModel('Usermgmt.User');
+				$this->loadModel('Usermgmt.UserDetail');
+				$userId = $this->UserAuth->getUserId();
+				$this->set('user',$userId);
+				$detail = $this->UserDetail->Find('list',array(
+							'conditions' => array( 'UserDetail.user_id' => $userId),
+							'fields'			 => array('UserDetail.id'),
+							));
+							//debug($detail);
+				$this->set('detail',$detail);
+				if (!empty($userId)) {
+						if ($this->request -> isPut() || $this->request -> isPost()) {
+							//debug($this->request->data);die();
+							$this->User->set($this->data);
+							$this->UserDetail->set($this->data);
+							$this->User->saveAssociated($this->request->data);
+							//$this->Session->setFlash(__('Your detail has been successfully saved'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'bank'));
+						}else{
+						//$this->Session->setFlash(__('broken'));
+						}
+					
+				}
+				
 			}
 			
 			public function bank(){
 				$this->layout = 'kabinet';
+				//get userid
+				$userId = $this->UserAuth->getUserId();
+				$this->set('user',$userId);
+				//get tradersid
+				$this->loadModel('Bank');
+				// save data
+				if (!empty($userId)) {
 				
+					if($this->request -> isPut() || $this->request -> isPost()){
+						//debug($this->request->data);die();
+						$this->Bank->create();
+						//debug($this->request->data);die();
+						if($this->Bank->save($this->request->data)){
+							//$this->session->setFlash(_('The bank details have been saved'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'ecurrency'));
+						}
+					
+					}
+				}
 			}
+				
+			
 			
 			public function ecurrency(){
 				$this->layout = 'kabinet';
+				//get userid
+				$userId = $this->UserAuth->getUserId();
+				$this->set('user',$userId);
+				//get tradersid
+				$this->loadModel('Ecr');
+				// save data
+				if (!empty($userId)) {
+				
+					if($this->request -> isPut() || $this->request -> isPost()){
+						//debug($this->request->data);die();
+						$this->Ecr->create();
+						//debug($this->request->data);die();
+						if($this->Ecr->save($this->request->data)){
+							//$this->session->setFlash(_('The bank details have been saved'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
+						}
+					
+					}
+				}
 			}
 			
 			public function document(){
@@ -107,7 +170,7 @@ class CabinetsController extends AppController {
 								}
 								$this->User->saveAssociated($this->request->data);
 								$this->Session->setFlash(__('Your profile has been successfully updated'));
-								$this->redirect(array('controller' => 'cabinets' , 'index' => 'myprofile'));
+								$this->redirect(array('controller' => 'cabinets' , 'action' => 'myprofile'));
 							}
 						}
 					} else {
@@ -120,7 +183,7 @@ class CabinetsController extends AppController {
 						}
 					}
 				} else {
-					$this->redirect(array('controller' => 'cabinets' , 'index' => 'myprofile'));
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'myprofile'));
 				}
 				
 			}

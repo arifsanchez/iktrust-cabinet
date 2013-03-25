@@ -14,9 +14,8 @@
 						<p>
 						<div class="row-fluid">
 							<div class="span6">
-								<?php echo $this->Form->create('User', array('type' => '#', 'id'=>'#' , 'class' => '#')); ?>
-								<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
-								<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
+								<?php echo $this->Form->create('Bank', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
+								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 								
 									<p>
 										<div><strong>Name Of Bank</strong></div>
