@@ -17,17 +17,18 @@
 				<div class="row-fluid">
 					<div class="span12">
 					
-						<?php echo $this->Form->create('#', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
-						<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
-						<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
+						<?php echo $this->Form->create('AccType', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
+						<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 					
-						<label>Initial Deposit From $10 :</label>
+						<label><strong>Individual account type :</strong></label>
 							<div class="span12">
 								<label class="radio">	
 									<?php
 										$options=array(
-										'MINI Flex. 5 Decimals'=>'MINI (Flexible Spread , 5 Decimals)',
-										'MINI Fix, 4 Decimals'=>'MINI (Fixed Spread , 4 Decimals)'
+										'MINI Flex. 5 Decimals'=>'MINI (Flexible Spread , 5 Decimals) <span style="font-weight:bold;"> for initial deposit from $10</span>',
+										'MINI Fix, 4 Decimals'=>'MINI (Fixed Spread , 4 Decimals) <span style="font-weight:bold;"> for initial deposit from $10</span>',
+										'STANDART Flex, 5 Decimals'=>'STANDART (Flexible Spread , 5 Decimals)<span style="font-weight:bold;"> for initial deposit from $1,000 </span>',
+										'Premium Flex, 5 Decimals'=>'PREMIUM (Flexible Spread , 5 Decimals)  <span style="font-weight:bold;"> for initial deposit from $10,000 </span>',
 										);
 										$attributes=array('legend'=>false);
 										echo $this->Form->radio('deposit',$options,$attributes);
@@ -38,43 +39,9 @@
 				</div>
 				</p>
 
-				<p>
-				<div class="row-fluid">
-					<div class="span12">
-						<label>Initial Deposit From $100 :</label>
-						<div class="span12">
-							<label class="radio">	
-								<?php
-									$options=array(
-									'STANDART Flex, 5 Decimals'=>'STANDART (Flexible Spread , 5 Decimals)'
-									);
-									$attributes=array('legend'=>false);
-									echo $this->Form->radio('UserDetail.gender',$options,$attributes);
-								?>
-							</label>
-						</div>
-					</div>
-				</div>
-				</p>
+				
 						
-				<p>
-				<div class="row-fluid">
-					<div class="span12">
-						<label>Initial Deposit From $1,000 :</label>
-						<div class="span12">
-							<label class="radio">	
-								<?php
-									$options=array(
-									'Premium Flex, 5 Decimals'=>'PREMIUM (Flexible Spread , 5 Decimals)'
-									);
-									$attributes=array('legend'=>false);
-									echo $this->Form->radio('UserDetail.gender',$options,$attributes);
-								?>
-							</label>
-						</div>
-					</div>
-				</div>
-				</p>
+			
 						
 				<div class="row-fluid">
 					<div class="span12 ">

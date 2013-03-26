@@ -10,17 +10,22 @@ class CabinetsController extends AppController {
 				$this->layout = 'kabinet';
 				//get userid
 				$userId = $this->UserAuth->getUserId();
+				$this->set('user',$userId);
 				//get tradersid
+				$this->loadModel('AccType');
 				// save data
-				if($this->request->is('post')){
-					$this->accType->create();
-					if($this->accType->save($this->request-data)){
-						$this->session->setFlash(_('The account details have been saved'));
-						$this->redirect(array('action' => 'client'));
-					}else{
-						$this->session->setFlash(_('The account details could not be saved.Please,try gain.'));
-					}
+				if (!empty($userId)) {
+				
+					if($this->request -> isPut() || $this->request -> isPost()){
+						debug($this->request->data);die();
+						$this->AccType->create();
+						//debug($this->request->data);die();
+						if($this->AccType->save($this->request->data)){
+							//$this->session->setFlash(_('The bank details have been saved'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
+						}
 					
+					}
 				}
 			}
 			
@@ -75,7 +80,6 @@ class CabinetsController extends AppController {
 				}
 			}
 				
-			
 			
 			public function ecurrency(){
 				$this->layout = 'kabinet';
