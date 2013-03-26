@@ -24,7 +24,7 @@
 					<div class="row-fluid">	
 						<div class="span12">
 								
-							<?php echo $this->Form->create('#', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
+							<?php echo $this->Form->create('Docs', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 							<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
 							<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false)); ?>
 							
