@@ -78,9 +78,8 @@
 					</div>
 				</div>
 				<p>
-					<?php echo $this->Form->create('User', array('type' => '#', 'id'=>'#' , 'class' => '#')); ?>					
-					<?php echo $this->Form->Submit(__('Understand  & Next'), array('class'=>'btn btn-danger span2'));?>
-					<?php echo $this->Form->end(); ?>
+					<?php 	echo $this->Html->link('finish', '/cabinets/view_pdf', array('class' => 'btn btn-danger span2'));?>
+					
 				</p>
 			</div><!--contentinner close-->
 		</div><!--mainconten closet-->
