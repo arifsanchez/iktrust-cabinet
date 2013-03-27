@@ -31,7 +31,9 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
+	
+	Router::parseExtensions('pdf');
+	
 	App::uses('SlugRoute', 'Usermgmt.routes');
 	Router::connect('/:slug', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'viewProfile'), array('routeClass' => 'SlugRoute'));
 	Router::connect('/login/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'login'));

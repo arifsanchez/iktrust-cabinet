@@ -1,11 +1,20 @@
 <?php
 App::uses('AppController', 'Controller');
-
+App::import('Vendor', 'dompdf', array('file'=> 'dompdf' . DS . 'dompdf_config.inc.php'));
 
 class CabinetsController extends AppController {
 	public $helpers = array('Menu');
-	public $components = array();
+	public $components = array('RequestHandler');	
+	
 			
+			
+			function view_pdf() {
+				
+				$this->layout = 'pdf'; //this will use the pdf.ctp layout
+				$this->render();
+				
+				}
+				
 			public function acc_type(){
 				$this->layout = 'kabinet';
 				//get userid
