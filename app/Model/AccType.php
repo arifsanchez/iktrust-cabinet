@@ -108,7 +108,7 @@ class AccType extends AppModel {
  * @var array
  */
  
- public $belongsTo = array(
+ /*public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -116,13 +116,7 @@ class AccType extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'EcurrType' => array(
-			'className' => 'EcurrType',
-			'foreignKey' => 'ecurr_type_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		
 	);
 	public $hasMany = array(
 		'Order' => array(
@@ -138,6 +132,6 @@ class AccType extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		)
-	);
+	);*/
 
 }

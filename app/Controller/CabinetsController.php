@@ -9,6 +9,31 @@ class CabinetsController extends AppController {
 			
 			
 			function view_pdf() {
+			
+				$this->loadModel('Usermgmt.User');
+				$userId = $this->UserAuth->getUserId();
+				$user = $this->User->Find('all',array(
+							'conditions' => array( 'User.id' => $userId),
+							));
+				$this->set('user',$user);
+				//debug($user);die();	
+				$this->loadModel('AccType');
+				$acc = $this->AccType->Find('all',array(
+							'conditions' => array( 'AccType.user_id' => $userId),
+							));
+				$this->set('acc',$acc);
+				
+				$this->loadModel('Bank');
+				$bank = $this->Bank->Find('all',array(
+							'conditions' => array( 'Bank.user_id' => $userId),
+							));
+				$this->set('bank',$bank);
+				
+				$this->loadModel('Ecr');
+				$ecr = $this->Ecr->Find('all',array(
+							'conditions' => array( 'Ecr.user_id' => $userId),
+							));
+				$this->set('ecr',$ecr);
 				
 				$this->layout = 'pdf'; //this will use the pdf.ctp layout
 				$this->render();

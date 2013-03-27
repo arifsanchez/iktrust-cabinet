@@ -76,7 +76,7 @@ class Ecr extends AppModel {
  * @var array
  */
  
- public $belongsTo = array(
+ /*public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -84,6 +84,6 @@ class Ecr extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-	);
+	);*/
 
 }

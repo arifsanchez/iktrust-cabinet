@@ -96,7 +96,7 @@ class Bank extends AppModel {
  * @var array
  */
  
- public $belongsTo = array(
+ /*public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -105,7 +105,7 @@ class Bank extends AppModel {
 			'order' => ''
 		),
 		
-	);
+	);*/
 	
 	
 
