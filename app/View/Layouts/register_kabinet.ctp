@@ -95,6 +95,7 @@
         </div><!--breadcrumbwidget-->
 
         <!--Kandungan dalam-->
+        <?php echo $this->Session->flash();?>
         <?php echo $this->fetch('content'); ?>
         <!--Tamat kandungan dalam-->
 
