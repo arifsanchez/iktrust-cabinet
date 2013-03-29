@@ -14,187 +14,200 @@ $tcpdf->SetTextColor(0, 0, 0);
 $tcpdf->SetFont($textfont,'',9);
  
 $tcpdf->AddPage();
- 
+
+	foreach ($user as $user):
+		$name 	= $user['User']['username'];
+		$email 	= $user['User']['email'];
+	endforeach; 
+
+	foreach ($acc as $acc):
+		$depo 	= $acc['AccType']['deposit'];
+	endforeach; 
+
+	foreach ($bank as $bank):
+		$NBank 		= $bank['Bank']['name'];
+		$AccNo 		= $bank['Bank']['acc_no'];
+		$AccName 	= $bank['Bank']['acc_name'];
+		$IBAN 			= $bank['Bank']['iban_no'];
+		$SwNo 			= $bank['Bank']['swift_no'];
+	endforeach; 
+
+	foreach ($ecr as $ecr):
+		$EName 		= $ecr['Ecr']['pro_name'];
+		$EAccNo 		= $ecr['Ecr']['acc_name'];
+		$EAccName	= $ecr['Ecr']['acc_no'];
+	endforeach; 
+
+	foreach ($userD as $userD):
+		$gent 				= $userD['UserDetail']['gender'];
+		$dob 				= $userD['UserDetail']['bday'];
+		$ic					= $userD['UserDetail']['ic'];
+		$ContactNo	= $userD['UserDetail']['cellphone'];
+		$pic				= $userD['UserDetail']['photo'];
+	endforeach; 
+
+
 // create some HTML content
 $htmlcontent = <<<EOF
 <!DOCTYPE html>
 <html>
 	<h1>IKTRUST logo</h1>
-<body>
+	<body>
 	
-	<p>
-		<h2 align="center">IK Trust Application Form</h2>
-	</p>
-		
-	<p>
-		<table border="0">
-		  <tr>
-			<th>
-				<p>
-					<b>Full Name 			:</b> kak INtan senget<br>
-					<b>Date Of Birth		 :</b> tahun gajah<br>
-					<b>Passport / I.C No :</b> bukan warganegara malaysia<br>
-					<b>Contact Email 	:</b> explicit_chunky@kakintan.bangladesh<br>
-					<b>Mobile Number	 :</b> nak no mintak sendiri!
-				</p>
-			</th>
-			
-			<th align="right">	
-				<p>
-					photo owner<br>
-					photo owner<br>
-					photo owner<br>
-				</p>
-			</th>
-		  </tr>
-		</table> 
-	</p>
-
-	<hr>
-
-	<p>
-		<table border="0">
-		  <tr>
-			<th align="right">	
-				<p>
-					Individual Account Type :
-				</p>
-			
-				<p>
-					Name of Bank :
-				</p>
-				
-				<p>
-					Bank Account Number :
-				</p>
-					
-				<p>
-					Bank Account Name :
-				</p>
-				
-				<p>
-					E-Currency Provider Name :
-				</p>
-				
-				<p>
-					E-Currency Account Number :
-				</p>
-				
-				<p>
-					E-Currency Account Name :
-				</p>
-			</th>
-			
-			
-			<th align="center">
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-			</th>
-			
-			<th align="left">
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-				
-				<p>
-					<strong>VALUE</strong>
-				</p>
-			</th>
-		  </tr>
-		</table> 
-	</p>
+		<h2>IK Trust Application Form</h2>
 	
-	<hr>
-
-	
-	<p>
-		<table border="0">
-			<tr>
-				<th align="left">	
+		<p>
+			<table border="0">
+			  <tr>
+				<th>
 					<p>
-						Account Holder Name :<br>
-						<strong>VALUE</strong>
+						<b>Full Name 				: </b> $name<br>
+						<b>Date Of Birth		 	:</b> $dob<br>
+						<b>Gender		 			:</b> $gent<br>
+						<b>Passport / I.C No 	:</b> $ic	<br>
+						<b>Contact Email 		:</b> $email<br>
+						<b>Mobile Number	 	:</b> $ContactNo
+					</p>
+				</th>
+			  </tr>
+			</table> 
+		</p>
+
+		<hr>
+
+		<p>
+			<table border="0">
+			  <tr>
+				<th>	
+					<p>
+						Individual Account Type			:
 					</p>
 				
 					<p>
-						Passport/IC Number<br>
-						<strong>VALUE</strong>
+						Name of Bank					 		:
 					</p>
 					
 					<p>
-						Date Of Signature<br>
-						<strong>Enter By User</strong>
+						Bank Account Number 			:
 					</p>
 						
 					<p>
-						SIGNATURE SPECIMEN<br>
-						----- field to sign here... -----
-					</p>
-
-					<p>
-						<strong>
-							I, Hereby offer to open a trading account with IK TRUST on the terms set out in the various official released documents that constitute this Account Opening Application Form.
-						</strong>
+						Bank Account Name 				:
 					</p>
 					
 					<p>
-						<strong>
-							I, understand that if IK TRUST accepts my application to use its services, it will confirm acceptance by issuing me with written confirmation either by post, email or other electronic means, using the details contained in the relevant Particulars section of the IK Trust Individual Account Opening Application Form.
-						</strong>
+						IBAN Number 							:
+					</p>
+				
+					<p>
+						SWIFT Number							:
+					</p>
+					
+					<p>
+						E-Currency Provider Name 	:
+					</p>
+					
+					<p>
+						E-Currency Account Number 	:
+					</p>
+					
+					<p>
+						E-Currency Account Name 		:
 					</p>
 				</th>
-			</tr>
-		</table>
-	</p>
+			
+			
+				<th>
+					<p>
+						<strong>$depo</strong>
+					</p>
+					
+					<p>
+						<strong>$NBank </strong>
+					</p>
+					
+					<p>
+						<strong>$AccNo</strong>
+					</p>
 
-	Note : <b>This copy is computer generated and no signature is required.</b>   
+					<p>
+						<strong>$AccName</strong>
+					</p>
+					
+					<p>
+						<strong>$IBAN</strong>
+					</p>
+					
+					<p>
+						<strong>$SwNo</strong>
+					</p>
+				
+					<p>
+						<strong>$EName </strong>
+					</p>
+					
+					<p>
+						<strong>$EAccNo</strong>
+					</p>
+					
+					<p>
+						<strong>$EAccName</strong>
+					</p>
+				</th>
+			  </tr>
+			</table> 
+		</p>
+		
+		<hr>
+
+		<p>
+			<table border="0">
+				<tr>
+					<th>	
+						<p>
+							Account Holder Name<br>
+							<strong>$name</strong>
+						</p>
+					
+						<p>
+							Passport/IC Number<br>
+							<strong>$ic</strong>
+						</p>
+						
+						<p>
+							Date Of Signature<br>
+							<input type="text" name="age">
+						</p>
+						
+						<p>
+							SIGNATURE SPECIMEN<br>
+							<textarea rows="4" cols="50"></textarea>
+							-----------------------------------------------<br>
+							-----------------------------------------------<br>
+							----------<i> field to sign here... </i>----------<br>
+							-----------------------------------------------<br>
+							-----------------------------------------------
+						</p>
+
+						<p>
+							<strong>
+								<I> I, Hereby offer to open a trading account with IK TRUST on the terms set out in the various official released documents that constitute this Account Opening Application Form.</I>
+							</strong>
+						</p>
+						
+						<p>
+							<strong>
+								<I>I, understand that if IK TRUST accepts my application to use its services, it will confirm acceptance by issuing me with written confirmation either by post, email or other electronic means, using the details contained in the relevant Particulars section of the IK Trust Individual Account Opening Application Form.</i>
+							</strong>
+						</p>
+					</th>
+				</tr>
+			</table>
+		</p>
+
+		Note : <small><b>This copy is computer generated and no signature is required.</b></small>
 	
-</body>
+	</body>
 </html>
 EOF;
  

@@ -23,6 +23,12 @@ class CabinetsController extends AppController {
 							));
 				$this->set('acc',$acc);
 				
+				$this->loadModel('UserDetail');
+				$userD = $this->UserDetail->Find('all',array(
+							'conditions' => array( 'UserDetail.user_id' => $userId),
+							));
+				$this->set('userD',$userD);
+				
 				$this->loadModel('Bank');
 				$bank = $this->Bank->Find('all',array(
 							'conditions' => array( 'Bank.user_id' => $userId),
