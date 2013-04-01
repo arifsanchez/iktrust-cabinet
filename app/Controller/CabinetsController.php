@@ -119,7 +119,10 @@ class CabinetsController extends AppController {
 					}
 				}
 			}
-				
+			
+			public function document(){
+				$this->layout = 'kabinet';
+			}				
 			
 			public function ecurrency(){
 				$this->layout = 'kabinet';
@@ -143,11 +146,53 @@ class CabinetsController extends AppController {
 					}
 				}
 			}
-			
-			public function document(){
+	
+			public function upload(){
+				
 				$this->layout = 'kabinet';
+				if ($this->request->is('post')){
+					$file1 = $this->request->data['Doc']['doc1'];
+					$file2 = $this->request->data['Doc']['doc2'];					
+
+					if ($file1['error'] == 0 && $file1['size'] > 0 && $file1['tmp_name'] != 'none'){
+						if (is_uploaded_file($file1['tmp_name'])){
+						$this->saveToFile($file1);
+						}
+					}
+					
+					if ($file2['error'] == 0 && $file2['size'] > 0 && $file2['tmp_name'] != 'none'){
+						if (is_uploaded_file($file2['tmp_name'])){
+						$this->saveToFile($file2);
+						}
+					}
+				}
 			}
-						
+			
+				private function saveToFile($file){
+					
+					$info = pathinfo($file['name']); // split filename and extension
+					$saveName = md5($info['basename']) . '.' . $info['extension'] ;
+					$savePath = WWW_ROOT . 'img/uploads' . DS . $saveName;
+
+				
+					$userId = $this->UserAuth->getUserId();
+					//get tradersid
+				
+					$this->loadModel('Doc');
+					#$upload = $this->Doc->create();
+					$upload['Doc']['user_id'] = $userId;
+					$upload['Doc']['doc1'] = $saveName;
+					$upload['Doc']['doc2'] = $saveName;
+					$upload['Doc']['data'] = $savePath;
+					$this->Doc->save($upload);
+					#debug($upload);die(); 
+					
+					if (move_uploaded_file($file['tmp_name'], $savePath)){
+						$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName);
+					}					
+				} 
+				
+
 			public function acknowledge(){
 				$this->layout = 'kabinet';
 			}

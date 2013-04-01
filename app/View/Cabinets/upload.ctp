@@ -12,25 +12,29 @@
 						
 						<div class="row-fluid"> 
 							<div class="span12 well">
-							<h4>	<strong>
+							<h4>	
+								<strong>
 									For each individual account registration, you must provide at least one PROOF OF IDENTITY and PROOF OF RESIDENCE :
-								</strong></h4>
+								</strong>
+							</h4>
 								<br><br>
 								<?php echo $this->Form->create('Doc', array('type' => 'file', 'id'=>'' , 'class' => 'stdform')); ?>
-								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
+								<?php #echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 									
 										<h4>PROOF OF IDENTITY</h4>
-										<p>National Passport /National Identity Card /Driver License /Others Government Issued Photo ID / Signed & Notarised Financial Statement </p>
-										<?php echo $this->Form->input('doc1' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
-									<br><br><br>
-									
-										<h4>PROOF OF RESIDENCE</h4>
-										<p>Utility Bill (not mobile phone / print from internet) /Government Issued Letter  </p>
-										<?php
-											echo $this->Form->input('doc2', array('type'=>'file' ,'label' => false, 'div' => false, ));
-									   ?>
+										<p>
+											<div>National Passport / National Identity Card / Driver License / Others Government Issued Photo ID / </div> 
+											<div>Signed & Notarised Financial Statement </div>
+											<?php echo $this->Form->input('doc1' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+										</p>
 										
-									
+									<br>
+										
+										<h4>PROOF OF RESIDENCE</h4>
+										<p>
+											<div>Utility Bill (not mobile phone / print from internet) / Government Issued Letter  </div>
+											<?php echo $this->Form->input('doc2', array('type'=>'file' ,'label' => false, 'div' => false, )); ?>
+									   </p>
 							</div>
 						</div>
 						
