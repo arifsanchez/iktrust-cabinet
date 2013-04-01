@@ -53,8 +53,24 @@
 										</div>
 
 										<p>
-											<label>Mailing Address</label>
-											<?php echo $this->Form->input('UserDetail.address', array('label' => false, 'div' => false, 'type' => 'textarea', 'class'=>'input-xlarge')); ?>
+											<label>Address</label>
+											<div><?php echo $this->Form->input('UserDetail.address' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+										</p>
+										
+										<p>
+											<label>Town / City</label>
+											<div><?php echo $this->Form->input('UserDetail.city' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+										</p>
+										
+										<p>
+											<label>State / Country</label>
+											<div><?php echo $this->Form->input('UserDetail.state' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+											
+										</p>
+										
+										<p>
+											<label>Postalcode / Zip</label>
+											<div><?php echo $this->Form->input('UserDetail.postal' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
 										</p>
 										
 										<p>

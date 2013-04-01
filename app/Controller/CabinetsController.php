@@ -156,13 +156,13 @@ class CabinetsController extends AppController {
 
 					if ($file1['error'] == 0 && $file1['size'] > 0 && $file1['tmp_name'] != 'none'){
 						if (is_uploaded_file($file1['tmp_name'])){
-						$this->saveToFile($file1);
+							$this->saveToFile($file1);
 						}
 					}
 					
 					if ($file2['error'] == 0 && $file2['size'] > 0 && $file2['tmp_name'] != 'none'){
 						if (is_uploaded_file($file2['tmp_name'])){
-						$this->saveToFile($file2);
+							$this->saveToFile($file2);
 						}
 					}
 				}
@@ -173,8 +173,7 @@ class CabinetsController extends AppController {
 					$info = pathinfo($file['name']); // split filename and extension
 					$saveName = md5($info['basename']) . '.' . $info['extension'] ;
 					$savePath = WWW_ROOT . 'img/uploads' . DS . $saveName;
-
-				
+					
 					$userId = $this->UserAuth->getUserId();
 					//get tradersid
 				
