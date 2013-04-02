@@ -80,7 +80,7 @@
 				$menu = array(
 								'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 								'items'=>	array(
-											array('title'=>'Go to home',  'url'=> array('controller'=>'/', 'action'=>'index')),
+											array('title'=>'Go to home',  'url'=> 'http://www.iktrust.com'),
 											array('title'=>'Log In Cabinet',  'url'=> array('controller'=>'cabinets', 'action'=>'login')),
 											array('title'=>'Register Now',  'url'=> array('controller'=>'cabinets', 'action'=>'register')),
 											array('title'=>'Support Centre',  'url'=> 'http://support.iktrust.com'),
