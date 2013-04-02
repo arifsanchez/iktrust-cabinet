@@ -47,24 +47,24 @@
 								<div class="tab-pane active" id="tab1">
 									<!-- Form Details -->
 										<h4 class="widgettitle nomargin">Edit Profile</h4>
-										<div class="widgetcontent ">
+										<div class="widgetcontent bordered">
 											<div class="row-fluid">
 												<div class="span3 profile-left">
-												<p>
+												
 													<h4>Your Profile Photo</h4>
 													<div class="profilethumb">
 														<img  src= "<?php echo $this->Image->resize('img/'.IMG_DIR, $user['UserDetail']['photo'], 200, null, true) ?>">
 														
 														
 													</div><!--profilethumb-->
-													</p>
+												
 												</div><!--span3-->
 												<div class="span9">
 												
 													<?php echo $this->Form->create('User', array('type' => 'file', 'id'=>'editProfileForm' , 'class' => 'editprofileform')); ?>
 													<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
 													<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false))?>
-														<p>
+														
 														<h4>Login Information</h4>
 														<p>
 															<label>Email:</label>

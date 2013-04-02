@@ -856,7 +856,7 @@ ul.list-nostyle li span, ol.list-nostyle li span { vertical-align: top; }
 .profile-left .taglist li a:hover { text-decoration: none; background: #ddd; }
 .profile-left .taglist li a span { position: absolute; top: 8px; right: 10px; opacity: 0.3; }
 
-.profilethumb { display: inline-block; position: relative; overflow: hidden; margin-bottom: 20px; }
+.profilethumb { display: inline-block; position: relative; overflow: hidden; margin-bottom: 20px; width: 100%;}
 .profilethumb a { display: none; font-size: 11px; position: absolute; top: 5px; right: 5px; padding: 2px 7px; background: #333; color: #fff; }
 .profilethumb a:hover { text-decoration: none; background: #444; }
 
