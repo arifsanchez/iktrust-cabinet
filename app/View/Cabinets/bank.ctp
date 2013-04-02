@@ -14,7 +14,7 @@
 						<p>
 						<div class="row-fluid">
 							<div class="span12 well">
-								<?php echo $this->Form->create('Bank', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
+								<?php echo $this->Form->create('UserBank', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 								
 									<p>
@@ -24,22 +24,22 @@
 									
 									<p>
 										<label>Bank Account Number  : </label>
-										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<?php echo $this->Form->input('acc_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
 										<label>Bank Account Name  : </label>
-										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<?php echo $this->Form->input('acc_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
 										<label>*IBAN Number  : </label>
-										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<?php echo $this->Form->input('iban_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
 										<label>*Swift Number  : </label>
-										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<?php echo $this->Form->input('swift_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 
 									<br>

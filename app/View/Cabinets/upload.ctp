@@ -18,7 +18,7 @@
 								</strong>
 							</h4>
 								<br><br>
-								<?php echo $this->Form->create('Doc', array('type' => 'file', 'id'=>'' , 'class' => 'stdform')); ?>
+								<?php echo $this->Form->create('UserDoc', array('type' => 'file', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php #echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 									
 										<h4>PROOF OF IDENTITY</h4>

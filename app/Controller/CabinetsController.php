@@ -35,9 +35,9 @@ class CabinetsController extends AppController {
 							));
 				$this->set('bank',$bank);
 				
-				$this->loadModel('Ecr');
-				$ecr = $this->Ecr->Find('all',array(
-							'conditions' => array( 'Ecr.user_id' => $userId),
+				$this->loadModel('UserEcr');
+				$ecr = $this->UserEcr->Find('all',array(
+							'conditions' => array( 'UserEcr.user_id' => $userId),
 							));
 				$this->set('ecr',$ecr);
 				
@@ -52,19 +52,18 @@ class CabinetsController extends AppController {
 				$userId = $this->UserAuth->getUserId();
 				$this->set('user',$userId);
 				//get tradersid
-				$this->loadModel('AccType');
+				$this->loadModel('UserAcctypes');
 				// save data
 				if (!empty($userId)) {
 				
 					if($this->request -> isPut() || $this->request -> isPost()){
-						debug($this->request->data);die();
-						$this->AccType->create();
+						#debug($this->request->data);die();
+						$this->UserAcctypes->create();
 						//debug($this->request->data);die();
-						if($this->AccType->save($this->request->data)){
+						if($this->UserAcctypes->save($this->request->data)){
 							//$this->session->setFlash(_('The bank details have been saved'));
 							$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
 						}
-					
 					}
 				}
 			}
@@ -92,7 +91,6 @@ class CabinetsController extends AppController {
 						}else{
 						//$this->Session->setFlash(__('broken'));
 						}
-					
 				}
 				
 			}
@@ -103,15 +101,15 @@ class CabinetsController extends AppController {
 				$userId = $this->UserAuth->getUserId();
 				$this->set('user',$userId);
 				//get tradersid
-				$this->loadModel('Bank');
+				$this->loadModel('UserBank');
 				// save data
 				if (!empty($userId)) {
 				
 					if($this->request -> isPut() || $this->request -> isPost()){
 						//debug($this->request->data);die();
-						$this->Bank->create();
+						$this->UserBank->create();
 						//debug($this->request->data);die();
-						if($this->Bank->save($this->request->data)){
+						if($this->UserBank->save($this->request->data)){
 							//$this->session->setFlash(_('The bank details have been saved'));
 							$this->redirect(array('controller' => 'cabinets' , 'action' => 'ecurrency'));
 						}
@@ -130,15 +128,15 @@ class CabinetsController extends AppController {
 				$userId = $this->UserAuth->getUserId();
 				$this->set('user',$userId);
 				//get tradersid
-				$this->loadModel('Ecr');
+				$this->loadModel('UserEcr');
 				// save data
 				if (!empty($userId)) {
 				
 					if($this->request -> isPut() || $this->request -> isPost()){
 						//debug($this->request->data);die();
-						$this->Ecr->create();
+						$this->UserEcr->create();
 						//debug($this->request->data);die();
-						if($this->Ecr->save($this->request->data)){
+						if($this->UserEcr->save($this->request->data)){
 							//$this->session->setFlash(_('The bank details have been saved'));
 							$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
 						}
@@ -151,8 +149,8 @@ class CabinetsController extends AppController {
 				
 				$this->layout = 'kabinet';
 				if ($this->request->is('post')){
-					$file1 = $this->request->data['Doc']['doc1'];
-					$file2 = $this->request->data['Doc']['doc2'];					
+					$file1 = $this->request->data['UserDoc']['doc1'];
+					$file2 = $this->request->data['UserDoc']['doc2'];					
 
 					if ($file1['error'] == 0 && $file1['size'] > 0 && $file1['tmp_name'] != 'none'){
 						if (is_uploaded_file($file1['tmp_name'])){
@@ -177,13 +175,13 @@ class CabinetsController extends AppController {
 					$userId = $this->UserAuth->getUserId();
 					//get tradersid
 				
-					$this->loadModel('Doc');
+					$this->loadModel('UserDoc');
 					#$upload = $this->Doc->create();
-					$upload['Doc']['user_id'] = $userId;
-					$upload['Doc']['doc1'] = $saveName;
-					$upload['Doc']['doc2'] = $saveName;
-					$upload['Doc']['data'] = $savePath;
-					$this->Doc->save($upload);
+					$upload['UserDoc']['user_id'] = $userId;
+					$upload['UserDoc']['doc1'] = $saveName;
+					$upload['UserDoc']['doc2'] = $saveName;
+					$upload['UserDoc']['data'] = $savePath;
+					$this->UserDoc->save($upload);
 					#debug($upload);die(); 
 					
 					if (move_uploaded_file($file['tmp_name'], $savePath)){

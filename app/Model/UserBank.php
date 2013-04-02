@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Order $Order
  */
-class Trader extends AppModel {
+class UserBank extends AppModel {
 
 /**
  * Validation rules
@@ -24,9 +24,9 @@ class Trader extends AppModel {
 			),
 		),
 		
-		'acc_type_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -46,7 +46,46 @@ class Trader extends AppModel {
 			),
 		),
 		
-		
+		'acc_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'iban_no' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'swift_no' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'auth_val' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -65,14 +104,9 @@ class Trader extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'EcurrType' => array(
-			'className' => 'AccType',
-			'foreignKey' => 'acc_type_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		
 	);*/
+	
 	
 
 }

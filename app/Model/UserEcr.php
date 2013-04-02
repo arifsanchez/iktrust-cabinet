@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Order $Order
  */
-class AccType extends AppModel {
+class UserEcr extends AppModel {
 
 /**
  * Validation rules
@@ -24,7 +24,7 @@ class AccType extends AppModel {
 			),
 		),
 		
-		'trader_id' => array(
+		'pro_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -35,9 +35,9 @@ class AccType extends AppModel {
 			),
 		),
 		
-		'mini_flex' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'acc_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -46,7 +46,7 @@ class AccType extends AppModel {
 			),
 		),
 		
-		'mini_fixed' => array(
+		'acc_no' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -56,9 +56,9 @@ class AccType extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'standard' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'auth_e' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -66,38 +66,6 @@ class AccType extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'premium' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		
-		'islamic' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'bonus' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -116,22 +84,6 @@ class AccType extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		
-	);
-	public $hasMany = array(
-		'Order' => array(
-			'className' => 'Order',
-			'foreignKey' => 'bank_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
 	);*/
 
 }

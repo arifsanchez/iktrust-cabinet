@@ -17,7 +17,7 @@
 				<div class="row-fluid">
 					<div class="span12">
 					
-						<?php echo $this->Form->create('AccType', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
+						<?php echo $this->Form->create('UserAcctypes', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
 						<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 					
 						<label><strong>Individual account type :</strong></label>

@@ -9,12 +9,12 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Bank Details</h3>	
+						<h3 class="widgettitle nomargin">E-Currency Details</h3>	
 						
 						<p>
 						<div class="row-fluid"> 
 							<div class="span12 well">
-								<?php echo $this->Form->create('Ecr', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
+								<?php echo $this->Form->create('UserEcr', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 									<p>
 										<label>E-Currency Provider Name</label>

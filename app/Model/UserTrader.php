@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Order $Order
  */
-class Doc extends AppModel {
+class UserTrader extends AppModel {
 
 /**
  * Validation rules
@@ -24,9 +24,9 @@ class Doc extends AppModel {
 			),
 		),
 		
-		'doc1' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'acc_type_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -35,9 +35,9 @@ class Doc extends AppModel {
 			),
 		),
 		
-		'doc2' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'acc_no' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -65,9 +65,14 @@ class Doc extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		
+		'EcurrType' => array(
+			'className' => 'AccType',
+			'foreignKey' => 'acc_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
 	);*/
-	
 	
 
 }
