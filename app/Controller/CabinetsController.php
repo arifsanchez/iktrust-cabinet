@@ -17,11 +17,12 @@ class CabinetsController extends AppController {
 							));
 				$this->set('user',$user);
 				//debug($user);die();	
-				$this->loadModel('AccType');
-				$acc = $this->AccType->Find('all',array(
-							'conditions' => array( 'AccType.user_id' => $userId),
+				
+				$this->loadModel('UserAcctypes');
+				$acctypes = $this->UserAcctypes->Find('all',array(
+							'conditions' => array( 'UserAcctypes.user_id' => $userId),
 							));
-				$this->set('acc',$acc);
+				$this->set('acctypes',$acctypes);
 				
 				$this->loadModel('UserDetail');
 				$userD = $this->UserDetail->Find('all',array(
@@ -29,9 +30,9 @@ class CabinetsController extends AppController {
 							));
 				$this->set('userD',$userD);
 				
-				$this->loadModel('Bank');
-				$bank = $this->Bank->Find('all',array(
-							'conditions' => array( 'Bank.user_id' => $userId),
+				$this->loadModel('UserBank');
+				$bank = $this->UserBank->Find('all',array(
+							'conditions' => array( 'UserBank.user_id' => $userId),
 							));
 				$this->set('bank',$bank);
 				

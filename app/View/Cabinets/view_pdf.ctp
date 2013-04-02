@@ -20,22 +20,22 @@ $tcpdf->AddPage();
 		$email 	= $user['User']['email'];
 	endforeach; 
 
-	foreach ($acc as $acc):
-		$depo 	= $acc['AccType']['deposit'];
+	foreach ($acctypes as $acctypes):
+		$depo 	= $acctypes['UserAcctypes']['deposit'];
 	endforeach; 
 
 	foreach ($bank as $bank):
-		$NBank 		= $bank['Bank']['name'];
-		$AccNo 		= $bank['Bank']['acc_no'];
-		$AccName 	= $bank['Bank']['acc_name'];
-		$IBAN 			= $bank['Bank']['iban_no'];
-		$SwNo 			= $bank['Bank']['swift_no'];
+		$NBank 			= $bank['UserBank']['name'];
+		$AccNo 			= $bank['UserBank']['acc_no'];
+		$AccName 	= $bank['UserBank']['acc_name'];
+		$IBAN 			= $bank['UserBank']['iban_no'];
+		$SwNo 			= $bank['UserBank']['swift_no'];
 	endforeach; 
 
 	foreach ($ecr as $ecr):
-		$EName 		= $ecr['Ecr']['pro_name'];
-		$EAccNo 		= $ecr['Ecr']['acc_name'];
-		$EAccName	= $ecr['Ecr']['acc_no'];
+		$EName 		= $ecr['UserEcr']['pro_name'];
+		$EAccNo 		= $ecr['UserEcr']['acc_name'];
+		$EAccName	= $ecr['UserEcr']['acc_no'];
 	endforeach; 
 
 	foreach ($userD as $userD):
