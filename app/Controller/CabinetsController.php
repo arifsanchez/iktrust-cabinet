@@ -205,6 +205,7 @@ class CabinetsController extends AppController {
 							'field'			=> 'UserDetail.photo',
 							'recursive' 	=> -1,));
 				//debug($user);die();
+				
 				$this->set('user',$user);
 				if (!empty($userId)) {
 						if ($this->request -> isPut() || $this->request -> isPost()) {

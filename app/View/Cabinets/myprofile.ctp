@@ -110,15 +110,15 @@
 														<p>
 															<label>Country</label>
 															<?php	echo $this->Form->input('P.edit', array(
-																					'label' => "",'class' =>'input-xlarge','options' => array(
-																					'title'=> '-- Select Country --',
-																					'opt1' => 'Russia', 
-																					'opt2' => 'Malaysia', 
-																					'opt3' => 'Indonesia', 
-																					'opt4' => 'United State', 
-																					'opt5' => 'Saudi Arabia')
-																				));
-																			?>
+																	'label' => "",'class' =>'input-xlarge','options' => array(
+																	'title'=> '-- Select Country --',
+																	'opt1' => 'Russia', 
+																	'opt2' => 'Malaysia', 
+																	'opt3' => 'Indonesia', 
+																	'opt4' => 'United State', 
+																	'opt5' => 'Saudi Arabia')
+																));
+															?>
 														</p>
 														<p>
 															<label>Telephone No#</label>
