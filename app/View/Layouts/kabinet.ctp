@@ -6,9 +6,7 @@
 
 
  <?php 
- 		echo $this->Html->meta('icon');
-
-		
+ 	 echo $this->Html->meta('icon');
 
 	  echo $this->fetch('meta');
 	  echo $this->fetch('css');
@@ -91,6 +89,7 @@
         </div><!--breadcrumbwidget-->
 
         <!--Kandungan dalam-->
+        <?php echo $this->Session->flash();?>
         <?php echo $this->fetch('content'); ?>
         <!--Tamat kandungan dalam-->
 

@@ -106,6 +106,7 @@
     
    
    <!--footer-->
+   <?php echo $this->Session->flash();?>
    <?php echo $this->element('footer'); ?>
    <!-- end footer-->
 </div><!--mainwrapper-->
