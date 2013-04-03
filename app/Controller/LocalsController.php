@@ -7,7 +7,7 @@ class LocalsController extends AppController {
 
 	public function test(){
 	
-		$ch = curl_init();
+		//$ch = curl_init();
 		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 		curl_setopt($ch, CURLOPT_URL, "http://iktrust.co.uk/webservice/api.php");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
