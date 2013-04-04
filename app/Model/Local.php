@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Order $Order
  */
-class Bank extends AppModel {
+class Local extends AppModel {
 
 /**
  * Validation rules
@@ -14,6 +14,28 @@ class Bank extends AppModel {
  */
 	public $validate = array(
 		'user_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		
+		'user_detail_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		
+		'user_ecr_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -96,9 +118,14 @@ class Bank extends AppModel {
 			'order' => ''
 		),
 		
-	);
-	
-	 public $belongsTo = array(
+		'UserDetail' => array(
+			'className' => 'UserDetail',
+			'foreignKey' => 'user_detail_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		), 
+		
 		'UserBank' => array(
 			'className' => 'UserBank',
 			'foreignKey' => 'user_bank_id',
@@ -107,9 +134,6 @@ class Bank extends AppModel {
 			'order' => ''
 		),
 		
-	);
-	
-	 public $belongsTo = array(
 		'UserTrader' => array(
 			'className' => 'UserTrader',
 			'foreignKey' => 'user_trader_id',
@@ -117,10 +141,7 @@ class Bank extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		
-	);
-	
-	 public $belongsTo = array(
+
 		'UserDoc' => array(
 			'className' => 'UserDoc',
 			'foreignKey' => 'user_doc_id',
@@ -129,9 +150,15 @@ class Bank extends AppModel {
 			'order' => ''
 		),
 		
-	);
-	
-	 public $belongsTo = array(
+		'UserEcr' => array(
+			'className' => 'UserEcr',
+			'foreignKey' => 'user_ecr_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+	 
+	 
 		'UserAcctype' => array(
 			'className' => 'UserAcctype',
 			'foreignKey' => 'user_acctype_id',
@@ -139,10 +166,7 @@ class Bank extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		
-	);
-	
-	 public $belongsTo = array(
+	 
 		'LocalStatus' => array(
 			'className' => 'LocalStatus',
 			'foreignKey' => 'local_status_id',

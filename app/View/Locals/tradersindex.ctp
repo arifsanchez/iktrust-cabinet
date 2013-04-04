@@ -7,39 +7,40 @@
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
                         <tr>
-                            <th class="center">Title1</th>
-                            <th class="center">Title2</th>
-							<th class="center">Title3</th>
-							<th class="center">Title4</th>
-                            <th class="center">Title5</th>
-                            <th class="center">Title6</th>
+                            <th class="center">Id</th>
+                            <th class="center">Name</th>
+							<th class="center">Trader Id</th>
+							<th class="center">User Id</th>
+                            <th class="center">Status</th>
                             <th class="center">More Acion</th>
                         </tr>
                     </thead>
-					
+					<?php	foreach ($locals as $locals): ?>
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<?php echo "Data1"; ?>
+								<? echo $locals['Local']['id']; ?>
 							</td>
                             <td class="center">
-								<?php echo "Data2"; ?>
+								<? echo $locals['User']['first_name']; ?>
 							</td>
                             <td class="center">
-								<?php echo "Data3"; ?>
+								<? echo $locals['UserTrader']['acc_no']; ?>
 							</td>
 							<td class="center">
-								<?php echo "Data4"; ?>
+								<? echo $locals['User']['id']; ?>
 							</td>
 							<td class="center">
-								<?php echo "Data5"; ?>
+								<? echo $locals['LocalStatus']['name']; ?>
 							</td>
-                            <td class="center">
-								<?php echo "Data6"; ?>W
-							</td>
-								<td class="center"><a href="" class="btn"><span class="icon-edit"></span>View</a></td>
+                            
+								<td class="center"><span class="icon-edit"></span><?php echo $this->Html->link(__('View'), array('action' => 'adminview', $locals['Local']['id'])); ?>
+								<span class="icon-edit"></span>><?php echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $locals['Local']['id'])); ?>
+								<span class="icon-edit"></span><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $locals['Local']['id']), null, __('Are you sure you want to delete # %s?', $locals['Local']['id'])); ?></td
+								
                         </tr>
                     </tbody>
+					<?php endforeach; ?>
                 </table>	
 				
 				<div class="pagination pagination-small" align="right">
