@@ -13,6 +13,7 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->layout = 'kabinet';
 		$this->Mt4User->recursive = 0;
 		$this->set('mt4Users', $this->paginate());
 	}
@@ -38,6 +39,7 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->layout = 'kabinet';
 		if ($this->request->is('post')) {
 			$this->Mt4User->create();
 			if ($this->Mt4User->save($this->request->data)) {
