@@ -39,7 +39,7 @@ class LocalsController extends AppController {
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-						curl_setopt($ch, CURLOPT_URL,"http://quaintxpress.com/mt4test/integration.php");
+						curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch, CURLOPT_POST, true);
 
