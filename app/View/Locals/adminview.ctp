@@ -14,12 +14,6 @@
 		  $ip = $_SERVER['REMOTE_ADDR'];
 		}
 
-		
-		foreach ($a as $a):
-				$name 	= $a['User']['username'];
-				$email 	= $a['User']['email'];
-		endforeach;
-	
 	
 ?>
 	<div class="maincontent"><!--maincontent open--> 
@@ -30,7 +24,7 @@
 			<form class="stdform stdform2" method="post" action="forms.html">
 			
 				<?php echo $this->Form->create('Local', array('type' => '', 'id'=>'adminview' , 'class' => 'editprofileform')); ?>
-				
+				<?php 	foreach ($a as $a): ?>
 
 					<p>
 						<label>Full Name</label>
@@ -158,17 +152,22 @@
 							echo $this->Form->input('acctype', array('type' => 'hidden', 'value' => '4' ));
 							echo $this->Form->input('name', array('type' => 'hidden', 'value' => $a['User']['first_name']));
 							echo $this->Form->input('email', array('type' => 'hidden', 'value' => $a['User']['email']));
-							echo $this->Form->input('password', array('type' => 'hidden', 'value' => $mpassword ));
+							echo $this->Form->input('key', array('type' => 'hidden', 'value' => $mpassword ));
 							echo $this->Form->input('investor', array('type' => 'hidden', 'value' => $ipassword ));
 							echo $this->Form->input('leverage', array('type' => 'hidden', 'value' => '2' ));
 							echo $this->Form->input('agent', array('type' => 'hidden', 'value' =>'888808'));
 							
 							
 						?>
+						
+						<?php endforeach; ?>
+						
+						
 					<p class="stdformbutton">
 						
 						<?php echo $this->Form->Submit(__('Submit'), array('class'=>'btn btn-primary'));?>
 					</p>
+				
 					<?php echo $this->Form->end(); ?>
 				</form>
 			</div><!--widgetcontent-->
