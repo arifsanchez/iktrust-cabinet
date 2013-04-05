@@ -46,9 +46,9 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
+		'from' => array('admin@iktrust.com' => 'IKTRUST'),
 		'host' => 'localhost',
-		'port' => 25,
+		'port' => 587,
 		'timeout' => 30,
 		'username' => 'user',
 		'password' => 'secret',
