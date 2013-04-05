@@ -292,6 +292,43 @@ ul.list-nostyle li span, ol.list-nostyle li span { vertical-align: top; }
 .stdform2 label.error { margin-left: 0; padding: 0; }
 .stdform2 label small { font-size: 11px; color: #999; display: block; font-weight: normal; line-height: 16px; }
 .stdform2 span.field, .stdform2 div.field { margin-left: 220px; display: block; background: none; padding: 15px; border-left: none; }
+	#Mt4TradeOPENTIMEYear {
+		margin-right: 10%;
+	}
+		
+	#Mt4TradeCLOSETIMEYear {
+		margin-right: 10%;
+	}
+
+	#Mt4TradeEXPIRATIONYear {
+		margin-right: 10%;
+	}
+
+	#Mt4TradeMODIFYTIMEYear {
+		margin-right: 10%;
+	}
+	
+	#Mt4PriceTIMEYear {
+		margin-right: 10%;
+	}
+	
+	#Mt4PriceMODIFYTIMEYear {
+		margin-right: 10%;
+	}
+	
+	#Mt4UserREGDATEYear {
+		margin-right: 10%;
+	}
+	
+	#Mt4UserLASTDATEYear {
+		margin-right: 10%;
+	}
+	
+	#Mt4UserMODIFYTIMEYear {
+		margin-right: 10%;
+	}
+	
+	
 .stdform2 .stdformbutton { margin-left: 0; padding: 15px; background: #fff; }
 .stdform2 input[type=checkbox], .stdform2 input[type=radio] { margin: 10px; }
 
@@ -1525,6 +1562,7 @@ body.loginbody { background: #f7f7f7 url(../img/gray_jean.png); }
 	.stdform span.field, .stdform div.field { margin-left: 0; }
 	.stdform small.desc, .dualselect, .stdform .formwrapper, .stdform .stdformbutton { margin-left: 0; }
 	.stdform2 span.field, .stdform2 div.field { border-left: 0; }
+	
 	
 	/* wizard */
 	#wiz1step1 p, #wiz1step2 p { margin: 15px; }

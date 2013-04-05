@@ -14,12 +14,12 @@
 						<p>
 						<div class="row-fluid">
 							<div class="span8">
-							<p>
-								<strong>
-									By signing this Individual Account Opening Application Form, you agree and understand the following acknowledgement :
-								</strong>
-							</p>
-							
+								<p>
+									<strong>
+										By signing this Individual Account Opening Application Form, you agree and understand the following acknowledgement :
+									</strong>
+								</p>
+								
 								<p>
 									<div class="well">
 										<i class="icon-chevron-right"></i>
