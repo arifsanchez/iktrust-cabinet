@@ -1,6 +1,9 @@
 <?php
 App::uses('AppController', 'Controller');
 App::import('Vendor', 'dompdf', array('file'=> 'dompdf' . DS . 'dompdf_config.inc.php'));
+App::uses('CakeEmail', 'Network/Email');
+App::uses('HttpSocket', 'Network/Http');
+
 
 class CabinetsController extends AppController {
 	public $helpers = array('Menu');
@@ -193,6 +196,80 @@ class CabinetsController extends AppController {
 
 			public function acknowledge(){
 				$this->layout = 'kabinet';
+				$this->loadModel('Usermgmt.User');
+				$userId = $this->UserAuth->getUserId();
+				
+				$user = $this->User->Find('first',array(
+							'conditions' => array( 'User.id' => $userId),
+							));
+				$this->set('user',$user);
+				//debug($user);die();	
+				
+				$this->loadModel('UserAcctypes');
+				$acctypes = $this->UserAcctypes->Find('first',array(
+							'conditions' => array( 'UserAcctypes.user_id' => $userId),
+							'field'          => array('UserAcctypes.id'),
+							));
+				$this->set('acctypes',$acctypes);
+				//debug($acctypes);die();
+				
+				$this->loadModel('UserDetail');
+				$userD = $this->UserDetail->Find('first',array(
+							'conditions' => array( 'UserDetail.user_id' => $userId),
+							'field'          => array('UserDetail.id'),
+							));
+				$this->set('userD',$userD);
+				//debug($userD);die();	 
+				
+				$this->loadModel('UserBank');
+				$bank = $this->UserBank->Find('first',array(
+							'conditions' => array( 'UserBank.user_id' => $userId),
+							'field'          => array('UserBank.id'),
+							));
+				$this->set('bank',$bank);
+				
+				$this->loadModel('UserEcr');
+				$ecr = $this->UserEcr->Find('first',array(
+							'conditions' => array( 'UserEcr.user_id' => $userId),
+							'field'          => array('UserEcr.id'),
+							));
+				$this->set('ecr',$ecr);
+				
+				$this->loadModel('Local');
+				if($this->request -> isPut() || $this->request -> isPost()){
+				
+				//send email
+						$Email = new CakeEmail('smtp');
+						$Email->template('newtrader');
+						$Email->viewVars(array('user' => $user));
+						$Email->emailFormat('both');
+						$Email->from(array('admin@iktrust.com' => 'IKTust'));
+						$Email->to('intannabilasalim@gmail.com');
+						$Email->subject('New Trader IKTrust');
+						$Email->send();
+						
+				// send sms
+						$HttpSocket = new HttpSocket();
+						$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
+						'user' => 'instafx', 
+						'pass' => 'instafx8000',
+						'msisdn' => '0136454001',
+						'body' => 'iktrust test ',
+						'smstype' => 'TEXT',
+						'sender' => 'IKTRUST',
+						#'Telco' => 'CELCOM'
+					   ));
+					   
+						$this->Local->create();
+						//debug($this->request->data);die();
+						if($this->Local->save($this->request->data)){
+							//$this->session->setFlash(_('The bank details have been saved'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
+						}
+					
+					}
+				
+				
 			}
 	
 			public function myprofile(){

@@ -1,5 +1,3 @@
-
-<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
 		
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
@@ -77,9 +75,19 @@
 						</p>
 					</div>
 				</div>
+				<?php 
+						echo $this->Form->create('Local', array('type' => '', 'id'=>'' , 'class' => '')); 	
+							// data to save in local
+							echo $this->Form->input('user_detail_id', array('type' => 'hidden', 'value' => $userD['UserDetail']['id']));
+							echo $this->Form->input('user_bank_id', array('type' => 'hidden', 'value' => $bank['UserBank']['id']));
+							echo $this->Form->input('user_acctype_id', array('type' => 'hidden', 'value' => $acctypes['UserAcctypes']['id']));
+							echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $user['User']['id']));
+							echo $this->Form->input('user_ecr_id', array('type' => 'hidden', 'value' => $ecr['UserEcr']['id']));
+						?>
 				<p>
-					<?php 	echo $this->Html->link('finish', '/cabinets/view_pdf', array('class' => 'btn btn-danger span2'));?>
 					
+					<?php echo $this->Form->Submit(__('Finish'), array('class'=>'btn btn-primary'));?>
+					<?php echo $this->Form->end(); ?>
 				</p>
 			</div><!--contentinner close-->
 		</div><!--mainconten closet-->
