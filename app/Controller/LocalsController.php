@@ -10,7 +10,10 @@ class LocalsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
-		$a = $this->Local->Find('all');
+		$a = $this->Local->Find('first',array(
+							'conditions' =>array( 'Local.id' => $id),
+							));
+		
 		$this->set('a',$a);
 		//debug($a);die();
 		$localStatuses = $this->Local->LocalStatus->find('list');
