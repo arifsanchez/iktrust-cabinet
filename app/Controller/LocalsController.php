@@ -35,12 +35,11 @@ class LocalsController extends AppController {
 						$email = $this->request->data['Local']['email'];
 						$password = $this->request->data['Local']['password'];
 						$investor = $this->request->data['Local']['investor'];
-						
 						$agent = $this->request->data['Local']['agent'];
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-						curl_setopt($ch, CURLOPT_URL, "http://iktrust.co.uk/webservice/api.php");
+						curl_setopt($ch, CURLOPT_URL,"http://quaintxpress.com/mt4test/integration.php");
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch, CURLOPT_POST, true);
 
@@ -66,16 +65,17 @@ class LocalsController extends AppController {
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 						$output = curl_exec($ch);
 						$info = curl_getinfo($ch);
-						print($output);
+						debug($output);
+						debug($info);die();
 					
-					}
-						if($this->Local->save($this->request->data)){
+			}
+						//if($this->Local->save($this->request->data)){
 							
-							$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
-						}
-					}
-		
+						//	$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+		}
 	}
+		
+	
 	
 	public function tradersindex(){
 		$this->layout = 'kabinet';
