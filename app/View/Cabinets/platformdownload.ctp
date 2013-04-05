@@ -36,16 +36,8 @@
 									<p>
 										<button class="btn btn-caption btn-default btn-green" type="button">Download IK Trust cTrader ECN Platform</button>
 									</p>
-									<!-- DOWNLOAD LINK... -->
-									<a class="pull-left" href="#">
-										<!--img src="img/icon/icon5.png" alt="Visa.img" height="" width=""-->
-										<?php 
-											echo $this->Html->image('icon/icon5.png', array('class'=>'', 'alt'=>'photo'));
-										?>
-									</a>
-										<a href="#">Download User Guide</a>
 									</div>
-								</div>
+								</div> 
 							</div>
 						</div>
 					</div>
@@ -74,14 +66,6 @@
 										<p>
 											<button class="btn btn-caption btn-default btn-green" type="button">Download IK Trust 	cAlgo Algorithmic ECN Trading</button>
 										</p>
-										<!-- DOWNLOAD LINK... -->
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/icon5.png" alt="Visa.img" height="" width=""-->
-											<?php 
-												echo $this->Html->image('icon/icon5.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<a href="#">Download User Guide</a>			
 									</div>
 								</div>
 							</div>
@@ -228,7 +212,7 @@
 									?>
 								</a>
 								<div class="media-body">
-									<h3>IK Trust iPhone Trader </h3>
+									<h3>IK Trust iPad Trader </h3>
 								</div>
 								
 							</div>
@@ -255,7 +239,7 @@
 										?>
 									</a>
 									<div class="media-body">
-										<h3>IK Trust iPhone Trader </h3>
+										<h3>IK Trust Android Trader </h3>
 									</div>
 								</div>
 							</div>

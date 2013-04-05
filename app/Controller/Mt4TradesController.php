@@ -13,6 +13,7 @@ class Mt4TradesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->layout = 'kabinet';
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
 	}
@@ -38,6 +39,7 @@ class Mt4TradesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->layout = 'kabinet';
 		if ($this->request->is('post')) {
 			$this->Mt4Trade->create();
 			if ($this->Mt4Trade->save($this->request->data)) {
