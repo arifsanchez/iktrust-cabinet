@@ -18,7 +18,7 @@ class LocalsController extends AppController {
 		$this->set(compact( 'localStatuses'));
 		//save data
 		if($this->request -> isPut() || $this->request -> isPost()){
-						//debug($this->request->data);die();
+						debug($this->request->data);die();
 						$this->Local->create();
 			if($this->request->data['Local']['local_status_id'] ==2 ) {
 			
@@ -33,7 +33,7 @@ class LocalsController extends AppController {
 						$acctype = $this->request->data['Local']['acctype'];
 						$name = $this->request->data['Local']['name'];
 						$email = $this->request->data['Local']['email'];
-						$password = $this->request->data['Local']['password'];
+						$key = $this->request->data['Local']['key'];
 						$investor = $this->request->data['Local']['investor'];
 						$agent = $this->request->data['Local']['agent'];
 						
@@ -56,9 +56,8 @@ class LocalsController extends AppController {
 							'acctype' => $acctype,
 							'name' => $name,
 							'email' => $email,
-							'password' => $password,
+							'password' => $key,
 							'investor' => $investor,
-							
 							'agent' => $agent,
 						);
 
