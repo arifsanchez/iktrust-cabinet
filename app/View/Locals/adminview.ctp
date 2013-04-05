@@ -1,5 +1,5 @@
 <?php  
-
+	//debug($a);die();
 	// generate password according to MT4 security rules
 		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$pass = $chars{rand(0, 25)}.strtolower($chars{rand(0, 25)});
@@ -21,10 +21,10 @@
 		
 		<h4 class="widgettitle nomargin shadowed">Traders Application Form</h4>
 		<div class="widgetcontent bordered shadowed nopadding">
-			<form class="stdform stdform2" method="post" action="forms.html">
+			<form class="stdform stdform2" >
 			
 				<?php echo $this->Form->create('Local', array('type' => '', 'id'=>'adminview' , 'class' => 'editprofileform')); ?>
-				<?php 	foreach ($a as $a): ?>
+				
 
 					<p>
 						<label>Full Name</label>
@@ -160,7 +160,7 @@
 							
 						?>
 						
-						<?php endforeach; ?>
+						
 						
 						
 					<p class="stdformbutton">

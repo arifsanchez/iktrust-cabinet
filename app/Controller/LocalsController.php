@@ -10,7 +10,10 @@ class LocalsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
-		$a = $this->Local->Find('all');
+		$a = $this->Local->Find('first',array(
+							'conditions' =>array( 'Local.id' => $id),
+							));
+		
 		$this->set('a',$a);
 		//debug($a);die();
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -39,7 +42,7 @@ class LocalsController extends AppController {
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-						curl_setopt($ch, CURLOPT_URL,"http://quaintxpress.com/mt4test/integration.php");
+						curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch, CURLOPT_POST, true);
 
