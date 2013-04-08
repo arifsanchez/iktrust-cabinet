@@ -59,10 +59,12 @@ class LocalsController extends AppController {
 							'acctype' => $acctype,
 							'name' => $name,
 							'email' => $email,
-							'password' => $key,
-							'investor' => $investor,
+							'mpass' => $key,
+							'ipass' => $investor,
 							'agent' => $agent,
 						);
+						
+						//debug($key);die();
 
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 						$output = curl_exec($ch);
