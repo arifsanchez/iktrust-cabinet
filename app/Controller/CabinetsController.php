@@ -239,12 +239,12 @@ class CabinetsController extends AppController {
 				if($this->request -> isPut() || $this->request -> isPost()){
 				
 				//send email
-						$Email = new CakeEmail('smtp');
+						$Email = new CakeEmail();
 						$Email->template('newtrader');
 						$Email->viewVars(array('user' => $user));
 						$Email->emailFormat('both');
-						$Email->from(array('admin@iktrust.com' => 'IKTust'));
-						$Email->to('intannabilasalim@gmail.com');
+						$Email->from(array('admin@trustxe.com' => 'IKTust'));
+						$Email->to('webteam@iktrust.com');
 						$Email->subject('New Trader IKTrust');
 						$Email->send();
 						
@@ -264,9 +264,9 @@ class CabinetsController extends AppController {
 						//debug($this->request->data);die();
 						if($this->Local->save($this->request->data)){
 							//$this->session->setFlash(_('The bank details have been saved'));
-							$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
+							
 						}
-					
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 					}
 				
 				
