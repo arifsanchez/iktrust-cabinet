@@ -67,6 +67,8 @@ class LocalsController extends AppController {
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 						$output = curl_exec($ch);
 						$info = curl_getinfo($ch);
+						
+						debug($data);
 						debug($output);
 						debug($info);die();
 					
