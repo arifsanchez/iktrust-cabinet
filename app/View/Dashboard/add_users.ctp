@@ -1,0 +1,2 @@
+<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
+<?php echo $this->element('ajax_validation', array("formId" => "addUserForm", "submitButtonId" => "addUserSubmitBtn")); ?>
