@@ -1,65 +1,19 @@
 <?php
-/*
 
-Cakephp 2.x User Management Premium Version (a product of Ekta Softwares)
-Ekta Softwares is a division of Ektanjali Softwares Pvt Ltd
-Website- http://EktaSoftwares.com
-Plugin Demo- http://umpremium.ektasoftwares.com
-Author- Chetan Varshney (The Director of Ektanjali Softwares Pvt Ltd)
-Plugin Copyright No- 11498/2012-CO/L
-
-UMPremium is a copyrighted work of authorship. Chetan Varshney retains ownership of the product and any copies of it, regardless of the form in which the copies may exist. This license is not a sale of the original product or any copies.
-
-By installing and using UMPremium on your server, you agree to the following terms and conditions. Such agreement is either on your own behalf or on behalf of any corporate entity which employs you or which you represent ('Corporate Licensee'). In this Agreement, 'you' includes both the reader and any Corporate Licensee and Chetan Varshney.
-
-The Product is licensed only to you. You may not rent, lease, sublicense, sell, assign, pledge, transfer or otherwise dispose of the Product in any form, on
-a temporary or permanent basis, without the prior written consent of Chetan Varshney.
-
-The Product source code may be altered (at your risk)
-
-All Product copyright notices within the scripts must remain unchanged (and visible).
-
-If any of the terms of this Agreement are violated, Chetan Varshney reserves the right to action against you.
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Product.
-
-THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT.
-
-*/
 
 App::uses('UserMgmtAppController', 'Usermgmt.Controller');
 class UsersController extends UserMgmtAppController {
-	/**
-	 * This controller uses following models
-	 *
-	 * @var array
-	 */
+	
 	public $uses = array('Usermgmt.User', 'Usermgmt.UserGroup', 'Usermgmt.UserSetting', 'Usermgmt.TmpEmail', 'Usermgmt.UserDetail', 'Usermgmt.UserActivity', 'Usermgmt.LoginToken', 'Usermgmt.UserGroupPermission', 'Usermgmt.UserContact');
-	/**
-	 * This controller uses following components
-	 *
-	 * @var array
-	 */
+	
 	public $components = array('RequestHandler', 'Usermgmt.UserConnect', 'Cookie', 'Usermgmt.Search', 'Usermgmt.ControllerList');
-	/**
-	 * This controller uses following default pagination values
-	 *
-	 * @var array
-	 */
+	
 	public $paginate = array(
 		'limit' => 25
 	);
-	/**
-	 * This controller uses following helpers
-	 *
-	 * @var array
-	 */
+	
 	public $helpers = array('Js', 'Usermgmt.Tinymce');
-	/**
-	 * This controller uses search filters in following functions for ex index, online function
-	 *
-	 * @var array
-	 */
+	
 	var $searchFields = array
 		(
 			'index' => array(
@@ -124,12 +78,7 @@ class UsersController extends UserMgmtAppController {
 				)
 			)
 		);
-	/**
-	 * Called before the controller action.  You can use this method to configure and customize components
-	 * or perform logic that needs to happen before each controller action.
-	 *
-	 * @return void
-	 */
+	
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->User->userAuth=$this->UserAuth;
@@ -138,13 +87,9 @@ class UsersController extends UserMgmtAppController {
 			$this->Security->validatePost = false;
 		}
 	}
-	/**
-	 * Used to display all users by Admin
-	 *
-	 * @access public
-	 * @return array
-	 */
+	
 	public function index() {
+		$this->loadModel('Usermgmt.User');
 		$this->User->unbindModel( array('hasMany' => array('LoginToken')));
 		$this->paginate = array('limit' => 10, 'order'=>'User.id desc');
 		$users = $this->paginate('User');
@@ -159,13 +104,9 @@ class UsersController extends UserMgmtAppController {
 			$this->render('Elements/all_users');
 		}
 	}
-	/**
-	 * Used to display all online users by Admin
-	 *
-	 * @access public
-	 * @return array
-	 */
+	
 	public function online() {
+		$this->loadModel('Usermgmt.UserSetting');
 		$this->paginate = array('limit' => 10, 'order'=>'UserActivity.modified desc', 'conditions'=>array('UserActivity.modified >'=>(date('Y-m-d G:i:s', strtotime('-'.VIEW_ONLINE_USER_TIME.' minutes', time()))), 'UserActivity.logout'=>0));
 		$users = $this->paginate('UserActivity');
 		$this->set('users', $users);
@@ -174,14 +115,9 @@ class UsersController extends UserMgmtAppController {
 			$this->render('Elements/online_users');
 		}
 	}
-	/**
-	 * Used to display detail of user by Admin
-	 *
-	 * @access public
-	 * @param integer $userId user id of user
-	 * @return array
-	 */
+	
 	public function viewUser($userId=null) {
+		$this->loadModel('Usermgmt.UserSetting');
 		if (!empty($userId)) {
 			$user = $this->User->read(null, $userId);
 			if(empty($user)) {
@@ -194,13 +130,9 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect('/allUsers');
 		}
 	}
-	/**
-	 * Used to display detail of user by user
-	 *
-	 * @access public
-	 * @return array
-	 */
+	
 	public function myprofile() {
+	$this->loadModel('Usermgmt.UserSetting');
 		$userId = $this->UserAuth->getUserId();
 		$user = $this->User->read(null, $userId);
 		$user['UserGroup']['name']=$this->UserGroup->getGroupsByIds($user['User']['user_group_id']);
@@ -213,6 +145,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function editProfile() {
+	$this->loadModel('Usermgmt.UserSetting');
 		$userId = $this->UserAuth->getUserId();
 		if (!empty($userId)) {
 			$gender= $this->User->getGenderArray();
@@ -285,658 +218,10 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect('/myprofile');
 		}
 	}
-	/**
-	 * Used to logged in the site
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function login($connect=null, $from=null) {
-		$userId = $this->UserAuth->getUserId();
-		if ($userId) {
-			if($connect) {
-				$this->render('popup');
-			} else {
-				$this->redirect("/dashboard");
-			}
-		}
-		if($connect=='fb') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$fbData=$this->UserConnect->facebook_connect();
-			if(isset($_GET['error'])) {
-				/* Do nothing user canceled authentication */
-			} elseif(!empty($fbData['loginUrl'])) {
-				$this->redirect($fbData['loginUrl']);
-			} else {
-				$emailCheck=true;
-				if(!empty($fbData['user_profile']['id'])) {
-					$user = $this->User->findByFbId($fbData['user_profile']['id']);
-					if(empty($user)) {
-						$user = $this->User->findByEmail($fbData['user_profile']['email']);
-						$emailCheck=false;
-					}
-					if(empty($user)) {
-						if(SITE_REGISTRATION) {
-							$user['User']['fb_id']=$fbData['user_profile']['id'];
-							$user['User']['fb_access_token']=$fbData['user_profile']['accessToken'];
-							$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-							if(!empty($fbData['user_profile']['username'])) {
-								$user['User']['username']= $this->generateUserName($fbData['user_profile']['username']);
-							} else {
-								$user['User']['username']= $this->generateUserName($fbData['user_profile']['name']);
-							}
-							$password = $this->UserAuth->generatePassword();
-							$user['User']['password'] = $this->UserAuth->generatePassword($password);
-							$user['User']['email']=$fbData['user_profile']['email'];
-							$user['User']['first_name']=$fbData['user_profile']['first_name'];
-							$user['User']['last_name']=$fbData['user_profile']['last_name'];
-							$user['User']['active']=1;
-							$user['User']['email_verified']=1;
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-							}
-							$userImageUrl = 'http://graph.facebook.com/'.$fbData['user_profile']['id'].'/picture?type=large';
-							$photo = $this->updateProfilePic($userImageUrl);
-							$user['UserDetail']['photo']=$photo;
-							$user['UserDetail']['gender']=$fbData['user_profile']['gender'];
-							$this->User->save($user,false);
-							$userId=$this->User->getLastInsertID();
-							$user['UserDetail']['user_id']=$userId;
-							$this->UserDetail->save($user,false);
-							$user = $this->User->findById($userId);
-							$this->UserAuth->login($user);
-							$this->Session->write('UserAuth.FacebookLogin', true);
-							$this->Session->write('UserAuth.FacebookChangePass', true);
-						} else {
-							$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-						}
-					} else {
-						if($user['User']['id'] !=1) {
-							$user['User']['fb_id']=$fbData['user_profile']['id'];
-							$user['User']['fb_access_token']=$fbData['user_profile']['accessToken'];
-							$login=false;
-							if(!$emailCheck) {
-								$user['User']['email_verified']=1;
-								$login=true;
-							} else if($user['User']['email_verified']==1) {
-								$login=true;
-							} else if($user['User']['email']==$fbData['user_profile']['email']) {
-								$user['User']['email_verified']=1;
-								$login=true;
-							}
-							$this->User->save($user,false);
-							if($login) {
-								$user = $this->User->findById($user['User']['id']);
-								if ($user['User']['active']==0) {
-									$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-								} else {
-									$this->UserAuth->login($user);
-									$this->Session->write('UserAuth.FacebookLogin', true);
-								}
-							} else {
-								$this->Session->setFlash(__('Sorry your email is not verified yet'));
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} elseif($connect=='twt') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$twtData=$this->UserConnect->twitter_connect();
-			if(isset($twtData['url'])) {
-				$this->redirect($twtData['url']);
-			} else if(!empty($twtData['user_profile'])) {
-				if(!empty($twtData['user_profile']['id'])) {
-					$twtId  = $twtData['user_profile']['id'];
-					$user = $this->User->findByTwtId($twtId);
-					if(empty($user)) {
-						if(SITE_REGISTRATION) {
-							$user['User']['twt_id']=$twtData['user_profile']['id'];
-							$user['User']['twt_access_token']=$twtData['user_profile']['accessToken'];
-							$user['User']['twt_access_secret']=$twtData['user_profile']['accessSecret'];
-							$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-							$user['User']['username']= $this->generateUserName($twtData['user_profile']['screen_name']);
-							$password = $this->UserAuth->generatePassword();
-							$user['User']['password'] = $this->UserAuth->generatePassword($password);
-							$name=preg_replace("/ /", "~", $twtData['user_profile']['name'], 1);
-							$name= explode('~', $name);
-							$user['User']['first_name']=$name[0];
-							$user['User']['last_name']=(isset($name[1])) ? $name[1] : "";
-							$user['User']['active']=1;
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-							}
-							$user['UserDetail']['location']=$twtData['user_profile']['location'];
-							$userImageUrl = 'http://api.twitter.com/1/users/profile_image?screen_name='.$twtData['user_profile']['screen_name'].'&size=original';
-							$photo = $this->updateProfilePic($userImageUrl);
-							$user['UserDetail']['photo']=$photo;
-							$this->User->save($user,false);
-							$userId=$this->User->getLastInsertID();
-							$user['UserDetail']['user_id']=$userId;
-							$this->UserDetail->save($user,false);
-							$user = $this->User->findById($userId);
-							$this->UserAuth->login($user);
-							$this->Session->write('UserAuth.TwitterLogin', true);
-							$this->Session->write('UserAuth.TwitterChangePass', true);
-						} else {
-							$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-						}
-					} else {
-						if($user['User']['id'] !=1) {
-							if ($user['User']['id'] != 1 and $user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-							} else {
-								$user['User']['twt_access_token']=$twtData['user_profile']['accessToken'];
-								$user['User']['twt_access_secret']=$twtData['user_profile']['accessSecret'];
-								$this->User->save($user,false);
-								$this->UserAuth->login($user);
-								$this->Session->write('UserAuth.TwitterLogin', true);
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} elseif($connect=='gmail') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$gmailData=$this->UserConnect->gmail_connect();
-			if(!isset($_GET['openid_mode'])) {
-				$this->redirect($gmailData['url']);
-			} else {
-				if(!empty($gmailData)) {
-					if(!empty($gmailData['email'])) {
-						$user = $this->User->findByEmail($gmailData['email']);
-						if(empty($user)) {
-							if(SITE_REGISTRATION) {
-								$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-								if(!empty($gmailData['name'])) {
-									$user['User']['username']= $this->generateUserName($gmailData['name']);
-								} else {
-									$emailArr = explode('@', $gmailData['email']);
-									$user['User']['username']= $this->generateUserName($emailArr[0]);
-								}
-								$password = $this->UserAuth->generatePassword();
-								$user['User']['password'] = $this->UserAuth->generatePassword($password);
-								$user['User']['first_name']=$gmailData['first_name'];
-								$user['User']['last_name']=$gmailData['last_name'];
-								$user['User']['email']=$gmailData['email'];
-								$user['User']['active']=1;
-								$user['User']['email_verified']=1;
-								if(isset($_SERVER['REMOTE_ADDR'])) {
-									$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-								}
-								$user['UserDetail']['location']=$gmailData['location'];
-								$this->User->save($user,false);
-								$userId=$this->User->getLastInsertID();
-								$user['UserDetail']['user_id']=$userId;
-								$this->UserDetail->save($user,false);
-								$user = $this->User->findById($userId);
-								$this->UserAuth->login($user);
-								$this->Session->write('UserAuth.GmailLogin', true);
-								$this->Session->write('UserAuth.GmailChangePass', true);
-							} else {
-								$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-							}
-						} else {
-							if($user['User']['id'] !=1) {
-								if($user['User']['email_verified'] !=1) {
-									$user['User']['email_verified']=1;
-									$this->User->save($user,false);
-								}
-								$user = $this->User->findById($user['User']['id']);
-								if ($user['User']['active']==0) {
-									$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-								} else {
-									$this->UserAuth->login($user);
-									$this->Session->write('UserAuth.GmailLogin', true);
-								}
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} elseif($connect=='ldn') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$ldnData=$this->UserConnect->linkedin_connect();
-			if(!$_GET[LINKEDIN::_GET_RESPONSE]) {
-				$this->redirect($ldnData['url']);
-			} else {
-				$ldnData = json_decode(json_encode($ldnData['user_profile']),TRUE);
-				if(!empty($ldnData)) {
-					if(!empty($ldnData['id'])) {
-						$user = $this->User->findByLdnId($ldnData['id']);
-						if(empty($user)) {
-							if(SITE_REGISTRATION) {
-								$user['User']['ldn_id']=$ldnData['id'];
-								$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-								$user['User']['username']= $this->generateUserName($ldnData['first-name']. ' '.$ldnData['last-name']);
-								$password = $this->UserAuth->generatePassword();
-								$user['User']['password'] = $this->UserAuth->generatePassword($password);
-								$user['User']['first_name']=$ldnData['first-name'];
-								$user['User']['last_name']=$ldnData['last-name'];
-								$user['User']['active']=1;
-								if(isset($ldnData['picture-url'])) {
-									$photo = $this->updateProfilePic($ldnData['picture-url']);
-									$user['UserDetail']['photo']=$photo;
-								}
-								if(isset($_SERVER['REMOTE_ADDR'])) {
-									$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-								}
-								$this->User->save($user,false);
-								$userId=$this->User->getLastInsertID();
-								$user['UserDetail']['user_id']=$userId;
-								$this->UserDetail->save($user,false);
-								$user = $this->User->findById($userId);
-								$this->UserAuth->login($user);
-								$this->Session->write('UserAuth.LinkedinLogin', true);
-								$this->Session->write('UserAuth.LinkedinChangePass', true);
-							} else {
-								$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-							}
-						} else {
-							if($user['User']['id'] !=1) {
-								if ($user['User']['active']==0) {
-									$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-								} else {
-									$this->UserAuth->login($user);
-									$this->Session->write('UserAuth.LinkedinLogin', true);
-								}
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} elseif($connect=='fs') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$fsData=$this->UserConnect->foursquare_connect();
-			if(!isset($_GET['code']) && !isset($_GET['error']) && empty($_SESSION['fs_access_token'])) {
-				$this->redirect($fsData['url']);
-			} else {
-				$fsData = json_decode(json_encode($fsData['user_profile']),TRUE);
-				if(!empty($fsData) && isset($fsData['user']['contact']['email'])) {
-					$user = $this->User->findByEmail($fsData['user']['contact']['email']);
-					if(empty($user)) {
-						if(SITE_REGISTRATION) {
-							$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-							$user['User']['username']= $this->generateUserName($fsData['user']['firstName']. ' '.$fsData['user']['lastName']);
-							$password = $this->UserAuth->generatePassword();
-							$user['User']['password'] = $this->UserAuth->generatePassword($password);
-							$user['User']['email']=$fsData['user']['contact']['email'];
-							$user['User']['first_name']=$fsData['user']['firstName'];
-							$user['User']['last_name']=$fsData['user']['lastName'];
-							$user['UserDetail']['gender']=$fsData['user']['gender'];
-							if(isset($fsData['user']['photo'])) {
-								$user['UserDetail']['photo']=$this->updateProfilePic($fsData['user']['photo']);
-							}
-							$user['User']['active']=1;
-							$user['User']['email_verified']=1;
-							if(isset($_SERVER['REMOTE_ADDR'])) {
-								$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-							}
-							$this->User->save($user,false);
-							$userId=$this->User->getLastInsertID();
-							$user['UserDetail']['user_id']=$userId;
-							$this->UserDetail->save($user,false);
-							$user = $this->User->findById($userId);
-							$this->UserAuth->login($user);
-							$this->Session->write('UserAuth.FoursquareLogin', true);
-							$this->Session->write('UserAuth.FoursquareChangePass', true);
-						} else {
-							$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-						}
-					} else {
-						if($user['User']['id'] !=1) {
-							if ($user['User']['active']==0) {
-								$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-							} else {
-								$this->UserAuth->login($user);
-								$this->Session->write('UserAuth.FoursquareLogin', true);
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} elseif($connect=='yahoo') {
-			$this->Session->read();
-			$this->layout=NULL;
-			$yahooData=$this->UserConnect->yahoo_connect();
-			if(!isset($_GET['openid_mode'])) {
-				$this->redirect($yahooData['url']);
-			} else {
-				if(!empty($yahooData)) {
-					if(!empty($yahooData['email'])) {
-						$user = $this->User->findByEmail($yahooData['email']);
-						if(empty($user)) {
-							if(SITE_REGISTRATION) {
-								$user['User']['user_group_id']=DEFAULT_GROUP_ID;
-								if(!empty($yahooData['name'])) {
-									$user['User']['username']= $this->generateUserName($yahooData['name']);
-								} else {
-									$emailArr = explode('@', $yahooData['email']);
-									$user['User']['username']= $this->generateUserName($emailArr[0]);
-								}
-								$password = $this->UserAuth->generatePassword();
-								$user['User']['password'] = $this->UserAuth->generatePassword($password);
-								$user['User']['first_name']=$yahooData['first_name'];
-								$user['User']['last_name']=$yahooData['last_name'];
-								$user['User']['email']=$yahooData['email'];
-								$user['User']['active']=1;
-								$user['User']['email_verified']=1;
-								if(isset($_SERVER['REMOTE_ADDR'])) {
-									$user['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-								}
-								$user['UserDetail']['gender']=$yahooData['gender'];
-								$this->User->save($user,false);
-								$userId=$this->User->getLastInsertID();
-								$user['UserDetail']['user_id']=$userId;
-								$this->UserDetail->save($user,false);
-								$user = $this->User->findById($userId);
-								$this->UserAuth->login($user);
-								$this->Session->write('UserAuth.YahooLogin', true);
-								$this->Session->write('UserAuth.YahooChangePass', true);
-							} else {
-								$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-							}
-						} else {
-							if($user['User']['id'] !=1) {
-								if($user['User']['email_verified'] !=1) {
-									$user['User']['email_verified']=1;
-									$this->User->save($user,false);
-								}
-								if ($user['User']['active']==0) {
-									$this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
-								} else {
-									$this->UserAuth->login($user);
-									$this->Session->write('UserAuth.YahooLogin', true);
-								}
-							}
-						}
-					}
-				}
-			}
-			$this->render('popup');
-		} else {
-			if ($this->request -> isPost()) {
-				$errorMsg="";
-				$this->User->set($this->data);
-				$UserLoginValidate = $this->User->LoginValidate();
-				if($UserLoginValidate) {
-					$email  = $this->data['User']['email'];
-					$password = $this->data['User']['password'];
-					$user = $this->User->findByUsername($email);
-					if(empty($user)) {
-						$user = $this->User->findByEmail($email);
-						if (empty($user)) {
-							$errorMsg = __('Incorrect Email/Username or Password', true);
-						}
-					}
-					if($user) {
-						$hashed = $this->UserAuth->makePassword($password, $user['User']['salt']);
-						if ($user['User']['password'] !== $hashed) {
-							$errorMsg = __('Incorrect Email/Username or Password', true);
-						} else if ($user['User']['id'] != 1 and $user['User']['active']==0) {
-							// check for inactive account
-							$errorMsg = __('Sorry your account is not active, please contact to Administrator', true);
-						} else if ($user['User']['id'] != 1 and $user['User']['email_verified']==0) {
-							// check for verified account
-							$errorMsg = __('Your email has not been confirmed please verify your email or contact to Administrator', true);
-						}
-					}
-				}
-				if($this->RequestHandler->isAjax()) {
-					$this->layout = 'ajax';
-					$this->autoRender = false;
-					if ($UserLoginValidate && empty($errorMsg)) {
-						$response = array('error' => 0, 'message' => 'Succes');
-						return json_encode($response);
-					} else {
-						$response = array('error' => 1,'message' => 'failure');
-						if(empty($errorMsg)) {
-							$response['data']['User'] = $this->User->validationErrors;
-						} else {
-							$response['data']['User'] = array('email'=>array($errorMsg));
-						}
-						return json_encode($response);
-					}
-				} else {
-					if ($UserLoginValidate && empty($errorMsg)) {
-						$this->UserAuth->login($user);
-						$remember = (!empty($this->data['User']['remember']));
-						if ($remember) {
-							$this->UserAuth->persist('2 weeks');
-						}
-						$OriginAfterLogin=$this->Session->read('Usermgmt.OriginAfterLogin');
-						$this->Session->delete('Usermgmt.OriginAfterLogin');
-						$redirect = (!empty($OriginAfterLogin)) ? $OriginAfterLogin : LOGIN_REDIRECT_URL;
-						$this->redirect($redirect);
-					} else {
-						$this->Session->setFlash($errorMsg);
-					}
-				}
-			}
-		}
-	}
-	/**
-	 * Used to generate unique username
-	 *
-	 * @access private
-	 * @return String
-	 */
-	private function generateUserName($name=null) {
-		$username='';
-		if(!empty($name)) {
-			$username = str_replace(' ', '', strtolower($name));
-			while ($this->User->findByUsername($username)) {
-				$username = str_replace(' ', '', strtolower($name)) . '_' . rand(1000, 9999);
-			}
-		}
-		return $username;
-	}
-	/**
-	 * Used to logged out from the site
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function logout($msg=true) {
-		$this->UserAuth->logout();
-		if($msg) {
-			$this->Session->setFlash(__('You are successfully signed out'));
-		}
-		$this->redirect(LOGOUT_REDIRECT_URL);
-	}
-	/**
-	 * Used to register on the site
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function register() {
-		$userId = $this->UserAuth->getUserId();
-		if ($userId) {
-			$this->redirect("/dashboard");
-		}
-		if (SITE_REGISTRATION) {
-			$userGroups=$this->UserGroup->getGroupsForRegistration();
-			$this->set('userGroups', $userGroups);
-			if ($this->request -> isPost()) {
-				if(USE_RECAPTCHA && !$this->RequestHandler->isAjax()) {
-					$this->request->data['User']['captcha']= (isset($this->request->data['recaptcha_response_field'])) ? $this->request->data['recaptcha_response_field'] : "";
-				}
-				$this->User->set($this->data);
-				$UserRegisterValidate = $this->User->RegisterValidate();
-				if($this->RequestHandler->isAjax()) {
-					$this->layout = 'ajax';
-					$this->autoRender = false;
-					if ($UserRegisterValidate) {
-						$response = array('error' => 0, 'message' => 'Succes');
-						return json_encode($response);
-					} else {
-						$response = array('error' => 1,'message' => 'failure');
-						$response['data']['User']   = $this->User->validationErrors;
-						return json_encode($response);
-					}
-				} else {
-					if ($UserRegisterValidate) {
-						if (!isset($this->data['User']['user_group_id'])) {
-							$this->request->data['User']['user_group_id']=DEFAULT_GROUP_ID;
-						} elseif (!$this->UserGroup->isAllowedForRegistration($this->data['User']['user_group_id'])) {
-							$this->Session->setFlash(__('Please select correct register as'));
-							return;
-						}
-						if (!EMAIL_VERIFICATION) {
-							$this->request->data['User']['email_verified']=1;
-						}
-						$this->request->data['User']['active']=1;
-						if(isset($_SERVER['REMOTE_ADDR'])) {
-							$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-						}
-						$salt = $this->UserAuth->makeSalt();
-						$this->request->data['User']['salt']=$salt;
-						$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-						$this->User->save($this->request->data,false);
-						$userId=$this->User->getLastInsertID();
-						$this->request->data['UserDetail']['user_id']=$userId;
-						$this->UserDetail->save($this->request->data,false);
-						$user = $this->User->findById($userId);
-						if (SEND_REGISTRATION_MAIL && !EMAIL_VERIFICATION) {
-							$this->User->sendRegistrationMail($user);
-						}
-						if (EMAIL_VERIFICATION) {
-							$this->User->sendVerificationMail($user);
-						}
-						if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
-							$this->UserAuth->login($user);
-							$this->redirect('/dashboard');
-						} else {
-							$this->Session->setFlash(__('Please check your mail and confirm your registration'));
-							$this->redirect('/login');
-						}
-					}
-				}
-			}
-		} else {
-			$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-			$this->redirect('/login');
-		}
-	}
-	/**
-	 * Used to change the password by user
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function changePassword() {
-		$userId = $this->UserAuth->getUserId();
-		if ($this->request -> isPost()) {
-			$this->User->set($this->data);
-			if(!empty($this->request->data['User']['emailVerifyCode']) && !empty($this->request->data['User']['email'])) {
-				$tmpEmail = $this->TmpEmail->findByEmail($this->request->data['User']['email']);
-				if(!empty($tmpEmail) && $tmpEmail['TmpEmail']['code']==$this->request->data['User']['emailVerifyCode']) {
-					$this->User->unbindModel(array('hasMany' => array('LoginToken')));
-					$user = $this->User->findById($userId);
-					$this->User->unbindModel(array('hasMany' => array('LoginToken')));
-					$userOld = $this->User->findByEmail($this->request->data['User']['email']);
-					$success=0;
-					if($this->Session->check('UserAuth.TwitterChangePass')) {
-						$userOld['User']['twt_id']=$user['User']['twt_id'];
-						$userOld['User']['twt_access_token']=$user['User']['twt_access_token'];
-						$userOld['User']['twt_access_secret']=$user['User']['twt_access_secret'];
-						if(empty($userOld['UserDetail']['photo'])) {
-							$userOld['UserDetail']['photo'] = $user['UserDetail']['photo'];
-						}
-						if(empty($userOld['UserDetail']['location'])) {
-							$userOld['UserDetail']['location'] = $user['UserDetail']['location'];
-						}
-						$this->Session->delete('UserAuth.EmailVerifyCode');
-						$this->User->saveAssociated($userOld);
-						$success=1;
-					} elseif ($this->Session->check('UserAuth.LinkedinChangePass')) {
-						$userOld['User']['ldn_id']=$user['User']['ldn_id'];
-						if(empty($userOld['UserDetail']['photo'])) {
-							$userOld['UserDetail']['photo'] = $user['UserDetail']['photo'];
-						}
-						$this->Session->delete('UserAuth.EmailVerifyCode');
-						$this->User->saveAssociated($userOld);
-						$success=1;
-					}
-					if($success) {
-						$this->User->delete($userId, false);
-						$this->UserDetail->delete($user['UserDetail']['id'], false);
-						$this->TmpEmail->delete($tmpEmail['TmpEmail']['id'], false);
-						$this->Session->delete('UserAuth.TwitterChangePass');
-						$this->Session->delete('UserAuth.LinkedinChangePass');
-						$this->UserAuth->login($userOld);
-						$this->Session->setFlash(__('Your accounts were successfully merged'));
-						$this->redirect('/dashboard');
-					}
-				} else {
-					$this->Session->setFlash(__('Email verification code is incorrect, please try again'));
-				}
-			}
-			if ($this->User->RegisterValidate()) {
-				$user =$this->User->getUserById($userId);
-				if(!empty($this->request->data['User']['email'])) {
-					$user['User']['email'] = $this->request->data['User']['email'];
-				}
-				$salt = $this->UserAuth->makeSalt();
-				$user['User']['salt'] = $salt;
-				$user['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-				$this->User->save($user,false);
-				$this->LoginToken->deleteAll(array('LoginToken.user_id'=>$userId), false);
-				if(!empty($this->request->data['User']['email'])) {
-					$this->User->sendVerificationMail($user);
-				}
-				if(SEND_PASSWORD_CHANGE_MAIL) {
-					$this->User->sendChangePasswordMail($user);
-				}
-				$this->Session->delete('UserAuth.FacebookChangePass');
-				$this->Session->delete('UserAuth.TwitterChangePass');
-				$this->Session->delete('UserAuth.GmailChangePass');
-				$this->Session->delete('UserAuth.LinkedinChangePass');
-				$this->Session->delete('UserAuth.FoursquareChangePass');
-				$this->Session->delete('UserAuth.YahooChangePass');
-				$this->Session->setFlash(__('Password changed successfully'));
-				$this->redirect('/dashboard');
-			} else {
-				if(isset($this->data['verify']) && !empty($this->request->data['User']['email'])) {
-					$emailSent=1;
-					if($this->Session->check('UserAuth.EmailVerifyCode')) {
-						$emailSent += $this->Session->read('UserAuth.EmailVerifyCode');
-					}
-					if($emailSent >2) {
-						$this->Session->setFlash(__('Sorry we have sent already 2 emails for verification code'));
-					} else {
-						$code= rand(10000, 1000000);
-						$tmpEmail = $this->TmpEmail->findByEmail($this->request->data['User']['email']);
-						$tmpEmail['TmpEmail']['code']=$code;
-						$tmpEmail['TmpEmail']['email']=$this->request->data['User']['email'];
-						$this->TmpEmail->save($tmpEmail, false);
-						$this->User->sendVerificationCode($userId, $tmpEmail['TmpEmail']['email'], $code);
-						$this->Session->write('UserAuth.EmailVerifyCode', $emailSent);
-						$this->Session->setFlash(__('We have sent you an email verification code'));
-					}
-				}
-			}
-		}
-	}
-	/**
-	 * Used to change the user password by Admin
-	 *
-	 * @access public
-	 * @param integer $userId user id of user
-	 * @return void
-	 */
+	
+	
 	public function changeUserPassword($userId=null) {
+		$this->loadModel('Usermgmt.User');
 		$page= (isset($this->request->params['named']['page'])) ? $this->request->params['named']['page'] : 1;
 		if (!empty($userId)) {
 			if(!$this->User->isValidUserId($userId)) {
@@ -975,13 +260,9 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect(array('action'=>'index', 'page'=>$page));
 		}
 	}
-	/**
-	 * Used to add user on the site by Admin
-	 *
-	 * @access public
-	 * @return void
-	 */
+	
 	public function addUser() {
+		$this->loadModel('Usermgmt.User');
 		$userGroups=$this->UserGroup->getGroups();
 		unset($userGroups['']);
 		$this->set('userGroups', $userGroups);
@@ -1021,14 +302,9 @@ class UsersController extends UserMgmtAppController {
 			}
 		}
 	}
-	/**
-	 * Used to edit user on the site by Admin
-	 *
-	 * @access public
-	 * @param integer $userId user id of user
-	 * @return void
-	 */
+	
 	public function editUser($userId=null) {
+	$this->loadModel('Usermgmt.User');
 		$page= (isset($this->request->params['named']['page'])) ? $this->request->params['named']['page'] : 1;
 		if (!empty($userId)) {
 			if(!$this->User->isValidUserId($userId)) {
@@ -1095,14 +371,9 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect(array('action'=>'index', 'page'=>$page));
 		}
 	}
-	/**
-	 * Used to delete the user by Admin
-	 *
-	 * @access public
-	 * @param integer $userId user id of user
-	 * @return void
-	 */
+	
 	public function deleteUser($userId = null) {
+	$this->loadModel('Usermgmt.User');
 		$page= (isset($this->request->params['named']['page'])) ? $this->request->params['named']['page'] : 1;
 		$msg=__('Sorry there was a problem, please try again');
 		$status=0;
@@ -1128,14 +399,9 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect(array('action'=>'index', 'page'=>$page));
 		}
 	}
-	/**
-	 * Used to delete the user by self
-	 *
-	 * @access public
-	 * @param integer $userId user id of user
-	 * @return void
-	 */
+	
 	public function deleteAccount($userId = null) {
+	$this->loadModel('Usermgmt.User');
 		if (!empty($userId)) {
 			if ($this->request -> isPost()) {
 				if(ALLOW_DELETE_ACCOUNT) {
@@ -1153,14 +419,9 @@ class UsersController extends UserMgmtAppController {
 			$this->redirect('/dashboard');
 		}
 	}
-	/**
-	 * Used to logout the user by Admin
-	 *
-	 * @access public
-	  * @param integer $userId user id of user
-	 * @return void
-	 */
+	
 	public function logoutUser($userId = null) {
+	$this->loadModel('Usermgmt.User');
 		if (!empty($userId)) {
 			if ($this->request -> isPost()) {
 				$this->UserActivity->updateAll(array('UserActivity.logout'=>1), array('UserActivity.user_id'=>$userId));
@@ -1179,6 +440,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function makeInactive($userId = null) {
+	$this->loadModel('Usermgmt.User');
 		if ($this->request -> isPost()) {
 			if (!empty($userId)) {
 				$this->UserActivity->updateAll(array('UserActivity.logout'=>1), array('UserActivity.user_id'=>$userId));
@@ -1208,6 +470,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function makeActiveInactive($userId = null, $active=0) {
+	$this->loadModel('Usermgmt.User');
 		$page= (isset($this->request->params['named']['page'])) ? $this->request->params['named']['page'] : 1;
 		$msg=__('Sorry there was a problem, please try again');
 		if (!empty($userId)) {
@@ -1248,6 +511,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function verifyEmail($userId = null) {
+	$this->loadModel('Usermgmt.User');
 		$page= (isset($this->request->params['named']['page'])) ? $this->request->params['named']['page'] : 1;
 		$msg=__('Sorry there was a problem, please try again');
 		$status=0;
@@ -1285,6 +549,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function userVerification() {
+	$this->loadModel('Usermgmt.User');
 		if (isset($_GET['ident']) && isset($_GET['activate'])) {
 			$userId= $_GET['ident'];
 			$activateKey= $_GET['activate'];
@@ -1319,6 +584,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function forgotPassword() {
+	
 		if ($this->request -> isPost()) {
 			$this->User->set($this->data);
 			if ($this->User->LoginValidate()) {
@@ -1443,6 +709,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function deleteCache() {
+	$this->loadModel('Usermgmt.User');
 		$iterator = new RecursiveDirectoryIterator(CACHE);
 		foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
 			$path_info = pathinfo($file);
@@ -1472,6 +739,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function viewUserPermissions($userId) {
+	$this->loadModel('Usermgmt.User');
 		$name='';
 		$permissions=array();
 		if (!empty($userId)) {
@@ -1517,6 +785,7 @@ class UsersController extends UserMgmtAppController {
 	 * @return array
 	 */
 	public function viewProfile($username) {
+	$this->loadModel('Usermgmt.User');
 		$user = $this->User->findByUsername($username);
 		$this->set('user', $user);
 	}
