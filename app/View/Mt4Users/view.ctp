@@ -190,5 +190,6 @@
 		<li><?php echo $this->Form->postLink(__('Delete Mt4 User'), array('action' => 'delete', $mt4User['Mt4User']['id']), null, __('Are you sure you want to delete # %s?', $mt4User['Mt4User']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Mt4 Users'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Mt4 User'), array('action' => 'add')); ?> </li>
+		
 	</ul>
 </div>
