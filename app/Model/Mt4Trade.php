@@ -11,6 +11,8 @@ class Mt4Trade extends AppModel {
  *
  * @var array
  */
+	 var $primaryKey = 'TICKET';
+ 
 	public $validate = array(
 		'TICKET' => array(
 			'numeric' => array(
@@ -64,7 +66,7 @@ class Mt4Trade extends AppModel {
 		),
 		'VOLUME' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('number'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

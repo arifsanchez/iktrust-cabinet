@@ -174,8 +174,6 @@ h4 { font-size: 16px; line-height: 26px; }
 .contentinner p { margin: 15px 0; }
 .contentinner p:first-child { margin-top: 0; }
 .contnetinner p:last-child { margin-bottom: 0; }
-.contentinnerscroll {overflow:auto;}
-.contentinnerscrollT{overflow:auto;}
 .wrapper404 ul { list-style: none; margin: 10px 0; }
 
 .widgettitle { 
