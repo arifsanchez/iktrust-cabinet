@@ -3,24 +3,24 @@
 
 	<div class="maincontent">
 		<div class="contentinner">
-
-			<div class="row-fluid">
-				<div class="span12">
-					<h4 class="widgettitle nomargin shadowed">Mt4 Trades</h3>
-				</div>
 				
-				<!--div class="widgettitle nomargin shadowed searchwidget span6" align="right">
-					<form action="results.html" method="post">
+			<div class="widgettitle nomargin shadowed searchwidget">
+				<div class="row-fluid">
+					<div class="span6">
+						<legend>Mt4 Trades</legend>
+					</div>
+					
+					<div class="span6" align="right">
 						<input type="text" class="span2 search-query" placeholder="Search here...">
 						<button type="submit" class="btn"><span class="icon-search"></span></button>
-					</form>
-				</div-->
+					</div>
+				</div>
 			</div>
-				
+			
 			<table class="table table-striped">
 				<tr>
 					<th><?php echo $this->Paginator->sort('TICKET', null, array('direction' => 'desc')); ?></th>
-					<th><?php echo $this->Paginator->sort('LOGIN'); ?></th>
+					<th><?php echo $this->Paginator->sort('TRADERS ID'); ?></th>
 					<th><?php echo $this->Paginator->sort('SYMBOL'); ?></th>
 					<th><?php echo $this->Paginator->sort('DIGITS'); ?></th>
 					<th><?php echo $this->Paginator->sort('CMD'); ?></th>
@@ -37,17 +37,21 @@
 					<th><?php echo $this->Paginator->sort('PROFIT'); ?></th>
 					<th><?php echo $this->Paginator->sort('COMMENT'); ?></th>
 					<th><?php echo $this->Paginator->sort('MODIFY_TIME'); ?></th>
-				</tr>
+				</tr> 
 				
 				<?php foreach ($mt4Trades as $mt4Trade): ?>
-				
+				<?php 	
+					$value = $mt4Trade['Mt4Trade']['VOLUME']; 
+					$profit = $mt4Trade['Mt4Trade']['PROFIT'];
+				?>
+				 
 				<tr>
 					<td><?php echo h($mt4Trade['Mt4Trade']['TICKET']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['LOGIN']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['SYMBOL']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['DIGITS']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['CMD']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Trade['Mt4Trade']['VOLUME']); ?>&nbsp;</td>
+					<td><?php echo number_format($value/100, 2); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['OPEN_TIME']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['OPEN_PRICE']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['SL']); ?>&nbsp;</td>
@@ -57,7 +61,7 @@
 					<td><?php echo h($mt4Trade['Mt4Trade']['COMMISSION_AGENT']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['SWAPS']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['CLOSE_PRICE']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Trade['Mt4Trade']['PROFIT']); ?>&nbsp;</td>
+					<td><?php echo '$', ' ', number_format($profit, 2); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['COMMENT']); ?>&nbsp;</td>
 					<td><?php echo h($mt4Trade['Mt4Trade']['MODIFY_TIME']); ?>&nbsp;</td>
 				</tr>

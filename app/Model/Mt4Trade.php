@@ -66,7 +66,7 @@ class Mt4Trade extends AppModel {
 		),
 		'VOLUME' => array(
 			'numeric' => array(
-				'rule' => array('number'),
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

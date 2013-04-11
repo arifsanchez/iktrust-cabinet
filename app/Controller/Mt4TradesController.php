@@ -19,10 +19,6 @@ class Mt4TradesController extends AppController {
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
 	}
-	
-	function showAsFloat($VOLUME){
-		return !Number($VOLUME) ? VOLUME : Number($VOLUME)%1 === 0 ? Number($VOLUME).toFixed(2) : VOLUME;
-	}
 
 /**
  * view method
