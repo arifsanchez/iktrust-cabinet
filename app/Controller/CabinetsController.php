@@ -386,6 +386,11 @@ class CabinetsController extends AppController {
 					//keluarkan kat view
 					$this -> set('user',$user);
 					//debug($user);die();
+					
+					$this->loadModel('UserTrader');
+					$a = $this->UserTrader->find('all');
+					$this->set('a',$a);
+					//debug($a);die();
 			
 			}	
 			

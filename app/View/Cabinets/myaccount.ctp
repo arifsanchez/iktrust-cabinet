@@ -56,86 +56,28 @@
 								</td>
 							</tr>
 							
-						<!--TABLE ROW 2-->							
+						<!--TABLE ROW 2-->	
+							<?php foreach ($a as $a): ?>
 							<tr>
 								<td> <!-- DROPDOWN BUTTON CODE -->
-									<div class="btn-group">
-										
-										<button class="btn btn-small">
-											4102730
-										</button>
-										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-											<span class="caret"></span>
-										</button>
-									
-										<ul class="dropdown-menu">
-											Hide Account
-										</ul>
-										
-									</div>
+									<?php echo  h($a['MT4User']['LOGIN']); ?>
 								</td>
-								<td>1:500</td>
+								<td><?php echo  h($a['MT4User']['LEVERAGE']); ?></td>
+								
 								<td>USD</td>
-								<td>N/A</td>
-								<td>N/A</td>
+								
+								<td><?php echo  h($a['MT4User']['MARGIN_FREE']); ?></td>
+								
+								<td><?php echo  h($a['MT4User']['BALANCE']); ?></td>
+								
 								<td>DISABLED</td>
+								
 								<td>DEMO</td>
+								
 								<td>MT4</td>
 							</tr>
-							
-						<!--TABLE ROW 3-->
-							<tr>
-								<td> <!-- DROPDOWN BUTTON CODE -->
-									<div class="btn-group">
-										
-										<button class="btn btn-small">
-											0312496
-										</button>
-										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-											<span class="caret"></span>
-										</button>
-									
-										<ul class="dropdown-menu">
-											Hide Account
-										</ul>
-										
-									</div>
-								</td>
-								<td>1:500</td>
-								<td>USD</td>
-								<td>0.00</td>
-								<td>0.00</td>
-								<td>READONLY</td>
-								<td>REAL</td>
-								<td>MT4</td>
-							</tr>
+						<?php endforeach; ?>	
 						
-						<!--TABLE ROW 4-->
-							<tr>
-								<td>
-									<div class="btn-group">
-									<!-- DROPDOWN BUTTON CODE -->	
-										<button class="btn btn-small">
-											0204689
-										</button>
-										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-											<span class="caret"></span>
-										</button>
-									
-										<ul class="dropdown-menu">
-											Hide Account
-										</ul>
-									<!-- ..... -->
-									</div>
-								</td>
-								<td>1:500</td>
-								<td>USD</td>
-								<td>0.00</td>
-								<td>0.00</td>
-								<td>DISABLE</td>
-								<td>REAL</td>
-								<td>MT4</td>
-							</tr>	
 						</table>
 					</div>
 				</div>

@@ -35,7 +35,7 @@ class UserTrader extends AppModel {
 			),
 		),
 		
-		'acc_no' => array(
+		'mt4_user_LOGIN' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -57,22 +57,22 @@ class UserTrader extends AppModel {
  * @var array
  */
  
- /*public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+ public $belongsTo = array(
+		'UserAcctype' => array(
+			'className' => 'UserAcctype',
+			'foreignKey' => 'user_acctype_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'EcurrType' => array(
-			'className' => 'AccType',
-			'foreignKey' => 'acc_type_id',
+		'MT4User' => array(
+			'className' => 'MT4User',
+			'foreignKey' => 'mt4_user_LOGIN',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
-	);*/
+	);
 	
 
 }

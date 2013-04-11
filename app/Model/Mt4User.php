@@ -10,7 +10,9 @@ class Mt4User extends AppModel {
  * Validation rules
  *
  * @var array
- */
+  */
+ var $primaryKey = 'LOGIN';
+
 	public $validate = array(
 		'LOGIN' => array(
 			'numeric' => array(
