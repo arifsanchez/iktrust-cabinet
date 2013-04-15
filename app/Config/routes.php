@@ -74,6 +74,9 @@
 	Router::connect('/viewPage/*', array('plugin' => 'usermgmt', 'controller' => 'contents', 'action' => 'viewPage'));
 	Router::connect('/contents/*', array('plugin' => 'usermgmt', 'controller' => 'contents', 'action' => 'content'));
 	Router::connect('/myaccount/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'myaccount'));
+
+	Router::connect('/mybalance/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'check_balance'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
