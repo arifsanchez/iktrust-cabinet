@@ -9,8 +9,10 @@
 					</div>
 					
 					<div class="span6" align="right">
-						<input type="text" class="span2 search-query" placeholder="Search here...">
+						<?php echo $this->Form->create('Mt4User', array('controller' => 'Mt4Users', 'action' => 'search')); ?>
+						<?php echo $this->Form->input('LOGIN', array('type' => 'text', 'class' => 'span2 search-query', 'label' => false, 'placeholder' => 'Search Here...')); ?>
 						<button type="submit" class="btn"><span class="icon-search"></span></button>
+						<?php echo $this->Form->end(); ?>
 					</div>
 				</div>
 			</div>
@@ -38,10 +40,6 @@
 				</tr>
 			
 				<?php foreach ($mt4Users as $mt4User): ?>
-				<?php 	
-					#$leverage = $mt4Trade['Mt4Trade']['LEVERAGE']; 
-					#$profit = $mt4Trade['Mt4Trade']['PROFIT'];
-				?>
 					
 				<tr>
 					<td><?php echo h($mt4User['Mt4User']['LOGIN']); ?>&nbsp;</td>

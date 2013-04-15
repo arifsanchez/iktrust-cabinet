@@ -11,8 +11,10 @@
 					</div>
 					
 					<div class="span6" align="right">
-						<input type="text" class="span2 search-query" placeholder="Search here...">
+						<?php echo $this->Form->create('Mt4Trade', array('controller' => 'Mt4Trades', 'action' => 'search')); ?>
+						<?php echo $this->Form->input('TICKET', array('type' => 'text', 'class' => 'span2 search-query', 'label' => false, 'placeholder' => 'Search Here...')); ?>
 						<button type="submit" class="btn"><span class="icon-search"></span></button>
+						<?php echo $this->Form->end(); ?>
 					</div>
 				</div>
 			</div>

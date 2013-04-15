@@ -18,6 +18,43 @@ class Mt4TradesController extends AppController {
 		
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
+		
+		if($this->request->data){
+			$VALUE = $this->request->data['Mt4Trade']['TICKET'];
+			#check dulu kalau ade data , baru redirect
+			#debug($TICKET); die();
+			
+			if(!$this->Account->exists($VALUE)){
+			} else {
+				$this->redirect(array('action' => 'view',$VALUE));
+			}
+		}
+	}
+	
+			
+	public function search(){
+		if($this->RequestHandler->isAjax() ) {
+			Configure::write ('debug', 0);
+			$this->autoRender=false;
+			$this->Mt4Trade->recursive = -1;
+			
+			$users = $this->Mt4Trade->find('all',array('conditions'=>array('mt4Trades.TICKET LIKE'=>'%'.$_GET['term'].'%')));
+			$i=0;
+			
+			foreach($users as $user){
+				$response[$i]['TICKET']=$user['Mt4Trade']['TICKET'];
+				$i++;
+			}
+			echo json_encode($response);
+	   }
+	   
+	   else{
+			if (!empty($this->Mt4Trade->data)){
+			}
+			else{
+				$this->redirect(array('action' => 'view', $this->data['Mt4Trade']['TICKET']));
+			}
+		}
 	}
 
 /**
@@ -28,13 +65,15 @@ class Mt4TradesController extends AppController {
  * @return void
  */
 	public function view($TICKET = null) {
-		/*if (!$this->Mt4Trade->exists($TICKET)) {
-			throw new NotFoundException(__('Invalid mt4 trade'));
-		}*/
+
 		$this->layout = 'kabinet';
 		
 		$options = array('conditions' => array('Mt4Trade.' . $this->Mt4Trade->primaryKey => $TICKET));
 		$this->set('mt4Trade', $this->Mt4Trade->find('first', $options));
+		
+		if ($this->request->is('post')) {
+		$this->redirect(array('action' => 'index'));
+		}
 	}
 
 /**
@@ -46,7 +85,7 @@ class Mt4TradesController extends AppController {
 	
 		$this->layout = 'kabinet';
 		
-		if ($this->request->is('post')) {
+		if ($this->request->is('post') ) {
 			$this->Mt4Trade->create();
 			if ($this->Mt4Trade->save($this->request->data)) {
 				$this->Session->setFlash(__('The mt4 trade has been saved'));
@@ -68,17 +107,7 @@ class Mt4TradesController extends AppController {
 	
 	
 		$this->layout = 'kabinet';
-		
-		/*$options = array('conditions' => array('Mt4Trade.TICKET' => $TICKET));
-		$this->set('mt4Trade', $this->Mt4Trade->find('first', $options));
-		#debug($options); die();
-		/*$TICKET = $this->Mt4Trade->Find('all',array(
-			'conditions' => array( 'Mt4Trade.TICKET' => $TICKET),
-		));
-		
-		$this->set('TICKET', $TICKET);*/
-		#debug($TICKET); die();
-		
+				
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Mt4Trade->save($this->request->data)) {
 				$this->Session->setFlash(__('The mt4 trade has been saved'));
@@ -89,15 +118,10 @@ class Mt4TradesController extends AppController {
 		} else {
 		$options = array('conditions' => array('Mt4Trade.TICKET' => $TICKET));
 		
-	//	$this->set('Mt4Trade', $this->Mt4Trade->find('first', $options));
-		//debug($a);die();
-		#debug($options); die();
-		
 		$this->request->data = $this->Mt4Trade->find('first', $options);
-		
-	//	debug($this->Mt4Trade->find('first', $options));die();
 		}
 	}
+
 
 /**
  * delete method
@@ -123,4 +147,5 @@ class Mt4TradesController extends AppController {
 		$this->Session->setFlash(__('Mt4 trade was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
 }

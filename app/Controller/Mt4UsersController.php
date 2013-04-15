@@ -16,6 +16,40 @@ class Mt4UsersController extends AppController {
 		$this->layout = 'kabinet';
 		$this->Mt4User->recursive = 0;
 		$this->set('mt4Users', $this->paginate());
+		
+		if($this->request->data){
+			$VALUE = $this->request->data['Mt4User']['LOGIN'];
+			
+			if(!$this->Account->exists($VALUE)){
+			} else {
+				$this->redirect(array('action' => 'view',$VALUE));
+			}
+		}
+	}
+	
+	public function search(){
+		if($this->RequestHandler->isAjax() ) {
+			Configure::write ('debug', 0);
+			$this->autoRender=false;
+			$this->Mt4User->recursive = -1;
+			
+			$users = $this->Mt4User->find('all',array('conditions'=>array('mt4Users.TICKET LIKE'=>'%'.$_GET['term'].'%')));
+			$i=0;
+			
+			foreach($users as $user){
+				$response[$i]['LOGIN']=$user['Mt4User']['LOGIN'];
+				$i++;
+			}
+			echo json_encode($response);
+	   }
+	   
+	   else{
+			if (!empty($this->Mt4Trade->data)){
+			}
+			else{
+				$this->redirect(array('action' => 'view', $this->data['Mt4User']['LOGIN']));
+			}
+		}
 	}
 
 /**
@@ -26,11 +60,17 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->layout = 'kabinet';
+		
 		if (!$this->Mt4User->exists($id)) {
 			throw new NotFoundException(__('Invalid mt4 user'));
 		}
 		$options = array('conditions' => array('Mt4User.' . $this->Mt4User->primaryKey => $id));
 		$this->set('mt4User', $this->Mt4User->find('first', $options));
+		
+		if ($this->request->is('post')) {
+			$this->redirect(array('action' => 'index'));
+		}
 	}
 
 /**
