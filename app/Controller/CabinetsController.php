@@ -9,7 +9,53 @@ class CabinetsController extends AppController {
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');	
 	
+			function bankwired(){
+			$this->layout = 'kabinet';	
 			
+			}
+			
+			
+			function check_balance(){
+			$this->layout = 'kabinet';
+			$userId = $this->UserAuth->getUserId();
+			$this->loadModel('Mt4User');
+				if($this->request -> isPut() || $this->request -> isPost()){
+					$login = $this->request->data['Mt4User']['username'];
+					$email = $this->request->data['Mt4User']['email'];
+					$check = $this->Mt4User->Find('first' ,array(
+						'conditions' => array('Mt4User.LOGIN' =>$login, 'Mt4User.EMAIL' =>$email),
+					));
+					
+					if(!empty ($check)){
+						$acc_id = base64_encode($login);
+						$this->redirect(array('controller' => 'cabinets' , 'action' => 'account_balance' , $acc_id));
+					}else{					
+						$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance' , "error:invalid_request"));
+					}
+				}
+			}
+			
+			function account_balance($acc_id = null){
+				if($acc_id){
+					$this->layout = 'kabinet';
+					$this->loadModel('Mt4User');
+					
+					$login = base64_decode($acc_id);
+					$check = $this->Mt4User->Find('first' ,array(
+							'conditions' => array('Mt4User.LOGIN' =>$login),
+							'fields'		=>array ('Mt4User.BALANCE'),
+							));
+					if(empty($check)){
+						$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
+					} else {
+						$this->set('check', $check);
+					}
+					
+					return null;
+				} else {
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
+				}
+			}
 			
 			function view_pdf() {
 			

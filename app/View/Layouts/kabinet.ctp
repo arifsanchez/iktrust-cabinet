@@ -56,11 +56,11 @@
             	<!--dropdown-->
                                   
                 
-                
+                <?php if(!empty($var)){ ?>
     			<div class="dropdown userinfo">
                     <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/page.html">
-                    	
-				<?php echo __('Hi,').' '.h($var['User']['first_name']).' '.h($var['User']['last_name']); ?> <b class="caret"></b></a>
+               
+					<?php echo __('Hi,').' '.h($var['User']['first_name']).' '.h($var['User']['last_name']);?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="editprofile.html"><span class="icon-edit"></span> Edit Profile</a></li>
                         <li><a href=""><span class="icon-wrench"></span> Account Settings</a></li>
@@ -68,8 +68,9 @@
                         <li class="divider"></li>
                         <li><?php echo $this->Html->link('<span class="icon-off"></span> Sign Out',array('controller' => '', 'action' => 'logout'),array('escape' => false)); ?></li>         
                     </ul>
+				
                 </div><!--dropdown-->
-    		
+				<?php } ?>
             </div><!--headerright-->
             
     	</div><!--headerpanel-->
@@ -89,7 +90,9 @@
         </div><!--breadcrumbwidget-->
 
         <!--Kandungan dalam-->
-        <?php echo $this->Session->flash();?>
+		<div>
+			<h4><?php echo $this->Session->flash();?></h4>
+		</div>
         <?php echo $this->fetch('content'); ?>
         <!--Tamat kandungan dalam-->
 
