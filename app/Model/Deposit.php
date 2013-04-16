@@ -24,7 +24,18 @@ class Deposit extends AppModel {
 			),
 		),
 		
-		'ikbank' => array(
+		'user_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		), 
+		
+		'ikbank_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -35,7 +46,7 @@ class Deposit extends AppModel {
 			),
 		),
 		
-		'ecurrency' => array(
+		'ecurrency_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -107,7 +118,7 @@ class Deposit extends AppModel {
  * @var array
  */
  
- /*public $belongsTo = array(
+ public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -116,7 +127,31 @@ class Deposit extends AppModel {
 			'order' => ''
 		),
 		
-	);*/
+		'Ikbank' => array(
+			'className' => 'Ikbank',
+			'foreignKey' => 'ikbank_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		
+		'Ecurr' => array(
+			'className' => 'Ecurr',
+			'foreignKey' => 'ecurr_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		
+		'LocalStatus' => array(
+			'className' => 'LocalStatus',
+			'foreignKey' => 'local_status_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		
+	);
 	
 	
 

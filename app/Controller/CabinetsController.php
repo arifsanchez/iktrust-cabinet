@@ -16,7 +16,7 @@ class CabinetsController extends AppController {
 			
 			
 			function check_balance(){
-			$this->layout = 'kabinet';
+			$this->layout = 'logmasuk';
 			$userId = $this->UserAuth->getUserId();
 			$this->loadModel('Mt4User');
 				if($this->request -> isPut() || $this->request -> isPost()){
@@ -37,7 +37,7 @@ class CabinetsController extends AppController {
 			
 			function account_balance($acc_id = null){
 				if($acc_id){
-					$this->layout = 'kabinet';
+					$this->layout = 'logmasuk';
 					$this->loadModel('Mt4User');
 					
 					$login = base64_decode($acc_id);

@@ -16,40 +16,49 @@
 							<div class="span12 well">
 								<?php echo $this->Form->create('Deposit', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 								<?php echo $this->Form->input('id', array('type' => 'hidden' ));?>
+								<?php echo $this->Form->input('id', array('type' => 'hidden' ));?>
 								
 									<p>
-										<label>Name Of Bank : </label>
+										<label>Logun Id : </label>
+										<?php echo $this->Form->input('login' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>Prefered IKTrust Bank  : </label>
+										<?php echo $this->Form->input('ikbank' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>Currency  : </label>
+										<?php echo $this->Form->input('eccurency' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>Deposit Amount  : </label>
+										<?php echo $this->Form->input('amount' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>Your Bank Name : </label>
+										<?php echo $this->Form->input('userbank' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+									</p>
+									
+									<p>
+										<label>Full Name : </label>
 										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
-										<label>Bank Account Number  : </label>
-										<?php echo $this->Form->input('acc_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<label>Email : </label>
+										<?php echo $this->Form->input('email' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									
 									<p>
-										<label>Bank Account Name  : </label>
-										<?php echo $this->Form->input('acc_name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
+										<label>Important Notes : </label>
+										<?php echo $this->Form->input('notes' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
-									
-									<p>
-										<label>*IBAN Number  : </label>
-										<?php echo $this->Form->input('iban_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
-									</p>
-									
-									<p>
-										<label>*Swift Number  : </label>
-										<?php echo $this->Form->input('swift_no' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
-									</p>
-
-									<br>
-									<p>
-										<div><strong>Authorized Bank Account For Withdrawal : </strong></div>
-										<?php echo $this->Form->input('auth_val', array('label' => false, 'div' => false, 'type' => 'checkbox')); ?>
-										I hereby agree to allow only bank account registered above for
-										<div>funds withdrawal purposes.</div>
-									</p> 
-								<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
+								
+								<?php echo $this->Form->Submit(__('Submit'), array('class'=>'btn btn-danger span2'));?>
 							</div>
 						</div>
 						</p>
