@@ -1,5 +1,5 @@
 
-	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
 
 	<div class="maincontent">
 		<div class="contentinner">
@@ -18,7 +18,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<div style="overflow:hidden;">
 			<table class="table table-striped">
 				<tr>
 					<th><?php echo $this->Paginator->sort('TICKET', null, array('direction' => 'desc')); ?></th>
@@ -69,7 +69,7 @@
 				</tr>
 				<?php endforeach; ?>
 			</table>
-				
+			</div>
 			<p align="center">
 				<?php
 					echo $this->Paginator->counter(array(
