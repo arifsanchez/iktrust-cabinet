@@ -1,10 +1,14 @@
 
+<<<<<<< HEAD
 	<?php 
 		//echo $this->Html->script('appJson.js');
 		echo $this->Html->script('jquery.dataTables.min.js');
 		echo $this->Html->script('jquery-migrate-1.1.1.min.js');
 	?>
 
+=======
+	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+>>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
 
 	<div class="maincontent">
 		<div class="contentinner">
@@ -23,6 +27,7 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			
 			<div style="overflow:auto">
 				<table class="table table-striped">
@@ -77,6 +82,60 @@
 				</table>
 			</div>
 				
+=======
+			<div style="overflow:hidden;">
+			<table class="table table-striped">
+				<tr>
+					<th><?php echo $this->Paginator->sort('TICKET', null, array('direction' => 'desc')); ?></th>
+					<th><?php echo $this->Paginator->sort('TRADERS ID'); ?></th>
+					<th><?php echo $this->Paginator->sort('SYMBOL'); ?></th>
+					<th><?php echo $this->Paginator->sort('DIGITS'); ?></th>
+					<th><?php echo $this->Paginator->sort('CMD'); ?></th>
+					<th><?php echo $this->Paginator->sort('VOLUME'); ?></th>
+					<th><?php echo $this->Paginator->sort('OPEN_TIME'); ?></th>
+					<th><?php echo $this->Paginator->sort('OPEN_PRICE'); ?></th>
+					<th><?php echo $this->Paginator->sort('SL'); ?></th>
+					<th><?php echo $this->Paginator->sort('TP'); ?></th>
+					<th><?php echo $this->Paginator->sort('CLOSE_TIME'); ?></th>
+					<th><?php echo $this->Paginator->sort('COMMISSION'); ?></th>
+					<th><?php echo $this->Paginator->sort('COMMISSION_AGENT'); ?></th>
+					<th><?php echo $this->Paginator->sort('SWAPS'); ?></th>
+					<th><?php echo $this->Paginator->sort('CLOSE_PRICE'); ?></th>
+					<th><?php echo $this->Paginator->sort('PROFIT'); ?></th>
+					<th><?php echo $this->Paginator->sort('COMMENT'); ?></th>
+					<th><?php echo $this->Paginator->sort('MODIFY_TIME'); ?></th>
+				</tr> 
+				
+				<?php foreach ($mt4Trades as $mt4Trade): ?>
+				<?php 	
+					$value = $mt4Trade['Mt4Trade']['VOLUME']; 
+					$profit = $mt4Trade['Mt4Trade']['PROFIT'];
+				?>
+				 
+				<tr>
+					<td><?php echo h($mt4Trade['Mt4Trade']['TICKET']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['LOGIN']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['SYMBOL']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['DIGITS']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['CMD']); ?>&nbsp;</td>
+					<td><?php echo number_format($value/100, 2); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['OPEN_TIME']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['OPEN_PRICE']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['SL']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['TP']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['CLOSE_TIME']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['COMMISSION']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['COMMISSION_AGENT']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['SWAPS']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['CLOSE_PRICE']); ?>&nbsp;</td>
+					<td><?php echo '$', ' ', number_format($profit, 2); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['COMMENT']); ?>&nbsp;</td>
+					<td><?php echo h($mt4Trade['Mt4Trade']['MODIFY_TIME']); ?>&nbsp;</td>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+			</div>
+>>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
 			<p align="center">
 				<?php
 					echo $this->Paginator->counter(array(

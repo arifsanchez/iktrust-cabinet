@@ -75,6 +75,7 @@
         
      <div class="leftmenu"> 
 	 <li class="nav-header">Main Navigation</li>
+	 
 	 <?php
 		 
 				$menu = array(
