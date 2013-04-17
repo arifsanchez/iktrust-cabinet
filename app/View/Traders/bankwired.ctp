@@ -32,9 +32,11 @@
 							<td class="center">
 								<? echo $mt4user['Mt4User']['GROUP']; ?>
 							</td>
-                            
+                          
+						  <? $login = base64_encode($mt4user['Mt4User']['LOGIN']); ?>
+						  
 								<td class="center"><span class="icon-edit"></span>
-								<?php echo $this->Html->link(__('Deposit'), array('action' => 'depositlogin', $mt4user['Mt4User']['LOGIN'])); ?>
+								<?php echo $this->Html->link(__('Deposit'), array('action' => 'depositlogin', $login )); ?>
 								</td
 								
                         </tr>

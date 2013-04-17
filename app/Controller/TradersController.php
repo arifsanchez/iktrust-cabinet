@@ -31,11 +31,13 @@ class TradersController extends AppController {
 						array( 'conditions' => array('Mt4User.EMAIL' => $email),
 								 ));
 			$this->set('mt4user',$mt4user);
+			
 		}
 		
-		function depositlogin($LOGIN=null){
+		function depositlogin($login=null){
 			//layout
 			$this->layout = 'kabinet';	
+			$LOGIN = base64_decode($login);
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -53,14 +55,29 @@ class TradersController extends AppController {
 						array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
 								  'fields' => array('Ikbank.name'),
 							));
-			$ecurrs = $this->Deposit->Ecurr->find('list');
-						
+			
+			
+			if(!empty ($mt4user) ){
+				$ecurrs= $this->Deposit->Ecurr->find('list', array(
+					'conditions' => array('Ecurr.id' =>array(1)),
+					'fields' => array('Ecurr.name')
+					
+				));
+				
+			}else{
+				$ecurrs= $this->Deposit->Ecurr->find('list', array(
+					'conditions' => array('Ecurr.id' =>array(2)),
+					'fields' => array('Ecurr.name')
+					
+				));
+				
+			}	
 			$this->set(compact('ikbanks' , 'ecurrs'));
 			
 			 if ($this->request->is('post')) {
 			$this->request->data['Deposit']['local_status_id'] = 1;
 			$this->Deposit->create();
-			//debug($this->request->data);die();
+			debug($this->request->data);die();
 			if ($this->Deposit->save($this->request->data)) {
 				
 				//send email
