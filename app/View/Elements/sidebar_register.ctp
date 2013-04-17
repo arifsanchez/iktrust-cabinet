@@ -92,6 +92,22 @@
 		//debug($menu);die();
 		echo $this->Menu->render($menu);
 		?>
+
+		<li class="nav-header">Public Services</li>
+		<?php
+			 
+			$menu = array(
+				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
+				'items'=>	array(
+							array('title'=>'Check Balance',  'url'=> array('controller'=>'cabinets', 'action'=>'check_balance')),
+							array('title'=>'Live Quotes',  'url'=> array('controller'=>'cabinets', 'action'=>'quotes')),										
+						),
+					);
+						 
+			
+			//debug($menu);die();
+			echo $this->Menu->render($menu);
+			?>
            <!-- <ul class="nav nav-tabs nav-stacked">
             	<li class="nav-header">Main Navigation</li>
                 <li class="active"><a href="#"><span class="icon-user"></span> My Accounts</a></li>
