@@ -88,7 +88,6 @@
 								<span class="field"><?php echo h($mt4Trade['Mt4Trade']['MODIFY_TIME']); ?></span>
 							</div>
 						</div>
-						
 					</div>
 				</form>
 				<div align="right">

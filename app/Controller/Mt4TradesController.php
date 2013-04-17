@@ -12,17 +12,14 @@ class Mt4TradesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index(){
 	
 		$this->layout = 'kabinet';
-		
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
-		
+		 
 		if($this->request->data){
 			$VALUE = $this->request->data['Mt4Trade']['TICKET'];
-			#check dulu kalau ade data , baru redirect
-			#debug($TICKET); die();
 			
 			if(!$this->Account->exists($VALUE)){
 			} else {
@@ -31,31 +28,55 @@ class Mt4TradesController extends AppController {
 		}
 	}
 	
-			
-	public function search(){
-		if($this->RequestHandler->isAjax() ) {
+	function search(){
+		if( $this->RequestHandler->isAjax() ) {
+		
 			Configure::write ('debug', 0);
 			$this->autoRender=false;
 			$this->Mt4Trade->recursive = -1;
 			
-			$users = $this->Mt4Trade->find('all',array('conditions'=>array('mt4Trades.TICKET LIKE'=>'%'.$_GET['term'].'%')));
+			$users=$this->Mt4Trade->find('all', array('conditions'=>array('Mt4Trade.TICKET LIKE'=>'%'.$_GET['term'].'%')));
 			$i=0;
 			
 			foreach($users as $user){
-				$response[$i]['TICKET']=$user['Mt4Trade']['TICKET'];
+				$response[$i]['value']=$user['Mt4Trade']['TICKET'];
+				$i++;
+			}echo json_encode($response);
+		}else{
+			if (!empty($this->Mt4Trade->data)) {
+			
+			}else{
+				$this->redirect(array('action' => 'view', $this->data['Mt4Trade']['TICKET']));
+			}
+		}
+	}
+
+	
+	/*function search(){
+		if($this->RequestHandler->isAjax() ){
+		
+			Configure::write ('debug', 0);
+			$this->autoRender=false;
+			$this->Mt4Trade->recursive = -1;
+			
+			$users = $this->Mt4Trade->find('all',array('conditions'=>array('Mt4Trade.TICKET LIKE'=>'%'.$_GET['term'].'%')));
+			$i=0;
+			
+			foreach($users as $user){
+				$response[$i]['value']=$user['Mt4Trade']['TICKET'];
 				$i++;
 			}
 			echo json_encode($response);
-	   }
-	   
-	   else{
-			if (!empty($this->Mt4Trade->data)){
+			
+		}else{
+	   		if(!empty($this->Mt4Trade->data)){
 			}
 			else{
 				$this->redirect(array('action' => 'view', $this->data['Mt4Trade']['TICKET']));
 			}
 		}
-	}
+	}*/
+	
 
 /**
  * view method
