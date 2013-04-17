@@ -1,11 +1,15 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<?php 
 		//echo $this->Html->script('appJson.js');
 		echo $this->Html->script('jquery.dataTables.min.js');
 		echo $this->Html->script('jquery-migrate-1.1.1.min.js');
 	?>
 
+=======
+	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+>>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
 =======
 	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
 >>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
@@ -27,6 +31,7 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 			
 			<div style="overflow:auto">
@@ -83,6 +88,8 @@
 			</div>
 				
 =======
+=======
+>>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
 			<div style="overflow:hidden;">
 			<table class="table table-striped">
 				<tr>
@@ -135,6 +142,9 @@
 				<?php endforeach; ?>
 			</table>
 			</div>
+<<<<<<< HEAD
+>>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
+=======
 >>>>>>> 1b2ff42490bcbaef7049bcafaccc7df2a4d77a24
 			<p align="center">
 				<?php
