@@ -38,7 +38,7 @@ class CabinetsController extends AppController {
 					$login = base64_decode($acc_id);
 					$check = $this->Mt4User->Find('first' ,array(
 							'conditions' => array('Mt4User.LOGIN' =>$login),
-							'fields'		=>array ('Mt4User.BALANCE'),
+							'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE', 'Mt4User.MARGIN_FREE', 'Mt4User.MODIFY_TIME'),
 							));
 					if(empty($check)){
 						$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
