@@ -34,6 +34,19 @@
     background-color: #D1D1D1;
     border: 1px solid #83AAD3;
 }
+
+
+.message {
+    background: linear-gradient(to bottom, #F6EDBA 0%, #F5E0A8 100%) repeat scroll 0 0 transparent;
+    border-color: #E4BF7F;
+    color: #9C6C38;
+    margin-bottom: 15px;
+	text-align:center;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+	font-size:15px;
+	padding:6px;
+
+}
 </style> 
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
@@ -91,7 +104,9 @@
         </div><!--breadcrumbwidget-->
 
         <!--Kandungan dalam-->
-        <?php echo $this->Session->flash();?>
+		<div class="center">
+			<?php echo $this->Session->flash();?>
+		</div>
         <?php echo $this->fetch('content'); ?>
         <!--Tamat kandungan dalam-->
 

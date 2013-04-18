@@ -14,7 +14,7 @@
 				<tr class="warning">
 					<th class="center">SYMBOL</th>
 					<th class="center">BID</th>
-					<th class="center">ASK</th>
+					<th class="center">ASK</th> 
 					<th class="center">SPREAD</th>
 					<th class="center">TICK TIME (GMT+0)</th>
 

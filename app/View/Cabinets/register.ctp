@@ -305,19 +305,15 @@
               <div class="divider30"></div>	             
                <ul class="list-unordered list-checked">
 						<li>
-						<strong>Trade FX with a Market Leader.</strong>
-						We are one of the first brokers to employ full Agency Model, streaming prices from the world’s top banks.
+						<strong>Trade FX with the Fastest Market Data.</strong>
+						We are one of the pioneer in enforcing zero requotes policy with Islamic &amp; Syariah complaince trading account with prices streaming from the world’s top banks.
 						</li>
 						 <div class="divider15"></div>	 
 						<li>
 						<strong>Trade desktop, Web or Mobile.</strong>
 						Whatever your style we have a platform option to suit you.
 						</li>
-						 <div class="divider15"></div>	
-						<li>
-						<strong>Trade with complete security.</strong>
-						We are focused on the security of all clients’ funds - authorised by 3 regulators in different jurisdictions - FSA, ASIC and CySEC.
-						</li>
+					
 						 <div class="divider15"></div>	
 						<li>
 						<strong>Trade Live or unlimited Demo.</strong>
@@ -326,7 +322,7 @@
 						 <div class="divider15"></div>	
 						<li>
 						<strong>Trade with full support.</strong>
-						We have a multilingual Customer Support team available 24/5. They’re available via email, phone and Live Chat.
+						We have a Customer Support team available 24/5. They’re available via email, phone and Live Chat.
 						</li>
 					     <div class="divider15"></div>	
 						<li>
