@@ -9,12 +9,7 @@ class CabinetsController extends AppController {
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');	
 	
-			function bankwired(){
-			$this->layout = 'kabinet';	
-			
-			}
-			
-			
+		
 			function check_balance(){
 			$this->layout = 'logmasuk';
 			$userId = $this->UserAuth->getUserId();
@@ -42,7 +37,8 @@ class CabinetsController extends AppController {
 					
 					$login = base64_decode($acc_id);
 					$check = $this->Mt4User->Find('first' ,array(
-							'conditions' => array('Mt4User.LOGIN' =>$login)
+							'conditions' => array('Mt4User.LOGIN' =>$login),
+							'fields'		=>array ('Mt4User.BALANCE'),
 							));
 					if(empty($check)){
 						$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
@@ -431,9 +427,20 @@ class CabinetsController extends AppController {
 					//keluarkan kat view
 					$this -> set('user',$user);
 					//debug($user);die();
+					$email = $this->User->find(
+						'list',
+						array(
+							'conditions' =>array( 'User.id' => $userId),
+							'fields' 		=> 'User.email',
+							'recursive' 	=> -1
+						)
+					);
 					
-					$this->loadModel('UserTrader');
-					$a = $this->UserTrader->find('all');
+					$this->loadModel('Mt4User');
+					$a = $this->Mt4User->find('all',
+						array(
+								'conditions' =>array( 'Mt4User.EMAIL' => $email),
+								));
 					$this->set('a',$a);
 					//debug($a);die();
 			
