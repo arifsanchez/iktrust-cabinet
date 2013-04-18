@@ -427,9 +427,20 @@ class CabinetsController extends AppController {
 					//keluarkan kat view
 					$this -> set('user',$user);
 					//debug($user);die();
+					$email = $this->User->find(
+						'list',
+						array(
+							'conditions' =>array( 'User.id' => $userId),
+							'fields' 		=> 'User.email',
+							'recursive' 	=> -1
+						)
+					);
 					
-					$this->loadModel('UserTrader');
-					$a = $this->UserTrader->find('all');
+					$this->loadModel('Mt4User');
+					$a = $this->Mt4User->find('all',
+						array(
+								'conditions' =>array( 'Mt4User.EMAIL' => $email),
+								));
 					$this->set('a',$a);
 					//debug($a);die();
 			

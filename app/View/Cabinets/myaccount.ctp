@@ -60,15 +60,15 @@
 							<?php foreach ($a as $a): ?>
 							<tr>
 								<td> <!-- DROPDOWN BUTTON CODE -->
-									<?php echo  h($a['MT4User']['LOGIN']); ?>
+									<?php echo  $a['Mt4User']['LOGIN']; ?>
 								</td>
-								<td><?php echo  h($a['MT4User']['LEVERAGE']); ?></td>
+								<td><?php echo  $a['Mt4User']['LEVERAGE']; ?></td>
 								
 								<td>USD</td>
 								
-								<td><?php echo  h($a['MT4User']['MARGIN_FREE']); ?></td>
+								<td><?php echo  $a['Mt4User']['MARGIN_FREE']; ?></td>
 								
-								<td><?php echo  h($a['MT4User']['BALANCE']); ?></td>
+								<td><?php echo  $a['Mt4User']['BALANCE']; ?></td>
 								
 								<td>DISABLED</td>
 								
