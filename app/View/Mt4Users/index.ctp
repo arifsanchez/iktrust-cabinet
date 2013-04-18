@@ -20,47 +20,47 @@
 			<div style="overflow:auto">
 				<table class="table table-striped">
 					<tr>
-						<th><?php echo $this->Paginator->sort('TRADERS ID', null, array('direction' => 'desc')); ?></th>
-						<th><?php echo $this->Paginator->sort('GROUP'); ?></th>
-						<th><?php echo $this->Paginator->sort('NAME'); ?></th>
-						<th><?php echo $this->Paginator->sort('COUNTRY'); ?></th>
-						<th><?php echo $this->Paginator->sort('CITY'); ?></th>
-						<th><?php echo $this->Paginator->sort('PHONE'); ?></th>
-						<th><?php echo $this->Paginator->sort('EMAIL'); ?></th>
-						<th><?php echo $this->Paginator->sort('COMMENT'); ?></th>
-						<th><?php echo $this->Paginator->sort('REGDATE'); ?></th>
-						<th><?php echo $this->Paginator->sort('LASTDATE'); ?></th>
-						<th><?php echo $this->Paginator->sort('LEVERAGE'); ?></th>
-						<th><?php echo $this->Paginator->sort('AGENT_ACCOUNT'); ?></th>
-						<th><?php echo $this->Paginator->sort('BALANCE'); ?></th>
-						<th><?php echo $this->Paginator->sort('CREDIT'); ?></th>
-						<th><?php echo $this->Paginator->sort('EQUITY'); ?></th>
-						<th><?php echo $this->Paginator->sort('MARGIN'); ?></th>
-						<th><?php echo $this->Paginator->sort('MARGIN_LEVEL'); ?></th>
-						<th><?php echo $this->Paginator->sort('MARGIN_FREE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('TRADERS ID', null, array('direction' => 'desc')); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('GROUP'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('NAME'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('COUNTRY'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('CITY'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('PHONE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('EMAIL'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('COMMENT'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('REGDATE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('LASTDATE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('LEVERAGE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('AGENT_ACCOUNT'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('BALANCE'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('CREDIT'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('EQUITY'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('MARGIN'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('MARGIN_LEVEL'); ?></th>
+						<th class="center"><?php echo $this->Paginator->sort('MARGIN_FREE'); ?></th>
 					</tr>
 				
 					<?php foreach ($mt4Users as $mt4User): ?>
 						
 					<tr>
-						<td><?php echo h($mt4User['Mt4User']['LOGIN']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['GROUP']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['NAME']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['COUNTRY']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['CITY']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['PHONE']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['EMAIL']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['COMMENT']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['REGDATE']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['LASTDATE']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['LEVERAGE']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['AGENT_ACCOUNT']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['BALANCE']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['CREDIT']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['EQUITY']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['MARGIN']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['MARGIN_LEVEL']); ?>&nbsp;</td>
-						<td><?php echo h($mt4User['Mt4User']['MARGIN_FREE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['LOGIN']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['GROUP']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['NAME']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['COUNTRY']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['CITY']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['PHONE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['EMAIL']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['COMMENT']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['REGDATE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['LASTDATE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['LEVERAGE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['AGENT_ACCOUNT']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['BALANCE']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['CREDIT']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['EQUITY']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['MARGIN']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['MARGIN_LEVEL']); ?>&nbsp;</td>
+						<td class="center"><?php echo h($mt4User['Mt4User']['MARGIN_FREE']); ?>&nbsp;</td>
 					</tr>
 					<?php endforeach; ?>
 				</table>

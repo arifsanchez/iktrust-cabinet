@@ -6,35 +6,29 @@
 		<div style="overflow:auto">
 			<table class="table table-striped">
 				<tr>
-						<th><?php echo $this->Paginator->sort('SYMBOL'); ?></th>
-						<th><?php echo $this->Paginator->sort('TIME'); ?></th>
-						<th><?php echo $this->Paginator->sort('BID'); ?></th>
-						<th><?php echo $this->Paginator->sort('ASK'); ?></th>
-						<th><?php echo $this->Paginator->sort('LOW'); ?></th>
-						<th><?php echo $this->Paginator->sort('HIGH'); ?></th>
-						<th><?php echo $this->Paginator->sort('DIRECTION'); ?></th>
-						<th><?php echo $this->Paginator->sort('DIGITS'); ?></th>
-						<th><?php echo $this->Paginator->sort('SPREAD'); ?></th>
-						<th><?php echo $this->Paginator->sort('MODIFY_TIME'); ?></th>
-						<!--th class="actions"><?php echo __('Actions'); ?></th-->
+					<th class="center"><?php echo $this->Paginator->sort('SYMBOL'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('TIME'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('BID'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('ASK'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('LOW'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('HIGH'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('DIRECTION'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('DIGITS'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('SPREAD'); ?></th>
+					<th class="center"><?php echo $this->Paginator->sort('MODIFY_TIME'); ?></th>
 				</tr>
 				<?php foreach ($mt4Prices as $mt4Price): ?>
 				<tr>
-					<td><?php echo h($mt4Price['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['TIME']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['BID']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['ASK']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['LOW']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['HIGH']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['DIRECTION']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['DIGITS']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['SPREAD']); ?>&nbsp;</td>
-					<td><?php echo h($mt4Price['Mt4Price']['MODIFY_TIME']); ?>&nbsp;</td>
-					<td class="actions">
-						<?php #echo $this->Html->link(__('View'), array('action' => 'view', $mt4Price['Mt4Price']['LOGIN'])); ?>
-						<?php #echo $this->Html->link(__('Edit'), array('action' => 'edit', $mt4Price['Mt4Price']['LOGIN'])); ?>
-						<?php #echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mt4Price['Mt4Price']['LOGIN']), null, __('Are you sure you want to delete # %s?', $mt4Price['Mt4Price']['LOGIN'])); ?>
-					</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['TIME']); ?>&nbsp;</td>
+					<td class="center"><?php echo number_format($mt4Price['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
+					<td class="center"><?php echo number_format($mt4Price['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
+					<td class="center"><?php echo number_format($mt4Price['Mt4Price']['LOW'], 5, '.', ''); ?>&nbsp;</td>
+					<td class="center"><?php echo number_format($mt4Price['Mt4Price']['HIGH'], 5, '.', '');?>&nbsp;</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['DIRECTION']); ?>&nbsp;</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['DIGITS']); ?>&nbsp;</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['SPREAD']); ?>&nbsp;</td>
+					<td class="center"><?php echo h($mt4Price['Mt4Price']['MODIFY_TIME']); ?>&nbsp;</td>
 				</tr>
 				<?php endforeach; ?>
 			</table>
