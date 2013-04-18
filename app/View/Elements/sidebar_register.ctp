@@ -100,7 +100,7 @@
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
 							array('title'=>'Check Balance',  'url'=> array('controller'=>'cabinets', 'action'=>'check_balance')),
-							array('title'=>'Live Quotes',  'url'=> array('controller'=>'cabinets', 'action'=>'quotes')),										
+							array('title'=>'Live Quotes',  'url'=> array('controller'=>'mt4prices', 'action'=>'quotes')),										
 						),
 					);
 						 

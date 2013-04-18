@@ -12,10 +12,24 @@ class Mt4PricesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index(){
 		$this->layout = 'kabinet';
 		$this->Mt4Price->recursive = 0;
 		$this->set('mt4Prices', $this->paginate());
+	}
+	
+	public function quotes(){
+		$this->layout = 'logmasuk';
+		$this->Mt4Price->recursive = 0;
+		#$this->set('mt4Prices', $this->paginate());		
+		
+		//search data MYSQL like = '#'
+		$quotes = $this->Mt4Price->find('all', array (
+			'conditions' => array ("OR" => array ("Mt4Price.SYMBOL LIKE" => "%#%"))
+		));
+
+		$this->set('quotes', $quotes);	
+		
 	}
 
 /**

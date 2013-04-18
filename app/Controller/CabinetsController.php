@@ -439,6 +439,8 @@ class CabinetsController extends AppController {
 			
 			}	
 			
+			
+			
 			public function platformdownload(){
 				$this->layout = 'kabinet';
 			}	
