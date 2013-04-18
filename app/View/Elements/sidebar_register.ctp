@@ -3,7 +3,8 @@
         <div class="logopanel">
         	
         	        	 
-        <h1><a class="brand" href="#"><?php echo $this->Html->image('inner/logo.png', array('alt' => 'Trust XE Logo'));?></a></h1>
+        <h1><span class="brand"><?php echo $this->Html->image('inner/logo.png', array('alt' => 'IK Trust Cabinet', 'url' => array('controller' => 'cabinets', 'action' => 'login')));?></span></h1>
+	
         </div><!--logopanel-->
         
         <div class="datewidget">Now

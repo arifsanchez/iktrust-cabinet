@@ -24,8 +24,11 @@ img.floatLeft {
         </div>
     </div>
     <div class="loginshadow animate3 fadeInUp"></div>
-    <p style="text-align:center;color:#5D5D5D">Not registered yet?<a href="#"></span> Sign up now!</a></p>
+    <p style="text-align:center;color:#5D5D5D"> Not registered yet? <?php echo $this->Html->link(' Register Now! ', array('controller' => 'cabinets', 'action' => 'register')); ?></p>
+	
 </div>
+
+	
 
 <script>
 jQuery.noConflict();
