@@ -4,7 +4,7 @@
 cache/persistent/*
 !cache/persistent/empty
 !cache/models
-cache/modes/*
+cache/models/*
 !cache/models/empty
 !cache/views
 cache/views/*
