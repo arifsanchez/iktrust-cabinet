@@ -11,7 +11,7 @@ $tcpdf->setPrintHeader(false);
 $tcpdf->setPrintFooter(false);
  
 $tcpdf->SetTextColor(0, 0, 0);
-$tcpdf->SetFont($textfont,'',9);
+$tcpdf->SetFont($textfont,'',12);
  
 $tcpdf->AddPage();
 
@@ -43,18 +43,27 @@ $htmlcontent = <<<EOF
 		<center><h2>Depositor's Account Details</h2></center>
 		<p>
 			<table border="0">
-			  <tr>
-				<th>
-					
-						<td><b>FULL NAME  </td>				<td>:  $name</td>	
-						<td><b>BANK NAME	</td>		 	<td>: $userbank</td>	
-						<td><b>PAYMENT DETAILS		</td>	 			<td>: $login </td>	
-						<td><b>AMOUNT	</td>			<td>: $amount	</td>	
-						<td><b>CURRENCY </td>			<td>: $currency</td>	
-						
-					
-				</th>
-			  </tr>
+				 <tr>
+					<td>FULL NAME  </td>				
+					<td>: </td>
+					<td>$name</td>	
+				</tr>
+				<tr>
+					<td>BANK NAME	</td>		 	
+					<td>: $userbank</td>
+				</tr>	
+				<tr>
+					<td>PAYMENT DETAILS</td>	 			
+					<td>: $login </td>
+				</tr>	
+				<tr>
+					<td>AMOUNT</td>			
+					<td>: $amount	</td>
+				</tr>	
+				<tr>
+					<td>CURRENCY </td>			
+					<td>: $currency</td>	
+				</tr>
 			</table> 
 		</p>
 		<hr>
@@ -64,21 +73,47 @@ $htmlcontent = <<<EOF
 	
 		<p>
 			<table border="0">
-			  <tr>
-				<th>
-					<p>
-						<b>BENEFICIARY BANK NAME			: </b> $bankname<br>
-						<b>BANK ADDRESS		 	:</b> $address<br>
-						<b>BENEFICIARY ACCOUNT NAME		 			:</b> $name <br>
-						<b>IBAN	:</b> $iban	<br>
-						<b>ACCOUNT NUMBER	:</b> $accountno<br>
-						<b>SWIFT	:</b> $swift<br>
-						<b>SORT CODE	:</b> $sortcode<br>
-						<b>CURRENCY	:</b> $currency<br>
+				<tr>
+					<td> BENEFICIARY BANK NAME </td>
+					<td>: </td>
+					<td> $bankname </td>
+				</tr>
+				<tr>
+					<td> BANK ADDRESS </td>
+					<td>: </td>
+					<td> $address</td>
+				</tr>
+				<tr>
+					<td> BENEFICIARY ACCOUNT NAME </td>
+					<td>: </td>
+					<td> $name </td>
+				</tr>
+				<tr>
+					<td> IBAN	</td>
+					<td>: </td>
+					<td> $iban	</td></tr>
+				<tr>
+					<td> ACCOUNT NUMBER	</td>
+					<td>: </td>
+					<td> $accountno</td>
+				</tr>
+				<tr>
+					<td> SWIFT	</td>
+					<td>: </td>
+					<td> $swift</td>
+				</tr>
+				<tr>
+					<td> SORT CODE	</td>
+					<td>: </td>
+					<td> $sortcode</td>
+				</tr>
+				<tr>
+					<td> CURRENCY	</td>
+					<td>: </td>
+					<td> $currency</td>
+				</tr>
 						
-					</p>
-				</th>
-			  </tr>
+					
 			</table> 
 		</p>
 		<b>*** </b> Please print out this form if necessary to assist in the transfer of funds to your IKtrust trading account through your preferred bank transfer method.
