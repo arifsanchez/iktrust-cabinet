@@ -155,7 +155,7 @@ class TradersController extends AppController {
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
-			$this->loadmodel('Mt4User');
+			$this->loadModel('Mt4User');
 			$this->Deposit->id = $id;
 			$deposit = $this ->Deposit->find('first' , array(
 									'conditions' => array( 'Deposit.id' => $id)
