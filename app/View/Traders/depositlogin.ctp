@@ -17,12 +17,12 @@
 								
 									<p>
 										<label>IK Trust Bank : </label>
-										<?php echo $this->Form->input('ikbank' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
+										<?php echo $this->Form->input('ikbank_id' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
 									</p>
 									
 									<p>
 										<label>Currency : </label>
-										<?php echo $this->Form->input('ecurr' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
+										<?php echo $this->Form->input('ecurr_id' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
 									</p>
 									
 									<p>
@@ -37,14 +37,17 @@
 									
 									<p>
 										<label>Name : </label>
-										<?php echo $mt4user['Mt4User']['NAME'] ; ?>
+										<?php echo $this->Form->input('name' ,array( 'disable' => 'disable' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['NAME'])); ?>
 									</p>
 									
 									<p>
 										<label>email  : </label>
-										<?php echo $mt4user['Mt4User']['EMAIL'] ; ?>
+										<?php echo $this->Form->input('email' ,array( 'disable' => 'disable' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['EMAIL'])); ?>
 									</p>
 									
+										<?php echo $this->Form->input('user_id' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $user_id)); ?>
+										<?php echo $this->Form->input('mt4_user_LOGIN' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['LOGIN'])); ?>
+										
 									
 									
 									
