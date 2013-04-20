@@ -42,11 +42,13 @@ $htmlcontent = <<<EOF
 		<center><h1>TRANSFER INSTRUCTION</h1></center>
 		<center><h2>Depositor's Account Details</h2></center>
 		<p>
+		<div><hr></div>
+		<br/><br/>
+		
 			<table border="0">
 				 <tr>
-					<td>FULL NAME  </td>				
-					<td>: </td>
-					<td>$name</td>	
+					<td>FULL NAME  </td>	
+					<td>: $name</td>	
 				</tr>
 				<tr>
 					<td>BANK NAME	</td>		 	
@@ -67,61 +69,57 @@ $htmlcontent = <<<EOF
 			</table> 
 		</p>
 		<hr>
+		<br/><br/>
 		<b>Note : </b>If client's account name is different that the Beneficiary name above ,then deposits will be made avaiable to trading accounts only in case of approved & authorized documents. 
 		
 		<center><h2>IKTrust - ELECTRONIC WIRE FUND TRANSFER DETAILS</h2></center>
-	
+		<div><hr></div>
+		<br/><br/>
 		<p>
 			<table border="0">
 				<tr>
 					<td> BENEFICIARY BANK NAME </td>
-					<td>: </td>
-					<td> $bankname </td>
+					<td>:  $bankname </td>
 				</tr>
 				<tr>
 					<td> BANK ADDRESS </td>
-					<td>: </td>
-					<td> $address</td>
+					<td>:  $address</td>
 				</tr>
 				<tr>
 					<td> BENEFICIARY ACCOUNT NAME </td>
-					<td>: </td>
-					<td> $name </td>
+					<td>:  $name </td>
 				</tr>
 				<tr>
 					<td> IBAN	</td>
-					<td>: </td>
-					<td> $iban	</td></tr>
+					<td>:  $iban	</td></tr>
 				<tr>
 					<td> ACCOUNT NUMBER	</td>
-					<td>: </td>
-					<td> $accountno</td>
+					<td>: $accountno</td>
 				</tr>
 				<tr>
 					<td> SWIFT	</td>
-					<td>: </td>
 					<td> $swift</td>
 				</tr>
 				<tr>
 					<td> SORT CODE	</td>
-					<td>: </td>
-					<td> $sortcode</td>
+					<td>: $sortcode</td>
 				</tr>
 				<tr>
 					<td> CURRENCY	</td>
-					<td>: </td>
-					<td> $currency</td>
+					<td>: $currency</td>
 				</tr>
 						
 					
 			</table> 
 		</p>
-		<b>*** </b> Please print out this form if necessary to assist in the transfer of funds to your IKtrust trading account through your preferred bank transfer method.
+		<div><hr></div>
+		<br/><br/>
+		<b>*** </b> Please print out this form if necessary to assist in the transfer of funds to your IK Trust trading account through your preferred bank transfer method.
 		
-		<br><br>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		
-		<hr>
-		<center> IKTrust Financial Service Ltd "http://www.iktrust.com" is authorised and regulated </center>
+		<div><hr></div>
+		<center>IK Trust Capital Market Corporation Limited . Secured & Trusted Regulated Broker .New Zealand Company Reg. No. 3851316  </center>
 	</body>
 </html>
 EOF;

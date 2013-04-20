@@ -24,12 +24,9 @@ class TradersController extends AppController {
 						array( 'conditions' => array('User.id' => $userId),
 								 'fields' => array('User.email' ),
 								 ));
-			//login id
 			//debug($email);
-			
-			$mt4user  = $this->Deposit->Mt4User->find('all' ,
-						array( 'conditions' => array('Mt4User.EMAIL' => $email),
-								 ));
+			$mt4user = $this->paginate('Mt4User',
+						array("Mt4User.EMAIL" => $email));
 			$this->set('mt4user',$mt4user);
 			
 		}
@@ -45,68 +42,45 @@ class TradersController extends AppController {
 			//find user id
 			$userId = $this->UserAuth->getUserId();
 			$this->set('user_id', $userId);
-			
 			$mt4user  = $this->Deposit->Mt4User->find('first' ,
-						array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
+							array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
 								));
 			$this->set('mt4user' , $mt4user);
 			$mt4user  = $this->Deposit->Mt4User->find('list' ,
-						array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
+							array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
 								 'fields' => array('Mt4User.AGENT_ACCOUNT'),
 								));
 			$ikbanks = $this->Deposit->Ikbank->find('list', 
-						array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
+							array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
 								  'fields' => array('Ikbank.name'),
-							));
-			
-			
+								));
 			if(!empty ($mt4user) ){
 				$ecurrs= $this->Deposit->Ecurr->find('list', array(
-					'conditions' => array('Ecurr.id' =>array(1)),
-					'fields' => array('Ecurr.name')
-					
-				));
-				
+						'conditions' => array('Ecurr.id' =>array(1)),
+						'fields' => array('Ecurr.name'),
+					));
 			}else{
 				$ecurrs= $this->Deposit->Ecurr->find('list', array(
-					'conditions' => array('Ecurr.id' =>array(2)),
-					'fields' => array('Ecurr.name')
-					
-				));
-				
+						'conditions' => array('Ecurr.id' =>array(2)),
+						'fields' => array('Ecurr.name')
+					));
 			}	
 			$this->set(compact('ikbanks' , 'ecurrs'));
-			
-			 if ($this->request->is('post')) {
-			$this->request->data['Deposit']['local_status_id'] = 1;
-			$this->Deposit->create();
-			//debug($this->request->data);die();
-			if ($this->Deposit->save($this->request->data)) {
-				
-				//send email
-						/*$Email = new CakeEmail();
-						$Email->template('newtrader');
-						$Email->viewVars(array('user' => $user));
-						$Email->emailFormat('both');
-						$Email->from(array('admin@trustxe.com' => 'IKTust'));
-						$Email->to('webteam@iktrust.com');
-						$Email->subject('New Trader IKTrust');
-						$Email->send();*/
-				
-				$this->Session->setFlash(__('The deposit has been saved'));
-				$this->redirect(array('action' => 'view_deposit',$this->Deposit->id));
-			} else {
-				$this->Session->setFlash(__('The deposit could not be saved. Please, try again.'));
+			if ($this->request->is('post')) {
+				$this->request->data['Deposit']['local_status_id'] = 1;
+				$this->Deposit->create();
+				if ($this->Deposit->save($this->request->data)) {
+					$this->Session->setFlash(__('Your deposit has been saved'));
+					$this->redirect(array('action' => 'view_deposit',$this->Deposit->id));
+				} else {
+					$this->Session->setFlash(__('The deposit could not be saved. Please, try again.'));
+				}
 			}
-			}
-			
-			
 		}
 
 		function view_deposit($id =null){
-		//layout
+			//layout
 			$this->layout = 'kabinet';	
-			
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -116,7 +90,6 @@ class TradersController extends AppController {
 									'conditions' => array( 'Deposit.id' => $id)
 									));
 			$this->set('deposit', $deposit);
-			//debug($deposit);die();
 			if (isset($this->request->data['submit'])) {
 				//send email
 						/*$Email = new CakeEmail();
@@ -127,15 +100,10 @@ class TradersController extends AppController {
 						$Email->to('webteam@iktrust.com');
 						$Email->subject('New Trader IKTrust');
 						$Email->send();*/
-						
-					$this->redirect(array('action' => 'transaction_deposit'));
-			
+				$this->redirect(array('action' => 'transaction_deposit'));
 			}
-			
 			if(isset($this->request->data['print'])){
-			
-			$this->redirect(array('action' => 'view_pdf' ,$id));
-			
+				$this->redirect(array('action' => 'view_pdf' ,$id));
 			}
 		}
 		
@@ -146,7 +114,7 @@ class TradersController extends AppController {
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
-			$deposit = $this ->Deposit->find('all');
+			$deposit = $this->paginate('Deposit');
 			$this->set('deposit', $deposit);			 
 		
 		}
@@ -163,9 +131,8 @@ class TradersController extends AppController {
 			$this->set('deposit', $deposit);
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout
 			$this->render();
-				
-				}
+		}
 	
 }	
 		
-	?>
+?>
