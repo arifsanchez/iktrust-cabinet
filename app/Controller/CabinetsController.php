@@ -410,9 +410,11 @@ class CabinetsController extends AppController {
 			}
 			
 			public function myaccount(){
+				#$userGroup = $this->UserAuth->getUserGroup();
+				
 				$this->layout = 'kabinet';
-				// load model user
 				$this->loadModel('Usermgmt.User');
+				
 				//get user id
 					$userId = $this->UserAuth->getUserId();
 					//find email verified utk user
@@ -432,19 +434,27 @@ class CabinetsController extends AppController {
 						array(
 							'conditions' =>array( 'User.id' => $userId),
 							'fields' 		=> 'User.email',
-							'recursive' 	=> -1
+							'recursive' 	=> -1,
 						)
 					);
 					
 					$this->loadModel('Mt4User');
 					$a = $this->Mt4User->find('all',
 						array(
-								'conditions' =>array( 'Mt4User.EMAIL' => $email),
+								'conditions' =>array( 'Mt4User.EMAIL' => $email)
 								));
 					$this->set('a',$a);
-					//debug($a);die();
-			
+
+				   $a = $this->paginate('Mt4User',
+					array("Mt4User.EMAIL" => $email)
+				   );
+				   $this->set('a',$a);
+				  
 			}	
+			
+			public function trader_details(){
+				$this->layout = 'kabinet';
+			}
 			
 			
 			

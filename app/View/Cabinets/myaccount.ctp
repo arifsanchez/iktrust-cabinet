@@ -6,18 +6,18 @@
 				<br>
 				<br>
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span8">
 						<h2>My Accounts</h2>
 					</div>
-					<div class="span6" align="right">
+					<div class="span4">
 					<?php  if($user['User']['email_verified'] == 1){
 					
-						echo $this->Html->link('Open Trading Account', '/pages/home', array('class' => 'btn btn-large btn-success enable span6', 'target' => '_blank'));
-						echo $this->Html->link('Open Demo Account', '/pages/home', array('class' => 'btn btn-large btn-success enable span6', 'target' => '_blank'));
+						echo $this->Html->link('<span class="iconsweets-tag"></span>&nbsp; Open Trading Account', '/pages/home', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
+						echo $this->Html->link('<span class="iconsweets-tag2"></span>&nbsp; Open Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
 						
 						}else{
 						
-							echo  "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
+							echo "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
 								<strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>";
 						}
 						?>
@@ -27,253 +27,138 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<table class="table table-striped">
+						<table class="table table-condensed table-bordered">
 						<!--TABLE ROW 1-->
-							<tr>
-								<td>
-									<h5>Account(s)/Actions</h5>
+							<tr class="info">
+								<td class="center">
+									<h5>Account(s)</h5>
 								</td>
-								<td>
-									<h5>Leverage</h5>
-								</td>
-								<td>
-									<h5>Currency</h5>
-								</td>
-								<td>
-									<h5>Free Margin</h5>
-								</td>
-								<td>
+								
+								<td class="center">
 									<h5>Balance</h5>
 								</td>
-								<td>
+								
+								<td class="center">
+									<h5>Leverage</h5>
+								</td>
+								
+								<td class="center">
+									<h5>Currency</h5>
+								</td>
+								
+								<td class="center">
+									<h5>Free Margin</h5>
+								</td>
+								
+								<td class="center">
 									<h5>Status</h5>
 								</td>
-								<td>
+								
+								<td class="center">
 									<h5>Type</h5>
 								</td>
-								<td>
-									<h5>Server</h5>
+								
+								<td class="center">
+									<h5>Action</h5>
 								</td>
 							</tr>
 							
 						<!--TABLE ROW 2-->	
 							<?php foreach ($a as $a): ?>
-							<tr>
-								<td> <!-- DROPDOWN BUTTON CODE -->
-									<?php echo  $a['Mt4User']['LOGIN']; ?>
+							<tr class="">
+								<td class="center"><?php echo  $a['Mt4User']['LOGIN']; ?></td>
+								
+								<td class="center" ><?php echo  $a['Mt4User']['BALANCE']; ?></td>
+								
+								<td class="center"><?php echo  "1:", $a['Mt4User']['LEVERAGE']; ?></td>
+								
+								<td class="center">USD</td>
+								
+								<td class="center"><?php echo  $a['Mt4User']['MARGIN_FREE']; ?></td>
+								
+								<td class="center">
+									<?php 
+										$status = $a['Mt4User']['ENABLE'];
+										
+										if($status == 0){
+											echo "DISABLE";
+										}else{
+											echo "ENABLE";
+										}
+									?>
 								</td>
-								<td><?php echo  $a['Mt4User']['LEVERAGE']; ?></td>
 								
-								<td>USD</td>
+								<td class="center">
+									<?php 
+										
+										$group = $a['Mt4User']['GROUP'];
+										
+										switch ($group){
+											case "IK-iMini-Flex":
+												echo "i-MINI FLEX";
+												break;
+											case "IK-iMini-Fix":
+												echo "i-MINI FIX";
+												break;
+														
+											case "IK-Mini-Flex":
+												echo "MINI FLEX";
+												break;	
+											case "IK-Mini-FIx":
+												echo "MINI FIX";
+												break;	
+												
+											case "IK-iStd-Flex":
+												echo "i-STANDART FLEX";
+												break;
+											case "IK-Std-Flex":
+												echo "STANDART FLEX";
+												break;
+												
+											case "IK-iVIP-Flex":
+												echo "i-PREMIUM FLEX";
+												break;
+											case "IK-VIP-Flex":
+												echo "PREMIUM FLEX";
+												break;
+										}
+										
+									?>
+								</td>
 								
-								<td><?php echo  $a['Mt4User']['MARGIN_FREE']; ?></td>
-								
-								<td><?php echo  $a['Mt4User']['BALANCE']; ?></td>
-								
-								<td>DISABLED</td>
-								
-								<td>DEMO</td>
-								
-								<td>MT4</td>
+								<td class="center">
+									<?php 
+										echo $this->Html->link('<span class="iconsweets-link"></span>&nbsp; Details', '/cabinets/trader_details', 
+											array('class' => 'btn btn-rounded', 'escape' => false)
+										); 
+									?>
+								</td>
 							</tr>
-						<?php endforeach; ?>	
-						
+							<?php endforeach; ?>	
 						</table>
 					</div>
 				</div>
-			
-				<!--SHOW/HIDE BUTTON-->	
+				
 				<div class="row-fluid">
-					<div class="span12" align="right">
-						<p>
-							<button type="button" class="btn btn-default btn-success enable">
-								Show/Hide Filter
-							</button>
+					<div class="span6">
+						<p align="center">
+							<?php
+								echo $this->Paginator->counter(array(
+									'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+								));
+							?>	
 						</p>
 					</div>
-				</DIV>
-				
-				
-				<!--DOWNLOAD PLATFORM TITLE-->
-				<br>
-				<br>
-				<div class="row-fluid">
-					<div class="span12">
-						<h3>Download Platforms</h3>
+					
+
+					<div class="pagination pagination-small span6 right">
+						<ul>
+							<li><?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?></li>
+							<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+							<li><?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?></li>
+						</ul>
 					</div>
 				</div>
-				
-				
-				<!--TABLE DOWNLOAD PLATFORM-->
-				<div class="row-fluid"> 
-					<div class="span4">
-						<br>
- 						<h5>cTrader</h5>
-						<!-- Icon 1-->	
-						<div class="span12">
-							<div class="media"><!-- Header Align -->
-								<!-- Icon 1-->
-								<br>
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-										<!--img src="img/icon/icon1.png" alt="Visa.img" height="" width=""-->
-										<?php 
-											echo $this->Html->image('icon/icon1.png', array('class'=>'', 'alt'=>'photo'));
-										?>
-										</a>
-										<p>
-											<a href="#">FxPro cTrader</a>
-											<br>ECN Platform
-										</p>
-									</div>
-								</div>
-								
-								<!-- Icon 2-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/calgo_icon.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/calgo_icon.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro cAlgo</a>
-												<br>Algorithmic ECN Trading
-											</p>
-									</div>
-								</div>
-								
-								<!-- Icon 4-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/icon2.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/icon2.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro cTrader Web</a>
-												<br>ECN Online
-											</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<br>
-					<h5>MetaTrader 4</h5>
-					<div class="span8">
-						<div class="span6">
-							<div class="media"><!-- Header Align -->
-								<!-- Icon 1-->
-								<br>
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/icon1.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/icon1.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro Client Terminal</a>
-												<br>MT4 Platform
-											</p>
-									</div>
-								</div>
-								
-								<!-- Icon 2-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/icon3.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/icon3.png', array('clas'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro MultiTerminal</a>
-												<br>Multi - MT4
-											</p>
-									</div>
-								</div>
-								
-								<!-- Icon 4-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/icon4.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/icon4.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro WebTrader</a>
-												<br>MT4 Online
-											</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="span6">
-							<div class="media"><!-- Header Align -->
-								<!-- Icon 3-->
-								<br>								
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/iphone_icon.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/iphone_icon.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro iPhone</a>
-												<br>Trader
-											</p>
-									</div>
-								</div>
-								
-								<!-- Icon 4-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/ipad_icon.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/ipad_icon.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro iPad</a>
-												<br>Trader
-											</p>
-									</div>
-								</div>
-								
-								<!-- Icon 5-->	
-								<div class="media-body">
-									<div>
-										<a class="pull-left" href="#">
-											<!--img src="img/icon/android_icon.png" alt="" height="" width=""-->
-											<?php
-												echo $this->Html->image('icon/android_icon.png', array('class'=>'', 'alt'=>'photo'));
-											?>
-										</a>
-											<p>
-												<a href="#">FxPro Android</a>
-												<br>Transfer
-											</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!--End DIV Metrader-->
-				</div><!--End Row-Fluid-->
-
+			
 			</div><!--contentinner close-->
 		</div>	
