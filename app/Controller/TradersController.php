@@ -94,7 +94,7 @@ class TradersController extends AppController {
 				//send email
 						/*$Email = new CakeEmail();
 						$Email->template('newtrader');
-						$Email->viewVars(array('user' => $user));
+						$Email->viewVars(array('deposit' => $deposit));
 						$Email->emailFormat('both');
 						$Email->from(array('admin@trustxe.com' => 'IKTust'));
 						$Email->to('webteam@iktrust.com');
