@@ -1,6 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::import('Vendor', 'dompdf', array('file'=> 'dompdf' . DS . 'dompdf_config.inc.php'));
 App::uses('CakeEmail', 'Network/Email');
 App::uses('HttpSocket', 'Network/Http');
 
@@ -52,8 +51,10 @@ class TradersController extends AppController {
 								));
 			$ikbanks = $this->Deposit->Ikbank->find('list', 
 							array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
-								  'fields' => array('Ikbank.name'),
+								  'fields' => array('fullname'),
+								  'order' => array('Ikbank.name ASC','Ikbank.bankname ASC')
 								));
+			//debug($ikbanks);die();
 			if(!empty ($mt4user) ){
 				$ecurrs= $this->Deposit->Ecurr->find('list', array(
 						'conditions' => array('Ecurr.id' =>array(1)),

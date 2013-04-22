@@ -16,7 +16,7 @@
 				<br>
 				<div class="tabbable"> <!-- Only required for left/right tabs -->
 					<div class="row-fluid"> 
-						<div class="span10">
+						<div class="span8">
 						
 							<ul class="nav nav-tabs">
 							<!--TAB TITLE ONLY-->
@@ -132,6 +132,9 @@
 								</div>
 							</div> <!--Close Tab Content-->
 						</div><!--Footer Span10-->
+						<div class="span4">
+						<h2> Element Deposit Fund</h2>
+					</div>
 					</div><!--Close ROW-FLUID-->						
 				</div>
 

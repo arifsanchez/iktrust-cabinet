@@ -8,6 +8,7 @@
                             <th class="center">Login Id</th>
                             <th class="center">Balance</th>
 							<th class="center">PrevMonthBalance</th>
+							<th class="center">Credit</th>
 							<th class="center">Free Margin</th>
                             <th class="center">Group</th>
                             <th class="center">More Acion</th>
@@ -24,6 +25,9 @@
 							</td>
                             <td class="center">
 								<? echo $mt4user['Mt4User']['PREVMONTHBALANCE']; ?>
+							</td>
+							 <td class="center">
+								<? echo $mt4user['Mt4User']['CREDIT']; ?>
 							</td>
 							<td class="center">
 								<? echo $mt4user['Mt4User']['MARGIN_FREE']; ?>

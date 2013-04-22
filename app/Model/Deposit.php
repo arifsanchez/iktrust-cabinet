@@ -12,6 +12,10 @@ class Deposit extends AppModel {
  *
  * @var array
  */
+ public function __construct($id = false, $table = null, $ds = null) {
+    parent::__construct($id, $table, $ds);
+    $this->virtualFields['fullname'] = $this->Ikbank->virtualFields['fullname'];
+}
 	public $validate = array(
 		'login' => array(
 			'notempty' => array(

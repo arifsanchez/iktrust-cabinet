@@ -87,7 +87,7 @@ $htmlcontent = <<<EOF
 				</tr>
 				<tr>
 					<td> BENEFICIARY ACCOUNT NAME </td>
-					<td>:  $name </td>
+					<td>:  $acountname </td>
 				</tr>
 				<tr>
 					<td> IBAN	</td>
