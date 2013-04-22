@@ -91,6 +91,7 @@ class TradersController extends AppController {
 									'conditions' => array( 'Deposit.id' => $id)
 									));
 			$this->set('deposit', $deposit);
+			
 			if (isset($this->request->data['submit'])) {
 				//send email
 						/*$Email = new CakeEmail();
@@ -129,6 +130,7 @@ class TradersController extends AppController {
 			$deposit = $this ->Deposit->find('first' , array(
 									'conditions' => array( 'Deposit.id' => $id)
 									));
+			 
 			$this->set('deposit', $deposit);
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout
 			$this->render();
