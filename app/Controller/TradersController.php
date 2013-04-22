@@ -116,7 +116,17 @@ class TradersController extends AppController {
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
-			$deposit = $this->paginate('Deposit');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			//find data frrom user
+			$email = $this->Deposit->User->find('list' ,
+						array( 'conditions' => array('User.id' => $userId),
+								 'fields' => array('User.email' ),
+								 ));
+			//debug($email);
+			$deposit = $this->paginate('Deposit',
+						array('Deposit.email' => $email));
 			$this->set('deposit', $deposit);			 
 		
 		}

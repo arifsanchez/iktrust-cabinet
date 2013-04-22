@@ -127,6 +127,18 @@ class LocalsController extends AppController {
 		$this->Session->setFlash(__('Trader was not deleted'));
 		$this->redirect(array('action' => 'tradersindex'));
 	}
+	
+	function transaction_deposit(){
+			//layout
+			$this->layout = 'kabinet';	
+			//load model
+			$this->loadModel('Deposit');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			$deposit = $this->paginate('Deposit');
+			$this->set('deposit', $deposit);			 
+		
+		}
 
 }
 
