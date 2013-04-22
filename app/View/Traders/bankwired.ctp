@@ -1,7 +1,6 @@
 
 	<div class="maincontent">
 		<div class="contentinner">
-		
 			<h3 class="widgettitle">Summary Account Balance</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
@@ -32,26 +31,30 @@
 							<td class="center">
 								<? echo $mt4user['Mt4User']['GROUP']; ?>
 							</td>
-                          
-						  <? $login = base64_encode($mt4user['Mt4User']['LOGIN']); ?>
-						  
-								<td class="center"><span class="icon-edit"></span>
+							<? $login = base64_encode($mt4user['Mt4User']['LOGIN']); ?>
+							<td class="center"><span class="icon-edit"></span>
 								<?php echo $this->Html->link(__('Deposit'), array('action' => 'depositlogin', $login )); ?>
-								</td
-								
+							</td>
                         </tr>
                     </tbody>
 					<?php endforeach; ?>
-                </table>	
-				
-				<div class="pagination pagination-small" align="right">
-					<ul>
-						<li class="disabled"><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li class="active"><a href="#">2</a></li>
-						<li class="active"><a href="#">3</a></li>
-					</ul>
-				</div>
-	
+                </table>
+				<p>
+				<?php
+				echo $this->Paginator->counter(array(
+				'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+				));
+					?>
+				</p>
+			<div class="pagination">
+			<p>
+				<ul>
+					<li ><?php  echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));?> </li>
+					<li ><?php  echo $this->Paginator->numbers(array('separator' => ''));?></li>
+					<li ><?php  echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));?></li>
+				</ul>
+			</p>
+			<br><br>
+			</div>
 		</div><!--contentinner-->
 	</div><!--maincontent-->

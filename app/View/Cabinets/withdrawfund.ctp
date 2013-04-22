@@ -21,7 +21,7 @@
 							<ul class="nav nav-tabs">
 							<!--TAB TITLE ONLY-->
 								<li class="active">
-									<a href="#tab1" data-toggle="tab">Visa</a>
+									<a href="#tab1" data-toggle="tab">Bank Transfer</a>
 								</li>
 								
 								<li>
@@ -29,7 +29,7 @@
 								</li>
 								
 								<li>
-									<a href="#tab3" data-toggle="tab">Bank Transfer</a>
+									<a href="#tab3" data-toggle="tab">Visa</a>
 								</li>
 								
 								<li>
@@ -52,12 +52,14 @@
 											<div class="media"><!-- Header Align -->
 												<!-- Avatar Icon-->
 
-							  <!-- Visa --><div>
-												<?php  echo $this->Html->image('deposit_img/img1.png', array('class'=>'' , 'alt'=>'photo'));?>
-												<p>Payment by credit/debit card is a simple and secure way to make a deposit to your trading account.<br>
-														<a href="http://www.w3schools.com/">Withdraw Debit/Credit Cards</a> 
-												</p>
-								<!-- END CONTENT --></div>
+								<!-- Visa --><div>
+												<?php 
+												echo $this->Html->image('deposit_img/img3.png', array('class'=>'' , 'alt'=>'photo'));?>
+												<p>This is a transfer direct from your bank account to ours. Bank Transfer allows you to deposit in your local currency, the funds will be converted by the beneficiary bank to the currency that you have chosen upon making your deposit.<br>
+												<a href="http://www.w3schools.com/">Withdraw Bank Transfers</a> 
+												<p>
+												
+												</div>
 												</div>
 											</div>
 										</div>
@@ -81,11 +83,10 @@
 								<div class="tab-pane" id="tab3">
 									<div class="row-fluid">
 										<div class="span8">
-											<?php 
-												echo $this->Html->image('deposit_img/img3.png', array('class'=>'' , 'alt'=>'photo'));?>
-												<p>This is a transfer direct from your bank account to ours. Bank Transfer allows you to deposit in your local currency, the funds will be converted by the beneficiary bank to the currency that you have chosen upon making your deposit.<br>
-												<a href="http://www.w3schools.com/">Withdraw Bank Transfers</a> 
-												<p>
+											<?php  echo $this->Html->image('deposit_img/img1.png', array('class'=>'' , 'alt'=>'photo'));?>
+												<p>Payment by credit/debit card is a simple and secure way to make a deposit to your trading account.<br>
+														<a href="http://www.w3schools.com/">Withdraw Debit/Credit Cards</a> 
+												</p>
 										</div>
 									</div>
 								</div>
