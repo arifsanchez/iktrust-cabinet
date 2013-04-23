@@ -9,59 +9,40 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Account Supporting Document</h3>	
+						<h3 class="widgettitle nomargin">STEP 4 : Account Supporting Document</h3>	
 						
 						<br>
+						<div class="row-fluid">	
+							<div class="well well-large span7">
+								<button type="button" class="close" data-dismiss="alert"></button>
+								<strong>For each individual account registration, you must provide at least one PROOF OF IDENTITY and PROOF OF RESIDENCE :</strong>
+								<hr class="invisible">
+								
+								<dl>
+								  <dt><h3><em>PROOF OF IDENTITY</em></h3></dt>
+								  <br>
+								  <dd><li>National Passport</li></dd>
+								  <dd><li>National Identity Card</li></dd>
+								  <dd><li>Driver License</li></dd>
+								  <dd><li>Others Government Issued Photo ID</li></dd>
+								  <dd><li>Signed &nbsp; Notarised Financial Statement</li></dd>
+								</dl>
+							</div>
+						</div>
+						
 						<div class="row-fluid">
-							<div class="span12">
-								<strong>
-									For each individual account registration, you must provide at least one PROOF OF IDENTITY and PROOF OF RESIDENCE :
-								</strong>
+							<div class="well well-large span7">
+								<button type="button" class="close" data-dismiss="alert"></button>
+							  
+								<dl>
+								  <dt><h3><em>PROOF OF RESIDENCE</em></h3></dt>
+								  <br>
+								  <dd><li>Utility Bill <br><strong><small>(not mobile phone / print from internet)<small></strong></li></dd>
+								  <dd><li>Government Issued Letter</li></dd>
+								</dl>
 							</div>
 						</div>
-
-
-					<div class="row-fluid">	
-						<div class="span12">
-								
-							
-							
-							
-							<h4>PROOF OF IDENTITY</h4>
-								<label>National Passport : </label>
-								
-
-								<p>
-									<label>National Identity Card : </label>
-									
-								</p>	
-								
-								<p>
-									<label>Driver License : </label>
-									
-								</p>	
-								
-								<p>
-									<label>Others Government Issued Photo ID : </label>
-									
-								</p>	
-
-								<p>
-									<label>Signed & Notarised Financial Statement : </label>
-									
-								</p>	
-								
-								<br>
-								<h4>PROOF OF RESIDENCE</h4>
-								<label>Utility Bill (not mobile phone / print from internet) : </label>
-								
-									
-								<p>
-									<label>Government Issued Letter : </label>
-									
-								</p>	
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<br>

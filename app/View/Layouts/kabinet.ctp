@@ -22,6 +22,8 @@
       echo $this->Html->script('bootstrap.min.js');
       echo $this->Html->script('jquery.cookie.js');
       echo $this->Html->script('custom.js');
+	  
+	  echo $this->Html->script('jquery.timeago');
 ?>
 <style type="text/css" media="all">
 .frm {

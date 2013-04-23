@@ -5,9 +5,10 @@
 
 ?>
 
+
 <div class="maincontent">
 	<div class="contentinner">
-	
+	<abbr class="timeago" title="July 17, 2008"><?php echo h($quote['Mt4Price']['TIME']); ?></abbr>
 		<h3 class="widgettitle nomargin shadowed">Live Quotes</h3>
 		<div style="overflow:auto">
 			<table class="table table-striped">
@@ -33,19 +34,17 @@
 						<td class="center"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
 						<td class="center"><?php echo h($cal_spread); ?>&nbsp;</td>
 						<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
-
 					</tr>
 						
 				<?php }  else { ?>
 				
 					<tr class="error">
-							<td class="center"><?php echo h($quote['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
-							<td class="center"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
-							<td class="center"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
-							<td class="center"><?php echo h($cal_spread); ?>&nbsp;</td>
-							<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
-
-						</tr>
+						<td class="center"><?php echo h($quote['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
+						<td class="center"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
+						<td class="center"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
+						<td class="center"><?php echo h($cal_spread); ?>&nbsp;</td>
+						<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
+					</tr>
 				<?php } ?>
 		
 				<?php endforeach; ?>

@@ -9,7 +9,7 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Bank Details</h3>	
+						<h3 class="widgettitle nomargin">STEP 3 : Bank Details</h3>	
 						
 						<p>
 						<div class="row-fluid">

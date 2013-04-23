@@ -126,10 +126,10 @@
 								</td>
 								
 								<td class="center">
+									<span class=" iconsweets-link2"></span>&nbsp;
 									<?php 
 										$login = $a['Mt4User']['LOGIN'];
 										echo $this->Html->link('Details', array('action' => 'trader_details', $login)); 
-										#echo $this->Html->link('Details', array('class' => 'btn btn-rounded', 'type'=>'button', 'action' => 'trader_details', $login)); 
 									?>
 								</td>
 							</tr>

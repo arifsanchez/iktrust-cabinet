@@ -9,13 +9,13 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Account Details</h3>
+						<h3 class="widgettitle nomargin">STEP 1 : Account Details</h3>
 					</div>
 				</div>
 
 				<p>
 				<div class="row-fluid">
-					<div class="span12">
+					<div class="span6 well well-small">
 					
 						<?php echo $this->Form->create('UserAcctypes', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
 						<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
@@ -39,13 +39,9 @@
 				</div>
 				</p>
 
-				
-						
-			
-						
 				<div class="row-fluid">
-					<div class="span12 ">
-						<div><strong>IK Trust-i (Islamic & Swap Free Account)</strong></div>
+					<div class="span6 well well-small">
+						<div><strong>IK Trust-i (Islamic &amp; Swap Free Account)</strong></div>
 
 						<?php echo $this->Form->input('islamic', array('label' => false, 'div' => false, 'type' => 'checkbox')); ?>
 						I hereby request to be exempt from swaps on my account(s). I confirm that my only reason for
@@ -54,7 +50,7 @@
 				</div>
 						
 				<div class="row-fluid">
-					<div class="span12 ">
+					<div class="span6 well well-small">
 						<p>
 						<div><strong>Credit Bonus</strong></div>
 

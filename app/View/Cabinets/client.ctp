@@ -9,83 +9,74 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Client Details</h3>		
+						<h3 class="widgettitle nomargin">STEP 2 : Client Details</h3>		
 						
-						<p>
 						<div class="row-fluid">
 							<div class="span6">
 									<?php echo $this->Form->create('User', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
-									<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' => $user))?>
-									<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' =>$detail))?>
+									<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' => $user));?>
+									<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' =>$detail));?>
 										<p>
 											<label>Full Name</label>
-											<?php echo $this->Form->input('User.first_name' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+											<span class="field"><?php echo $this->Form->input('User.first_name' ,array('label' => false,'div' => false,'class'=>'span6' ));?></span>
 										</p>
 										
 										<p>
-											<label>Date Of Birth (Ex. 20/02/1970)</label>
-											<?php echo $this->Form->input('UserDetail.bday' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+											<label>Date Of Birth <br><small><em>(Ex. 20/02/1970)</em></small></label>
+											<span class="field"><?php echo $this->Form->input('UserDetail.bday' ,array('label' => false,'div' => false,'class'=>'span2' ));?></span>
 										</p>
 										
 										<p>
 											<label>Passport / Identity Card Number</label>
-											<?php echo $this->Form->input('UserDetail.ic' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+											<span class="field"><?php echo $this->Form->input('UserDetail.ic' ,array('label' => false,'div' => false,'class'=>'span6' )); ?></span>
 										</p>
 										
-										<div class="row-fluid">
+										<p>
+											<!--Transfer data from php/cakephp to database-->
 											<label>Gender</label>
-											<div class="span1>
-												<label class="radio">	
-													<?php
-														$options=array('male'=>'Male','female'=>'Female');
-														$attributes=array('legend'=>false);
-														echo $this->Form->radio('UserDetail.gender',$options,$attributes);
-													?>
-												</label>
-											</div>
-										</div>
+											<span class="field">
+												<input class="radio" type="radio" name="data[UserDetail][gender]" id="UserDetailGenderMale" value="male" />&nbsp; Male <br>
+												<input class="radio" type="radio" name="data[UserDetail][gender]" id="UserDetailGenderFemale" value="female"/>&nbsp; Female
+											</span>
+										</p>
 										
-										<div>
 										<p>
 											<label>Occupation / Career</label>
-											<?php echo $this->Form->input('UserDetail.occupation' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+											<span class="field"><?php echo $this->Form->input('UserDetail.occupation' ,array('label' => false,'div' => false,'class'=>'span6' )); ?></span>
 										</p>
-										</div>
 
 										<p>
 											<label>Address</label>
-											<div><?php echo $this->Form->input('UserDetail.address' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+											<span class="field"><?php echo $this->Form->input('UserDetail.address' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
 										</p>
 										
 										<p>
 											<label>Town / City</label>
-											<div><?php echo $this->Form->input('UserDetail.city' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+											<span class="field"><?php echo $this->Form->input('UserDetail.city' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
 										</p>
 										
 										<p>
 											<label>State / Country</label>
-											<div><?php echo $this->Form->input('UserDetail.state' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
-											
+											<span class="field"><?php echo $this->Form->input('UserDetail.state' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
 										</p>
 										
 										<p>
 											<label>Postalcode / Zip</label>
-											<div><?php echo $this->Form->input('UserDetail.postal' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+											<span class="field"><?php echo $this->Form->input('UserDetail.postal' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
 										</p>
 										
 										<p>
 											<label>Authorized Contact Email</label>
-											<?php echo $this->Form->input('User.email' ,array('label' => false,'div' => false,'class'=>'input-xlarge' ))?>
+											<span class="field"><?php echo $this->Form->input('User.email' ,array('label' => false,'div' => false,'class'=>'span6' ));?></span>
 										</p>
 										 
 										<p>
 											<label>Authorized Mobile Number</label>
-											<?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+											<span class="field"><?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
 										</p>
-							</div>
+							</div>	
 						</div>
-						</p>
-						
+
 					</div>
 				</div>
 				<br>
