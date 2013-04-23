@@ -45,7 +45,7 @@
 								<? echo $deposit['LocalStatus']['name']; ?>
 							</td>
 							<td class="center"><span class="icon-edit"></span>
-								<?php echo $this->Html->link(__('view'), array('action' => 'view_deposit', $deposit['Deposit']['id'] )); ?>
+								<?php echo $this->Html->link(__('view'), array('action' => 'edit_deposit', $deposit['Deposit']['id'] )); ?>
 							</td>
                         </tr>
                     </tbody>

@@ -128,6 +128,33 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
+	public function edit_deposit($id = null) {
+		
+		//layout
+			$this->layout = 'kabinet';	
+			//load model
+			$this->loadModel('Deposit');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			$this->Deposit->id = $id;
+		if (!$this->Deposit->exists()) {
+			throw new NotFoundException(__('Invalid deposit'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->Deposit->save($this->request->data)) {
+				$this->Session->setFlash(__('The deposit has been saved'));
+				$this->redirect(array('action' => 'transaction_deposit'));
+			} else {
+				$this->Session->setFlash(__('The deposit could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->request->data = $this->Deposit->read(null, $id);
+		}
+		$localStatuses = $this->Deposit->LocalStatus->find('list');
+		
+		$this->set(compact('localStatuses'));
+	}
+	
 	function transaction_deposit(){
 			//layout
 			$this->layout = 'kabinet';	
