@@ -12,11 +12,10 @@
 					<div class="span4">
 					<?php  if($user['User']['email_verified'] == 1){
 					
-						echo $this->Html->link('<span class="iconsweets-tag"></span>&nbsp; Open Trading Account', '/pages/home', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
-						echo $this->Html->link('<span class="iconsweets-tag2"></span>&nbsp; Open Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
+						echo $this->Html->link('<span class=" iconfa-folder-open"></span>&nbsp; Open Trading Account', '/pages/home', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
+						echo $this->Html->link('<span class=" iconfa-tags"></span>&nbsp; Open Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
 						
 						}else{
-						
 							echo "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
 								<strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>";
 						}
@@ -29,7 +28,7 @@
 					<div class="span12">
 						<table class="table table-condensed table-bordered">
 						<!--TABLE ROW 1-->
-							<tr class="info">
+							<tr>
 								<td class="center">
 									<h5>Account(s)</h5>
 								</td>
@@ -109,10 +108,10 @@
 												break;	
 												
 											case "IK-iStd-Flex":
-												echo "i-STANDART FLEX";
+												echo "i-STANDARD FLEX";
 												break;
 											case "IK-Std-Flex":
-												echo "STANDART FLEX";
+												echo "STANDARD FLEX";
 												break;
 												
 											case "IK-iVIP-Flex":
@@ -128,9 +127,9 @@
 								
 								<td class="center">
 									<?php 
-										echo $this->Html->link('<span class="iconsweets-link"></span>&nbsp; Details', '/cabinets/trader_details', 
-											array('class' => 'btn btn-rounded', 'escape' => false)
-										); 
+										$login = $a['Mt4User']['LOGIN'];
+										echo $this->Html->link('Details', array('action' => 'trader_details', $login)); 
+										#echo $this->Html->link('Details', array('class' => 'btn btn-rounded', 'type'=>'button', 'action' => 'trader_details', $login)); 
 									?>
 								</td>
 							</tr>
@@ -139,9 +138,10 @@
 					</div>
 				</div>
 				
+				
 				<div class="row-fluid">
 					<div class="span6">
-						<p align="center">
+						<p>
 							<?php
 								echo $this->Paginator->counter(array(
 									'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
@@ -150,8 +150,7 @@
 						</p>
 					</div>
 					
-
-					<div class="pagination pagination-small span6 right">
+					<div class="pagination pagination-small span6" align="right">
 						<ul>
 							<li><?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?></li>
 							<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
@@ -159,6 +158,7 @@
 						</ul>
 					</div>
 				</div>
+
 			
 			</div><!--contentinner close-->
 		</div>	
