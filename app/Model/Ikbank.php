@@ -11,7 +11,26 @@ class Ikbank extends AppModel {
  * Validation rules
  *
  * @var array
- */
+ *//*
+	public function __construct($id = false, $table = null, $ds = null) {
+    parent::__construct($id, $table, $ds);
+
+    // This is for MySQL, change for whatever DB flavour you're using.
+    $this->virtualFields = array(
+      'twoname' => "CONCAT('{$this->alias}'.'prefix', ' ', '{$this->alias}'.'bankname', ' ', '{$this->alias}'.'name')"
+		);
+	}
+	//public $ikbank_id = array('ikbank_id' => 'concat(Ikbank.bankname, "-", Ikbank.name)');
+	var $name = "Ikbank";
+    var $displayField = "full_name";
+    var $actsAs = array('MultipleDisplayFields' => array(
+        'fields' => array('bankname', 'name'),
+        'pattern' => '%s %s'
+    )); */
+	public $virtualFields = array(
+    'fullname' => 'CONCAT(Ikbank.name, " ", Ikbank.bankname, " ")'
+);
+	
 	public $validate = array(
 		'id' => array(
 			'notempty' => array(

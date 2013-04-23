@@ -6,22 +6,22 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span8">
-						<h3 class="widgettitle nomargin">Deposit Form</h3>
+						<h3 class="widgettitle nomargin">Edit Deposit</h3>
 						<p>
 						<div class="row-fluid">
 							<div class="span12 well">
 								<?php echo $this->Form->create('Deposit', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 									<p>
 										<label>Login Id : </label>
-										<?php echo  $mt4user['Mt4User']['LOGIN']; ?>
+										<?php echo $this->Form->input('mt4_user_LOGIN' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									<p>
 										<label>Banks Selection : </label>
-										<?php echo $this->Form->input('ikbank_id' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
+										<?php echo $this->Form->input('ikbank_id' ,array('label' => false, 'div' => false)); ?>
 									</p>
 									<p>
 										<label>Currency : </label>
-										<?php echo $this->Form->input('ecurr_id' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
+										<?php echo $this->Form->input('ecurr_id' ,array('label' => false, 'div' => false)); ?>
 									</p>
 									<p>
 										<label>Deposit Amount : </label>
@@ -33,16 +33,19 @@
 									</p>
 									<p>
 										<label>Name : </label>
-										<?php echo  $mt4user['Mt4User']['NAME']; ?>
+										<?php echo $this->Form->input('name' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
 									<p>
 										<label>email  : </label>
-										<?php echo  $mt4user['Mt4User']['EMAIL']; ?>
+										<?php echo $this->Form->input('email' ,array('label' => false, 'div' => false, 'class'=>'input-xlarge' )); ?>
 									</p>
-										<?php echo $this->Form->input('name' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['NAME'])); ?>
-										<?php echo $this->Form->input('email' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['EMAIL'])); ?>
-										<?php echo $this->Form->input('user_id' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $user_id)); ?>
-										<?php echo $this->Form->input('mt4_user_LOGIN' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['LOGIN'])); ?>
+									<p>
+										<label>status : </label>
+										<?php echo $this->Form->input('local_status_ id' ,array('label' => false, 'div' => false, 'empty'=>'select' )); ?>
+									</p>
+									
+										<?php //echo $this->Form->input('name' ,array( 'type' => 'hidden' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' , 'value' => $mt4user['Mt4User']['NAME'])); ?>
+										
 									<?php echo $this->Form->Submit(__('Submit'), array('class'=>'btn btn-danger span2'));?>
 							</div>
 						</div>

@@ -12,6 +12,7 @@
 							<th class="center">Balance</th>
 							<th class="center">Free Margin</th>
                             <th class="center">PrevMonthBalance</th>
+							  <th class="center">Status</th>
                             <th class="center">More Action</th>
                         </tr>
                     </thead>
@@ -39,6 +40,9 @@
 							</td>
 							<td class="center">
 								<? echo $deposit['Mt4User']['PREVMONTHBALANCE']; ?>
+							</td>
+							<td class="center">
+								<? echo $deposit['LocalStatus']['name']; ?>
 							</td>
 							<td class="center"><span class="icon-edit"></span>
 								<?php echo $this->Html->link(__('view'), array('action' => 'view_deposit', $deposit['Deposit']['id'] )); ?>

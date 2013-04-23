@@ -8,7 +8,7 @@
  
  <table>
 	<tr>
-		<td>TRANSACTION ID</td> 
+		<td>Deposit ID</td> 
 		<td>: <?php echo $deposit['Deposit']['id']; ?></td>
 	</tr>
 	<tr>
@@ -44,10 +44,7 @@
 		<td>BENEFICIARY NAME</td>
 		<td>:	</td>
 	</tr>
-	<tr>
-		<td>TRANSACTION ID</td>
-		<td>:	</td>
-	</tr>
+	
 </table>
 
 <p>If you require any clarification, please do not hesitate to contact us at support@iktrust.com </p>

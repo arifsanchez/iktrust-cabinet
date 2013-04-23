@@ -1,6 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::import('Vendor', 'dompdf', array('file'=> 'dompdf' . DS . 'dompdf_config.inc.php'));
 App::uses('CakeEmail', 'Network/Email');
 App::uses('HttpSocket', 'Network/Http');
 
@@ -52,8 +51,10 @@ class TradersController extends AppController {
 								));
 			$ikbanks = $this->Deposit->Ikbank->find('list', 
 							array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
-								  'fields' => array('Ikbank.name'),
+								  'fields' => array('fullname'),
+								  'order' => array('Ikbank.name ASC','Ikbank.bankname ASC')
 								));
+			//debug($ikbanks);die();
 			if(!empty ($mt4user) ){
 				$ecurrs= $this->Deposit->Ecurr->find('list', array(
 						'conditions' => array('Ecurr.id' =>array(1)),
@@ -90,6 +91,7 @@ class TradersController extends AppController {
 									'conditions' => array( 'Deposit.id' => $id)
 									));
 			$this->set('deposit', $deposit);
+			
 			if (isset($this->request->data['submit'])) {
 				//send email
 						/*$Email = new CakeEmail();
@@ -114,7 +116,17 @@ class TradersController extends AppController {
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
-			$deposit = $this->paginate('Deposit');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			//find data frrom user
+			$email = $this->Deposit->User->find('list' ,
+						array( 'conditions' => array('User.id' => $userId),
+								 'fields' => array('User.email' ),
+								 ));
+			//debug($email);
+			$deposit = $this->paginate('Deposit',
+						array('Deposit.email' => $email));
 			$this->set('deposit', $deposit);			 
 		
 		}
@@ -128,6 +140,7 @@ class TradersController extends AppController {
 			$deposit = $this ->Deposit->find('first' , array(
 									'conditions' => array( 'Deposit.id' => $id)
 									));
+			 
 			$this->set('deposit', $deposit);
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout
 			$this->render();
