@@ -1,5 +1,14 @@
 
-<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
+<?php 
+	echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); 
+	echo $this->Html->script('jquery.chained');
+?>
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#leverage").chained("#type"); 
+	});
+</script>
 		
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
@@ -13,31 +22,47 @@
 					</div>
 				</div>
 
-				<p>
+				<br>
 				<div class="row-fluid">
 					<div class="span6 well well-small">
-					
 						<?php echo $this->Form->create('UserAcctypes', array('type' => '', 'id'=>'' , 'class' => 'form')); ?>
 						<?php echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 					
-						<label><strong>Individual account type :</strong></label>
-							<div class="span12">
-								<label class="radio">	
-									<?php
-										$options=array(
-										'MINI Flex. 5 Decimals'=>'MINI (Flexible Spread , 5 Decimals) <span style="font-weight:bold;"> for initial deposit from $10</span>',
-										'MINI Fix, 4 Decimals'=>'MINI (Fixed Spread , 4 Decimals) <span style="font-weight:bold;"> for initial deposit from $10</span>',
-										'STANDART Flex, 5 Decimals'=>'STANDART (Flexible Spread , 5 Decimals)<span style="font-weight:bold;"> for initial deposit from $1,000 </span>',
-										'Premium Flex, 5 Decimals'=>'PREMIUM (Flexible Spread , 5 Decimals)  <span style="font-weight:bold;"> for initial deposit from $10,000 </span>',
-										);
-										$attributes=array('legend'=>false);
-										echo $this->Form->radio('deposit',$options,$attributes);
-									?>
-								</label>
-							</div>
+						<h3>Trading Account</h3></legend>
+						<p><select id="type" name="data[UserAcctypes][type]" id="UserDetailType">
+							<option value="">--</option>
+							<option value="MINIFlex">MINI (Flex)</option>
+							<option value="MINIFix">MINI (Fix)</option>
+							<option value="STANDARDFlex">STANDARD</option>
+							<option value="PREMIUMFlex">PREMIUM</option>
+						</select></p>
+						
+						<p><select id="leverage" name="data[UserAcctypes][leverage]" id="UserDetailLeverage">
+							<option value="">--</option>
+							<option value="1:10" class="MINIFlex">1:10</option>
+							<option value="1:100" class="MINIFlex">1:100</option>
+							<option value="1:200" class="MINIFlex">1:200</option>
+							<option value="1:500" class="MINIFlex">1:500</option>
+							<option value="1:1000" class="MINIFlex">1:1000</option>
+							
+							<option value="1:10" class="MINIFix">1:10</option>
+							<option value="1:100" class="MINIFix">1:100</option>
+							<option value="1:200" class="MINIFix">1:200</option>
+							<option value="1:500" class="MINIFix">1:500</option>
+							<option value="1:1000" class="MINIFix">1:1000</option>
+							
+							<option value="1:10" class="STANDARDFlex">1:10</option>
+							<option value="1:100" class="STANDARDFlex">1:100</option>
+							<option value="1:200" class="STANDARDFlex">1:200</option>
+							<option value="1:500" class="STANDARDFlex">1:500</option>
+							
+							<option value="1:10" class="PREMIUMFlex">1:10</option>
+							<option value="1:100" class="PREMIUMFlex">1:100</option>
+							<option value="1:200" class="PREMIUMFlex">1:200</option>
+						</select></p>
+						
 					</div>
 				</div>
-				</p>
 
 				<div class="row-fluid">
 					<div class="span6 well well-small">
