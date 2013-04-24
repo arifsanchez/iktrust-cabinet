@@ -11,7 +11,7 @@ $tcpdf->setPrintHeader(false);
 $tcpdf->setPrintFooter(false);
  
 $tcpdf->SetTextColor(0, 0, 0);
-$tcpdf->SetFont($textfont,'',12);
+$tcpdf->SetFont($textfont,'',11);
  
 $tcpdf->AddPage();
 
@@ -39,9 +39,17 @@ $htmlcontent = <<<EOF
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1 align="center">TRANSFER INSTRUCTION</h1>
-		 <h2 align="center">Depositor's Account Details</h2>
-		Trader Account No : $login &nbsp;&nbsp;&nbsp;	<div align="right"> DP/IK# $num</div> 
+		<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0"></a></p>
+		<br>
+		 <h1 align="center">Depositor's Account Details</h1>
+		 <div><br></div>
+		 <table border="0">
+			<tr>
+				<td>Trader Account No : $login</td>
+				<td align="right">DP/IK# $num</td>
+			</tr>
+		</table> 
+		
 		<p>
 		<div><hr></div>
 		
@@ -69,7 +77,8 @@ $htmlcontent = <<<EOF
 		<br/><br/>
 		<b>Note : </b><small>If client's account name is different that the Beneficiary name above ,then deposits will be made available to trading accounts only in case of approved & authorized documents. </small>
 		
-		 <h2 align="center">IKTrust - ELECTRONIC WIRE FUND TRANSFER DETAILS</h2>
+		<div><br></div>
+		 <h2 align="center">IKTrust - Electronic Wire Fund Transfer Details</h2>
 		<div><hr></div>
 		<br/><br/>
 		<p>
@@ -111,7 +120,7 @@ $htmlcontent = <<<EOF
 		</p>
 		<div><hr></div>
 		<br/><br/>
-		<b>*** </b><small> Please print out this form if necessary to assist in the transfer of funds to your IK Trust trading account through your preferred bank transfer method.</small>
+		<b>***</b><small> Please print out this form if necessary to assist in the transfer of funds to your IK Trust trading account through your preferred bank transfer method.</small>
 		
 		</br><br/><br/><br/><br/></br><br/><br/><br/><br/>
 		<div align="right"> Date : $date </div>

@@ -11,219 +11,157 @@ $tcpdf->setPrintHeader(false);
 $tcpdf->setPrintFooter(false);
  
 $tcpdf->SetTextColor(0, 0, 0);
-$tcpdf->SetFont($textfont,'',9);
+$tcpdf->SetFont($textfont,'',11);
  
 $tcpdf->AddPage();
 
-
-		$name 	= $user['User']['username'];
-		$email 	= $user['User']['email'];
-
-		$depo 	= $acctypes['UserAcctypes']['type'];
-
+		$id 			= $user['User']['id'];
+		$name 			= $user['User']['username'];
+		$email 			= $user['User']['email'];
+		$create 		= $user['User']['created'];
+		$type 			= $acctypes['UserAcctypes']['type'];
 		$NBank 		= $bank['UserBank']['name'];
 		$AccNo 		= $bank['UserBank']['acc_no'];
 		$AccName 	= $bank['UserBank']['acc_name'];
 		$IBAN 			= $bank['UserBank']['iban_no'];
 		$SwNo 		= $bank['UserBank']['swift_no'];
-
 		$EName 		= $ecr['UserEcr']['pro_name'];
 		$EAccNo 		= $ecr['UserEcr']['acc_name'];
 		$EAccName	= $ecr['UserEcr']['acc_no'];
-
 		$gent 			= $userD['UserDetail']['gender'];
 		$dob 			= $userD['UserDetail']['bday'];
 		$ic				= $userD['UserDetail']['ic'];
 		$ContactNo	= $userD['UserDetail']['cellphone'];
 		$pic				= $userD['UserDetail']['photo'];
+		
+		//digit formate for deposit id
+		$num = str_pad($id, 8, '0', STR_PAD_LEFT);
 
 
-// create some HTML content
 $htmlcontent = <<<EOF
 <!DOCTYPE html>
 <html>
-		
 	<body>
-	
-		<h2>IK Trust Application Form</h2>
-	
-		<p>
-			<table border="0">
-			  <tr>
-				<th width="50%"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="150" height="50" border="0"></a></th>
-				
-				<th width="20%">
-					<p>
-						<b>Full Name 		 		</b><br>
-						<b>Date Of Birth			</b><br>
-						<b>Gender					</b><br>
-						<b>Passport / I.C No 	</b> <br>
-						<b>Contact Email 		</b><br>
-						<b>Mobile Number 		</b> 
-					</p>
-				</th>
-				
-				<th width="2%">
-					<p>
-						<b>: </b><br>
-						<b>: </b><br>
-						<b>: </b><br>
-						<b>: </b><br>
-						<b>: </b><br>
-						<b>: </b>
-					</p>
-				</th>
-				
-				<th>
-					<p>
-						$name<br>
-						$dob<br>
-						$gent<br>
-						$ic	<br>
-						$email<br>
-						$ContactNo
-					</p>
-				</th>
-			  </tr>
-			</table> 
-		</p>
-
-		<hr>
-
-		<p>
-			<table border="0">
-			  <tr>
-				<th width="25%">	
-					<p align="right">
-						Individual Account Type			:
-					</p>
-				
-					<p align="right">
-						Name of Bank					 	:
-					</p>
-					
-					<p align="right">
-						Bank Account Number 			:
-					</p>
-						
-					<p align="right">
-						Bank Account Name 				:
-					</p>
-					
-					<p align="right">
-						IBAN Number 						:
-					</p>
-				
-					<p align="right">
-						SWIFT Number						:
-					</p>
-					
-					<p align="right">
-						E-Currency Provider Name 	:
-					</p>
-					
-					<p align="right">
-						E-Currency Account Number 	:
-					</p>
-					
-					<p align="right">
-						E-Currency Account Name 	:
-					</p>
-				</th>
-			
-			
-				<th>
-					<p>
-						<strong>$depo</strong>
-					</p>
-					
-					<p>
-						<strong>$NBank </strong>
-					</p>
-					
-					<p>
-						<strong>$AccNo</strong>
-					</p>
-
-					<p>
-						<strong>$AccName</strong>
-					</p>
-					
-					<p>
-						<strong>$IBAN</strong>
-					</p>
-					
-					<p>
-						<strong>$SwNo</strong>
-					</p>
-				
-					<p>
-						<strong>$EName </strong>
-					</p>
-					
-					<p>
-						<strong>$EAccNo</strong>
-					</p>
-					
-					<p>
-						<strong>$EAccName</strong>
-					</p>
-				</th>
-			  </tr>
-			</table> 
-		</p>
+		<table border="0">
+			<tr>
+				<td><strong><small><em>$create</em></small></strong></td>
+				<td align="right"><strong><small><em>DOP/IK#$num</em></small></strong></td>
+			</tr>
+		</table> 
 		
-		<hr>
+		<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0"></a></p>
+		<br><br>
+		<div><br></div>
+		<h2 align="center">IK TRUST APPLICATION FORM</h2>
+		<br>
+		
+		<p>
+			<div><hr></div>
+			<br>
+			<div><br></div>
+			<table border="0">
+				 <tr>
+					<td>FULL NAME </td>	
+					<td>: $name</td>	
+				</tr>
+				<tr>
+					<td>DATE OF BIRTH	</td>		 	
+					<td>: $dob</td>
+				</tr>	
+				<tr>
+					<td>GENDER	</td>			
+					<td>: $gent	</td>
+				</tr>	
+				<tr>
+					<td>PASSPORT / IC	</td>			
+					<td>: $ic</td>	
+				</tr>
+				<tr>
+					<td>CONTACT EMAIL	</td>			
+					<td>: $email</td>	
+				</tr>
+				<tr>
+					<td>MOBILE NUMBER	</td>			
+					<td>: $ContactNo</td>	
+				</tr>
+			</table> 
+		</p>
+		<br/><br/>
 
+		<div><hr></div>
+		<div><br></div>
 		<p>
 			<table border="0">
 				<tr>
-					<th>	
-						<p>
-							Account Holder Name<br>
-							<strong>$name</strong>
-						</p>
-					
-						<p>
-							Passport/IC Number<br>
-							<strong>$ic</strong>
-						</p>
-						
-						<p>
-							Date Of Signature<br>
-							<br>
-							<br>
-							------------------------------------------------
-						</p>
-						
-						<br>
-						<p>
-							( SIGNATURE SPECIMEN ) <br>
-							<br>
-							<br>
-							<br>
-							<br>
-							-----------------------------------------------
-						</p>
-
-						<p>
-							<strong>
-								<I> I, Hereby offer to open a trading account with IK TRUST on the terms set out in the various official released documents that constitute this Account Opening Application Form.</I>
-							</strong>
-						</p>
-						
-						<p>
-							<strong>
-								<I>I, understand that if IK TRUST accepts my application to use its services, it will confirm acceptance by issuing me with written confirmation either by post, email or other electronic means, using the details contained in the relevant Particulars section of the IK Trust Individual Account Opening Application Form.</i>
-							</strong>
-						</p>
-					</th>
+					<td> INDIVIDUAL ACCOUNT TYPE </td>
+					<td>:  $type </td>
 				</tr>
-			</table>
+				<tr>
+					<td> NAME OF BANK </td>
+					<td>:  $NBank</td>
+				</tr>
+				<tr>
+					<td> BANK ACCOUNT NUMBER </td>
+					<td>:  $AccNo </td>
+				</tr>
+				<tr>
+					<td> BANK ACCOUNT NAME	</td>
+					<td>:  $AccName	</td></tr>
+				<tr>
+					<td> IBAN NUMBER	</td>
+					<td>: $IBAN</td>
+				</tr>
+				<tr>
+					<td> SWIFT	NUMBER	</td>
+					<td>: $SwNo</td>
+				</tr>
+				<tr>
+					<td> E-CURRECY PROVIDER NAME	</td>
+					<td>: $EName</td>
+				</tr>
+				<tr>
+					<td> E-CURRECY ACCOUNT NUMBER	</td>
+					<td>: $EAccNo</td>
+				</tr>
+				<tr>
+					<td> E-CURRECY ACCOUNT NAME	</td>
+					<td>: $EAccName</td>
+				</tr>
+			</table> 
 		</p>
+		<hr>
+		
+		<p>
+			<strong>
+				I, Hereby offer to open a trading account with IK TRUST on the terms set out in the various official released documents that constitute this Account Opening Application Form.
+			</strong>
+		</p>
+		
+		<p>
+			<strong>
+				I, understand that if IK TRUST accepts my application to use its services, it will confirm acceptance by issuing me with written confirmation either by post, email or other electronic means, using the details contained in the relevant Particulars section of the IK Trust Individual Account Opening Application Form.
+			</strong>
+		</p>
+		
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
+		<div><br></div>
 
-		Note : <small><b>This copy is computer generated and no signature is required.</b></small>
-	
+		<table border="0">
+			<tr>
+				<td>Signature : ____________________</td>
+				<td align="right">Date : ____________________ </td>
+			</tr>
+		</table>
+		<div><br></div>
+		<div><hr></div>
+		<div align = "center"><small>IK Trust Capital Market Corporation Limited . Secured & Trusted Regulated Broker .New Zealand Company Reg. No. 3851316  </small></div>
 	</body>
 </html>
 EOF;
