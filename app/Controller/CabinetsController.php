@@ -56,32 +56,32 @@ class CabinetsController extends AppController {
 			
 				$this->loadModel('Usermgmt.User');
 				$userId = $this->UserAuth->getUserId();
-				$user = $this->User->Find('all',array(
+				$user = $this->User->Find('first',array(
 							'conditions' => array( 'User.id' => $userId),
 							));
 				$this->set('user',$user);
 				//debug($user);die();	
 				
 				$this->loadModel('UserAcctypes');
-				$acctypes = $this->UserAcctypes->Find('all',array(
+				$acctypes = $this->UserAcctypes->Find('first',array(
 							'conditions' => array( 'UserAcctypes.user_id' => $userId),
 							));
 				$this->set('acctypes',$acctypes);
 				
 				$this->loadModel('UserDetail');
-				$userD = $this->UserDetail->Find('all',array(
+				$userD = $this->UserDetail->Find('first',array(
 							'conditions' => array( 'UserDetail.user_id' => $userId),
 							));
 				$this->set('userD',$userD);
 				
 				$this->loadModel('UserBank');
-				$bank = $this->UserBank->Find('all',array(
+				$bank = $this->UserBank->Find('first',array(
 							'conditions' => array( 'UserBank.user_id' => $userId),
 							));
 				$this->set('bank',$bank);
 				
 				$this->loadModel('UserEcr');
-				$ecr = $this->UserEcr->Find('all',array(
+				$ecr = $this->UserEcr->Find('first',array(
 							'conditions' => array( 'UserEcr.user_id' => $userId),
 							));
 				$this->set('ecr',$ecr);
