@@ -21,8 +21,7 @@ class LocalsController extends AppController {
 		$this->set(compact( 'localStatuses'));
 		//save data
 		if($this->request -> isPut() || $this->request -> isPost()){
-						//debug($this->request->data);die();
-						$this->Local->create();
+			$this->Local->create();
 			if($this->request->data['Local']['local_status_id'] ==2 ) {
 			
 						$ibagent = $this->request->data['Local']['ibagent'];
@@ -65,7 +64,6 @@ class LocalsController extends AppController {
 						);
 						
 						//debug($key);die();
-
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 						$output = curl_exec($ch);
 						$info = curl_getinfo($ch);
@@ -73,43 +71,17 @@ class LocalsController extends AppController {
 						debug($data);
 						debug($output);
 						debug($info);die();
-					
 			}
-						//if($this->Local->save($this->request->data)){
-							
-						//	$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+			if($this->Local->save($this->request->data)){
+				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+			}
 		}
 	}
-		
-	
 	
 	public function tradersindex(){
 		$this->layout = 'kabinet';
 		$this->Local->recursive = 0;
 		$this->set('locals', $this->paginate('Local', array(), array()));
-	}
-	
-	public function test(){
-	
-	debug($this->request->data);die();
-	/*$ch = curl_init();
-		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-		curl_setopt($ch, CURLOPT_URL, "http://iktrust.co.uk/webservice/api.php");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POST, true);
-
-		// hantar parameter symbols dgn value EURUSD
-		$data = array(
-			'action' => 'getSpecifications',
-			'symbols' => 'EURUSD'
-		);
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		$output = curl_exec($ch);
-		$info = curl_getinfo($ch);
-		debug($output);die();*/
-	
-
 	}
 	
 	public function delete($id = null) {
@@ -129,30 +101,66 @@ class LocalsController extends AppController {
 	}
 	
 	public function edit_deposit($id = null) {
-		
-		//layout
+			//layout
 			$this->layout = 'kabinet';	
 			//load model
 			$this->loadModel('Deposit');
-			$this->loadModel('User');
-			$this->loadmodel('Mt4User');
+			$this->loadModel('DepositComment');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			//display details
 			$this->Deposit->id = $id;
-		if (!$this->Deposit->exists()) {
-			throw new NotFoundException(__('Invalid deposit'));
-		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Deposit->save($this->request->data)) {
-				$this->Session->setFlash(__('The deposit has been saved'));
-				$this->redirect(array('action' => 'transaction_deposit'));
-			} else {
-				$this->Session->setFlash(__('The deposit could not be saved. Please, try again.'));
+			$deposit = $this ->Deposit->find('first' , array(
+									'conditions' => array( 'Deposit.id' => $id)
+									));
+			$this->set('deposit', $deposit);
+			//display table
+			$login = $deposit['Deposit']['mt4_user_LOGIN'];
+			$dc = $this->paginate('DepositComment',
+						array("DepositComment.mt4_user_LOGIN" => $login));
+			$this->set('dc', $dc);
+			//submit form
+			if($this->request -> isPut() || $this->request -> isPost()){
+				$status = $this->request->data['Deposit']['status'];
+				//debug($this->request->data);die();
+				$data = array('id' => $id , 'local_status_id' => $status );
+				$this->Deposit->save($data);
+				$this->DepositComment->create();
+				if($this->DepositComment->save($this->request->data)){
+					//$this->session->setFlash(_('The bank details have been saved'));
+					$this->redirect(array('action' => 'transaction_deposit'));
+				}
+				if($this->request->data['Deposit']['status'] ==2 ) {
+				
+						$amount 		= $this->request->data['DepositComment']['amount'];
+						$comment		= $this->request->data['DepositComment']['comment'];
+						$login 			= $this->request->data['DepositComment']['mt4_user_LOGIN'];
+						
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+						curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+						curl_setopt($ch, CURLOPT_POST, true);
+
+						// hantar parameter 
+						$data = array(
+							'amount'	 	=> $amount,
+							'comment' 	=> $comment,
+							'login'			=> $login,
+							
+						);
+						
+						//debug($key);die();
+						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+						$output = curl_exec($ch);
+						$info = curl_getinfo($ch);
+						
+						debug($data);
+						debug($output);
+						debug($info);die();
+				}
 			}
-		} else {
-			$this->request->data = $this->Deposit->read(null, $id);
-		}
-		$localStatuses = $this->Deposit->LocalStatus->find('list');
-		
-		$this->set(compact('localStatuses'));
 	}
 	
 	function transaction_deposit(){
@@ -162,10 +170,11 @@ class LocalsController extends AppController {
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
+			$this->loadModel('DepositComment');
 			$deposit = $this->paginate('Deposit');
 			$this->set('deposit', $deposit);			 
-		
-		}
+		//
+	}
 
 }
 
