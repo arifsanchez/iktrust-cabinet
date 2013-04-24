@@ -132,7 +132,7 @@ class LocalsController extends AppController {
 					$this->redirect(array('action' => 'transaction_deposit'));
 				}
 				if($this->request->data['Deposit']['status'] ==2 ) {
-				
+					//send data using curl
 						$amount 		= $this->request->data['DepositComment']['amount'];
 						$comment		= $this->request->data['DepositComment']['comment'];
 						$login 			= $this->request->data['DepositComment']['mt4_user_LOGIN'];
@@ -159,6 +159,18 @@ class LocalsController extends AppController {
 						debug($data);
 						debug($output);
 						debug($info);die();
+						
+						// send sms
+						$HttpSocket = new HttpSocket();
+						$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
+										'user' => 'instafx', 
+										'pass' => 'instafx8000',
+										'msisdn' => '0136454001',
+										'body' => 'iktrust test ',
+										'smstype' => 'TEXT',
+										'sender' => 'IKTRUST',
+										#'Telco' => 'CELCOM'
+										));	   
 				}
 			}
 	}
