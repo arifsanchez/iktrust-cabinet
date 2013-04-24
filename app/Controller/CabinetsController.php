@@ -117,27 +117,27 @@ class CabinetsController extends AppController {
 				$this->layout = 'kabinet';
 				$this->loadModel('Usermgmt.User');
 				$this->loadModel('Usermgmt.UserDetail');
+				
 				$userId = $this->UserAuth->getUserId();
 				$this->set('user',$userId);
+
 				$detail = $this->UserDetail->Find('list',array(
-							'conditions' => array( 'UserDetail.user_id' => $userId),
-							'fields'			 => array('UserDetail.id'),
-							));
-							//debug($detail);
-				$this->set('detail',$detail);
+					'conditions' => array( 'UserDetail.user_id' => $userId),
+					'fields'			 => array('UserDetail.id'),
+					));
+				$this->set('detail', $detail);
+
 				if (!empty($userId)) {
-						if ($this->request -> isPut() || $this->request -> isPost()) {
-							//debug($this->request->data);die();
-							$this->User->set($this->data);
-							$this->UserDetail->set($this->data);
-							$this->User->saveAssociated($this->request->data);
-							//$this->Session->setFlash(__('Your detail has been successfully saved'));
-							$this->redirect(array('controller' => 'cabinets' , 'action' => 'bank'));
-						}else{
+					if ($this->request -> isPut() || $this->request -> isPost()) {
+						$this->User->set($this->data);
+						$this->UserDetail->set($this->data);
+						$this->User->saveAssociated($this->request->data);
+						//$this->Session->setFlash(__('Your detail has been successfully saved'));
+						$this->redirect(array('controller' => 'cabinets' , 'action' => 'bank'));
+					}else{
 						//$this->Session->setFlash(__('broken'));
-						}
+					}
 				}
-				
 			}
 			
 			public function bank(){

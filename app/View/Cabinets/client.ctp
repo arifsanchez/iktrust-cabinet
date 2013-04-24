@@ -22,7 +22,7 @@
 										</p>
 										
 										<p>
-											<label>Date Of Birth <br><small><em>(Ex. 20/02/1970)</em></small></label>
+											<label>Date Of Birth <br><small>(Ex. 20/02/1970)</small></label>
 											<span class="field"><?php echo $this->Form->input('UserDetail.bday' ,array('label' => false,'div' => false,'class'=>'span2' ));?></span>
 										</p>
 										
@@ -63,11 +63,6 @@
 										<p>
 											<label>Postalcode / Zip</label>
 											<span class="field"><?php echo $this->Form->input('UserDetail.postal' ,array('label' => false, 'div' => false, 'class'=>'span6' ));?></span>
-										</p>
-										
-										<p>
-											<label>Authorized Contact Email</label>
-											<span class="field"><?php echo $this->Form->input('User.email' ,array('label' => false,'div' => false,'class'=>'span6' ));?></span>
 										</p>
 										 
 										<p>
