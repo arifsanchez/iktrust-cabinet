@@ -15,43 +15,34 @@ $tcpdf->SetFont($textfont,'',9);
  
 $tcpdf->AddPage();
 
-	foreach ($user as $user):
+
 		$name 	= $user['User']['username'];
 		$email 	= $user['User']['email'];
-	endforeach; 
 
-	foreach ($acctypes as $acctypes):
-		$depo 	= $acctypes['UserAcctypes']['deposit'];
-	endforeach; 
+		$depo 	= $acctypes['UserAcctypes']['type'];
 
-	foreach ($bank as $bank):
-		$NBank 			= $bank['UserBank']['name'];
-		$AccNo 			= $bank['UserBank']['acc_no'];
+		$NBank 		= $bank['UserBank']['name'];
+		$AccNo 		= $bank['UserBank']['acc_no'];
 		$AccName 	= $bank['UserBank']['acc_name'];
 		$IBAN 			= $bank['UserBank']['iban_no'];
-		$SwNo 			= $bank['UserBank']['swift_no'];
-	endforeach; 
+		$SwNo 		= $bank['UserBank']['swift_no'];
 
-	foreach ($ecr as $ecr):
 		$EName 		= $ecr['UserEcr']['pro_name'];
 		$EAccNo 		= $ecr['UserEcr']['acc_name'];
 		$EAccName	= $ecr['UserEcr']['acc_no'];
-	endforeach; 
 
-	foreach ($userD as $userD):
-		$gent 				= $userD['UserDetail']['gender'];
-		$dob 				= $userD['UserDetail']['bday'];
-		$ic					= $userD['UserDetail']['ic'];
+		$gent 			= $userD['UserDetail']['gender'];
+		$dob 			= $userD['UserDetail']['bday'];
+		$ic				= $userD['UserDetail']['ic'];
 		$ContactNo	= $userD['UserDetail']['cellphone'];
 		$pic				= $userD['UserDetail']['photo'];
-	endforeach; 
 
 
 // create some HTML content
 $htmlcontent = <<<EOF
 <!DOCTYPE html>
 <html>
-	<h1>IKTRUST logo</h1>
+		
 	<body>
 	
 		<h2>IK Trust Application Form</h2>
@@ -59,14 +50,38 @@ $htmlcontent = <<<EOF
 		<p>
 			<table border="0">
 			  <tr>
+				<th width="50%"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="150" height="50" border="0"></a></th>
+				
+				<th width="20%">
+					<p>
+						<b>Full Name 		 		</b><br>
+						<b>Date Of Birth			</b><br>
+						<b>Gender					</b><br>
+						<b>Passport / I.C No 	</b> <br>
+						<b>Contact Email 		</b><br>
+						<b>Mobile Number 		</b> 
+					</p>
+				</th>
+				
+				<th width="2%">
+					<p>
+						<b>: </b><br>
+						<b>: </b><br>
+						<b>: </b><br>
+						<b>: </b><br>
+						<b>: </b><br>
+						<b>: </b>
+					</p>
+				</th>
+				
 				<th>
 					<p>
-						<b>Full Name 				: </b> $name<br>
-						<b>Date Of Birth		 	:</b> $dob<br>
-						<b>Gender		 			:</b> $gent<br>
-						<b>Passport / I.C No 	:</b> $ic	<br>
-						<b>Contact Email 		:</b> $email<br>
-						<b>Mobile Number	 	:</b> $ContactNo
+						$name<br>
+						$dob<br>
+						$gent<br>
+						$ic	<br>
+						$email<br>
+						$ContactNo
 					</p>
 				</th>
 			  </tr>
@@ -78,41 +93,41 @@ $htmlcontent = <<<EOF
 		<p>
 			<table border="0">
 			  <tr>
-				<th>	
-					<p>
+				<th width="25%">	
+					<p align="right">
 						Individual Account Type			:
 					</p>
 				
-					<p>
-						Name of Bank					 		:
+					<p align="right">
+						Name of Bank					 	:
 					</p>
 					
-					<p>
+					<p align="right">
 						Bank Account Number 			:
 					</p>
 						
-					<p>
+					<p align="right">
 						Bank Account Name 				:
 					</p>
 					
-					<p>
-						IBAN Number 							:
+					<p align="right">
+						IBAN Number 						:
 					</p>
 				
-					<p>
-						SWIFT Number							:
+					<p align="right">
+						SWIFT Number						:
 					</p>
 					
-					<p>
+					<p align="right">
 						E-Currency Provider Name 	:
 					</p>
 					
-					<p>
+					<p align="right">
 						E-Currency Account Number 	:
 					</p>
 					
-					<p>
-						E-Currency Account Name 		:
+					<p align="right">
+						E-Currency Account Name 	:
 					</p>
 				</th>
 			
@@ -176,16 +191,18 @@ $htmlcontent = <<<EOF
 						
 						<p>
 							Date Of Signature<br>
-							<input type="text" name="age">
+							<br>
+							<br>
+							------------------------------------------------
 						</p>
 						
+						<br>
 						<p>
-							SIGNATURE SPECIMEN<br>
-							<textarea rows="4" cols="50"></textarea>
-							-----------------------------------------------<br>
-							-----------------------------------------------<br>
-							----------<i> field to sign here... </i>----------<br>
-							-----------------------------------------------<br>
+							( SIGNATURE SPECIMEN ) <br>
+							<br>
+							<br>
+							<br>
+							<br>
 							-----------------------------------------------
 						</p>
 
