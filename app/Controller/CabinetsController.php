@@ -263,7 +263,12 @@ class CabinetsController extends AppController {
 				
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
-				
+			$this->Local->create();
+			$this->request->data['Local']['local_status_id'] = 1 ;
+			//debug($this->request->data);die();
+			if($this->Local->save($this->request->data)){
+				//$this->session->setFlash(_('The bank details have been saved'));
+			}	
 			//send email
 			$Email = new CakeEmail();
 			$Email->template('newtrader');
@@ -284,12 +289,8 @@ class CabinetsController extends AppController {
 					'smstype' => 'TEXT',
 					'sender' => 'IKTRUST',
 					#'Telco' => 'CELCOM'
-			));	   
-			$this->Local->create();
-			//debug($this->request->data);die();
-			if($this->Local->save($this->request->data)){
-				$this->session->setFlash(_('The bank details have been saved'));
-			}
+					));	   
+		
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
 				

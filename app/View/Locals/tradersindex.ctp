@@ -7,11 +7,11 @@
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
                         <tr>
-                            <th class="center">Id</th>
+                            <th class="center">Register Id</th>
                             <th class="center">Name</th>
-							<th class="center">Trader Id</th>
-							<th class="center">User Id</th>
+							<th class="center">Email</th>
                             <th class="center">Status</th>
+							  <th class="center">Register Date</th>
                             <th class="center">More Acion</th>
                         </tr>
                     </thead>
@@ -19,21 +19,20 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo $locals['Local']['id']; ?>
+								<? echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
                             <td class="center">
 								<? echo $locals['User']['first_name']; ?>
 							</td>
                             <td class="center">
-								<? echo $locals['UserTrader']['acc_no']; ?>
-							</td>
-							<td class="center">
-								<? echo $locals['User']['id']; ?>
+								<? echo $locals['User']['email']; ?>
 							</td>
 							<td class="center">
 								<? echo $locals['LocalStatus']['name']; ?>
 							</td>
-                            
+                            <td class="center">
+								<? echo $locals['Local']['created']; ?>
+							</td>
 								<td class="center"><span class="icon-edit"></span><?php echo $this->Html->link(__('View'), array('action' => 'adminview', $locals['Local']['id'])); ?>
 								<span class="icon-edit"></span>><?php echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $locals['Local']['id'])); ?>
 								<span class="icon-edit"></span><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $locals['Local']['id']), null, __('Are you sure you want to delete # %s?', $locals['Local']['id'])); ?></td
