@@ -7,7 +7,7 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">STEP 5 : Acknowledgement </h3>
+						<h3 class="widgettitle nomargin">STEP 6 : Acknowledgement </h3>
 					</div>
 				</div>
 				

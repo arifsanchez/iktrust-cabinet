@@ -3,14 +3,14 @@
 		<div class="contentinner">
 		
 			<div class="widgettitle nomargin shadowed searchwidget">
-				<div class="row-fluid">
+				<div class="row">
 					<div class="span6">
 						<legend>Mt4 Users</legend>
 					</div>
 					<div class="par pull-right">
 						<div class="input-append">
 							<?php echo $this->Form->create('Mt4User', array('controller' => 'Mt4Users', 'action' => 'search')); ?>
-							<input class="span2 search-query" type="text" name="data[Mt4User][LOGIN]" id="Mt4UserLOGIN" placeholder="Traders ID..." />
+							<input class="search-query" type="text" name="data[Mt4User][LOGIN]" id="Mt4UserLOGIN" placeholder="Traders ID..." />
 							<button type="submit" class="btn"><span class="icon-search"></span></button>
 							<?php echo $this->Form->end(); ?>
 						</div>
@@ -66,8 +66,8 @@
 					<?php endforeach; ?>
 				</table>
 			</div>
-			
-			<p align="center">
+
+			<p align="center" class="alert alert-error">
 				<?php
 					echo $this->Paginator->counter(array(
 					'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
@@ -75,12 +75,12 @@
 				?>	
 			</p>
 			
-			<div class="paging" align="center">
-				<?php
-					echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-					echo $this->Paginator->numbers(array('separator' => ''));
-					echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-				?>
+			<div class="pagination pagination-small" align="center">
+				<ul>
+					<li><?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?></li>
+					<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+					<li><?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?></li>
+				</ul>
 			</div>
 			<br>
 				

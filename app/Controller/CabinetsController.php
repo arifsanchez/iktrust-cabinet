@@ -9,7 +9,7 @@ class CabinetsController extends AppController {
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');	
 	
-		
+	
 	function check_balance(){
 		$this->layout = 'logmasuk';
 		$userId = $this->UserAuth->getUserId();
@@ -29,7 +29,8 @@ class CabinetsController extends AppController {
 				}
 			}
 	}
-			
+
+	
 	function account_balance($acc_id = null){
 		if($acc_id){
 			$this->layout = 'logmasuk';
@@ -49,7 +50,8 @@ class CabinetsController extends AppController {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
 		}
 	}
-			
+
+	
 	function view_pdf() {
 			
 		$this->loadModel('Usermgmt.User');
@@ -87,7 +89,8 @@ class CabinetsController extends AppController {
 		$this->render();
 				
 	}
-				
+
+	
 	public function acc_type(){
 		$this->layout = 'kabinet';
 		//get userid
@@ -97,7 +100,7 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserAcctypes');
 		// save data
 		if (!empty($userId)) {
-				
+
 			if($this->request -> isPut() || $this->request -> isPost()){
 				$this->UserAcctypes->create();
 				if($this->UserAcctypes->save($this->request->data)){
@@ -107,8 +110,16 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-			
+
+	
 	public function client(){
+	
+		if($this->RequestHandler->isAjax()) {
+			configure::write('debug', 0);
+			$this->layout = 'kabinet';     // uses an empty layout
+			$this->autoRender = false;  // renders nothing by default
+		}
+		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
@@ -134,7 +145,8 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-			
+
+	
 	public function bank(){
 		$this->layout = 'kabinet';
 		//get userid
@@ -155,11 +167,13 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-			
+
+	
 	public function document(){
 		$this->layout = 'kabinet';
 	}				
-			
+
+	
 	public function ecurrency(){
 		$this->layout = 'kabinet';
 		//get userid
@@ -182,11 +196,23 @@ class CabinetsController extends AppController {
 		}
 	}
 	
+	
 	public function upload(){
 		$this->layout = 'kabinet';
+				
+		$userId = $this->UserAuth->getUserId();
+		#debug($userId); die();
+		
 		if ($this->request->is('post')){
-			$file1 = $this->request->data['UserDoc']['doc1'];
-			$file2 = $this->request->data['UserDoc']['doc2'];					
+			$form 	= $this->request->data['UserDoc']['form'];
+			$file1 	= $this->request->data['UserDoc']['doc1'];
+			$file2 	= $this->request->data['UserDoc']['doc2'];
+
+			if ($form['error'] == 0 && $file1['size'] > 0 && $form['tmp_name'] != 'none'){
+				if (is_uploaded_file($form['tmp_name'])){
+					$this->saveToFile($form);
+				}
+			}			
 
 			if ($file1['error'] == 0 && $file1['size'] > 0 && $file1['tmp_name'] != 'none'){
 				if (is_uploaded_file($file1['tmp_name'])){
@@ -201,7 +227,8 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-			
+
+	
 	private function saveToFile($file){
 					
 		$info = pathinfo($file['name']); // split filename and extension
@@ -212,6 +239,7 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserDoc');
 		#$upload = $this->Doc->create();
 		$upload['UserDoc']['user_id'] = $userId;
+		$upload['UserDoc']['form'] = $saveName;
 		$upload['UserDoc']['doc1'] = $saveName;
 		$upload['UserDoc']['doc2'] = $saveName;
 		$upload['UserDoc']['data'] = $savePath;
@@ -221,7 +249,7 @@ class CabinetsController extends AppController {
 			$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName);
 		}					
 	} 
-				
+
 
 	public function acknowledge(){
 		$this->layout = 'kabinet';
@@ -229,36 +257,36 @@ class CabinetsController extends AppController {
 		$userId = $this->UserAuth->getUserId();
 				
 		$user = $this->User->Find('first',array(
-							'conditions' => array( 'User.id' => $userId),
-							));
+			'conditions' => array( 'User.id' => $userId),
+		));
 		$this->set('user',$user);
 				
 		$this->loadModel('UserAcctypes');
 		$acctypes = $this->UserAcctypes->Find('first',array(
-							'conditions' => array( 'UserAcctypes.user_id' => $userId),
-							'field'          => array('UserAcctypes.id'),
-							));
+			'conditions' => array( 'UserAcctypes.user_id' => $userId),
+			'field'          => array('UserAcctypes.id'),
+		));
 		$this->set('acctypes',$acctypes);
 				
 		$this->loadModel('UserDetail');
 		$userD = $this->UserDetail->Find('first',array(
-							'conditions' => array( 'UserDetail.user_id' => $userId),
-							'field'          => array('UserDetail.id'),
-							));
+			'conditions' => array( 'UserDetail.user_id' => $userId),
+			'field'          => array('UserDetail.id'),
+		));
 		$this->set('userD',$userD);	 
 				
 		$this->loadModel('UserBank');
 		$bank = $this->UserBank->Find('first',array(
-							'conditions' => array( 'UserBank.user_id' => $userId),
-							'field'          => array('UserBank.id'),
-							));
+			'conditions' => array( 'UserBank.user_id' => $userId),
+			'field'          => array('UserBank.id'),
+		));
 		$this->set('bank',$bank);
 				
 		$this->loadModel('UserEcr');
 		$ecr = $this->UserEcr->Find('first',array(
-							'conditions' => array( 'UserEcr.user_id' => $userId),
-							'field'          => array('UserEcr.id'),
-							));
+			'conditions' => array( 'UserEcr.user_id' => $userId),
+			'field'          => array('UserEcr.id'),
+		));
 		$this->set('ecr',$ecr);
 				
 		$this->loadModel('Local');
@@ -293,9 +321,8 @@ class CabinetsController extends AppController {
 		
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
-				
-				
 	}
+	
 	
 	public function myprofile(){
 		$this->layout = 'kabinet';
@@ -303,11 +330,11 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
 		$user = $this->UserDetail->Find('first',array(
-							'conditions' =>array( 'UserDetail.user_id' => $userId),
-							'field'			=> 'UserDetail.photo',
-							'recursive' 	=> -1,));
+			'conditions' =>array( 'UserDetail.user_id' => $userId),
+			'field'			=> 'UserDetail.photo',
+			'recursive' 	=> -1,));
 		//debug($user);die();
-				
+	
 		$this->set('user',$user);
 		if (!empty($userId)) {
 			if ($this->request -> isPut() || $this->request -> isPost()) {
@@ -364,32 +391,35 @@ class CabinetsController extends AppController {
 					}
 				}
 			} else {
-						$this->User->unbindModel(array('hasMany' => array('LoginToken')));
-						$user = $this->User->read(null, $userId);
-						$this->request->data=null;
-						if (!empty($user)) {
-							$user['User']['password']='';
-							$this->request->data = $user;
-						}
+				$this->User->unbindModel(array('hasMany' => array('LoginToken')));
+				$user = $this->User->read(null, $userId);
+				$this->request->data=null;
+				if (!empty($user)) {
+					$user['User']['password']='';
+					$this->request->data = $user;
+				}
 			}
 		} else {
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'myprofile'));
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myprofile'));
 		}
-				
 	}
-			
+
+	
 	public function depositfund(){
 		$this->layout = 'kabinet';
 	}	
-			
+
+	
 	public function login(){
 		$this->layout = 'logmasuk';
 	}		
-	 
+
+	
 	public function withdrawfund(){
 		$this->layout = 'kabinet';
 	}
-			
+
+	
 	public function myaccount(){
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
@@ -397,132 +427,122 @@ class CabinetsController extends AppController {
 		$userId = $this->UserAuth->getUserId();
 		//find email verified utk user
 		$user = $this->User->find(
-						'first',
-						array(
-							'conditions' =>array( 'User.id' => $userId),
-							'fields' 		=> 'User.email_verified',
-							'recursive' 	=> -1
-						)
-					);
+			'first', array(
+				'conditions' =>array( 'User.id' => $userId),
+				'fields' 		=> 'User.email_verified',
+				'recursive' 	=> -1
+			)
+		);
 		//keluarkan kat view
 		$this -> set('user',$user);
 		//debug($user);die();
 		$email = $this->User->find(
-						'list',
-						array(
-							'conditions' =>array( 'User.id' => $userId),
-							'fields' 		=> 'User.email',
-							'recursive' 	=> -1,
-						)
-					);
+			'list', array(
+				'conditions' =>array( 'User.id' => $userId),
+				'fields' 		=> 'User.email',
+				'recursive' 	=> -1,
+			)
+		);
 		$this->loadModel('Mt4User');
 		$a = $this->Mt4User->find('all',
-						array(
-							'conditions' =>array( 'Mt4User.EMAIL' => $email)
-							));
+			array(
+				'conditions' =>array( 'Mt4User.EMAIL' => $email)
+			));
 		$this->set('a',$a);
 
 		$a = $this->paginate('Mt4User',
-						array("Mt4User.EMAIL" => $email)
-				   );
+			array("Mt4User.EMAIL" => $email)
+	   );
 		$this->set('a',$a);
 	}	
-			
+
+	
 	public function trader_details($login){
 		#debug($login);die();
 		$this->layout = 'kabinet';
 		$this->loadModel('Mt4User');
 		$b = $this->Mt4User->find('first',
-						array(
-							'conditions' =>array( 'Mt4User.LOGIN' => $login)
-							));
+			array(
+				'conditions' =>array( 'Mt4User.LOGIN' => $login)
+				));
 		$this->set('b',$b);
 		
 	}
-			
-			
-			
+
+	
 	public function platformdownload(){
 		$this->layout = 'kabinet';
 	}	
-				
+
+	
 	public function register(){
-				$this->layout = 'register_kabinet';
-				
-				$this->loadModel('Usermgmt.User');
-				$this->loadModel('Usermgmt.UserDetail');
-				$userId = $this->UserAuth->getUserId();
-				if ($userId) {
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
-				}
-				if (SITE_REGISTRATION) {
-				
-					if (isset($this->request->data['reset'])) {
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'register'));
-					}
-					
-						if (isset($this->request->data['signup'])) 	{	
-								if ($this->request -> isPost()) {
-									$this->User->set($this->data);
-									$UserRegisterValidate = $this->User->RegisterValidate();
-											if($this->RequestHandler->isAjax()) {
-												$this->layout = 'ajax';
-												$this->autoRender = false;
-														if ($UserRegisterValidate) {
-															$response = array('error' => 0, 'message' => 'Succes');
-															return json_encode($response);
-														} else {
-															$response = array('error' => 1,'message' => 'failure');
-															$response['data']['User']   = $this->User->validationErrors;
-															return json_encode($response);
-														}
-											} else {
-														if ($UserRegisterValidate) {
-															
-																	if (!EMAIL_VERIFICATION) {
-																		$this->request->data['User']['email_verified']=1;
-																	}
-															$this->request->data['User']['active']=1;
-																	if(isset($_SERVER['REMOTE_ADDR'])) {
-																		$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
-																	}
-															$salt = $this->UserAuth->makeSalt();
-															$this->request->data['User']['salt']=$salt;
-															$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-															$this->User->save($this->request->data,false);
-															$userId=$this->User->getLastInsertID();
-															$this->request->data['UserDetail']['user_id']=$userId;
-															$this->UserDetail->save($this->request->data,false);
-															$user = $this->User->findById($userId);
-																	if (SEND_REGISTRATION_MAIL && !EMAIL_VERIFICATION) {
-																		$this->User->sendRegistrationMail($user);
-																	}
-																	if (EMAIL_VERIFICATION) {
-																		$this->User->sendVerificationMail($user);
-																	}
-																if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
-																	$this->UserAuth->login($user);
-																	$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
-																} else {
-																	$this->Session->setFlash(__('Please check your mail and confirm your registration'));
-																	$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
-																}
-														}
-											}
-								
-								} else {
-									$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
-									$this->redirect(array('controller' => 'cabinets' , 'action' => 'register'));
-								}
-						}
-				}
-	}
+		$this->layout = 'register_kabinet';
+		
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		$userId = $this->UserAuth->getUserId();
+
+		if ($userId) {
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+		}
+			if (SITE_REGISTRATION) {
 			
+				if (isset($this->request->data['reset'])) {
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'register'));
+				}
+					if (isset($this->request->data['signup'])){	
+						if ($this->request -> isPost()) {
+							$this->User->set($this->data);
+							$UserRegisterValidate = $this->User->RegisterValidate();
+								if($this->RequestHandler->isAjax()) {
+									$this->layout = 'ajax';
+									$this->autoRender = false;
+											if ($UserRegisterValidate) {
+												$response = array('error' => 0, 'message' => 'Succes');
+												return json_encode($response);
+											} else {
+												$response = array('error' => 1,'message' => 'failure');
+												$response['data']['User']   = $this->User->validationErrors;
+												return json_encode($response);
+											}
+								} else {
+									if ($UserRegisterValidate) {
+										
+												if (!EMAIL_VERIFICATION) {
+													$this->request->data['User']['email_verified']=1;
+												}
+										$this->request->data['User']['active']=1;
+												if(isset($_SERVER['REMOTE_ADDR'])) {
+													$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+												}
+										$salt = $this->UserAuth->makeSalt();
+										$this->request->data['User']['salt']=$salt;
+										$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+										$this->User->save($this->request->data,false);
+										$userId=$this->User->getLastInsertID();
+										$this->request->data['UserDetail']['user_id']=$userId;
+										$this->UserDetail->save($this->request->data,false);
+										$user = $this->User->findById($userId);
+												if (SEND_REGISTRATION_MAIL && !EMAIL_VERIFICATION) {
+													$this->User->sendRegistrationMail($user);
+												}
+												if (EMAIL_VERIFICATION) {
+													$this->User->sendVerificationMail($user);
+												}
+											if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
+												$this->UserAuth->login($user);
+												$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+											} else {
+												$this->Session->setFlash(__('Please check your mail and confirm your registration'));
+												$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
+											}
+									}
+								}
+						} else {
+							$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'register'));
+						}
+					}
+			}
+	}
 }
-	
-	
-		
-		
-	
-		
-	

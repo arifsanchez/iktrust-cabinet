@@ -9,7 +9,7 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">STEP 4 : Account Supporting Document</h3>	
+						<h3 class="widgettitle nomargin">STEP 5 : Account Supporting Document</h3>	
 						
 						<br>
 						<div class="row-fluid">	
@@ -19,7 +19,7 @@
 								<hr class="invisible">
 								
 								<dl>
-								  <dt><h3><em>PROOF OF IDENTITY</em></h3></dt>
+								  <dt><h3>PROOF OF IDENTITY</h3></dt>
 								  <br>
 								  <dd><li>National Passport</li></dd>
 								  <dd><li>National Identity Card</li></dd>
@@ -35,7 +35,7 @@
 								<button type="button" class="close" data-dismiss="alert"></button>
 							  
 								<dl>
-								  <dt><h3><em>PROOF OF RESIDENCE</em></h3></dt>
+								  <dt><h3>PROOF OF RESIDENCE</h3></dt>
 								  <br>
 								  <dd><li>Utility Bill <br><strong><small>(not mobile phone / print from internet)<small></strong></li></dd>
 								  <dd><li>Government Issued Letter</li></dd>

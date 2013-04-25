@@ -1,5 +1,8 @@
 
-<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
+	<?php 
+		echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); 
+		echo $this->Html->script('jquery.validate.min.js'); 
+	?>
 		
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
@@ -13,7 +16,7 @@
 						
 						<div class="row-fluid">
 							<div class="span6">
-									<?php echo $this->Form->create('User', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
+									<?php echo $this->Form->create('User', array('type' => '', 'id'=>'form1' , 'class' => 'stdform')); ?>
 									<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' => $user));?>
 									<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' =>$detail));?>
 										<p>
