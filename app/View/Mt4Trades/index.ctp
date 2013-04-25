@@ -9,17 +9,20 @@
 		<div class="contentinner">
 				
 			<div class="widgettitle nomargin shadowed searchwidget">
-				<div class="row-fluid">
+				<div class="row">
 					<div class="span6">
 						<legend>Mt4 Trades</legend>
 					</div>
 					
-					<div class="span6" align="right">
-						<?php echo $this->Form->create('Mt4Trade', array('controller' => 'Mt4Trades', 'action' => 'search')); ?>
-						<?php echo $this->Form->input('TICKET', array('type' => 'text', 'class' => 'span2 search-query', 'label' => false, 'placeholder' => 'Search Here...')); ?>
-						<button type="submit" class="btn"><span class="icon-search"></span></button>
-						<?php echo $this->Form->end(); ?>
+					<div class="par pull-right">
+						<div class="input-append">
+							<?php echo $this->Form->create('Mt4Trade', array('controller' => 'Mt4Trades', 'action' => 'search')); ?>
+							<input class="span2 search-query" type="text" name="data[Mt4Trade][TICKET]" id="Mt4TradeTICKET" placeholder="Ticket ID..." />
+							<button type="submit" class="btn"><span class="icon-search"></span></button>
+							<?php echo $this->Form->end(); ?>
+						</div>
 					</div>
+
 				</div>
 			</div>
 			

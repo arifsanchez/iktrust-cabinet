@@ -4,15 +4,16 @@
 		
 			<div class="widgettitle nomargin shadowed searchwidget">
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span6">
 						<legend>Mt4 Users</legend>
 					</div>
-					
-					<div class="media-body span8" align="right">
-						<?php echo $this->Form->create('Mt4User', array('controller' => 'Mt4Users', 'action' => 'search')); ?>
-						<?php echo $this->Form->input('LOGIN', array('type' => 'text', 'class' => 'span2 search-query', 'label' => false, 'placeholder' => 'Search Here...')); ?>
-						<button type="submit" class="btn"><span class="icon-search"></span></button>
-						<?php echo $this->Form->end(); ?>
+					<div class="par pull-right">
+						<div class="input-append">
+							<?php echo $this->Form->create('Mt4User', array('controller' => 'Mt4Users', 'action' => 'search')); ?>
+							<input class="span2 search-query" type="text" name="data[Mt4User][LOGIN]" id="Mt4UserLOGIN" placeholder="Traders ID..." />
+							<button type="submit" class="btn"><span class="icon-search"></span></button>
+							<?php echo $this->Form->end(); ?>
+						</div>
 					</div>
 				</div>
 			</div>

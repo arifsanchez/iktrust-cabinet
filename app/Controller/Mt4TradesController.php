@@ -14,7 +14,7 @@ class Mt4TradesController extends AppController {
  */
 	public function index(){
 	
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
 		 
@@ -87,7 +87,7 @@ class Mt4TradesController extends AppController {
  */
 	public function view($TICKET = null) {
 
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		
 		$options = array('conditions' => array('Mt4Trade.' . $this->Mt4Trade->primaryKey => $TICKET));
 		$this->set('mt4Trade', $this->Mt4Trade->find('first', $options));
@@ -104,7 +104,7 @@ class Mt4TradesController extends AppController {
  */
 	public function add() {
 	
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		
 		if ($this->request->is('post') ) {
 			$this->Mt4Trade->create();
@@ -127,7 +127,7 @@ class Mt4TradesController extends AppController {
 	public function edit($TICKET = null) {
 	
 	
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 				
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Mt4Trade->save($this->request->data)) {
@@ -154,7 +154,7 @@ class Mt4TradesController extends AppController {
  */
 	public function delete($TICKET = null) {
 	
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		
 		$this->Mt4Trade->id = $TICKET;
 		if (!$this->Mt4Trade->exists()) {

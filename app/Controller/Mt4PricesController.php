@@ -13,7 +13,7 @@ class Mt4PricesController extends AppController {
  * @return void
  */
 	public function index(){
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		$this->Mt4Price->recursive = 0;
 		$this->set('mt4Prices', $this->paginate());
 	}
@@ -53,7 +53,7 @@ class Mt4PricesController extends AppController {
  * @return void
  */
 	public function add() {
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		if ($this->request->is('post')) {
 			$this->Mt4Price->create();
 			if ($this->Mt4Price->save($this->request->data)) {

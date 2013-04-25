@@ -73,7 +73,13 @@
 								
 								<td class="center">USD</td>
 								
-								<td class="center"><?php echo  $a['Mt4User']['MARGIN_FREE']; ?></td>
+								<td class="center">
+									<?php 
+										$b =  $a['Mt4User']['MARGIN_FREE']; 
+										$c = number_format($b, 2, '.', '');
+					
+										echo h($c); 
+									?></td>
 								
 								<td class="center">
 									<?php 

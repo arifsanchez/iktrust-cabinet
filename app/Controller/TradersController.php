@@ -10,7 +10,7 @@ class TradersController extends AppController {
 	
 		function bankwired(){
 			//layout
-			$this->layout = 'kabinet';	
+			$this->layout = 'admin';	
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -32,7 +32,7 @@ class TradersController extends AppController {
 		
 		function depositlogin($login=null){
 			//layout
-			$this->layout = 'kabinet';	
+			$this->layout = 'admin';	
 			$LOGIN = base64_decode($login);
 			//load model
 			$this->loadModel('Deposit');
@@ -81,7 +81,7 @@ class TradersController extends AppController {
 
 		function view_deposit($id =null){
 			//layout
-			$this->layout = 'kabinet';	
+			$this->layout = 'admin';	
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -111,7 +111,7 @@ class TradersController extends AppController {
 		
 		function transaction_deposit(){
 			//layout
-			$this->layout = 'kabinet';	
+			$this->layout = 'admin';	
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -133,7 +133,7 @@ class TradersController extends AppController {
 		
 		function view_pdf($id) {
 			//load model
-			$this->loadModel('Deposit');
+			$this->loadModel('admin');
 			$this->loadModel('User');
 			$this->loadModel('Mt4User');
 			$this->Deposit->id = $id;

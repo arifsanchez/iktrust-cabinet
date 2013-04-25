@@ -13,7 +13,7 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		$this->Mt4User->recursive = 0;
 		$this->set('mt4Users', $this->paginate());
 		
@@ -60,7 +60,7 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		
 		if (!$this->Mt4User->exists($id)) {
 			throw new NotFoundException(__('Invalid mt4 user'));
@@ -79,7 +79,7 @@ class Mt4UsersController extends AppController {
  * @return void
  */
 	public function add() {
-		$this->layout = 'kabinet';
+		$this->layout = 'admin';
 		if ($this->request->is('post')) {
 			$this->Mt4User->create();
 			if ($this->Mt4User->save($this->request->data)) {
