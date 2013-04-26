@@ -34,9 +34,9 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 	
-	var $helpers = array('Form', 'Html', 'Session',	'Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
+	var $helpers = array('Form', 'Html', 'Session','Js', 'Usermgmt.UserAuth', 'Usermgmt.Image');
 	
-	public $components = array('DebugKit.Toolbar','Session','RequestHandler', 'Usermgmt.UserAuth');
+	public $components = array('DebugKit.Toolbar','Session','Cookie','RequestHandler', 'Usermgmt.UserAuth');
 	
 	function beforeFilter(){
 		$this->userAuth();
