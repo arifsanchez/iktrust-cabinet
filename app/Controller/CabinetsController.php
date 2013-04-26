@@ -18,9 +18,9 @@ class CabinetsController extends AppController {
 				$login = $this->request->data['Mt4User']['username'];
 				$email = $this->request->data['Mt4User']['email'];
 				$check = $this->Mt4User->Find('first' ,array(
-						'conditions' => array('Mt4User.LOGIN' =>$login, 'Mt4User.EMAIL' =>$email),
-					));
-					
+					'conditions' => array('Mt4User.LOGIN' =>$login, 'Mt4User.EMAIL' =>$email),
+				));
+
 				if(!empty ($check)){
 					$acc_id = base64_encode($login);
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'account_balance' , $acc_id));
@@ -37,9 +37,9 @@ class CabinetsController extends AppController {
 			$this->loadModel('Mt4User');
 			$login = base64_decode($acc_id);
 			$check = $this->Mt4User->Find('first' ,array(
-							'conditions' => array('Mt4User.LOGIN' =>$login),
-							'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE', 'Mt4User.MARGIN_FREE', 'Mt4User.MODIFY_TIME'),
-								));
+				'conditions' => array('Mt4User.LOGIN' =>$login),
+				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE', 'Mt4User.MARGIN_FREE', 'Mt4User.MODIFY_TIME'),
+			));
 			if(empty($check)){
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
 			} else {
@@ -53,41 +53,39 @@ class CabinetsController extends AppController {
 
 	
 	function view_pdf() {
-			
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
 		$user = $this->User->Find('first',array(
-							'conditions' => array( 'User.id' => $userId),
-							));
+			'conditions' => array( 'User.id' => $userId),
+		));	
 		$this->set('user',$user);
 		
 		$this->loadModel('UserAcctypes');
 		$acctypes = $this->UserAcctypes->Find('first',array(
-							'conditions' => array( 'UserAcctypes.user_id' => $userId),
-							));
+			'conditions' => array( 'UserAcctypes.user_id' => $userId),
+		));
 		$this->set('acctypes',$acctypes);
-				
+
 		$this->loadModel('UserDetail');
 		$userD = $this->UserDetail->Find('first',array(
-							'conditions' => array( 'UserDetail.user_id' => $userId),
-							));
+			'conditions' => array( 'UserDetail.user_id' => $userId),
+		));
 		$this->set('userD',$userD);
-				
+
 		$this->loadModel('UserBank');
 		$bank = $this->UserBank->Find('first',array(
-							'conditions' => array( 'UserBank.user_id' => $userId),
-							));
+			'conditions' => array( 'UserBank.user_id' => $userId),
+		));
 		$this->set('bank',$bank);
-				
+
 		$this->loadModel('UserEcr');
 		$ecr = $this->UserEcr->Find('first',array(
-							'conditions' => array( 'UserEcr.user_id' => $userId),
-							));
+			'conditions' => array( 'UserEcr.user_id' => $userId),
+		));
 		$this->set('ecr',$ecr);
-				
+
 		$this->layout = 'pdf'; //this will use the pdf.ctp layout
 		$this->render();
-				
 	}
 
 	
@@ -113,7 +111,6 @@ class CabinetsController extends AppController {
 
 	
 	public function client(){
-	
 		if($this->RequestHandler->isAjax()) {
 			configure::write('debug', 0);
 			$this->layout = 'kabinet';     // uses an empty layout
@@ -123,14 +120,14 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
-				
+
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
 
 		$detail = $this->UserDetail->Find('list',array(
-					'conditions' => array( 'UserDetail.user_id' => $userId),
-					'fields'			 => array('UserDetail.id'),
-					));
+			'conditions' => array( 'UserDetail.user_id' => $userId),
+			'fields'			 => array('UserDetail.id'),
+		));
 		$this->set('detail', $detail);
 
 		if (!empty($userId)) {
@@ -183,7 +180,7 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserEcr');
 		// save data
 		if (!empty($userId)) {
-				
+
 			if($this->request -> isPut() || $this->request -> isPost()){
 				//debug($this->request->data);die();
 				$this->UserEcr->create();
@@ -199,7 +196,6 @@ class CabinetsController extends AppController {
 	
 	public function upload(){
 		$this->layout = 'kabinet';
-				
 		$userId = $this->UserAuth->getUserId();
 		#debug($userId); die();
 		
@@ -219,7 +215,7 @@ class CabinetsController extends AppController {
 					$this->saveToFile($file1);
 				}
 			}
-					
+
 			if ($file2['error'] == 0 && $file2['size'] > 0 && $file2['tmp_name'] != 'none'){
 				if (is_uploaded_file($file2['tmp_name'])){
 					$this->saveToFile($file2);
@@ -230,19 +226,18 @@ class CabinetsController extends AppController {
 
 	
 	private function saveToFile($file){
-					
-		$info = pathinfo($file['name']); // split filename and extension
-		$saveName = md5($info['basename']) . '.' . $info['extension'] ;
-		$savePath = WWW_ROOT . 'img/uploads' . DS . $saveName;
-		$userId = $this->UserAuth->getUserId();
+		$info				 = pathinfo($file['name']); // split filename and extension
+		$saveName 	= md5($info['basename']) . '.' . $info['extension'] ;
+		$savePath 	= WWW_ROOT . 'img/uploads' . DS . $saveName;
+		$userId 		= $this->UserAuth->getUserId();
 		//get tradersid
 		$this->loadModel('UserDoc');
 		#$upload = $this->Doc->create();
-		$upload['UserDoc']['user_id'] = $userId;
-		$upload['UserDoc']['form'] = $saveName;
-		$upload['UserDoc']['doc1'] = $saveName;
-		$upload['UserDoc']['doc2'] = $saveName;
-		$upload['UserDoc']['data'] = $savePath;
+		$upload['UserDoc']['user_id'] 	= $userId;
+		$upload['UserDoc']['form'] 		= $saveName;
+		$upload['UserDoc']['doc1'] 		= $saveName;
+		$upload['UserDoc']['doc2'] 		= $saveName;
+		$upload['UserDoc']['data'] 		= $savePath;
 		$this->UserDoc->save($upload);
 		#debug($upload);die(); 
 		if (move_uploaded_file($file['tmp_name'], $savePath)){
@@ -255,40 +250,40 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
-				
+
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),
 		));
 		$this->set('user',$user);
-				
+
 		$this->loadModel('UserAcctypes');
 		$acctypes = $this->UserAcctypes->Find('first',array(
 			'conditions' => array( 'UserAcctypes.user_id' => $userId),
 			'field'          => array('UserAcctypes.id'),
 		));
 		$this->set('acctypes',$acctypes);
-				
+
 		$this->loadModel('UserDetail');
 		$userD = $this->UserDetail->Find('first',array(
 			'conditions' => array( 'UserDetail.user_id' => $userId),
 			'field'          => array('UserDetail.id'),
 		));
 		$this->set('userD',$userD);	 
-				
+
 		$this->loadModel('UserBank');
 		$bank = $this->UserBank->Find('first',array(
 			'conditions' => array( 'UserBank.user_id' => $userId),
 			'field'          => array('UserBank.id'),
 		));
 		$this->set('bank',$bank);
-				
+
 		$this->loadModel('UserEcr');
 		$ecr = $this->UserEcr->Find('first',array(
 			'conditions' => array( 'UserEcr.user_id' => $userId),
 			'field'          => array('UserEcr.id'),
 		));
 		$this->set('ecr',$ecr);
-				
+
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
@@ -297,6 +292,7 @@ class CabinetsController extends AppController {
 			if($this->Local->save($this->request->data)){
 				//$this->session->setFlash(_('The bank details have been saved'));
 			}	
+			
 			//send email
 			$Email = new CakeEmail();
 			$Email->template('newtrader');
@@ -306,19 +302,18 @@ class CabinetsController extends AppController {
 			$Email->to('webteam@iktrust.com');
 			$Email->subject('New Trader IKTrust');
 			$Email->send();
-						
+	
 			// send sms
 			$HttpSocket = new HttpSocket();
 			$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
-					'user' => 'instafx', 
-					'pass' => 'instafx8000',
-					'msisdn' => '0136454001',
-					'body' => 'iktrust test ',
-					'smstype' => 'TEXT',
-					'sender' => 'IKTRUST',
-					#'Telco' => 'CELCOM'
-					));	   
-		
+				'user' => 'instafx', 
+				'pass' => 'instafx8000',
+				'msisdn' => '0136454001',
+				'body' => 'iktrust test ',
+				'smstype' => 'TEXT',
+				'sender' => 'IKTRUST',
+				#'Telco' => 'CELCOM'
+			));	   
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
 	}
@@ -461,12 +456,10 @@ class CabinetsController extends AppController {
 		#debug($login);die();
 		$this->layout = 'kabinet';
 		$this->loadModel('Mt4User');
-		$b = $this->Mt4User->find('first',
-			array(
-				'conditions' =>array( 'Mt4User.LOGIN' => $login)
-				));
+		$b = $this->Mt4User->find('first', array('conditions' =>
+			array( 'Mt4User.LOGIN' => $login)
+		));
 		$this->set('b',$b);
-		
 	}
 
 	
@@ -477,7 +470,6 @@ class CabinetsController extends AppController {
 	
 	public function register(){
 		$this->layout = 'register_kabinet';
-		
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
 		$userId = $this->UserAuth->getUserId();
@@ -515,14 +507,16 @@ class CabinetsController extends AppController {
 												if(isset($_SERVER['REMOTE_ADDR'])) {
 													$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
 												}
-										$salt = $this->UserAuth->makeSalt();
-										$this->request->data['User']['salt']=$salt;
-										$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-										$this->User->save($this->request->data,false);
-										$userId=$this->User->getLastInsertID();
-										$this->request->data['UserDetail']['user_id']=$userId;
-										$this->UserDetail->save($this->request->data,false);
-										$user = $this->User->findById($userId);
+												
+												$salt = $this->UserAuth->makeSalt();
+												$this->request->data['User']['salt']=$salt;
+												$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+												$this->User->save($this->request->data,false);
+												$userId=$this->User->getLastInsertID();
+												$this->request->data['UserDetail']['user_id']=$userId;
+												$this->UserDetail->save($this->request->data,false);
+												$user = $this->User->findById($userId);
+												
 												if (SEND_REGISTRATION_MAIL && !EMAIL_VERIFICATION) {
 													$this->User->sendRegistrationMail($user);
 												}
