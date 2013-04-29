@@ -89,9 +89,9 @@
 			$menu = array(
 				'options'=> array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=> array(
-					array('title'=>'All Registeration',  'url'=> array('controller'=>'Locals', 'action'=>'tradersindex')),
+					array('title'=>'All Registeration',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
 					array('title'=>'All Withdrawals',  'url'=> array('controller'=>'#', 'action'=>'#')),
-					array('title'=>'All Deposits',  'url'=> array('controller'=>'Locals', 'action'=>'transaction_deposit')),
+					array('title'=>'All Deposits',  'url'=> array('controller'=>'locals', 'action'=>'transaction_deposit')),
 				),
 			);
 			echo $this->Menu->render($menu);
