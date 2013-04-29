@@ -57,27 +57,7 @@ class Local extends AppModel {
 			),
 		),
 		
-		'user_trader_id' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		
-		'user_doc_id' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'user_acctype_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -134,21 +114,6 @@ class Local extends AppModel {
 			'order' => ''
 		),
 		
-		'UserTrader' => array(
-			'className' => 'UserTrader',
-			'foreignKey' => 'user_trader_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-
-		'UserDoc' => array(
-			'className' => 'UserDoc',
-			'foreignKey' => 'user_doc_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		
 		'UserEcr' => array(
 			'className' => 'UserEcr',
