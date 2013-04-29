@@ -100,18 +100,22 @@ class CabinetsController extends AppController {
 		if (!empty($userId)) {
 
 			if($this->request -> isPut() || $this->request -> isPost()){
-				#$this->UserAcctypes->create();
-				#if($this->UserAcctypes->save($this->request->data)){
+				$this->UserAcctypes->create();
+				if($this->UserAcctypes->save($this->request->data)){
 					//$this->session->setFlash(_('The bank details have been saved'));
-					$this->Cookie->write('user_acc', '$this->request->data');
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
-				#}
+				}
 			}
 		}
 	}
 
 	
 	public function client(){
+		if($this->RequestHandler->isAjax()) {
+			configure::write('debug', 0);
+			$this->layout = 'kabinet';     // uses an empty layout
+			$this->autoRender = false;  // renders nothing by default
+		}
 		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
@@ -130,9 +134,7 @@ class CabinetsController extends AppController {
 			if ($this->request -> isPut() || $this->request -> isPost()) {
 				$this->User->set($this->data);
 				$this->UserDetail->set($this->data);
-				
-				$this->Cookie->write('user_cl' , '$this->request->data');
-				#$this->User->saveAssociated($this->request->data);
+				$this->User->saveAssociated($this->request->data);
 				//$this->Session->setFlash(__('Your detail has been successfully saved'));
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'bank'));
 			}else{
@@ -145,11 +147,6 @@ class CabinetsController extends AppController {
 	public function bank(){
 		$this->layout = 'kabinet';
 		//get userid
-		//$user_cl 	= $this->Cookie->read($user_cl);
-		//$user_acc = $this->Cookie->read($user_acc);
-		//debug($user_cl);
-		//debug($user_acc); die();
-		
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
 		//get tradersid
@@ -158,9 +155,8 @@ class CabinetsController extends AppController {
 		if (!empty($userId)) {
 			if($this->request -> isPut() || $this->request -> isPost()){
 				//debug($this->request->data);die();
-				//$this->UserBank->create();
+				$this->UserBank->create();
 					//debug($this->request->data);die();
-					$this->Cookie->write('user_b' , '$this->request->data');
 				if($this->UserBank->save($this->request->data)){
 					//$this->session->setFlash(_('The bank details have been saved'));
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'ecurrency'));
@@ -187,17 +183,8 @@ class CabinetsController extends AppController {
 
 			if($this->request -> isPut() || $this->request -> isPost()){
 				//debug($this->request->data);die();
-				//$this->UserEcr->create();
+				$this->UserEcr->create();
 				//debug($this->request->data);die();
-					$user_cl 	= $this->Cookie->read($user_acc);
-					$user_cl 	= $this->Cookie->read($user_cl);
-					$user_cl 	= $this->Cookie->read($user_b);
-					$user_cl 	= $this->Cookie->read($user_eC);
-					debug($user_acc);
-					debug($user_cl);
-					debug($user_b);
-					debug($user_eC); die();
-					
 				if($this->UserEcr->save($this->request->data)){
 					//$this->session->setFlash(_('The bank details have been saved'));
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
@@ -207,8 +194,6 @@ class CabinetsController extends AppController {
 	}
 	
 	
-<<<<<<< HEAD
-=======
 	public function upload(){
 		$this->layout = 'kabinet';
 		$userId = $this->UserAuth->getUserId();
@@ -287,7 +272,6 @@ class CabinetsController extends AppController {
 		}
 	}
 
->>>>>>> 4fe21dd82a7c51877e1c94f2f39c42dfac004a67
 	public function acknowledge(){
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
@@ -298,7 +282,7 @@ class CabinetsController extends AppController {
 		));
 		$this->set('user',$user);
 
-		/*$this->loadModel('UserAcctypes');
+		$this->loadModel('UserAcctypes');
 		$acctypes = $this->UserAcctypes->Find('first',array(
 			'conditions' => array( 'UserAcctypes.user_id' => $userId),
 			'field'          => array('UserAcctypes.id'),
@@ -325,7 +309,7 @@ class CabinetsController extends AppController {
 			'field'          => array('UserEcr.id'),
 		));
 		$this->set('ecr',$ecr);
-		//save to local 
+
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
@@ -333,7 +317,7 @@ class CabinetsController extends AppController {
 			//debug($this->request->data);die();
 			if($this->Local->save($this->request->data)){
 				//$this->session->setFlash(_('The bank details have been saved'));
-			}	*/
+			}	
 			
 			//send email
 			$Email = new CakeEmail();
@@ -355,62 +339,10 @@ class CabinetsController extends AppController {
 				'smstype' => 'TEXT',
 				'sender' => 'IKTRUST',
 				#'Telco' => 'CELCOM'
-			));	
+			));	   
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
-		#}
-	}
-	
-	
-	public function upload(){
-		$this->layout = 'kabinet';
-		$userId = $this->UserAuth->getUserId();
-		#debug($userId); die();
-		
-		if ($this->request->is('post')){
-			$form 	= $this->request->data['UserDoc']['form'];
-			$file1 	= $this->request->data['UserDoc']['doc1'];
-			$file2 	= $this->request->data['UserDoc']['doc2'];
-
-			if ($form['error'] == 0 && $file1['size'] > 0 && $form['tmp_name'] != 'none'){
-				if (is_uploaded_file($form['tmp_name'])){
-					$this->saveToFile($form);
-				}
-			}			
-
-			if ($file1['error'] == 0 && $file1['size'] > 0 && $file1['tmp_name'] != 'none'){
-				if (is_uploaded_file($file1['tmp_name'])){
-					$this->saveToFile($file1);
-				}
-			}
-
-			if ($file2['error'] == 0 && $file2['size'] > 0 && $file2['tmp_name'] != 'none'){
-				if (is_uploaded_file($file2['tmp_name'])){
-					$this->saveToFile($file2);
-				}
-			}
 		}
 	}
-
-	
-	private function saveToFile($file){
-		$info				 = pathinfo($file['name']); // split filename and extension
-		$saveName 	= md5($info['basename']) . '.' . $info['extension'] ;
-		$savePath 	= WWW_ROOT . 'img/uploads' . DS . $saveName;
-		$userId 		= $this->UserAuth->getUserId();
-		//get tradersid
-		$this->loadModel('UserDoc');
-		#$upload = $this->Doc->create();
-		$upload['UserDoc']['user_id'] 	= $userId;
-		$upload['UserDoc']['form'] 		= $saveName;
-		$upload['UserDoc']['doc1'] 		= $saveName;
-		$upload['UserDoc']['doc2'] 		= $saveName;
-		$upload['UserDoc']['data'] 		= $savePath;
-		$this->UserDoc->save($upload);
-		#debug($upload);die(); 
-		if (move_uploaded_file($file['tmp_name'], $savePath)){
-			$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName);
-		}					
-	} 
 	
 	
 	public function myprofile(){
