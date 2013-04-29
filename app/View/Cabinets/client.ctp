@@ -1,75 +1,20 @@
 
-	<?php 
-	//	echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); 
-	//	echo $this->Html->script('/usermgmt/js/ajaxValidation');
-	?>
-	
-	<script type="text/javascript">
-	<!--
-		function validate(){
-		   if( document.myForm.first_name.value == "" ){
-			 alert( "Please provide your name.." );
-			 document.myForm.first_name.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.bday.value == "" ){
-			 alert( "Please provide your date of birth.." );
-			 document.myForm.data[UserDetail][bday][month].focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.ic.value == "" ){
-			 alert( "Please provide your ic/passport.." );
-			 document.myForm.ic.focus() ;
-			 return false;
-		   }
-		   
-		   /*if( document.myForm.gender.value == "" ){
-			 alert( "Please provide your ic/passport.." );
-			 document.myForm.gender.focus() ;
-			 return false;
-		   }*/
-		   
-		   if( document.myForm.occupation.value == "" ){
-			 alert( "Please provide your occupation.." );
-			 document.myForm.occupation.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.address.value == "" ){
-			 alert( "Please provide your address.." );
-			 document.myForm.address.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.city.value == "" ){
-			 alert( "Please provide your city.." );
-			 document.myForm.city.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.state.value == "" ){
-			 alert( "Please provide your state.." );
-			 document.myForm.state.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.postal.value == "" ){
-			 alert( "Please provide your postal.." );
-			 document.myForm.postal.focus() ;
-			 return false;
-		   }
-		   
-		   if( document.myForm.cellphone.value == "" ){
-			 alert( "Please provide your cellphone.." );
-			 document.myForm.cellphone.focus() ;
-			 return false;
-		   }
-		   return( true );
+<script src="../js//jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			jQuery("#form1").validationEngine();
+		});
+
+		function checkHELLO(field, rules, i, options){
+			if (field.val() != "HELLO") {
+				// this allows to use i18 for the error msgs
+				return options.allrules.validate2fields.alertText;
+			}
 		}
-	//-->
-	</script>
+	</script> 
 
 	<script>
 		jQuery(document).ready(function(){
@@ -88,64 +33,62 @@
 						
 						<div class="row-fluid">
 							<div class="span6">
-							
-								<?php echo $this->Form->create('User', array('type' => '', 'id'=>'form1' , 'class' => 'stdform', 'name' => 'myForm', 'onsubmit' => 'return(validate())')); ?>
+								<?php echo $this->Form->create('User', array('type' => '', 'id'=>'form1' , 'class' => 'stdform',)); ?>
 								<?php echo $this->Form->input('User.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' => $user));?>
 								<?php echo $this->Form->input('UserDetail.id',array('type' => 'hidden', 'label' => false,'div' => false, 'value' =>$detail));?>
 									
 								<p>
 									<label>Full Name</label>
-									<span class="field"><?php echo $this->Form->input('User.first_name' ,array('label' => false,'div' => false,'class'=>'span6', 'type'=>'text', 'name'=>'first_name')); ?></span>
+									<span class="field"><input class="validate[required] text-input span6" type="text" name="data[User][first_name]" id="UserFirstName" /></span>
 								</p>
 								
 								<p>
 									<label>Date Of Birth <br><small>(Ex. 20/02/1970)</small></label>
-									<!--span class="field"><?php #echo $this->Form->input('UserDetail.bday' ,array('label' => false,'div' => false,'class'=>'span2'));?></span-->
-									 <span class="field"><input type="text" class="span6" id="UserDetailBdayMonth" name="bday"/></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailBdayMonth" name="data[UserDetail][bday]"/></span>
 								</p>
 								
 								<p>
 									<label>Passport / Identity Card Number</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.ic' ,array('label' => false,'div' => false,'class'=>'span6', 'type'=>'text', 'name'=>'ic' )); ?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailIc" name="data[UserDetail][ic]"/></span>
 								</p>
 								
 								<p>
 									<!--Transfer data from php/cakephp to database-->
 									<label>Gender</label>
 									<span class="field">
-										<input class="radio" type="radio" name="gender" id="UserDetailGenderMale" value="male" />&nbsp; Male <br>
-										<input class="radio" type="radio" name="gender" id="UserDetailGenderFemale" value="female"/>&nbsp; Female
+										<input class="validate[required] radio" type="radio" name="data[UserDetail][gender]" id="UserDetailGenderMale" value="male" />&nbsp; Male <br>
+										<input class="validate[required] radio" type="radio" name="data[UserDetail][gender]" id="UserDetailGenderFemale" value="female"/>&nbsp; Female
 									</span>
 								</p>
 								
 								<p>
 									<label>Occupation / Career</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.occupation' ,array('label' => false,'div' => false,'class'=>'span6', 'type'=>'text', 'name'=>'occupation' )); ?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailOccupation" name="data[UserDetail][occupation]"/></span>
 								</p>
 
 								<p>
 									<label>Address</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.address' ,array('label' => false, 'div' => false, 'class'=>'span6', 'type'=>'text', 'name'=>'address' ));?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailAddress" name="data[UserDetail][address]"/></span>
 								</p>
 								
 								<p>
 									<label>Town / City</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.city' ,array('label' => false, 'div' => false, 'class'=>'span6', 'type'=>'text', 'name'=>'city' ));?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailCity" name="data[UserDetail][city]"/></span>
 								</p>
 								
 								<p>
 									<label>State / Country</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.state' ,array('label' => false, 'div' => false, 'class'=>'span6', 'type'=>'text', 'name'=>'state' ));?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailState" name="data[UserDetail][state]"/></span>
 								</p>
 								
 								<p>
 									<label>Postalcode / Zip</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.postal' ,array('label' => false, 'div' => false, 'class'=>'span6', 'type'=>'text', 'name'=>'postal' ));?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailPostal" name="data[UserDetail][postal]"/></span>
 								</p>
 								 
 								<p>
 									<label>Authorized Mobile Number</label>
-									<span class="field"><?php echo $this->Form->input('UserDetail.cellphone' ,array('label' => false, 'div' => false, 'class'=>'span6', 'type'=>'text', 'name'=>'cellphone' ));?></span>
+									<span class="field"><input type="text" class="validate[required] text-input span6" id="UserDetailCellphone" name="data[UserDetail][cellphone]"/></span>
 								</p>
 						</div>	
 					</div>
@@ -153,7 +96,7 @@
 				</div>
 			</div>
 			
-			<br> 
+			<br>
 			<p>
 				<?php echo $this->Form->Submit(__('Next'), array('class'=>'btn btn-danger span2'));?>
 				<?php echo $this->Form->end(); ?>
