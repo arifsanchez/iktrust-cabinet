@@ -207,8 +207,6 @@ class CabinetsController extends AppController {
 	}
 	
 	
-<<<<<<< HEAD
-=======
 	public function upload(){
 		$this->layout = 'kabinet';
 		$userId = $this->UserAuth->getUserId();
@@ -287,7 +285,7 @@ class CabinetsController extends AppController {
 		}
 	}
 
->>>>>>> 4fe21dd82a7c51877e1c94f2f39c42dfac004a67
+	
 	public function acknowledge(){
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
