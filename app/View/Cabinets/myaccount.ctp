@@ -1,4 +1,4 @@
-       
+
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
 				<?php echo $this->element('newsticker'); ?>
@@ -164,7 +164,7 @@
 						</ul>
 					</div>
 				</div>
-
+			
 			
 			</div><!--contentinner close-->
-		</div>	
+		</div>		

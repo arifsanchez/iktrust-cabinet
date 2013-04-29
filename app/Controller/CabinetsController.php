@@ -441,40 +441,49 @@ class CabinetsController extends AppController {
 	}
 
 	
+	
 	public function myaccount(){
-		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
-		//get user id
-		$userId = $this->UserAuth->getUserId();
-		//find email verified utk user
-		$user = $this->User->find(
-			'first', array(
-				'conditions' =>array( 'User.id' => $userId),
-				'fields' 		=> 'User.email_verified',
-				'recursive' 	=> -1
-			)
-		);
-		//keluarkan kat view
-		$this -> set('user',$user);
-		//debug($user);die();
-		$email = $this->User->find(
-			'list', array(
-				'conditions' =>array( 'User.id' => $userId),
-				'fields' 		=> 'User.email',
-				'recursive' 	=> -1,
-			)
-		);
-		$this->loadModel('Mt4User');
-		$a = $this->Mt4User->find('all',
-			array(
-				'conditions' =>array( 'Mt4User.EMAIL' => $email)
-			));
-		$this->set('a',$a);
+		if($this->UserAuth->isLogged()){
+			if ($this->UserAuth->isAdmin()) { 
+				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+			}else{
+				//get user id
+				$userId = $this->UserAuth->getUserId();
+					$this->layout = 'kabinet';
+					//find email verified utk user
+					
+					$user = $this->User->find(
+						'first', array(
+							'conditions' =>array( 'User.id' => $userId),
+							'fields' 		=> 'User.email_verified',
+							'recursive' 	=> -1
+						)
+					);
+					//keluarkan kat view
+					$this -> set('user',$user);
+					//debug($user);die();
+					$email = $this->User->find(
+						'list', array(
+							'conditions' =>array( 'User.id' => $userId),
+							'fields' 		=> 'User.email',
+							'recursive' 	=> -1,
+						)
+					);
+					$this->loadModel('Mt4User');
+					$a = $this->Mt4User->find('all',
+						array(
+							'conditions' =>array( 'Mt4User.EMAIL' => $email)
+						));
+					$this->set('a',$a);
 
-		$a = $this->paginate('Mt4User',
-			array("Mt4User.EMAIL" => $email)
-	   );
-		$this->set('a',$a);
+					$a = $this->paginate('Mt4User',
+						array("Mt4User.EMAIL" => $email)
+				   );
+					$this->set('a',$a);
+			}
+		}
+		
 	}	
 
 	
