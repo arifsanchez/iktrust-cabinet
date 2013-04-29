@@ -121,7 +121,7 @@
 										<br>
 										<div align="center">
 											<i class=" iconsweets-book-large"></i> &nbsp;
-											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $a['UserDoc']['form']?>">Traders Application Form</a>
+											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $b['UserDoc']['form']?>">Traders Application Form</a>
 										</div>
 									</div>
 
@@ -130,7 +130,7 @@
 										<br>
 										<div align="center">
 											<i class=" iconsweets-paperclip"></i> &nbsp;
-											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $a['UserDoc']['doc1']?>">Proof Of Identity</a>
+											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $b['UserDoc']['doc1']?>">Proof Of Identity</a>
 										</div>
 									</div>
 
@@ -139,7 +139,7 @@
 										<br>
 										<div align="center">
 											<i class=" iconsweets-document"></i> &nbsp;
-											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $a['UserDoc']['doc2']?>">Proof Of Residence</a>
+											<a href="<?php echo $this->webroot; ?>img/uploads/<?echo $b['UserDoc']['doc2']?>">Proof Of Residence</a>
 										</div>
 										
 										 <!--ul class="listfile">

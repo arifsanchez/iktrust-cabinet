@@ -6,12 +6,21 @@ class LocalsController extends AppController {
 
 	public function adminview($id = null){
 		$this->layout = 'admin';
+		$this->loadModel('UserDoc');
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
 		$a = $this->Local->Find('first',array(
 			'conditions' =>array( 'Local.id' => $id),
 		));
-
+		$try = $this->Local->Find('list',array(
+								'conditions' =>array( 'Local.id' => $id),
+								'fields' => 'Local.user_id'	));
+		
+		$b = $this->UserDoc->find('first' , array(
+								'conditions' => array( 'user_id' => $try),
+								));
+		//debug($b);die();
+		$this->set('b',$b);
 		$this->set('a',$a);
 		//debug($a);die();
 		
