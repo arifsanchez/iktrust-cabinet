@@ -76,8 +76,8 @@
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
 					array('title'=>'Cabinet Users',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
-					array('title'=>'Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index')),
-					array('title'=>'Partners',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index','/partner:list')),
+					array('title'=>'Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index','trader:list')),
+					array('title'=>'Partners',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index','partner:list')),
 				),
 			);
 			echo $this->Menu->render($menu);
@@ -89,8 +89,8 @@
 			$menu = array(
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
-					array('title'=>'Trading History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index')),
-					array('title'=>'Commission History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index','/commission:list')),
+					array('title'=>'Trading History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'trade')),
+					array('title'=>'Commission History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'commission')),
 				),
 			);
 			echo $this->Menu->render($menu);

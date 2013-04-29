@@ -18,20 +18,16 @@ class Mt4TradesController extends AppController {
  *
  * @return void
  */
-	public function index(){
-	
+	public function trade(){
 		$this->layout = 'admin';
 		$this->Mt4Trade->recursive = 0;
 		$this->set('mt4Trades', $this->paginate());
-		 
-		if($this->request->data){
-			$VALUE = $this->request->data['Mt4Trade']['TICKET'];
-			
-			if(!$this->Account->exists($VALUE)){
-			} else {
-				$this->redirect(array('action' => 'view',$VALUE));
-			}
-		}
+	}
+
+	public function commission(){
+		$this->layout = 'admin';
+		$this->Mt4Trade->recursive = 0;
+		$this->set('mt4Trades', $this->paginate('Mt4Trade', array('Mt4Trade.COMMENT LIKE' => 'agent%')));
 	}
 	
 	function search(){

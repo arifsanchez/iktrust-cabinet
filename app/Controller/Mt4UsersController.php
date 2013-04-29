@@ -23,7 +23,7 @@ class Mt4UsersController extends AppController {
 		$this->layout = 'admin';
 		$this->Mt4User->recursive = -1;
 		$this->set('mt4Users', $this->paginate());
-		
+
 		if($this->request->data){
 			$VALUE = $this->request->data['Mt4User']['LOGIN'];
 			
