@@ -75,23 +75,36 @@
 			$menu = array(
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
-					array('title'=>'All Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index')),
-					array('title'=>'All Trades',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index')),
+					array('title'=>'Cabinet Users',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
+					array('title'=>'Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index')),
+					array('title'=>'Partners',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index','/partner:list')),
 				),
 			);
 			echo $this->Menu->render($menu);
 		?>
 		
+		<li class="nav-header">Trading</li>
+	 
+		 <?php
+			$menu = array(
+				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
+				'items'=>	array(
+					array('title'=>'Trading History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index')),
+					array('title'=>'Commission History',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index','/commission:list')),
+				),
+			);
+			echo $this->Menu->render($menu);
+		?>
 		
-		<li class="nav-header">Financial</li>
+		<li class="nav-header">Finance</li>
 	 
 		 <?php
 			$menu = array(
 				'options'=> array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=> array(
-					array('title'=>'All Registeration',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
-					array('title'=>'All Withdrawals',  'url'=> array('controller'=>'#', 'action'=>'#')),
-					array('title'=>'All Deposits',  'url'=> array('controller'=>'locals', 'action'=>'transaction_deposit')),
+					array('title'=>'Withdrawals',  'url'=> array('controller'=>'locals', 'action'=>'transaction_withdraw')),
+					array('title'=>'Deposits',  'url'=> array('controller'=>'locals', 'action'=>'transaction_deposit')),
+					array('title'=>'Transfers',  'url'=> array('controller'=>'locals', 'action'=>'transaction_transfer')),
 				),
 			);
 			echo $this->Menu->render($menu);

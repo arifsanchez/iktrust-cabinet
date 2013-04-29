@@ -7,6 +7,13 @@ App::uses('AppController', 'Controller');
  */
 class Mt4UsersController extends AppController {
 
+	public $paginate = array(
+        'limit' => 15,
+        'order' => array(
+            'Mt4User.LOGIN' => 'desc'
+        )
+    );
+
 /**
  * index method
  *
@@ -14,7 +21,7 @@ class Mt4UsersController extends AppController {
  */
 	public function index() {
 		$this->layout = 'admin';
-		$this->Mt4User->recursive = 0;
+		$this->Mt4User->recursive = -1;
 		$this->set('mt4Users', $this->paginate());
 		
 		if($this->request->data){

@@ -7,6 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class Mt4TradesController extends AppController {
 
+	public $paginate = array(
+        'limit' => 15,
+        'order' => array(
+            'Mt4Trade.TICKET' => 'desc'
+        )
+    );
 /**
  * index method
  *
