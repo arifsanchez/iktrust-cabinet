@@ -325,7 +325,7 @@ class CabinetsController extends AppController {
 			'field'          => array('UserEcr.id'),
 		));
 		$this->set('ecr',$ecr);
-
+		//save to local 
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
