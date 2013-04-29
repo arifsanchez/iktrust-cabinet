@@ -75,8 +75,8 @@
 			$menu = array(
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
-					array('title'=>'All Trades',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index')),
 					array('title'=>'All Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'index')),
+					array('title'=>'All Trades',  'url'=> array('controller'=>'Mt4Trades', 'action'=>'index')),
 				),
 			);
 			echo $this->Menu->render($menu);
@@ -87,10 +87,11 @@
 	 
 		 <?php
 			$menu = array(
-				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
-				'items'=>	array(
-					array('title'=>'All Deposits',  'url'=> array('controller'=>'Traders', 'action'=>'transaction_deposit')),
+				'options'=> array('class'=>'nav nav-tabs nav-stacked'),
+				'items'=> array(
+					array('title'=>'All Registeration',  'url'=> array('controller'=>'Locals', 'action'=>'tradersindex')),
 					array('title'=>'All Withdrawals',  'url'=> array('controller'=>'#', 'action'=>'#')),
+					array('title'=>'All Deposits',  'url'=> array('controller'=>'Locals', 'action'=>'transaction_deposit')),
 				),
 			);
 			echo $this->Menu->render($menu);

@@ -7,13 +7,6 @@
 			// binds form submission and fields to the validation engine
 			jQuery("#form1").validationEngine();
 		});
-
-		function checkHELLO(field, rules, i, options){
-			if (field.val() != "HELLO") {
-				// this allows to use i18 for the error msgs
-				return options.allrules.validate2fields.alertText;
-			}
-		}
 	</script> 
 
 	<script>

@@ -1,3 +1,15 @@
+
+
+<script src="../js//jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			jQuery("#UserDoc").validationEngine();
+		});
+	</script> 
+	
 	
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
@@ -24,7 +36,8 @@
 										<h4>APPLICATION FORM</h4>
 										<ul>
 											Submit Form : Here.. &nbsp;<i class="iconfa-hand-down"></i>
-											<div><?php echo $this->Form->input('form' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div>
+											<!--div><?php #echo $this->Form->input('form' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?></div-->
+											<div><input type="file" class="validate[required] text-input span2"  id="UserDocForm" name="data[UserDoc][form]"/></div>
 										</ul>
 									
 									<hr>
