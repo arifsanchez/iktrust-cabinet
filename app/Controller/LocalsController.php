@@ -4,8 +4,9 @@ App::uses('HttpSocket', 'Network/Http');
 
 class LocalsController extends AppController {
 
-	public function adminview($id = null){
+	public function adminview($now = null){
 		$this->layout = 'admin';
+		$id = base64_decode($now);
 		$this->loadModel('UserDoc');
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
@@ -33,8 +34,8 @@ class LocalsController extends AppController {
 		if($this->request -> isPost()){
 			$this->Local->id = $id;
 			$status = $this->request->data['Local']['local_status_id'];
-			$data = array('id' => $id , 'local_status_id' => $status );
-			//debug($data);die();
+			
+			//debug($this->request->data);die();
 			if($status ==2 ) {
 			
 				$ibagent 			= $this->request->data['Local']['ibagent'];
@@ -55,7 +56,9 @@ class LocalsController extends AppController {
 				
 
 				// hantar parameter 
-				$data = array(
+				$fields = array(
+				
+					'action' 			=> 'register',
 					'ibagent' 			=> $ibagent,
 					'country' 			=> $country,
 					'state' 				=> $state,
@@ -75,22 +78,27 @@ class LocalsController extends AppController {
 				//debug($data);die();
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+				curl_setopt($ch, CURLOPT_URL,"http://www.iktrust.co.uk/webservice/api.php");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, true);
 				//debug($key);die();
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				//curl_setopt($ch,CURLOPT_POST,count($fields));
+				//curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+				curl_setopt($ch, CURLOPT_POSTFIELDS,$fields);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				//debug($data);
-				//debug($output);die();
+				//curl_close($ch);
+				//debug($fields);
+				//debug($output);
 				//debug($info);die();
 			}
 			
+				if($this->Local->save($this->request->data)){
+					
+					$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+				}
 				
-				$this->Local->save($data);
-				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
 			
 		}
 	}
@@ -101,7 +109,8 @@ class LocalsController extends AppController {
 		$this->set('locals', $this->paginate('Local', array(), array()));
 	}
 	
-	public function delete($id = null) {
+	public function delete($now = null) {
+		$id = base64_decode($now);
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -120,7 +129,8 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
-	public function edit_deposit($id = null) {
+	public function edit_deposit($now = null) {
+		$id = base64_decode($now);
 		//layout
 		$this->layout = 'admin';	
 		//load model
