@@ -79,9 +79,9 @@ class LocalsController extends AppController {
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				debug($data);
-				debug($output);
-				debug($info);die();
+				//debug($data);
+				//debug($output);
+				//debug($info);die();
 			}
 			
 			if($this->Local->save($this->request->data)){
