@@ -4,8 +4,9 @@ App::uses('HttpSocket', 'Network/Http');
 
 class LocalsController extends AppController {
 
-	public function adminview($id = null){
+	public function adminview($now = null){
 		$this->layout = 'admin';
+		$id = base64_decode($now);
 		$this->loadModel('UserDoc');
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
@@ -108,7 +109,8 @@ class LocalsController extends AppController {
 		$this->set('locals', $this->paginate('Local', array(), array()));
 	}
 	
-	public function delete($id = null) {
+	public function delete($now = null) {
+		$id = base64_decode($now);
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -127,7 +129,8 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
-	public function edit_deposit($id = null) {
+	public function edit_deposit($now = null) {
+		$id = base64_decode($now);
 		//layout
 		$this->layout = 'admin';	
 		//load model
