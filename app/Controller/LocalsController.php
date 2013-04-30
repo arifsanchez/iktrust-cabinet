@@ -31,9 +31,10 @@ class LocalsController extends AppController {
 		//save data
 		
 		if($this->request -> isPut() || $this->request -> isPost()){
-			$this->Local->create();
 			
-			if($this->request->data['Local']['local_status_id'] ==2 ) {
+			$status = $this->request->data['Local']['local_status_id'];
+			
+			if($status ==2 ) {
 			
 				$ibagent 			= $this->request->data['Local']['ibagent'];
 				$country 			= $this->request->data['Local']['country'];
@@ -80,13 +81,14 @@ class LocalsController extends AppController {
 				$info = curl_getinfo($ch);
 				
 				//debug($data);
-				//debug($output);
+				debug($output);die();
 				//debug($info);die();
 			}
 			
-			if($this->Local->save($this->request->data)){
+				$data = array('id' => $id , 'local_status_id' => $status );
+				$this->Local->save($data);
 				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
-			}
+			
 		}
 	}
 	
@@ -175,9 +177,9 @@ class LocalsController extends AppController {
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				debug($data);
-				debug($output);
-				debug($info);die();
+				//debug($data);
+				debug($output);die();
+				//debug($info);die();
 				
 				// send sms
 				$HttpSocket = new HttpSocket();
