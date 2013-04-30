@@ -451,7 +451,15 @@ class CabinetsController extends AppController {
 				$userId = $this->UserAuth->getUserId();
 					$this->layout = 'kabinet';
 					//find email verified utk user
-					
+				$this->loadModel('Local');	
+					$status = $this->Local->find(
+						'first', array(
+							'conditions' =>array( 'Local.user_id' => $userId),
+							'fields' 		=> 'Local.local_status_id',
+							'recursive' 	=> -1
+						)
+					);
+					//debug($status);die();//
 					$user = $this->User->find(
 						'first', array(
 							'conditions' =>array( 'User.id' => $userId),

@@ -35,47 +35,47 @@ class LocalsController extends AppController {
 			$this->Local->id = $id;
 			$status = $this->request->data['Local']['local_status_id'];
 			
-			//debug($this->request->data);die();
+			//debug($this->request->data);
 			if($status ==2 ) {
 			
-				$ibagent 			= $this->request->data['Local']['ibagent'];
+				$ibagent 			= $this->request->data['Local']['agent'];
 				$country 			= $this->request->data['Local']['country'];
 				$state				= $this->request->data['Local']['state'];
 				$city		 			= $this->request->data['Local']['city'];
 				$address 			= $this->request->data['Local']['address'];
-				$send_reports 	= $this->request->data['Local']['send_reports'];
-				$readonly 		= $this->request->data['Local']['readonly'];
 				$comment 		= $this->request->data['Local']['comment'];
 				$acctype 			= $this->request->data['Local']['acctype'];
+				$test		 			= $this->request->data['Local']['leverage'];
 				$name 				= $this->request->data['Local']['name'];
 				$email 				= $this->request->data['Local']['email'];
 				$key 				= $this->request->data['Local']['key'];
 				$investor 			= $this->request->data['Local']['investor'];
 				$agent 				= $this->request->data['Local']['agent'];
+				$phone				= $this->request->data['Local']['phone'];
 				
 				
 
 				// hantar parameter 
 				$fields = array(
 				
-					'action' 			=> 'register',
-					'ibagent' 			=> $ibagent,
+					'action' 				=> 'register',
+					'agent' 				=> $ibagent,
 					'country' 			=> $country,
 					'state' 				=> $state,
-					'city' 				=> $city,
+					'city' 					=> $city,
 					'address' 			=> $address,
-					'send_reports ' => $send_reports ,
-					'readonly' 			=> $readonly,
+					'leverage'			=> $test,
+					'phone'				=> $phone,
 					'comment' 		=> $comment,
 					'acctype' 			=> $acctype,
 					'name' 				=> $name,
 					'email' 				=> $email,
 					'mpass' 			=> $key,
 					'ipass' 				=> $investor,
-					'agent' 				=> $agent,
+					
 				);
 				
-				//debug($data);die();
+				//debug($fields);die();
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 				curl_setopt($ch, CURLOPT_URL,"http://www.iktrust.co.uk/webservice/api.php");
@@ -88,7 +88,7 @@ class LocalsController extends AppController {
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				//curl_close($ch);
+				curl_close($ch);
 				//debug($fields);
 				//debug($output);
 				//debug($info);die();

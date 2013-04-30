@@ -83,7 +83,73 @@
 													</div>
 											</fieldset>
 								</div>
+							
+						
+						<div class="row-fluid">
+							<div class="span12 ">
+								<div class="span6 well ">
+									<fieldset>
+										<fieldset>
+													<legend>Eccurrency Details</legend>	
+													<hr>
+													<div class="form-inline">
+														<p>
+															<label>E-Currency Provider Name  :</label>
+															<strong><span class="field"><? echo $a['UserEcr']['pro_name']; ?></span></strong>
+														</p>
+														
+														<p>
+															<label>E-Currency Account Number :</label>
+															<strong><span class="field"><? echo $a['UserEcr']['acc_no']; ?></span></strong>
+														</p>
+														
+														<p>
+															<label>E-Currency Account Name  :</label>
+															<strong><span class="field"><? echo $a['UserEcr']['acc_name']; ?></span></strong>
+														</p>
+													</div>
+												</fieldset>
+								</div>
+								<div class="span6 well ">
+											<fieldset>
+												<legend>Account Type Details</legend>	
+													<hr>
+													<div class="form-inline">
+														<p>
+															<label>Account Type :</label>
+															<strong><span class="field"><? echo $a['UserAcctype']['type']; ?></span></strong>
+														</p>
+														<p>
+															<label>Leverage :</label>
+															<strong><span class="field"><? echo $a['UserAcctype']['leverage']; ?></span></strong>
+														</p>
+														<p>
+															<label>Islamic :</label>
+															<strong><span class="field"><? if ( $a['UserAcctype']['islamic'] == 1) {
+																												echo "yes";
+																											}else{
+																												echo "no";
+																											}
+																										?>
+															</span></strong>
+														</p>
+														<p>
+															<label>Bonus :</label>
+															<strong><span class="field"><? if ( $a['UserAcctype']['bonus'] == 1) {
+																												echo "yes";
+																											}else{
+																												echo "no";
+																											}
+																										?>
+															</span></strong>
+														</p>
+													
+													</div>
+											</fieldset>
+								</div>
 							</div>
+						</div>
+						</div>
 						</div>
 						
 						<div class="row-fluid">
@@ -125,29 +191,12 @@
 								<h3 class="widgettitle nomargin"> Ecurrency  Details & Application Status</h3>
 									<div class="row-fluid">
 										<div class="span12  widgetcontent bordered">
-											<div class="span6 ">
+											<div class="span4 ">
 												<fieldset>
-													<legend>Eccurrency Details</legend>	
-													<hr>
-													<div class="form-inline">
-														<p>
-															<label>E-Currency Provider Name  :</label>
-															<strong><span class="field"><? echo $a['UserEcr']['pro_name']; ?></span></strong>
-														</p>
-														
-														<p>
-															<label>E-Currency Account Number :</label>
-															<strong><span class="field"><? echo $a['UserEcr']['acc_no']; ?></span></strong>
-														</p>
-														
-														<p>
-															<label>E-Currency Account Name  :</label>
-															<strong><span class="field"><? echo $a['UserEcr']['acc_name']; ?></span></strong>
-														</p>
-													</div>
+													
 												</fieldset>
 											</div>
-											<div class="span6 ">
+											<div class="span8 ">
 												 <fieldset>
 													<legend>Application status</legend>	
 													<hr>
@@ -166,15 +215,14 @@
 							echo $this->Form->input('state', array('type' => 'hidden', 'value' => $a['UserDetail']['state']));
 							echo $this->Form->input('city', array('type' => 'hidden', 'value' => $a['UserDetail']['city']));
 							echo $this->Form->input('address', array('type' => 'hidden', 'value' => $a['UserDetail']['address']));
-							echo $this->Form->input('send_reports', array('type' => 'hidden', 'value' => '1'));
-							echo $this->Form->input('readonly', array('type' => 'hidden', 'value' => '1'));
+							echo $this->Form->input('phone', array('type' => 'hidden', 'value' => $a['UserDetail']['cellphone']));
 							echo $this->Form->input('comment', array('type' => 'hidden', 'value' => 'jjj' ));
-							echo $this->Form->input('acctype', array('type' => 'hidden', 'value' => '4' ));
+							echo $this->Form->input('acctype', array('type' => 'hidden', 'value' =>  $a['UserAcctype']['type'] ));
 							echo $this->Form->input('name', array('type' => 'hidden', 'value' => $a['User']['first_name']));
 							echo $this->Form->input('email', array('type' => 'hidden', 'value' => $a['User']['email']));
 							echo $this->Form->input('key', array('type' => 'hidden', 'value' => $mpassword ));
 							echo $this->Form->input('investor', array('type' => 'hidden', 'value' => $ipassword ));
-							echo $this->Form->input('leverage', array('type' => 'hidden', 'value' => '2' ));
+							echo $this->Form->input('leverage', array('type' => 'hidden', 'value' =>$a['UserAcctype']['leverage']  ));
 							echo $this->Form->input('agent', array('type' => 'hidden', 'value' =>'888808'));
 						?>
 
