@@ -33,6 +33,13 @@ class Mt4UsersController extends AppController {
 
 	}
 
+	public function partner_client($acc = null) {
+		$this->layout = 'admin';
+		$this->Mt4User->recursive = -1;
+		$this->set('mt4Users', $this->paginate('Mt4User', array('Mt4User.AGENT_ACCOUNT LIKE' => ''.$acc.'%')));
+
+	}
+
 	/*public function index() {
 		$this->layout = 'admin';
 		$this->Mt4User->recursive = -1;

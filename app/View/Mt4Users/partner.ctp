@@ -29,19 +29,24 @@
 						<th class="center"><?php echo $this->Paginator->sort('EMAIL'); ?></th>
 						<th class="center"><?php echo $this->Paginator->sort('REGDATE'); ?></th>
 						<th class="center"><?php echo $this->Paginator->sort('BALANCE'); ?></th>
+						<th>More Action</th>
 					</tr>
 				
 					<?php foreach ($mt4Users as $mt4User): ?>
 						
 					<tr>
 						<td class="center"><?php echo h($mt4User['Mt4User']['LOGIN']); ?>&nbsp;</td>
-						<td class="center"><?php echo h($mt4User['Mt4User']['NAME']); ?>&nbsp;</td>
+						<td><?php echo h($mt4User['Mt4User']['NAME']); ?>&nbsp;</td>
 						<td class="center"><?php echo h($mt4User['Mt4User']['COUNTRY']); ?>&nbsp;</td>
 						<td class="center"><?php echo h($mt4User['Mt4User']['CITY']); ?>&nbsp;</td>
 						<td class="center"><?php echo h($mt4User['Mt4User']['PHONE']); ?>&nbsp;</td>
 						<td class="center"><?php echo h($mt4User['Mt4User']['EMAIL']); ?>&nbsp;</td>
 						<td class="center"><?php echo h($mt4User['Mt4User']['REGDATE']); ?>&nbsp;</td>
-						<td class="center"><?php echo h($mt4User['Mt4User']['BALANCE']); ?>&nbsp;</td>
+						<td class=""><?php echo h($mt4User['Mt4User']['BALANCE']); ?>&nbsp;</td>
+						<td class="center">
+							<span class="icon-edit"></span>
+							<?php echo $this->Html->link(__('View Clients'), array('action' => 'partner_client', $mt4User['Mt4User']['LOGIN'])); ?>
+						</td>
 					</tr>
 					<?php endforeach; ?>
 				</table>
