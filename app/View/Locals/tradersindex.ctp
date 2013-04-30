@@ -7,22 +7,22 @@
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
                         <tr>
-                            <th class="center">Register Id</th>
+                            <th class="center">User ID</th>
                             <th class="center">Name</th>
 							<th class="center">Email</th>
                             <th class="center">Status</th>
-							  <th class="center">Register Date</th>
-                            <th class="center">More Acion</th>
+							  <th class="center">Signup Date</th>
+                            <th class="center">More Action</th>
                         </tr>
                     </thead>
 					<?php	foreach ($locals as $locals): ?>
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
+								IK<? echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
                             <td class="center">
-								<? echo $locals['User']['first_name']; ?>
+								<? echo $locals['User']['first_name'].' '.$locals['User']['first_name']; ?>
 							</td>
                             <td class="center">
 								<? echo $locals['User']['email']; ?>
@@ -33,9 +33,14 @@
                             <td class="center">
 								<? echo $locals['Local']['created']; ?>
 							</td>
-								<td class="center"><span class="icon-edit"></span><?php echo $this->Html->link(__('View'), array('action' => 'adminview', $locals['Local']['id'])); ?>
-								<span class="icon-edit"></span>><?php echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $locals['Local']['id'])); ?>
-								<span class="icon-edit"></span><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $locals['Local']['id']), null, __('Are you sure you want to delete # %s?', $locals['Local']['id'])); ?></td
+							<td class="center">
+								<span class="icon-edit"></span>
+								<?php echo $this->Html->link(__('View'), array('action' => 'adminview', $locals['Local']['id'])); ?>
+								<span class="icon-edit"></span>
+								<?php echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $locals['Local']['id'])); ?>
+								<span class="icon-edit"></span>
+								<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $locals['Local']['id']), null, __('Are you sure you want to delete # %s?', $locals['Local']['id'])); ?>
+							</td>
 								
                         </tr>
                     </tbody>
