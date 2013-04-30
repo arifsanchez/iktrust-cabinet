@@ -51,11 +51,7 @@ class LocalsController extends AppController {
 				$investor 			= $this->request->data['Local']['investor'];
 				$agent 				= $this->request->data['Local']['agent'];
 				
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_POST, true);
+				
 
 				// hantar parameter 
 				$data = array(
@@ -75,13 +71,19 @@ class LocalsController extends AppController {
 					'agent' 				=> $agent,
 				);
 				
+				//debug($data);die();
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, true);
 				//debug($key);die();
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
 				//debug($data);
-				debug($output);die();
+				//debug($output);die();
 				//debug($info);die();
 			}
 			
