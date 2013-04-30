@@ -75,14 +75,17 @@ class LocalsController extends AppController {
 				//debug($data);die();
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+				curl_setopt($ch, CURLOPT_URL,"http://www.iktrust.co.uk/webservice/api.php");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, true);
 				//debug($key);die();
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				//curl_setopt($ch,CURLOPT_POST,count($fields));
+				//curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+				curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
+				curl_close($ch);
 				//debug($data);
 				debug($output);die();
 				//debug($info);die();
