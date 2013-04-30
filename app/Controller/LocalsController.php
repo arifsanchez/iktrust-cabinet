@@ -33,8 +33,8 @@ class LocalsController extends AppController {
 		if($this->request -> isPost()){
 			$this->Local->id = $id;
 			$status = $this->request->data['Local']['local_status_id'];
-			$data = array('id' => $id , 'local_status_id' => $status );
-			//debug($data);die();
+			
+			//debug($this->request->data);die();
 			if($status ==2 ) {
 			
 				$ibagent 			= $this->request->data['Local']['ibagent'];
@@ -88,9 +88,11 @@ class LocalsController extends AppController {
 				//debug($info);die();
 			}
 			
+				if($this->Local->save($this->request->data)){
+					
+					$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+				}
 				
-				$this->Local->save($data);
-				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
 			
 		}
 	}

@@ -156,7 +156,7 @@
 
 						<div>
 							<label>Application Status</label>
-							<span class="field"><?php echo $this->Form->input('local_status_id',array('label' => "",'empty'=>'Select' ,'div' => false, ));?></span>
+							<span class="field"><?php echo $this->Form->input('local_status_id',array('label' => "",'div' => false, ));?></span>
 						</div>
 						
 						<?php 
