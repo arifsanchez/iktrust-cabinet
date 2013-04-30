@@ -21,8 +21,8 @@
 		
 			<h4 class="widgettitle nomargin shadowed">Traders Application Form</h4>
 				<div class="widgetcontent bordered shadowed nopadding">
-					<form class="stdform stdform2" >
-						<?php echo $this->Form->create('Local', array('type' => '', 'id'=>'adminview' , 'class' => 'editprofileform')); ?>
+					
+						<?php echo $this->Form->create('Local', array('type' => '', 'class' => 'editprofileform')); ?>
 
 						<p>
 							<label>Full Name</label>
@@ -53,13 +53,13 @@
 							<label>Mobile Number</label>
 							<span class="field"><? echo $a['UserDetail']['cellphone']; ?></span>
 						</p>
-					</form>
+					
 				</div>
 
 				<div class="row-fluid">
 					<div class="widgetcontent bordered shadowed nopadding span6">
 						<h4 class="widgettitle nomargin shadowed">Bank Details</h4>
-						<form class="stdform stdform2" method="post" action="forms.html">
+						
 							<p>
 								<label>Name of Bank</label>
 								<span class="field"><? echo $a['UserBank']['name']; ?></span>
@@ -84,12 +84,12 @@
 								<label>SWIFT Number</label>
 								<span class="field"><? echo $a['UserBank']['swift_no']; ?></span>
 							</p>
-						</form>
+						
 					</div>
 				
 					<div class="widgetcontent bordered shadowed nopadding span6">
 						<h4 class="widgettitle nomargin shadowed">E-Currency Details</h4>
-						<form class="stdform stdform2" method="post" action="forms.html">
+					
 							<p>
 								<label>E-Currency Provider Name</label>
 								<span class="field"><? echo $a['UserEcr']['pro_name']; ?></span>
@@ -104,13 +104,13 @@
 								<label>E-Currency Account Name</label>
 								<span class="field"><? echo $a['UserEcr']['acc_name']; ?></span>
 							</p>
-						</form>
+					
 					</div>
 				</div>
 					
 				<div class="widgetcontent bordered shadowed nopadding">
 					<h4 class="widgettitle nomargin shadowed">Document Attachment</h4>
-					<form class="stdform stdform2" method="post" action="forms.html">	
+					
 						<br>
 						<div class="row-fluid">
 							<div class="span12">
@@ -184,7 +184,7 @@
 						</p>
 					
 						<?php echo $this->Form->end(); ?>
-					</form>
+					
 				</div>
 
 		</div>

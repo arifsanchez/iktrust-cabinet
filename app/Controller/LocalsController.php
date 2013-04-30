@@ -30,10 +30,12 @@ class LocalsController extends AppController {
 		$this->set(compact( 'localStatuses'));
 		//save data
 		
-		if($this->request -> isPut() || $this->request -> isPost()){
-			$this->Local->create();
-			
-			if($this->request->data['Local']['local_status_id'] ==2 ) {
+		if($this->request -> isPost()){
+			$this->Local->id = $id;
+			$status = $this->request->data['Local']['local_status_id'];
+			$data = array('id' => $id , 'local_status_id' => $status );
+			//debug($data);die();
+			if($status ==2 ) {
 			
 				$ibagent 			= $this->request->data['Local']['ibagent'];
 				$country 			= $this->request->data['Local']['country'];
@@ -50,11 +52,7 @@ class LocalsController extends AppController {
 				$investor 			= $this->request->data['Local']['investor'];
 				$agent 				= $this->request->data['Local']['agent'];
 				
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_POST, true);
+				
 
 				// hantar parameter 
 				$data = array(
@@ -74,19 +72,26 @@ class LocalsController extends AppController {
 					'agent' 				=> $agent,
 				);
 				
+				//debug($data);die();
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, true);
 				//debug($key);die();
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				debug($data);
-				debug($output);
-				debug($info);die();
+				//debug($data);
+				//debug($output);die();
+				//debug($info);die();
 			}
 			
-			if($this->Local->save($this->request->data)){
+				
+				$this->Local->save($data);
 				$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
-			}
+			
 		}
 	}
 	
@@ -175,9 +180,9 @@ class LocalsController extends AppController {
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
 				
-				debug($data);
-				debug($output);
-				debug($info);die();
+				//debug($data);
+				debug($output);die();
+				//debug($info);die();
 				
 				// send sms
 				$HttpSocket = new HttpSocket();
