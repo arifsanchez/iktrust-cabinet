@@ -1,12 +1,10 @@
-
-
 <script src="../js//jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
 
 	<script>
 		jQuery(document).ready(function(){
 			// binds form submission and fields to the validation engine
-			jQuery("#UserDoc").validationEngine();
+			jQuery("#img_valid").validationEngine();
 		});
 	</script> 
 	
@@ -30,7 +28,7 @@
 								</strong>
 							</h4>
 								<br><br>
-								<?php echo $this->Form->create('UserDoc', array('type' => 'file', 'id'=>'' , 'class' => 'stdform')); ?>
+								<?php echo $this->Form->create('UserDoc', array('type' => 'file', 'id'=>'img_valid' , 'class' => 'stdform')); ?>
 								<?php #echo $this->Form->input('user_id', array('type' => 'hidden' ,'value' => $user));?>
 									
 										<h4>APPLICATION FORM</h4>
@@ -49,7 +47,8 @@
 											<li><strong>Driver License</strong></li> 
 											<li><strong>Others Government Issued Photo ID</strong></li> 
 											<li><strong>Signed &amp; Notarised Financial Statement</strong></li><br>
-											<?php echo $this->Form->input('doc1' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+											<?php #echo $this->Form->input('doc1' ,array('type'=>'file' ,'label' => false, 'div' => false, 'class'=>'input-xlarge' ))?>
+											<div><input type="file" class="validate[required] text-input span2"  id="UserDocDoc1" name="data[UserDoc][doc1]"/></div>
 										</ul>
 										
 									<br>
@@ -58,7 +57,9 @@
 										<ul>
 											<li><strong>Utility Bill</strong><small> (not mobile phone/print from internet)</small></li> 
 											<li><strong>Government Issued Letter</strong></li><br>
-											<?php echo $this->Form->input('doc2', array('type'=>'file' ,'label' => false, 'div' => false, )); ?>
+											<?php #echo $this->Form->input('doc2', array('type'=>'file' ,'label' => false, 'div' => false, )); ?>
+											<div><input type="file" class="validate[required] text-input span2"  id="UserDocDoc2" name="data[UserDoc][doc2]"/></div>
+											<br>
 									   </ul>
 							</div>
 						</div>
