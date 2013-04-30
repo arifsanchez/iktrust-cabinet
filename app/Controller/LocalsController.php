@@ -84,7 +84,7 @@ class LocalsController extends AppController {
 				$info = curl_getinfo($ch);
 				
 				//debug($data);
-				//debug($output);die();
+				debug($output);die();
 				//debug($info);die();
 			}
 			
