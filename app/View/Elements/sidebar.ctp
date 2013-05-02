@@ -84,7 +84,7 @@
 											array('title'=>'My Accounts',  'url'=> array('controller'=>'cabinets', 'action'=>'myaccount')),
 											array('title'=>'My Profile',  'url'=> array('controller'=>'cabinets', 'action'=>'myprofile')),
 											array('title'=>'Deposit Fund',  'url'=> array('controller'=>'cabinets', 'action'=>'depositfund')),
-											array('title'=>'Withdraw Fund',  'url'=> array('controller'=>'cabinets', 'action'=>'withdrawfund')),
+											array('title'=>'Withdraw Fund',  'url'=> array('controller'=>'traders', 'action'=>'bankwired_withdrawal')),
 											array('title'=>'Platform Download', 'url'=> array('controller'=>'cabinets', 'action'=>'platformdownload')),
 										),
 									);

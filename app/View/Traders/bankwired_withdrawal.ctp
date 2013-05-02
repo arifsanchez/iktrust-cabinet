@@ -40,8 +40,8 @@
 								<?php if($mt4user['Mt4User']['BALANCE'] < 200){ 
 									echo "Balance is not enough";
 								}  else { ?>
-									<span class="icon-edit"><?php echo $this->Html->link(__(''), array('action' => 'withdrawallogin', $login )); ?></span>
-								<span class=" icon-tint"><?php echo $this->Html->link(__(''), array('action' => 'withdrawallogin', $login )); ?></span>
+									<?php echo $this->Html->link(__('Bank Transfer'), array( 'action' => 'withdrawallogin', $login ), array('class' => "btn btn-mini btn-success")); ?>
+								<?php echo $this->Html->link(__('eCurrency'), array('action' => 'withdrawallogin', $login ),array('class' => "btn btn-mini btn-warning")); ?>
 								<?php  }  ?>
 							</td>
                         </tr>
