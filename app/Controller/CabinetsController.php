@@ -138,9 +138,19 @@ class CabinetsController extends AppController {
 	
 	public function bank(){
 		$this->layout = 'kabinet';
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
+		debug($userId); die();
+		$detail = $this->UserDetail->Find('list',array(
+			'conditions' => array( 'UserDetail.user_id' => $userId),
+			'fields'			 => array('UserDetail.id'),
+		));
+		$this->set('detail', $detail);
+		
 		//get tradersid
 		$this->loadModel('UserBank');
 		// save data
@@ -164,7 +174,6 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserEcr');
 		// save data
 		if (!empty($userId)) {
-
 			if($this->request -> isPut() || $this->request -> isPost()){
 				$this->Cookie->write('user_eC' , $this->request->data);
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
@@ -181,32 +190,47 @@ class CabinetsController extends AppController {
 	public function acknowledge(){		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
-		$userId = $this->UserAuth->getUserId();
-
-		$user = $this->User->Find('first',array(
-			'conditions' => array( 'User.id' => $userId),
-		));
-		$this->set('user',$user);
 		
-		$user_data = $this->Cookie->read($user_eC);
-		//debug($user_data); die();
+		$ud = $this->Cookie->read($user_eC);
+		debug($ud);
 		
-		$this->loadModel('UserAcctypes');
-		$this->UserAcctypes->UserId = $user_data['user_data']['user_id'];
-		$this->UserAcctypes->save($user_data['user_acc']);
 		
-		$this->loadModel('UserDetail');
-		$this->data['User']['first_name'] = $user_data['User']['first_name'];
-		$this->UserDetail->UserId = $user_data['user_data']['id'];
-		$this->UserDetail->save($user_data['user_cl']);
-		
+		$userId 	= $this->UserAuth->getUserId();
 		$this->loadModel('UserBank');
-		$this->UserBank->UserId = $user_data['user_data']['user_id'];
-		$this->UserBank->save($user_data['user_b']);
+		$checkB = $this->UserBank->find('first' , array(
+			'conditions' => array( 'user_id' => $userId),
+			'fields' => 'id',
+		));
+
+		$Bname 		= $ud['user_b']['UserBank']['name'];
+		$Bacc_no 		= $ud['user_b']['UserBank']['acc_no'];
+		$Bacc_name = $ud['user_b']['UserBank']['acc_name'];
+		$Biban_no		 = $ud['user_b']['UserBank']['iban_no'];
+		$Bswift_no 	= $ud['user_b']['UserBank']['swift_no'];
+		$Bauth_val 	= $ud['user_b']['UserBank']['auth_val'];
+		//debug($Bname); die();
+
 		
+		//create new row jika empty finding user id yg matching
+		if ($checkB == ($ud['user_b']['UserBank']['user_id'])){
+			$this->UserBank->UserId = $checkB;
+			$replaceB = array('user_id' => $userId, 'name' => $Bname, 'acc_no' => $Bacc_no, 'acc_name' => $Bacc_name, 'iban_no' => $Biban_no, 'swift_no' => $Bswift_no, 'auth_val' => $Bauth_val);
+			//debug($replaceB); die();
+			$this->UserBank->save($replaceB);
+		}else{
+			//$data3 = $this->UserBank->save($ud['user_b']['UserBank']);
+			//$this->UserBank->save($data3);
+	
+		}
+		
+		/*$this->loadModel('UserBank');
+		$this->UserBank->UserId = $ud['ud']['user_id'];
+		$this->UserBank->save($ud['user_b']);
+		
+		//create new row jika empty finding user id yg matching
 		$this->loadModel('UserEcr');
-		$this->UserEcr->UserId = $user_data['user_data']['user_id'];
-		$this->UserEcr->save($user_data['user_eC']);
+		$this->UserEcr->UserId = $ud['user_data']['user_id'];
+		$this->UserEcr->save($ud['user_eC']);*/
 		
 		
 		$this->loadModel('Local');
@@ -254,10 +278,10 @@ class CabinetsController extends AppController {
 		
 		$userId 		= $this->UserAuth->getUserId();
 		$check = $this->UserDoc->find('first' , array(
-								'conditions' => array( 'user_id' => $userId),
-								'fields' => 'id',
-								));
-						
+			'conditions' => array( 'user_id' => $userId),
+			'fields' => 'id',
+		));
+		
 		//debug($check);die();
 		if ($this->request->is('post')){
 			
