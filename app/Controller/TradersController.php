@@ -8,7 +8,7 @@ class TradersController extends AppController {
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');	
 	
-		function bankwired(){
+		function bankwired_deposit(){
 			//layout
 			$this->layout = 'admin';	
 			//load model
@@ -20,6 +20,28 @@ class TradersController extends AppController {
 			$this->set('user_id', $userId);
 			//find data frrom user
 			$email = $this->Deposit->User->find('list' ,
+						array( 'conditions' => array('User.id' => $userId),
+								 'fields' => array('User.email' ),
+								 ));
+			//debug($email);
+			$mt4user = $this->paginate('Mt4User',
+						array("Mt4User.EMAIL" => $email));
+			$this->set('mt4user',$mt4user);
+			
+		}
+		
+		function bankwired_withdrawal(){
+			//layout
+			$this->layout = 'admin';	
+			//load model
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			//find data frrom user
+			$email = $this->Withdrawal->User->find('list' ,
 						array( 'conditions' => array('User.id' => $userId),
 								 'fields' => array('User.email' ),
 								 ));
@@ -78,6 +100,43 @@ class TradersController extends AppController {
 				}
 			}
 		}
+		
+		function withdrawallogin($login=null){
+			//layout
+			$this->layout = 'admin';	
+			$LOGIN = base64_decode($login);
+			//load model
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			$mt4user  = $this->Withdrawal->Mt4User->find('first' ,
+							array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
+								));
+			$this->set('mt4user' , $mt4user);
+			$mt4user  = $this->Withdrawal->Mt4User->find('list' ,
+							array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
+								 'fields' => array('Mt4User.AGENT_ACCOUNT'),
+								));
+			$userbank =$this->Withdrawal->UserBank->find('first' ,
+							array( 'conditions' => array('UserBank.user_id' => $userId),
+								));
+			$this->set('userbank' , $userbank);
+		
+			if ($this->request->is('post')) {
+				//debug($this->request->data);die();
+				$this->request->data['Withdrawal']['local_status_id'] = 1;
+				$this->Withdrawal->create();
+				if ($this->Withdrawal->save($this->request->data)) {
+					$this->Session->setFlash(__('Your Withdrawal has been saved'));
+					$this->redirect(array('action' => 'view_withdrawal',$this->Withdrawal->id));
+				} else {
+					$this->Session->setFlash(__('The Withdrawal could not be saved. Please, try again.'));
+				}
+			}
+		}
 
 		function view_deposit($id =null){
 			//layout
@@ -103,6 +162,37 @@ class TradersController extends AppController {
 						$Email->subject('New Trader IKTrust');
 						$Email->send();*/
 				$this->redirect(array('action' => 'transaction_deposit'));
+			}
+			if(isset($this->request->data['print'])){
+				$this->redirect(array('action' => 'view_pdf' ,$id));
+			}
+		}
+		
+		function view_withdrawal($id =null){
+			//layout
+			$this->layout = 'admin';	
+			//load model
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			$this->Withdrawal->id = $id;
+			$withdrawal = $this ->Withdrawal->find('first' , array(
+									'conditions' => array( 'Withdrawal.id' => $id)
+									));
+			//debug($withdrawal);die();
+			$this->set('withdrawal', $withdrawal);
+			
+			if (isset($this->request->data['submit'])) {
+				//send email
+						/*$Email = new CakeEmail();
+						$Email->template('newtrader');
+						$Email->viewVars(array('withdrawal' => $withdrawal));
+						$Email->emailFormat('both');
+						$Email->from(array('admin@trustxe.com' => 'IKTust'));
+						$Email->to('webteam@iktrust.com');
+						$Email->subject('New Trader IKTrust');
+						$Email->send();*/
+				$this->redirect(array('action' => 'transaction_withdrawal'));
 			}
 			if(isset($this->request->data['print'])){
 				$this->redirect(array('action' => 'view_pdf' ,$id));
@@ -145,6 +235,8 @@ class TradersController extends AppController {
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout
 			$this->render();
 		}
+		
+		
 	
 }	
 		

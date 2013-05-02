@@ -56,7 +56,7 @@
 														<?php 
 															echo $this->Html->image('deposit_img/img3.png', array('class'=>'' , 'alt'=>'photo'));?>
 															<p>This is a transfer direct from your bank account to ours. Bank Transfer allows you to deposit in your local currency, the funds will be converted by the beneficiary bank to the currency that you have chosen upon making your deposit.<br>
-															<? echo $this->HTML->link('Deposit bank Transfer' ,array ('controller' => 'traders', 'action' => 'bankwired' )); ?> 
+															<? echo $this->HTML->link('Deposit bank Transfer' ,array ('controller' => 'traders', 'action' => 'bankwired_deposit' )); ?> 
 															<p>
 												</div>
 											</div>
