@@ -100,11 +100,8 @@ class CabinetsController extends AppController {
 		if (!empty($userId)) {
 
 			if($this->request -> isPut() || $this->request -> isPost()){
-				$this->UserAcctypes->create();
-				if($this->UserAcctypes->save($this->request->data)){
-					//$this->session->setFlash(_('The bank details have been saved'));
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
-				}
+				$this->Cookie->write('user_acc', $this->request->data);
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
 			}
 		}
 	}
@@ -132,13 +129,8 @@ class CabinetsController extends AppController {
 
 		if (!empty($userId)) {
 			if ($this->request -> isPut() || $this->request -> isPost()) {
-				$this->User->set($this->data);
-				$this->UserDetail->set($this->data);
-				$this->User->saveAssociated($this->request->data);
-				//$this->Session->setFlash(__('Your detail has been successfully saved'));
+				$this->Cookie->write('user_cl' , $this->request->data);
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'bank'));
-			}else{
-				//$this->Session->setFlash(__('broken'));
 			}
 		}
 	}
@@ -154,25 +146,17 @@ class CabinetsController extends AppController {
 		// save data
 		if (!empty($userId)) {
 			if($this->request -> isPut() || $this->request -> isPost()){
-				//debug($this->request->data);die();
-				$this->UserBank->create();
-					//debug($this->request->data);die();
-				if($this->UserBank->save($this->request->data)){
-					//$this->session->setFlash(_('The bank details have been saved'));
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'ecurrency'));
-				}
+				$this->Cookie->write('user_b' , $this->request->data);
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'ecurrency'));
 			}
 		}
 	}
 
 	
-	public function document(){
-		$this->layout = 'kabinet';
-	}				
-
-	
 	public function ecurrency(){
+		
 		$this->layout = 'kabinet';
+		
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
@@ -182,14 +166,82 @@ class CabinetsController extends AppController {
 		if (!empty($userId)) {
 
 			if($this->request -> isPut() || $this->request -> isPost()){
-				//debug($this->request->data);die();
-				$this->UserEcr->create();
-				//debug($this->request->data);die();
-				if($this->UserEcr->save($this->request->data)){
-					//$this->session->setFlash(_('The bank details have been saved'));
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
-				}
+				$this->Cookie->write('user_eC' , $this->request->data);
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'document'));
 			}
+		}
+	}
+	
+	
+	public function document(){		
+		$this->layout = 'kabinet';
+	}	
+	
+	
+	public function acknowledge(){		
+		$this->layout = 'kabinet';
+		$this->loadModel('Usermgmt.User');
+		$userId = $this->UserAuth->getUserId();
+
+		$user = $this->User->Find('first',array(
+			'conditions' => array( 'User.id' => $userId),
+		));
+		$this->set('user',$user);
+		
+		$user_data = $this->Cookie->read($user_eC);
+		//debug($user_data); die();
+		
+		$this->loadModel('UserAcctypes');
+		$this->UserAcctypes->UserId = $user_data['user_data']['user_id'];
+		$this->UserAcctypes->save($user_data['user_acc']);
+		
+		$this->loadModel('UserDetail');
+		$this->data['User']['first_name'] = $user_data['User']['first_name'];
+		$this->UserDetail->UserId = $user_data['user_data']['id'];
+		$this->UserDetail->save($user_data['user_cl']);
+		
+		$this->loadModel('UserBank');
+		$this->UserBank->UserId = $user_data['user_data']['user_id'];
+		$this->UserBank->save($user_data['user_b']);
+		
+		$this->loadModel('UserEcr');
+		$this->UserEcr->UserId = $user_data['user_data']['user_id'];
+		$this->UserEcr->save($user_data['user_eC']);
+		
+		
+		$this->loadModel('Local');
+		if($this->request -> isPut() || $this->request -> isPost()){
+			
+			$this->Local->create();
+			$this->request->data['Local']['local_status_id'] = 1 ;
+			//debug($this->request->data);die();
+			if($this->Local->save($this->request->data)){
+				//$this->session->setFlash(_('The bank details have been saved'));
+			}
+			
+			//send email
+			$Email = new CakeEmail();
+			$Email->template('newtrader');
+			$Email->viewVars(array('user' => $user));
+			$Email->emailFormat('both');
+			$Email->from(array('admin@trustxe.com' => 'IKTust'));
+			$Email->to('webteam@iktrust.com');
+			$Email->subject('New Trader IKTrust');
+			$Email->send();
+	
+			// send sms
+			$HttpSocket = new HttpSocket();
+			$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', 
+			array(
+				'user' => 'instafx', 
+				'pass' => 'instafx8000',
+				'msisdn' => '0136454001',
+				'body' => 'iktrust test ',
+				'smstype' => 'TEXT',
+				'sender' => 'IKTRUST',
+				#'Telco' => 'CELCOM'
+			));
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
 	}
 	
@@ -268,78 +320,6 @@ class CabinetsController extends AppController {
 			}
 
 			$this->redirect(array( 'action' => 'myaccount'));
-		}
-	}
-
-	public function acknowledge(){
-		$this->layout = 'kabinet';
-		$this->loadModel('Usermgmt.User');
-		$userId = $this->UserAuth->getUserId();
-
-		$user = $this->User->Find('first',array(
-			'conditions' => array( 'User.id' => $userId),
-		));
-		$this->set('user',$user);
-
-		$this->loadModel('UserAcctypes');
-		$acctypes = $this->UserAcctypes->Find('first',array(
-			'conditions' => array( 'UserAcctypes.user_id' => $userId),
-			'field'          => array('UserAcctypes.id'),
-		));
-		$this->set('acctypes',$acctypes);
-
-		$this->loadModel('UserDetail');
-		$userD = $this->UserDetail->Find('first',array(
-			'conditions' => array( 'UserDetail.user_id' => $userId),
-			'field'          => array('UserDetail.id'),
-		));
-		$this->set('userD',$userD);	 
-
-		$this->loadModel('UserBank');
-		$bank = $this->UserBank->Find('first',array(
-			'conditions' => array( 'UserBank.user_id' => $userId),
-			'field'          => array('UserBank.id'),
-		));
-		$this->set('bank',$bank);
-
-		$this->loadModel('UserEcr');
-		$ecr = $this->UserEcr->Find('first',array(
-			'conditions' => array( 'UserEcr.user_id' => $userId),
-			'field'          => array('UserEcr.id'),
-		));
-		$this->set('ecr',$ecr);
-
-		$this->loadModel('Local');
-		if($this->request -> isPut() || $this->request -> isPost()){
-			$this->Local->create();
-			$this->request->data['Local']['local_status_id'] = 1 ;
-			//debug($this->request->data);die();
-			if($this->Local->save($this->request->data)){
-				//$this->session->setFlash(_('The bank details have been saved'));
-			}	
-			
-			//send email
-			$Email = new CakeEmail();
-			$Email->template('newtrader');
-			$Email->viewVars(array('user' => $user));
-			$Email->emailFormat('both');
-			$Email->from(array('admin@trustxe.com' => 'IKTust'));
-			$Email->to('webteam@iktrust.com');
-			$Email->subject('New Trader IKTrust');
-			$Email->send();
-	
-			// send sms
-			$HttpSocket = new HttpSocket();
-			$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
-				'user' => 'instafx', 
-				'pass' => 'instafx8000',
-				'msisdn' => '0136454001',
-				'body' => 'iktrust test ',
-				'smstype' => 'TEXT',
-				'sender' => 'IKTRUST',
-				#'Telco' => 'CELCOM'
-			));	   
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
 	}
 	

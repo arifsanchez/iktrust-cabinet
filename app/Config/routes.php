@@ -38,7 +38,7 @@
 	Router::connect('/:slug', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'viewProfile'), array('routeClass' => 'SlugRoute'));
 	Router::connect('/login/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'login'));
 	Router::connect('/logout', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'logout'));
-	Router::connect('/forgotPassword', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'forgotPassword'));
+	Router::connect('/forgotPassword', array('controller' => 'cabinets', 'action' => 'forgot_password'));
 	Router::connect('/emailVerification', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'emailVerification'));
 	Router::connect('/activatePassword/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'activatePassword'));
 	Router::connect('/register', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'register'));
