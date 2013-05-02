@@ -508,6 +508,38 @@ class CabinetsController extends AppController {
 	public function platformdownload(){
 		$this->layout = 'kabinet';
 	}	
+	
+	public function forgot_password(){
+		$this->layout = 'register_kabinet';
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		$userId = $this->UserAuth->getUserId();
+		if ($this->request -> isPost()) {
+			$this->User->set($this->data);
+			if ($this->User->LoginValidate()) {
+				$email  = $this->data['User']['email'];
+				$user = $this->User->findByUsername($email);
+				if (empty($user)) {
+					$user = $this->User->findByEmail($email);
+					if (empty($user)) {
+						$this->Session->setFlash(__('Incorrect Email/Username'));
+						return;
+					}
+				}
+				// check for unverified account
+				if ($user['User']['id'] != 1 and $user['User']['email_verified']==0) {
+					$this->Session->setFlash(__('Your registration has not been confirmed yet please verify your email before reset password'));
+					return;
+				}
+				$this->User->sendForgotPasswordMail($user);
+				$this->Session->setFlash(__('Please check your mail for reset your password'));
+				$this->redirect('/login');
+			}
+		}
+		
+	}
+	
+
 
 	
 	public function register(){
