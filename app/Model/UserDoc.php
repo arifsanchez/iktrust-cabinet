@@ -56,19 +56,15 @@ class UserDoc extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		
-		
 	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
+	
+//The Associations below have been created with all possible keys, those that are not needed can be removed
 /**
  * hasMany associations
  *
  * @var array
  */
- 
- /*public $belongsTo = array(
+  /*public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -78,7 +74,4 @@ class UserDoc extends AppModel {
 		),
 		
 	);*/
-	
-	
-
 }

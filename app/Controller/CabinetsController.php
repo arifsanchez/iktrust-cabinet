@@ -51,7 +51,7 @@ class CabinetsController extends AppController {
 		}
 	}
 
-	
+	//
 	function view_pdf() {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();

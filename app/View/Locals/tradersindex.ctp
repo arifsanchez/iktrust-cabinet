@@ -2,12 +2,19 @@
 	
 	<div class="maincontent">
 		<div class="contentinner">
-		
+			
 			<h3 class="widgettitle">IKTRUST Trader Details</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
+					<?php 
+						echo $this->Html->link(__("All",true),"tradersindex")."&nbsp;|&nbsp;"; 
+						echo $this->Html->link(__("Pending",true),"tradersindex/status:1")."&nbsp;|&nbsp;"; 
+						echo $this->Html->link(__("Approved",true),"tradersindex/status:2")."&nbsp;|&nbsp;";
+						echo $this->Html->link(__("Rejected",true),"tradersindex/status:3"); 
+					?>
+				
 					<thead>
                         <tr>
-                            <th class="center">User ID</th>
+                            <th class="center">Register ID</th>
                             <th class="center">Name</th>
 							<th class="center">Email</th>
                             <th class="center">Status</th>
@@ -22,7 +29,7 @@
 								IK<? echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
                             <td class="center">
-								<? echo $locals['User']['first_name'].' '.$locals['User']['first_name']; ?>
+								<? echo $locals['User']['first_name'].' '.$locals['User']['last_name']; ?>
 							</td>
                             <td class="center">
 								<? echo $locals['User']['email']; ?>
@@ -57,5 +64,5 @@
 					</ul>
 				</div>
 	
-		</div><!--contentinner-->
+		</div><!--contentinnerm-->
 	</div><!--maincontent-->

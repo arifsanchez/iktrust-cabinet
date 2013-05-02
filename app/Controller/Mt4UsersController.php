@@ -18,8 +18,29 @@ class Mt4UsersController extends AppController {
  * index method
  *
  * @return void
- */
-	public function index() {
+ */	
+	public function trader() {
+		$this->layout = 'admin';
+		$this->Mt4User->recursive = -1;
+		$this->set('mt4Users', $this->paginate('Mt4User', array('Mt4User.GROUP LIKE' => 'IK%')));
+
+	}
+
+	public function partner() {
+		$this->layout = 'admin';
+		$this->Mt4User->recursive = -1;
+		$this->set('mt4Users', $this->paginate('Mt4User', array('Mt4User.COMMENT LIKE' => 'ML%')));
+
+	}
+
+	public function partner_client($acc = null) {
+		$this->layout = 'admin';
+		$this->Mt4User->recursive = -1;
+		$this->set('mt4Users', $this->paginate('Mt4User', array('Mt4User.AGENT_ACCOUNT LIKE' => ''.$acc.'%')));
+
+	}
+
+	/*public function index() {
 		$this->layout = 'admin';
 		$this->Mt4User->recursive = -1;
 		$this->set('mt4Users', $this->paginate());
@@ -32,7 +53,7 @@ class Mt4UsersController extends AppController {
 				$this->redirect(array('action' => 'view',$VALUE));
 			}
 		}
-	}
+	}*/
 	
 	public function search(){
 		if($this->RequestHandler->isAjax() ) {

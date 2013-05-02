@@ -209,7 +209,7 @@
 												<hr>
 												
 						<?php 
-							// data to save in mt4 and generated trader id
+							// data to save in mt4 and generated trader idbbb
 							echo $this->Form->input('ibagent', array('type' => 'hidden', 'value' => '1' ));
 							echo $this->Form->input('country', array('type' => 'hidden', 'value' => $a['User']['country']));
 							echo $this->Form->input('state', array('type' => 'hidden', 'value' => $a['UserDetail']['state']));

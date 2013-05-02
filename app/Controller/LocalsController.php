@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('HttpSocket', 'Network/Http');
-
+//s
 class LocalsController extends AppController {
 
 	public function adminview($now = null){
@@ -103,11 +103,27 @@ class LocalsController extends AppController {
 		}
 	}
 	
-	public function tradersindex(){
+	public function tradersindex($id = null){
 		$this->layout = 'admin';
-		$this->Local->recursive = 0;
-		$this->set('locals', $this->paginate('Local', array(), array()));
+		//$this->Local->recursive = 0;
+		//$this->set('locals', $this->paginate('Local', array(), array()));
+		//debug($this->request->params['named']['status']);die();	
+		if(!empty($this->request->params['named']['status'])){
+			$this->Local->id = $id;
+			$locals = $this->paginate('Local',
+				array("Local.local_status_id" => $this->request->params['named']['status'])
+			
+			);
+			//debug($locals);die();	
+			$this->set('locals',$locals);
+		} else {
+			$locals = $this->paginate('Local');
+			$this->set('locals',$locals);
+		}
 	}
+	
+	
+	
 	
 	public function delete($now = null) {
 		$id = base64_decode($now);
