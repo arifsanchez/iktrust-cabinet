@@ -12,7 +12,7 @@
 						<div align ='center'><?php echo $this->Form->input("email" ,array('label' => false,'div' => false,))?></div>
 					</div>
 					<div align = 'right'>
-						<div class="umstyle4"><?php echo $this->Form->Submit(__('Send Email'), array('class'=>'btn btn-danger span2'));?></div>
+						<?php echo $this->Form->Submit(__('Send Email'), array('class'=>'btn btn-danger'));?>
 					</div>
 					<?php echo $this->Form->end(); ?>
 				</div>
