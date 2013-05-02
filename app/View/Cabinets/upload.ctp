@@ -40,7 +40,7 @@
 										<li><strong>Driver License</strong></li> 
 										<li><strong>Others Government Issued Photo ID</strong></li> 
 										<li><strong>Signed &amp; Notarised Financial Statement</strong></li><br>
-										<strong>Select File : </strong>
+										<strong>Select File : </strong> 
 										<div><i class=" iconsweets-paperclip"> &nbsp;</i> <input type="file" class="validate[required] text-input span2"  id="UserDocDoc1" name="data[UserDoc][doc1]"/></div>
 									</ul>
 
