@@ -409,9 +409,15 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 	}	
 
-	
+	//this redirect changes by faiz not sure betol ke x.. macam salah...
 	public function login(){
-		$this->layout = 'logmasuk';
+		$this->loadModel('Usermgmt.User');
+		$this->layout = 'kabinet';
+			if($this->UserAuth->isLogged()){
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount')); }
+				if ($this->UserAuth->isAdmin()) { 
+					$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
+					}
 	}		
 
 	
