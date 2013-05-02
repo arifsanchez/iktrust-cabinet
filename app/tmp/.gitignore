@@ -1,6 +1,8 @@
 !.gitignore
 !cache
 cache/*
+cache/*.*
+cache/
 !cache/persistent
 cache/persistent/*
 !cache/persistent/empty

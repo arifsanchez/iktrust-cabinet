@@ -13,13 +13,14 @@ img.floatLeft {
 
 <div class="loginwrapper">
 	<div class="loginwrap zindex100 animate2 bounceInDown">
-	<h1 class="logintitle"><?php echo $this->Html->image('logologin.png', array('alt' => 'Trust XE Logo' , 'class' => "floatLeft animate3 fadeInRightBig" ));?>Sign in<span class="subtitle">Hello! Sign in to get you started!</span></h1>
+	<h1 class="logintitle"><?php echo $this->Html->image('logologin.png', array('alt' => 'Trust XE Logo' , 'class' => "floatLeft animate3 fadeInRightBig" ));?>Sign in<span class="subtitle">Hello! Sign in to get you started!</span>
+	</h1>
         <div class="loginwrapperinner">
             <?php echo $this->Form->create('User', array('url'=>array('controller' => 'users', 'action' => 'login', 'plugin' => 'usermgmt'), 'id'=>'cloginForm')); ?>
                 <p class="animate4 bounceIn"><?php echo $this->Form->input("email" ,array('label' => false, 'id'=> "username", 'div' => false, 'placeholder'=>__('Email'), 'title'=>__('Email')))?></p>
                 <p class="animate5 bounceIn"><?php echo $this->Form->input("password" ,array("type" => "password", 'label' => false, 'div' => false, 'id'=>"password", 'placeholder'=>__('Password'), 'title'=>__('Password')))?></p>
                 <p class="animate6 bounceIn"><?php echo $this->Form->button(__('Sign In'), array('id' =>' cloginSubmitBtn', 'class' => "btn btn-danger btn-block"));?></p>
-                <p class="animate7 fadeIn"><a href="#"><span class="icon-question-sign"></span> Forgot Password?</a></p>
+                <p class="animate7 fadeIn"><span class="icon-question-sign"></span> <?php echo $this->Html->link(' Forgot Password ', array('controller' => 'cabinets', 'action' => 'forgot_password')); ?></p>
             <?php echo $this->Form->end(); ?>
         </div>
     </div>
