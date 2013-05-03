@@ -9,7 +9,6 @@ class CabinetsController extends AppController {
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');	
 	
-	
 	function check_balance(){
 		$this->layout = 'logmasuk';
 		$userId = $this->UserAuth->getUserId();
@@ -36,10 +35,12 @@ class CabinetsController extends AppController {
 			$this->layout = 'logmasuk';
 			$this->loadModel('Mt4User');
 			$login = base64_decode($acc_id);
+			
 			$check = $this->Mt4User->Find('first' ,array(
 				'conditions' => array('Mt4User.LOGIN' =>$login),
 				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE', 'Mt4User.MARGIN_FREE', 'Mt4User.MODIFY_TIME'),
 			));
+			
 			if(empty($check)){
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
 			} else {
@@ -51,10 +52,11 @@ class CabinetsController extends AppController {
 		}
 	}
 
-	//
+	
 	function view_pdf() {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
+		
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),
 		));	
@@ -98,7 +100,6 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserAcctypes');
 		// save data
 		if (!empty($userId)) {
-
 			if($this->request -> isPut() || $this->request -> isPost()){
 				$this->Cookie->write('user_acc', $this->request->data);
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'client'));
@@ -144,7 +145,6 @@ class CabinetsController extends AppController {
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
-		//debug($userId); die();
 		$detail = $this->UserDetail->Find('list',array(
 			'conditions' => array( 'UserDetail.user_id' => $userId),
 			'fields'			 => array('UserDetail.id'),
@@ -164,7 +164,6 @@ class CabinetsController extends AppController {
 
 	
 	public function ecurrency(){
-		
 		$this->layout = 'kabinet';
 		
 		//get userid
@@ -190,11 +189,21 @@ class CabinetsController extends AppController {
 	public function acknowledge(){		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
-		
 		$ud = $this->Cookie->read($user_eC);
-		debug($ud);
 		
+		$this->loadModel('UserAcctypes');
+		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
+		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
 		
+		$this->loadModel('User');
+		$this->User->UserId = $ud['user_cl']['User']['id'];
+		$this->User->save($ud['user_cl']['User']);
+		
+		$this->loadModel('UserDetail');
+		$this->UserDetail->UserId = $ud['user_cl']['UserDetail']['id'];
+		$this->UserDetail->save($ud['user_cl']['UserDetail']);
+
+		//create new row jika empty finding user id yg matching (BANK)
 		$userId 	= $this->UserAuth->getUserId();
 		$this->loadModel('UserBank');
 		$checkB = $this->UserBank->find('first' , array(
@@ -202,47 +211,44 @@ class CabinetsController extends AppController {
 			'fields' => 'id',
 		));
 
-		$Bname 		= $ud['user_b']['UserBank']['name'];
-		$Bacc_no 		= $ud['user_b']['UserBank']['acc_no'];
-		$Bacc_name = $ud['user_b']['UserBank']['acc_name'];
-		$Biban_no		 = $ud['user_b']['UserBank']['iban_no'];
-		$Bswift_no 	= $ud['user_b']['UserBank']['swift_no'];
-		$Bauth_val 	= $ud['user_b']['UserBank']['auth_val'];
-		//debug($Bname); die();
-
-		
-		//create new row jika empty finding user id yg matching
-		if ($checkB == ($ud['user_b']['UserBank']['user_id'])){
-			$this->UserBank->UserId = $checkB;
-			$replaceB = array('user_id' => $userId, 'name' => $Bname, 'acc_no' => $Bacc_no, 'acc_name' => $Bacc_name, 'iban_no' => $Biban_no, 'swift_no' => $Bswift_no, 'auth_val' => $Bauth_val);
-			//debug($replaceB); die();
+		//create new row jika empty finding user id yg matching (BANK)
+		if (($ud['user_b']['UserBank']['user_id']) == ($ud['user_b']['UserBank']['user_id'])){
+			$this->UserBank->id = $checkB;
+			$replaceB = $ud['user_b']['UserBank'];
 			$this->UserBank->save($replaceB);
 		}else{
-			//$data3 = $this->UserBank->save($ud['user_b']['UserBank']);
-			//$this->UserBank->save($data3);
-	
+			$NewBdata = $this->UserBank->save($ud['user_b']['UserBank']);
+			$this->UserBank->save($NewBdata);
 		}
-		
-		/*$this->loadModel('UserBank');
-		$this->UserBank->UserId = $ud['ud']['user_id'];
-		$this->UserBank->save($ud['user_b']);
-		
-		//create new row jika empty finding user id yg matching
+
+		//create new row jika empty finding user id yg matching (ECURRENCY)
+		$userId 	= $this->UserAuth->getUserId();
 		$this->loadModel('UserEcr');
-		$this->UserEcr->UserId = $ud['user_data']['user_id'];
-		$this->UserEcr->save($ud['user_eC']);*/
-		
-		
+		$checkEc = $this->UserEcr->find('first' , array(
+			'conditions' => array( 'user_id' => $userId),
+			'fields' => 'id',
+		));
+
+		//create new row jika empty finding user id yg matching (ECURRENCY)
+		if (($ud['user_eC']['UserEcr']['user_id']) == ($ud['user_eC']['UserEcr']['user_id'])){
+			$this->UserEcr->id = $checkEc;
+			$replaceEc = $ud['user_eC']['UserEcr'];
+			$this->UserEcr->save($replaceEc);
+		}else{
+			$NewEdata = $this->UserEcr->save($ud['user_eC']['UserEcr']);
+			$this->UserEcr->save($NewEdata);
+		}
+
+
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
-			
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
 			//debug($this->request->data);die();
 			if($this->Local->save($this->request->data)){
-				//$this->session->setFlash(_('The bank details have been saved'));
+				//$this->Session->setFlash(_('The bank details have been saved'));
 			}
-			
+
 			//send email
 			$Email = new CakeEmail();
 			$Email->template('newtrader');
@@ -252,7 +258,7 @@ class CabinetsController extends AppController {
 			$Email->to('webteam@iktrust.com');
 			$Email->subject('New Trader IKTrust');
 			$Email->send();
-	
+
 			// send sms
 			$HttpSocket = new HttpSocket();
 			$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', 
@@ -281,27 +287,25 @@ class CabinetsController extends AppController {
 			'conditions' => array( 'user_id' => $userId),
 			'fields' => 'id',
 		));
-		
-		//debug($check);die();
+
 		if ($this->request->is('post')){
-			
 			if (!empty($this->request->data['UserDoc']['form'])){
-				$form 	= $this->request->data['UserDoc']['form'];
-				$info1				 = pathinfo($form['name']); // split filename and extension
-				$saveName1 	= md5($info1['basename']) . '.' . $info1['extension'] ;
+				$form 				= $this->request->data['UserDoc']['form'];
+				$info1				= pathinfo($form['name']); // split filename and extension
+				$saveName1 = md5($info1['basename']) . '.' . $info1['extension'] ;
 				$savePath1 	= WWW_ROOT . 'img/uploads' . DS . $saveName1;
 			}
 			
 			if (!empty($this->request->data['UserDoc']['doc1'])){
-				$file1 	= $this->request->data['UserDoc']['doc1'];
-				$info2				 = pathinfo($file1['name']); // split filename and extension
-				$saveName2 	= md5($info2['basename']) . '.' . $info2['extension'] ;
+				$file1 				= $this->request->data['UserDoc']['doc1'];
+				$info2				= pathinfo($file1['name']); // split filename and extension
+				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
 				$savePath2 	= WWW_ROOT . 'img/uploads' . DS . $saveName2;
 			}
 			
 			if (!empty($this->request->data['UserDoc']['doc2'])){
-				$file2 	= $this->request->data['UserDoc']['doc2'];
-				$info3				 = pathinfo($file2['name']); // split filename and extension
+				$file2 				= $this->request->data['UserDoc']['doc2'];
+				$info3				= pathinfo($file2['name']); // split filename and extension
 				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
 				$savePath3 	= WWW_ROOT . 'img/uploads' . DS . $saveName3;
 			}
@@ -318,6 +322,7 @@ class CabinetsController extends AppController {
 			
 				}
 			}
+			
 			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
 				if(!empty($check)){
@@ -330,6 +335,7 @@ class CabinetsController extends AppController {
 				
 				}
 			}
+			
 			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
 					if(!empty($check)){
@@ -339,10 +345,8 @@ class CabinetsController extends AppController {
 				}else{
 					$data3 = array('user_id' => $userId , 'doc2' =>$saveName3 );
 					$this->UserDoc->save($data3);
-			
 				}
 			}
-
 			$this->redirect(array( 'action' => 'myaccount'));
 		}
 	}
@@ -444,12 +448,11 @@ class CabinetsController extends AppController {
 					}
 	}		
 
-	
+
 	public function withdrawfund(){
 		$this->layout = 'kabinet';
 	}
 
-	
 	
 	public function myaccount(){
 		$this->loadModel('Usermgmt.User');
@@ -500,7 +503,6 @@ class CabinetsController extends AppController {
 					$this->set('a',$a);
 			}
 		}
-		
 	}	
 
 	
@@ -518,6 +520,7 @@ class CabinetsController extends AppController {
 	public function platformdownload(){
 		$this->layout = 'kabinet';
 	}	
+	
 	
 	public function forgot_password(){
 		$this->layout = 'register_kabinet';
@@ -546,12 +549,9 @@ class CabinetsController extends AppController {
 				$this->redirect('/login');
 			}
 		}
-		
 	}
-	
 
 
-	
 	public function register(){
 		$this->layout = 'register_kabinet';
 		$this->loadModel('Usermgmt.User');
