@@ -24,7 +24,7 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: #E3E3E3;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
@@ -80,16 +80,18 @@ p {
 
 #header{
 	padding: 10px 20px;
+	background-color: #C73E38;
 }
 #header h1 {
 	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
+	background: #C73E38 url('../img/logologin.png') no-repeat left;
 	color: #fff;
 	padding: 0px 30px;
+	background-size: 24px;
 }
 #header h1 a {
 	color: #fff;
-	background: #003d4c;
+	background: #C73E38;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -109,6 +111,7 @@ p {
 	clear: both;
 	padding: 6px 10px;
 	text-align: right;
+	background-color: #C73E38;
 }
 
 /** containers **/
