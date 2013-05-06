@@ -550,6 +550,11 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
+	
+	
+	public function affiliate(){
+		$this->layout = 'logmasuk';
+	}	
 
 
 	public function register(){
