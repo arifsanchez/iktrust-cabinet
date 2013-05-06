@@ -33,7 +33,7 @@
 					<div>
 						<label>Select Account Type </label>
 						<span class="field"><select id="type" name="data[UserAcctypes][type]" id="UserDetailType">
-							<option value="">--</option>
+							<option value="">-----</option>
 							<option value="MINIFlex">MINI (Flex)</option>
 							<option value="MINIFix">MINI (Fix)</option>
 							<option value="STANDARDFlex">STANDARD</option>
@@ -45,7 +45,7 @@
 					<div>
 						<label>Laverage Amount </label>
 						<span class="field"><select id="leverage" name="data[UserAcctypes][leverage]" id="UserDetailLeverage">
-							<option value="">--</option>
+							<option value="">-----</option>
 							<option value="1:10" class="MINIFlex">1:10</option>
 							<option value="1:100" class="MINIFlex">1:100</option>
 							<option value="1:200" class="MINIFlex">1:200</option>
