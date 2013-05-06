@@ -49,11 +49,8 @@ $htmlcontent = <<<EOF
 				<td align="right">DP/IK# $num</td>
 			</tr>
 		</table> 
-		
 		<p>
 		<div><hr></div>
-		
-		
 			<table border="0">
 				 <tr>
 					<td>FULL NAME  </td>	

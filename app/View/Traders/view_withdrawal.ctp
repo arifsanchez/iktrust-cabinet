@@ -1,5 +1,6 @@
 		<?php //var
 		$name = $withdrawal['Withdrawal']['name'];
+		$ic = $ic['UserDetail']['ic'];
 		//$userbank = $withdrawal['Withdrawal']['userbank'];
 		$login = $withdrawal['Withdrawal']['mt4_user_LOGIN'];
 		$amount = $withdrawal['Withdrawal']['amount'];
@@ -9,10 +10,11 @@
 		$bankname = $withdrawal['UserBank']['name'];
 		//$address = $withdrawal['Ikbank']['address'];
 		$acountname = $withdrawal['UserBank']['acc_name'];
-		$iban = $withdrawal['UserBank']['iban'];
+		$iban = $withdrawal['UserBank']['iban_no'];
 		$accountno = $withdrawal['UserBank']['acc_no'];
-		$swift = $withdrawal['UserBank']['swift'];
-		$sortcode = $withdrawal['UserBank']['sortcode'];
+		$swift = $withdrawal['UserBank']['swift_no'];
+		$phone= $withdrawal['Mt4User']['PHONE'];
+		//$sortcode = $withdrawal['UserBank']['sortcode'];
 		//$currency = $withdrawal['Ikbank']['currency'];
 		$num = str_pad($id, 8, '0', STR_PAD_LEFT);
 		?>
@@ -29,69 +31,66 @@
 							<div class="span12 well">
 								<?php echo $this->Form->create('Withdrawal', array('type' => '', 'id'=>'' , 'class' => 'stdform')); ?>
 										<body>
-											<center><h4>Depositor's Account Details</h4></center>
+											<center><h4>Client's Account Details</h4></center>
 											
-											Trader Account No : <?echo $login ; ?>&nbsp;&nbsp;&nbsp;	<div align="right"> DP/IK# <? echo$num; ?></div> 
+											<span>Trader Account No : <?echo $login ; ?></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<span align="right"> WD/IK# <? echo$num; ?></span> 
 											<div><hr></div>
 												<table border="0">
 													 <tr>
-														<td>FULL NAME  </td>	
-														<td>: <?php echo $name ;?></td>	
+														<td>FULL NAME  </td>	&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $name ;?></td>	
 													</tr>
 													<tr>
-														<td>BANK NAME	</td>		 	
-														<td>: <?php echo $userbank ;?></td>
+														<td>AMOUNT</td>&nbsp;&nbsp;&nbsp;&nbsp;			
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $amount	; ?></td>
 													</tr>	
 													<tr>
-														<td>AMOUNT</td>			
-														<td>: <?php echo $amount	; ?></td>
-													</tr>	
-													<tr>
-														<td>CURRENCY </td>			
-														<td>: <?php echo $currency ;?></td>	
+														<td>PASSPORT/ NATIONAL ID</td>&nbsp;&nbsp;&nbsp;&nbsp;			
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $ic ;?> </td>	
 													</tr>
+													<tr>
+														<td>CONTACT NUMBER	</td>&nbsp;&nbsp;&nbsp;&nbsp;		 	
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $phone ;?></td>
+													</tr>	
 												</table>
 												<hr>												
-												<b>Note : </b><small>If client's account name is different that the Beneficiary name above ,then deposits will be made available to trading accounts only in case of approved & authorized documents. </small>
-											<center><h4>IKTrust - ELECTRONIC WIRE FUND TRANSFER DETAILS</h4></center>
+												<b>Note : </b><small>I hereby confirms that all position opened have been closed upon submission of this forms. </small>
+												<br><br><br>
+											<center><h4>IKTrust Client's- Electronic Wire Fund Transfer Details</h4></center>
 											<div><hr></div>
+											
 												<table border="0">
 													<tr>
-														<td> BENEFICIARY BANK NAME </td>
-														<td>:  <?php echo $bankname ;?> </td>
+														<td> BENEFICIARY BANK NAME </td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $bankname ;?> </td>
 													</tr>
 													<tr>
-														<td> BANK ADDRESS </td>
-														<td>: <?php  echo $address ; ?></td>
+														<td> BENEFICIARY ACCOUNT NAME </td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php  echo $acountname ; ?></td>
+													</tr>
+													
+													<tr>
+														<td> ACCOUNT NUMBER	</td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $accountno;  ?></td>
 													</tr>
 													<tr>
-														<td> BENEFICIARY ACCOUNT NAME </td>
-														<td>: <?php  echo $acountname ; ?></td>
+														<td> IBAN	</td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $iban;	?></td>
 													</tr>
 													<tr>
-														<td> IBAN	</td>
-														<td>: <?php echo  $iban;	?></td></tr>
-													<tr>
-														<td> ACCOUNT NUMBER	</td>
-														<td>: <?php echo $accountno;  ?></td>
+														<td> SWIFT	</td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td> : &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $swift  ;?></td>
 													</tr>
 													<tr>
-														<td> SWIFT	</td>
-														<td> : <?php echo $swift  ;?></td>
-													</tr>
-													<tr>
-														<td> SORT CODE	</td>
-														<td>: <?php echo $sortcode;  ?></td>
-													</tr>
-													<tr>
-														<td> CURRENCY	</td>
-														<td>: <?php echo $currency ; ?></td>
+														<td> CURRENCY	</td>&nbsp;&nbsp;&nbsp;&nbsp;
+														<td>:  &nbsp;&nbsp;&nbsp;&nbsp;<?php echo "$" ; ?></td>
 													</tr>
 												</table> 
 											</p>
 											<div><hr></div>
-											<b>*** </b><small> Please print out this form if necessary to assist in the transfer of funds to your IK Trust trading account through your preferred bank transfer method.</small>
-							
+											<b>***</b><small> I hereby agreed and understand that all the information in these form are correct and admisable by the court of law.</small>
+											<p><b>***</b><small> I agreed that withdrawal are subject to Terms & Conditions published on IK Trust official website (http://www.iktrust.com) and approval by IK Trust finance department.</small>
+											</p>
 									<br><br>
 									<label><?php echo $this->Form->Submit(__('Submit'), array('name'=>'submit','class'=>'btn btn-danger primary '));?></label>
 									<label><?php echo $this->Form->Submit(__('Print Invoice'), array('name' => 'print' ,'class'=>'btn btn-danger primary '));?></label>

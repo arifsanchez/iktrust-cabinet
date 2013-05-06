@@ -1,11 +1,11 @@
 
 	<div class="maincontent">
 		<div class="contentinner">
-			<h3 class="widgettitle">Summary Deposit Transaction</h3>
+			<h3 class="widgettitle">Summary Withdrawal Transaction</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
                         <tr>
-                            <th class="center">Deposit Id</th>
+                            <th class="center">Withdrawal Id</th>
                             <th class="center">Login Id</th>
 							<th class="center">Transaction Type</th>
 							<th class="center">Amount</th>
@@ -16,37 +16,37 @@
                             <th class="center">More Action</th>
                         </tr>
                     </thead>
-					<?php	foreach ($deposit as $deposit): ?>
+					<?php	foreach ($withdrawal as $withdrawal): ?>
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo $deposit['Deposit']['id']; ?>
+								<? echo $withdrawal['Withdrawal']['id']; ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['Mt4User']['LOGIN']; ?>
+								<? echo $withdrawal['Mt4User']['LOGIN']; ?>
 							</td>
 							<td class="center">
 								 Bank Transfer
 							</td>
 							 <td class="center">
-								<? echo $deposit['Deposit']['amount']; ?>
+								<? echo $withdrawal['Withdrawal']['amount']; ?>
 							</td>
                             <td class="center">
-								<? echo $deposit['Mt4User']['BALANCE']; ?>
+								<? echo $withdrawal['Mt4User']['BALANCE']; ?>
 							</td>
                             
 							<td class="center">
-								<? echo $deposit['Mt4User']['MARGIN_FREE']; ?>
+								<? echo $withdrawal['Mt4User']['MARGIN_FREE']; ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['Mt4User']['PREVMONTHBALANCE']; ?>
+								<? echo $withdrawal['Mt4User']['PREVMONTHBALANCE']; ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['LocalStatus']['name']; ?>
+								<? echo $withdrawal['LocalStatus']['name']; ?>
 							</td>
-							<?php $enid  = base64_encode($deposit['Deposit']['id']); ?>
+							<?php $enid  = base64_encode($withdrawal['Withdrawal']['id']); ?>
 							<td class="center"><span class="icon-edit"></span>
-								<?php echo $this->Html->link(__('view'), array('action' => 'view_deposit', $enid )); ?>
+								<?php echo $this->Html->link(__('view'), array('action' => 'view_withdrawal', $enid )); ?>
 							</td>
                         </tr>
                     </tbody>

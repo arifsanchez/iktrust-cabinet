@@ -10,7 +10,7 @@ class TradersController extends AppController {
 	
 		function bankwired_deposit(){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -32,7 +32,7 @@ class TradersController extends AppController {
 		
 		function bankwired_withdrawal(){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
 			//load model
 			$this->loadModel('Withdrawal');
 			$this->loadModel('User');
@@ -54,7 +54,7 @@ class TradersController extends AppController {
 		
 		function depositlogin($login=null){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
 			$LOGIN = base64_decode($login);
 			//load model
 			$this->loadModel('Deposit');
@@ -94,7 +94,8 @@ class TradersController extends AppController {
 				$this->Deposit->create();
 				if ($this->Deposit->save($this->request->data)) {
 					$this->Session->setFlash(__('Your deposit has been saved'));
-					$this->redirect(array('action' => 'view_deposit',$this->Deposit->id));
+					$enid  = base64_encode($this->Deposit->id);
+					$this->redirect(array('action' => 'view_deposit',$enid));
 				} else {
 					$this->Session->setFlash(__('The deposit could not be saved. Please, try again.'));
 				}
@@ -103,7 +104,7 @@ class TradersController extends AppController {
 		
 		function withdrawallogin($login=null){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
 			$LOGIN = base64_decode($login);
 			//load model
 			$this->loadModel('Withdrawal');
@@ -131,16 +132,18 @@ class TradersController extends AppController {
 				$this->Withdrawal->create();
 				if ($this->Withdrawal->save($this->request->data)) {
 					$this->Session->setFlash(__('Your Withdrawal has been saved'));
-					$this->redirect(array('action' => 'view_withdrawal',$this->Withdrawal->id));
+					$enid  = base64_encode($this->Withdrawal->id);
+					$this->redirect(array('action' => 'view_withdrawal', $enid));
 				} else {
 					$this->Session->setFlash(__('The Withdrawal could not be saved. Please, try again.'));
 				}
 			}
 		}
 
-		function view_deposit($id =null){
+		function view_deposit($enid =null){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';
+			$id = base64_decode($enid);
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -164,24 +167,31 @@ class TradersController extends AppController {
 				$this->redirect(array('action' => 'transaction_deposit'));
 			}
 			if(isset($this->request->data['print'])){
-				$this->redirect(array('action' => 'view_pdf' ,$id));
+				$pid  = base64_encode($id);
+				$this->redirect(array('action' => 'view_pdf' ,$pid));
 			}
 		}
 		
-		function view_withdrawal($id =null){
+		function view_withdrawal($enid =null){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
+			$id = base64_decode($enid);
 			//load model
 			$this->loadModel('Withdrawal');
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
+			$this->loadModel('UserDetail');
+			$userId = $this->UserAuth->getUserId();
 			$this->Withdrawal->id = $id;
 			$withdrawal = $this ->Withdrawal->find('first' , array(
 									'conditions' => array( 'Withdrawal.id' => $id)
 									));
 			//debug($withdrawal);die();
 			$this->set('withdrawal', $withdrawal);
-			
+			$ic = $this ->UserDetail->find('first' , array(
+									'conditions' => array( 'UserDetail.user_id' => $userId)
+									));
+			$this->set('ic', $ic);
 			if (isset($this->request->data['submit'])) {
 				//send email
 						/*$Email = new CakeEmail();
@@ -195,13 +205,14 @@ class TradersController extends AppController {
 				$this->redirect(array('action' => 'transaction_withdrawal'));
 			}
 			if(isset($this->request->data['print'])){
-				$this->redirect(array('action' => 'view_pdf' ,$id));
+				$pid  = base64_encode($id);
+				$this->redirect(array('action' => 'withdrawal_pdf' ,$pid));
 			}
 		}
 		
 		function transaction_deposit(){
 			//layout
-			$this->layout = 'admin';	
+			$this->layout = 'kabinet';	
 			//load model
 			$this->loadModel('Deposit');
 			$this->loadModel('User');
@@ -221,17 +232,61 @@ class TradersController extends AppController {
 		
 		}
 		
-		function view_pdf($id) {
+		function transaction_withdrawal(){
+			//layout
+			$this->layout = 'kabinet';	
 			//load model
-			$this->loadModel('admin');
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			//find user id
+			$userId = $this->UserAuth->getUserId();
+			$this->set('user_id', $userId);
+			//find data frrom user
+			$email = $this->Withdrawal->User->find('list' ,
+						array( 'conditions' => array('User.id' => $userId),
+								 'fields' => array('User.email' ),
+								 ));
+			//debug($email);
+			$withdrawal = $this->paginate('Withdrawal',
+						array('Withdrawal.email' => $email));
+			$this->set('withdrawal', $withdrawal);			 
+		
+		}
+		
+		function view_pdf($pid) {
+			//load model
+			$id = base64_decode($pid);
+			$this->loadModel('Deposit');
 			$this->loadModel('User');
 			$this->loadModel('Mt4User');
 			$this->Deposit->id = $id;
 			$deposit = $this ->Deposit->find('first' , array(
 									'conditions' => array( 'Deposit.id' => $id)
 									));
-			 
 			$this->set('deposit', $deposit);
+			$this->layout = 'pdf'; //this will use the pdf.ctp layout
+			$this->render();
+		}
+		
+		function withdrawal_pdf($pid) {
+			//load model
+			$id = base64_decode($pid);
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadModel('UserDetail');
+			$this->loadModel('Mt4User');
+			$this->Withdrawal->id = $id;
+			$userId = $this->UserAuth->getUserId();
+			$ic = $this ->UserDetail->find('first' , array(
+								'conditions' => array( 'UserDetail.user_id' => $userId)
+								));
+			$this->set('ic', $ic);
+			$withdrawal = $this ->Withdrawal->find('first' , array(
+									'conditions' => array( 'Withdrawal.id' => $id)
+									));
+			$this->set('withdrawal', $withdrawal);
+			
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout
 			$this->render();
 		}
