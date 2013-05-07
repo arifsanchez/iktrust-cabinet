@@ -11,10 +11,6 @@
 		jQuery(document).ready(function(){
 			jQuery("#registerAffilliates").validationEngine();
 		});
-		
-		jQuery(document).ready(function(){
-			jQuery("#leverage").chained("#type"); 
-		});
 	</script>
 
 	<div class="maincontent">
@@ -380,7 +376,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				
 				<script type="text/javascript">
 					jQuery(document).ready(function(){
