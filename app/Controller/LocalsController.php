@@ -20,22 +20,14 @@ class LocalsController extends AppController {
 		$b = $this->UserDoc->find('first' , array(
 								'conditions' => array( 'user_id' => $try),
 								));
-		//debug($b);die();
 		$this->set('b',$b);
 		$this->set('a',$a);
-		//debug($a);die();
-		
 		$localStatuses = $this->Local->LocalStatus->find('list');
-		//debug($localStatuses);die();
-		
 		$this->set(compact( 'localStatuses'));
 		//save data
-		
 		if($this->request -> isPost()){
 			$this->Local->id = $id;
 			$status = $this->request->data['Local']['local_status_id'];
-			
-			//debug($this->request->data);
 			if($status ==2 ) {
 			
 				$ibagent 			= $this->request->data['Local']['agent'];
@@ -53,9 +45,7 @@ class LocalsController extends AppController {
 				$agent 				= $this->request->data['Local']['agent'];
 				$phone				= $this->request->data['Local']['phone'];
 				
-				
-
-				// hantar parameter 
+				//parameter
 				$fields = array(
 				
 					'action' 				=> 'register',
@@ -75,54 +65,35 @@ class LocalsController extends AppController {
 					
 				);
 				
-				//debug($fields);die();
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 				curl_setopt($ch, CURLOPT_URL,"http://www.iktrust.co.uk/webservice/api.php");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, true);
-				//debug($key);die();
-				//curl_setopt($ch,CURLOPT_POST,count($fields));
-				//curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
 				curl_setopt($ch, CURLOPT_POSTFIELDS,$fields);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
-				
 				curl_close($ch);
-				//debug($fields);
-				//debug($output);
-				//debug($info);die();
 			}
-			
 				if($this->Local->save($this->request->data)){
-					
 					$this->redirect(array('controller' => 'locals' , 'action' => 'tradersindex'));
 				}
-				
-			
 		}
 	}
 	
 	public function tradersindex($id = null){
 		$this->layout = 'admin';
-		//$this->Local->recursive = 0;
-		//$this->set('locals', $this->paginate('Local', array(), array()));
-		//debug($this->request->params['named']['status']);die();	
 		if(!empty($this->request->params['named']['status'])){
 			$this->Local->id = $id;
 			$locals = $this->paginate('Local',
-				array("Local.local_status_id" => $this->request->params['named']['status'])
-			
-			);
-			//debug($locals);die();	
+						array("Local.local_status_id" => $this->request->params['named']['status'])
+						);
 			$this->set('locals',$locals);
 		} else {
 			$locals = $this->paginate('Local');
 			$this->set('locals',$locals);
 		}
 	}
-	
-	
 	
 	
 	public function delete($now = null) {
@@ -195,6 +166,7 @@ class LocalsController extends AppController {
 
 				// hantar parameter 
 				$data = array(
+					'action'   		=> 'deposit',
 					'amount'	 	=> $amount,
 					'comment' 	=> $comment,
 					'login'			=> $login,
@@ -205,10 +177,7 @@ class LocalsController extends AppController {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
-				
-				//debug($data);
-				debug($output);die();
-				//debug($info);die();
+				curl_close($ch);
 				
 				// send sms
 				$HttpSocket = new HttpSocket();
@@ -290,6 +259,7 @@ class LocalsController extends AppController {
 
 				// hantar parameter 
 				$data = array(
+					'action' 			=> 'withdrawal',
 					'amount'	 	=> $amount,
 					'comment' 	=> $comment,
 					'login'			=> $login,
@@ -300,10 +270,8 @@ class LocalsController extends AppController {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 				$output = curl_exec($ch);
 				$info = curl_getinfo($ch);
+				curl_close($ch);
 				
-				//debug($data);
-				debug($output);die();
-				//debug($info);die();
 				
 				// send sms
 				$HttpSocket = new HttpSocket();
