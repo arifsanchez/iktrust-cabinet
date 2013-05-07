@@ -594,6 +594,7 @@ class CabinetsController extends AppController {
 			if ($this->Affilliate->save($this->request->data)) {
 			    $this->Session->setFlash('Your have successful registered.');
 				$this->redirect(array('controller' => 'cabinets', 'action' => 'login'));
+				
 			} else {
 			   $this->Session->setFlash('Failed to register, kindly pls try again.');
 			}
