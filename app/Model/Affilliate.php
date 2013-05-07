@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  */
 class Affilliate extends AppModel {
 
+
 /**
  * Validation rules
  *

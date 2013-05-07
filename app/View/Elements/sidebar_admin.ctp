@@ -76,6 +76,7 @@
 				'options'=>array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=>	array(
 					array('title'=>'Cabinet Users',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
+					array('title'=>'Cabinet Affilliates',  'url'=> array('controller'=>'locals', 'action'=>'affilliateindex')),
 					array('title'=>'Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'trader')),
 					array('title'=>'Partners',  'url'=> array('controller'=>'Mt4Users', 'action'=>'partner')),
 				),

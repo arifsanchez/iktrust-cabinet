@@ -14,12 +14,13 @@ class LocalsController extends AppController {
 			'conditions' =>array( 'Local.id' => $id),
 		));
 		$try = $this->Local->Find('list',array(
-								'conditions' =>array( 'Local.id' => $id),
-								'fields' => 'Local.user_id'	));
+			'conditions' =>array( 'Local.id' => $id),
+			'fields' => 'Local.user_id'	
+		));
 		
 		$b = $this->UserDoc->find('first' , array(
-								'conditions' => array( 'user_id' => $try),
-								));
+			'conditions' => array( 'user_id' => $try),
+		));
 		//debug($b);die();
 		$this->set('b',$b);
 		$this->set('a',$a);
@@ -123,6 +124,15 @@ class LocalsController extends AppController {
 	}
 	
 	
+	public function affilliateindex($id = null){
+		$this->layout = 'admin';
+		
+		$this->loadModel('Affilliate');
+		$all = $this->Affilliate->find('all');
+		
+		$locals = $this->paginate('Affilliate');
+		$this->set('locals',$locals);
+	}
 	
 	
 	public function delete($now = null) {

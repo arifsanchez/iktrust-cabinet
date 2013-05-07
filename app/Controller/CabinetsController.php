@@ -183,14 +183,9 @@ class CabinetsController extends AppController {
 	
 	public function document(){		
 		$this->layout = 'kabinet';
-	}	
-	
-	
-	public function acknowledge(){		
-		$this->layout = 'kabinet';
-		$this->loadModel('Usermgmt.User');
-		$ud = $this->Cookie->read($user_eC);
 		
+		$ud = $this->Cookie->read($user_eC);
+		//debug($ud);die();
 		$this->loadModel('UserAcctypes');
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
@@ -238,8 +233,59 @@ class CabinetsController extends AppController {
 			$NewEdata = $this->UserEcr->save($ud['user_eC']['UserEcr']);
 			$this->UserEcr->save($NewEdata);
 		}
-
-
+	}	
+	
+	
+	public function acknowledge(){		
+		$this->layout = 'kabinet';
+		$this->loadModel('Usermgmt.User');
+		$userId 	= $this->UserAuth->getUserId();
+		
+		$this->loadModel('UserAcctypes');
+		$acc = $this->UserAcctypes->find('first', array(
+			'conditions' => array('UserAcctypes.id' => 'modified')
+		));
+		
+		$this->loadModel('UserDetail');
+		$user = $this->UserDetail->find('first', array(
+			'conditions' => array('UserDetail.id' => $userId)
+		));
+		
+		$this->loadModel('UserBank');
+		$bank = $this->UserBank->find('first', array(
+			'conditions' => array('UserBank.id' => $userId)
+		));
+		
+		$this->loadModel('UserEcr');
+		$ecr = $this->UserEcr->find('first', array(
+			'conditions' => array('UserEcr.id' => $userId)
+		));
+		
+		
+		 $acc = $this->UserAcctypes->find('list', array(
+			'fields' => array('UserAcctypes.id'),
+			'conditions' => array('UserAcctypes.id  !='  => $userId),
+			'recursive' => 0
+		));
+		
+		$bank = $this->UserBank->find('list', array(
+			'fields' => array('UserBank.id'),
+			'conditions' => array('UserBank.id'  => $userId),
+			'recursive' => 0
+		));
+		
+		$ecr = $this->UserEcr->find('list', array(
+			'fields' => array('UserEcr.id'),
+			'conditions' => array('UserEcr.id'  => $userId),
+			'recursive' => 0
+		));
+		debug($acc); 
+		debug($bank); 
+		debug($ecr);die();
+		//debug($bank);
+		//debug($ecr); 
+		
+		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
