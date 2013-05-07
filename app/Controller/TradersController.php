@@ -156,14 +156,14 @@ class TradersController extends AppController {
 			
 			if (isset($this->request->data['submit'])) {
 				//send email
-						/*$Email = new CakeEmail();
+						$Email = new CakeEmail();
 						$Email->template('newtrader');
 						$Email->viewVars(array('deposit' => $deposit));
 						$Email->emailFormat('both');
 						$Email->from(array('admin@trustxe.com' => 'IKTust'));
 						$Email->to('webteam@iktrust.com');
 						$Email->subject('New Trader IKTrust');
-						$Email->send();*/
+						$Email->send();
 				$this->redirect(array('action' => 'transaction_deposit'));
 			}
 			if(isset($this->request->data['print'])){
@@ -194,7 +194,7 @@ class TradersController extends AppController {
 			$this->set('ic', $ic);
 			if (isset($this->request->data['submit'])) {
 				//send email
-						/*$Email = new CakeEmail();
+						$Email = new CakeEmail();
 						$Email->template('newtrader');
 						$Email->viewVars(array('withdrawal' => $withdrawal));
 						$Email->emailFormat('both');

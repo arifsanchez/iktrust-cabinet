@@ -70,9 +70,12 @@
 				<?php 
 					echo $this->Form->create('Local', array('type' => '', 'id'=>'' , 'class' => '')); 	
 					// data to save in local
-					echo $this->Form->input('user_detail_id', array('type' => 'hidden', 'value' => $userD['UserDetail']['id']));
+					
+					$acc = $acc['UserAcctypes']['id'];
+					debug($acc); die();
+					echo $this->Form->input('user_detail_id', array('type' => 'hidden', 'value' => $user['UserDetail']['id']));
 					echo $this->Form->input('user_bank_id', array('type' => 'hidden', 'value' => $bank['UserBank']['id']));
-					echo $this->Form->input('user_acctype_id', array('type' => 'hidden', 'value' => $acctypes['UserAcctypes']['id']));
+					echo $this->Form->input('user_acctype_id', array('type' => 'hidden', 'value' => $acc['UserAcctypes']['id']));
 					echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $user['User']['id']));
 					echo $this->Form->input('user_ecr_id', array('type' => 'hidden', 'value' => $ecr['UserEcr']['id']));
 				?>

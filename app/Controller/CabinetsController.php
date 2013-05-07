@@ -240,51 +240,38 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$userId 	= $this->UserAuth->getUserId();
+		//debug($userId); die();
 		
 		$this->loadModel('UserAcctypes');
-		$acc = $this->UserAcctypes->find('first', array(
-			'conditions' => array('UserAcctypes.id' => 'modified')
+		$acc = $this->UserAcctypes->find('all', array(
+			'fields' => array('UserAcctypes.id'),
+			'conditions' => array('UserAcctypes.id !='  => $userId, 'UserAcctypes.user_id'  => $userId),
+			'recursive' => 0
 		));
 		
 		$this->loadModel('UserDetail');
-		$user = $this->UserDetail->find('first', array(
-			'conditions' => array('UserDetail.id' => $userId)
+		$user = $this->UserDetail->find('all', array(
+			'fields' => array('UserDetail.id'),
+			'conditions' => array('UserDetail.id !='  => $userId, 'UserDetail.user_id'  => $userId),
+			'recursive' => 0
 		));
 		
 		$this->loadModel('UserBank');
-		$bank = $this->UserBank->find('first', array(
-			'conditions' => array('UserBank.id' => $userId)
+		$bank = $this->UserBank->find('all', array(
+			'fields' => array('UserBank.id'),
+			'conditions' => array('UserBank.id !='  => $userId, 'UserBank.user_id'  => $userId),
+			'recursive' => 0
 		));
 		
 		$this->loadModel('UserEcr');
-		$ecr = $this->UserEcr->find('first', array(
-			'conditions' => array('UserEcr.id' => $userId)
-		));
-		
-		
-		 $acc = $this->UserAcctypes->find('list', array(
-			'fields' => array('UserAcctypes.id'),
-			'conditions' => array('UserAcctypes.id  !='  => $userId),
-			'recursive' => 0
-		));
-		
-		$bank = $this->UserBank->find('list', array(
-			'fields' => array('UserBank.id'),
-			'conditions' => array('UserBank.id'  => $userId),
-			'recursive' => 0
-		));
-		
-		$ecr = $this->UserEcr->find('list', array(
+		$ecr = $this->UserEcr->find('all', array(
 			'fields' => array('UserEcr.id'),
-			'conditions' => array('UserEcr.id'  => $userId),
+			'conditions' => array('UserEcr.id !='  => $userId, 'UserEcr.user_id'  => $userId),
 			'recursive' => 0
 		));
-		debug($acc); 
-		debug($bank); 
-		debug($ecr);die();
-		//debug($bank);
-		//debug($ecr); 
 		
+		//debug($acc);
+
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
