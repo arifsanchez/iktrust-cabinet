@@ -139,11 +139,9 @@
 												</div><!--span9-->
 											</div><!--row-fluid-->
 										</div><!--widgetcontent-->
-									
 									</div>
 								
-								
-							
+
 								<!-- CHANGE PASSWORD PANE-->
 								<div class="tab-pane" id="tab2">
 									<div class="row-fluid">
