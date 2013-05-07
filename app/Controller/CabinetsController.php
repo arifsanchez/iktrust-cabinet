@@ -183,14 +183,9 @@ class CabinetsController extends AppController {
 	
 	public function document(){		
 		$this->layout = 'kabinet';
-	}	
-	
-	
-	public function acknowledge(){		
-		$this->layout = 'kabinet';
-		$this->loadModel('Usermgmt.User');
-		$ud = $this->Cookie->read($user_eC);
 		
+		$ud = $this->Cookie->read($user_eC);
+		//debug($ud);die();
 		$this->loadModel('UserAcctypes');
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
@@ -238,8 +233,46 @@ class CabinetsController extends AppController {
 			$NewEdata = $this->UserEcr->save($ud['user_eC']['UserEcr']);
 			$this->UserEcr->save($NewEdata);
 		}
+	}	
+	
+	
+	public function acknowledge(){		
+		$this->layout = 'kabinet';
+		$this->loadModel('Usermgmt.User');
+		$userId 	= $this->UserAuth->getUserId();
+		//debug($userId); die();
+		
+		$this->loadModel('UserAcctypes');
+		$acc = $this->UserAcctypes->find('all', array(
+			'fields' => array('UserAcctypes.id'),
+			'conditions' => array('UserAcctypes.id !='  => $userId, 'UserAcctypes.user_id'  => $userId),
+			'recursive' => 0
+		));
+		
+		$this->loadModel('UserDetail');
+		$user = $this->UserDetail->find('all', array(
+			'fields' => array('UserDetail.id'),
+			'conditions' => array('UserDetail.id !='  => $userId, 'UserDetail.user_id'  => $userId),
+			'recursive' => 0
+		));
+		
+		$this->loadModel('UserBank');
+		$bank = $this->UserBank->find('all', array(
+			'fields' => array('UserBank.id'),
+			'conditions' => array('UserBank.id !='  => $userId, 'UserBank.user_id'  => $userId),
+			'recursive' => 0
+		));
+		
+		$this->loadModel('UserEcr');
+		$ecr = $this->UserEcr->find('all', array(
+			'fields' => array('UserEcr.id'),
+			'conditions' => array('UserEcr.id !='  => $userId, 'UserEcr.user_id'  => $userId),
+			'recursive' => 0
+		));
+		
+		//debug($acc);
 
-
+		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
