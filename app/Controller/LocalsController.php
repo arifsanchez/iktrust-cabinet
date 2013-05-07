@@ -237,6 +237,101 @@ class LocalsController extends AppController {
 			$this->set('deposit', $deposit);			 
 		//
 	}
+	
+	public function edit_withdrawal($now = null) {
+		$id = base64_decode($now);
+		//layout
+		$this->layout = 'admin';	
+		//load model
+		$this->loadModel('Withdrawal');
+		$this->loadModel('WdComment');
+		//find user id
+		$userId = $this->UserAuth->getUserId();
+		$this->set('user_id', $userId);
+		//display details
+		$this->Withdrawal->id = $id;
+		
+		$withdrawal = $this ->Withdrawal->find('first' , array(
+			'conditions' => array( 'Withdrawal.id' => $id)
+		));
+		$this->set('withdrawal', $withdrawal);
+		//display table
+		
+		$login = $withdrawal['Withdrawal']['mt4_user_LOGIN'];
+		//debug($login);die();
+		$dc = $this->paginate('WdComment',
+			array('WdComment.mt4_user_LOGIN' => $login)
+		);
+		$this->set('dc', $dc);
+		//submit form
+		
+		if($this->request -> isPost()){
+			//debug($this->request->data);die();
+			$this->WdComment->create();
+			$status = $this->request->data['Withdrawal']['status'];
+			$data = array('id' => $id , 'local_status_id' => $status );
+			$this->Withdrawal->save($data);
+			if($this->WdComment->save($this->request->data)){
+				//$this->session->setFlash(_('The bank details have been saved'));
+				$this->redirect(array('action' => 'transaction_withdrawal'));
+			}
+			
+			if($this->request->data['Withdrawal']['status'] ==2 ) {
+				//send data using curl
+				$amount 		= $this->request->data['WithdrawalComment']['amount'];
+				$comment		= $this->request->data['WithdrawalComment']['comment'];
+				$login 			= $this->request->data['WithdrawalComment']['mt4_user_LOGIN'];
+				
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+				curl_setopt($ch, CURLOPT_URL,'http://iktrust.co.uk/webservice/api.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, true);
+
+				// hantar parameter 
+				$data = array(
+					'amount'	 	=> $amount,
+					'comment' 	=> $comment,
+					'login'			=> $login,
+					
+				);
+				
+				//debug($key);die();
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				$output = curl_exec($ch);
+				$info = curl_getinfo($ch);
+				
+				//debug($data);
+				debug($output);die();
+				//debug($info);die();
+				
+				// send sms
+				$HttpSocket = new HttpSocket();
+				$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', array(
+					'user' => 'instafx', 
+					'pass' => 'instafx8000',
+					'msisdn' => '0136454001',
+					'body' => 'iktrust test ',
+					'smstype' => 'TEXT',
+					'sender' => 'IKTRUST',
+					#'Telco' => 'CELCOM'
+					));	   
+			}
+		}
+	}
+	
+	function transaction_withdrawal(){
+			//layout
+			$this->layout = 'admin';	
+			//load model
+			$this->loadModel('Withdrawal');
+			$this->loadModel('User');
+			$this->loadmodel('Mt4User');
+			//$this->loadModel('DepositComment');
+			$withdrawal = $this->paginate('Withdrawal');
+			$this->set('withdrawal', $withdrawal);			 
+		//
+	}
 
 }
 
