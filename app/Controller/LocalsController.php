@@ -19,14 +19,10 @@ class LocalsController extends AppController {
 		));
 		
 		$b = $this->UserDoc->find('first' , array(
-<<<<<<< HEAD
 			'conditions' => array( 'user_id' => $try),
 		));
 		//debug($b);die();
-=======
-								'conditions' => array( 'user_id' => $try),
-								));
->>>>>>> f7719bb7dd1eac195617fe959b3704ecb1f85d07
+
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -103,7 +99,7 @@ class LocalsController extends AppController {
 	}
 	
 	
-<<<<<<< HEAD
+
 	public function affilliateindex($id = null){
 		$this->layout = 'admin';
 		
@@ -113,10 +109,7 @@ class LocalsController extends AppController {
 		$locals = $this->paginate('Affilliate');
 		$this->set('locals',$locals);
 	}
-	
-	
-=======
->>>>>>> f7719bb7dd1eac195617fe959b3704ecb1f85d07
+
 	public function delete($now = null) {
 		$id = base64_decode($now);
 		if (!$this->request->is('post')) {
