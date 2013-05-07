@@ -201,7 +201,7 @@ class TradersController extends AppController {
 						$Email->from(array('admin@trustxe.com' => 'IKTust'));
 						$Email->to('webteam@iktrust.com');
 						$Email->subject('New Trader IKTrust');
-						$Email->send();*/
+						$Email->send();
 				$this->redirect(array('action' => 'transaction_withdrawal'));
 			}
 			if(isset($this->request->data['print'])){
