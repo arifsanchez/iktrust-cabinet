@@ -440,7 +440,7 @@ class CabinetsController extends AppController {
 	//this redirect changes by faiz not sure betol ke x.. macam salah...
 	public function login(){
 		$this->loadModel('Usermgmt.User');
-		$this->layout = 'kabinet';
+		$this->layout = 'logmasuk';
 			if($this->UserAuth->isLogged()){
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount')); }
 				if ($this->UserAuth->isAdmin()) { 
