@@ -19,15 +19,8 @@ class LocalsController extends AppController {
 												));
 		
 		$b = $this->UserDoc->find('first' , array(
-<<<<<<< HEAD
 												'conditions' => array( 'user_id' => $try),
 												));
-=======
-			'conditions' => array( 'user_id' => $try),
-		));
-		//debug($b);die();
-
->>>>>>> b892b1fcafe34f4e838116e935524b633921086b
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -104,20 +97,6 @@ class LocalsController extends AppController {
 	}
 	
 	
-<<<<<<< HEAD
-=======
-
-	public function affilliateindex($id = null){
-		$this->layout = 'admin';
-		
-		$this->loadModel('Affilliate');
-		$all = $this->Affilliate->find('all');
-		
-		$locals = $this->paginate('Affilliate');
-		$this->set('locals',$locals);
-	}
-
->>>>>>> b892b1fcafe34f4e838116e935524b633921086b
 	public function delete($now = null) {
 		$id = base64_decode($now);
 		if (!$this->request->is('post')) {
@@ -254,7 +233,7 @@ class LocalsController extends AppController {
 			array('WdComment.mt4_user_LOGIN' => $login)
 		);
 		$this->set('dc', $dc);
-		//submit form
+		//submit form test cc
 		
 		if($this->request -> isPost()){
 			//debug($this->request->data);die();
