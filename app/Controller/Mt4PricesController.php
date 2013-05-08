@@ -19,7 +19,7 @@ class Mt4PricesController extends AppController {
 	}
 	
 	public function quotes(){
-		$this->layout = 'logmasuk';
+		$this->layout = 'register_kabinet';
 		$this->Mt4Price->recursive = 0;
 		#$this->set('mt4Prices', $this->paginate());		
 		
