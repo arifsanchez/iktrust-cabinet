@@ -25,6 +25,6 @@
 <body>
 	<?php echo $this->fetch('content'); ?>
 
-	<p>This email was sent using the <a href="http://iktrust.com">IK Trust</a></p>
+	<p>This email was powered by<a href="http://iktrust.com">IK Trust</a></p>
 </body>
 </html>

@@ -1,8 +1,8 @@
 
  <?php  
 	$num = str_pad($deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); 
-	$enid  = base64_encode($deposit['Deposit']['id']);
-	$link = Router::url("/traders/view_deposit/$enid",true);
+	$pid  = base64_encode($deposit['Deposit']['id']);
+	$link = Router::url("/traders/view_pdf/$pid",true);
 ?>
 
 <h3>Deposit Transfer instructions</h3>
