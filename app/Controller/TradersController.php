@@ -197,12 +197,12 @@ class TradersController extends AppController {
 			if (isset($this->request->data['submit'])) {
 				//send email
 						$Email = new CakeEmail();
-						$Email->template('newtrader');
+						$Email->template('withdrawal');
 						$Email->viewVars(array('withdrawal' => $withdrawal));
-						$Email->emailFormat('both');
-						$Email->from(array('admin@trustxe.com' => 'IKTust'));
+						$Email->emailFormat('html');
+						$Email->from(array('support@iktrust.com' => 'IK Trust'));
 						$Email->to('webteam@iktrust.com');
-						$Email->subject('New Trader IKTrust');
+						$Email->subject('Withdrawal - IK Trust');
 						$Email->send();
 				$this->redirect(array('action' => 'transaction_withdrawal'));
 			}
