@@ -183,12 +183,13 @@ class CabinetsController extends AppController {
 	
 	public function document(){		
 		$this->layout = 'kabinet';
-		
 		$ud = $this->Cookie->read($user_eC);
-		//debug($ud);die();
+		
+		
 		$this->loadModel('UserAcctypes');
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
+		$this->Cookie->write('latest', $this->UserAcctypes->id); 	//sent current id
 		
 		$this->loadModel('User');
 		$this->User->UserId = $ud['user_cl']['User']['id'];
@@ -240,57 +241,57 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$userId 	= $this->UserAuth->getUserId();
-		//debug($userId); die();
 		
-		$this->loadModel('UserAcctypes');
-		$acc = $this->UserAcctypes->find('all', array(
+		$this->loadModel('UserAcctypes');		
+		$data = $this->Cookie->read($latest);		//read current id from document
+		
+		$acc = $this->UserAcctypes->find('first', array(
 			'fields' => array('UserAcctypes.id'),
-			'conditions' => array('UserAcctypes.id !='  => $userId, 'UserAcctypes.user_id'  => $userId),
+			'conditions' => array('UserAcctypes.id'  => $data['latest']),
+			'order' => array( 'UserAcctypes.modified' => 'desc'),
 			'recursive' => 0
 		));
-		
+		$this->set('acc',$acc);
+
 		$this->loadModel('User');
-		$user = $this->User->find('all', array(
+		$user = $this->User->find('first', array(
 			'fields' => array('User.id'),
 			'conditions' => array('User.id'  => $userId),
 			'recursive' => 0
 		));
+		$this->set('user',$user);
 		
 		$this->loadModel('UserDetail');
-		$userD = $this->UserDetail->find('all', array(
+		$userD = $this->UserDetail->find('first', array(
 			'fields' => array('UserDetail.id'),
 			'conditions' => array('UserDetail.id'  => $userId),
 			'recursive' => 0
 		));
+		$this->set('userD',$userD);
 		
 		$this->loadModel('UserBank');
-		$bank = $this->UserBank->find('all', array(
+		$bank = $this->UserBank->find('first', array(
 			'fields' => array('UserBank.id'),
 			'conditions' => array('UserBank.id'  => $userId),
 			'recursive' => 0
 		));
+		$this->set('bank',$bank);
 		
 		$this->loadModel('UserEcr');
-		$ecr = $this->UserEcr->find('all', array(
+		$ecr = $this->UserEcr->find('first', array(
 			'fields' => array('UserEcr.id'),
 			'conditions' => array('UserEcr.id'  => $userId),
 			'recursive' => 0
 		));
-		
-		debug($acc);
-		debug($user);
-		debug($userD);
-		debug($bank);
-		debug($ecr);
+		$this->set('ecr',$ecr);
 
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
-			debug($this->request->data);die();
 			if($this->Local->save($this->request->data)){
-				//$this->Session->setFlash(_('The bank details have been saved'));
+				$this->Session->setFlash(_('The bank details have been saved'));
 			}
 
 			//send email
