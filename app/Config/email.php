@@ -42,32 +42,34 @@ class EmailConfig {
 		//'from' => 'you@localhost',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
-		'transport' => 'Smtp',
-		'from' => array('admin@trustxe.com' => 'TrustXE'),
-		'host' => 'mail.trustxe.com',
-		'port' => 587,
-		'timeout' => 30,
-		'username' => 'admin@trustxe.com',
-		'password' => 'oipolloi88',
-		'client' => null,
-		'log' => false,
-		'charset' => 'utf-8',
-		'headerCharset' => 'utf-8',
+		  'transport' => 'Smtp',
+		  'from' => array('support@iktrust.com' => 'IK Trust'),
+		  'host' => 'mail.iktrust.com',
+		  'port' => 587,
+		  'timeout' => 30,
+		  'username' => 'support@iktrust.com',
+		  'password' => 'Supp00rt5678$%',
+		  'client' => null,
+		  'log' => false,
+		  'charset' => 'utf-8',
+		  'headerCharset' => 'utf-8',
 	);
 
-	public $smtp = array(
-		'transport' => 'Smtp',
-		'from' => array('admin@trustxe.com' => 'TrustXE'),
-		'host' => 'mail.trustxe.com',
-		'port' => 587,
-		'timeout' => 30,
-		'username' => 'admin@trustxe.com',
-		'password' => 'oipolloi88',
-		'client' => null,
-		'log' => false,
-		'charset' => 'utf-8',
-		'headerCharset' => 'utf-8',
-	);
+	 public $smtp = array(
+	  'transport' => 'Smtp',
+	  'from' => array('support@iktrust.com' => 'IK Trust'),
+	  'host' => 'mail.iktrust.com',
+	  'port' => 587,
+	  'timeout' => 30,
+	  'username' => 'support@iktrust.com',
+	  'password' => 'Supp00rt5678$%',
+	  'client' => null,
+	  'log' => false,
+	  'charset' => 'utf-8',
+	  'headerCharset' => 'utf-8',
+	 );
+	 
+	
 
 	public $fast = array(
 		'from' => 'you@localhost',

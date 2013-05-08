@@ -1,19 +1,26 @@
+
+ <?php  
+	$num = str_pad($deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); 
+	$pid  = base64_encode($deposit['Deposit']['id']);
+	$link = Router::url("/traders/view_pdf/$pid",true);
+?>
+
 <h3>Deposit Transfer instructions</h3>
 
 <p>Dear <?php echo $deposit['Deposit']['name']; ?>
 
-<p>You will find attached , a transfer instruction sheet that contains all the information of your bank require to make the payment to IKTrust.</p><p> Please print this out and send it to your bank for processing. </p>
+<p>You will find link  transfer instruction sheet below , that contains all the information that require to make the payment to IKTrust.</p><p><?php echo $link ; ?></p><p> Please print this out and send it to your bank for processing. </p>
 
 <p>Please find below details of your transaction.</p>
  
  <table>
 	<tr>
-		<td>Deposit ID</td> 
-		<td>: <?php echo $deposit['Deposit']['id']; ?></td>
+		<td>DEPOSIT ID</td> 
+		<td>: DP/IK# <? echo $num; ?></td>
 	</tr>
 	<tr>
 		<td>TRANSACTION TYPE</td> 
-		<td>:	deposit					</td>
+		<td>:	Deposit					</td>
 	</tr>
 	<tr>
 		<td>PAYMENT METHOD</td>
@@ -25,7 +32,7 @@
 	</tr>
 	<tr>
 		<td>CLIENT'S NAME</td>
-		<td>:	  <?php echo $deposit['Deposit']['name']; ?> ?></td>
+		<td>:	  <?php echo $deposit['Deposit']['name']; ?></td>
 	</tr>
 	<tr>
 		<td>TRANSACTION DATE</td>
@@ -40,10 +47,7 @@
 		<td>CURRENCY</td>
 		<td>:	 <?php echo $deposit['Ecurr']['name'] ; ?></td>
 	</tr>
-	<tr>
-		<td>BENEFICIARY NAME</td>
-		<td>:	</td>
-	</tr>
+	
 	
 </table>
 
