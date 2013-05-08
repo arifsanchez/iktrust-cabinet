@@ -249,35 +249,46 @@ class CabinetsController extends AppController {
 			'recursive' => 0
 		));
 		
+		$this->loadModel('User');
+		$user = $this->User->find('all', array(
+			'fields' => array('User.id'),
+			'conditions' => array('User.id'  => $userId),
+			'recursive' => 0
+		));
+		
 		$this->loadModel('UserDetail');
-		$user = $this->UserDetail->find('all', array(
+		$userD = $this->UserDetail->find('all', array(
 			'fields' => array('UserDetail.id'),
-			'conditions' => array('UserDetail.id !='  => $userId, 'UserDetail.user_id'  => $userId),
+			'conditions' => array('UserDetail.id'  => $userId),
 			'recursive' => 0
 		));
 		
 		$this->loadModel('UserBank');
 		$bank = $this->UserBank->find('all', array(
 			'fields' => array('UserBank.id'),
-			'conditions' => array('UserBank.id !='  => $userId, 'UserBank.user_id'  => $userId),
+			'conditions' => array('UserBank.id'  => $userId),
 			'recursive' => 0
 		));
 		
 		$this->loadModel('UserEcr');
 		$ecr = $this->UserEcr->find('all', array(
 			'fields' => array('UserEcr.id'),
-			'conditions' => array('UserEcr.id !='  => $userId, 'UserEcr.user_id'  => $userId),
+			'conditions' => array('UserEcr.id'  => $userId),
 			'recursive' => 0
 		));
 		
-		//debug($acc);
+		debug($acc);
+		debug($user);
+		debug($userD);
+		debug($bank);
+		debug($ecr);
 
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
-			//debug($this->request->data);die();
+			debug($this->request->data);die();
 			if($this->Local->save($this->request->data)){
 				//$this->Session->setFlash(_('The bank details have been saved'));
 			}
@@ -586,7 +597,7 @@ class CabinetsController extends AppController {
 
 
 	public function affilliate(){
-		$this->layout = 'logmasuk';
+		$this->layout = 'register_kabinet';
 		$this->loadModel('Affilliate');
 
 		if($this->request -> isPost()){

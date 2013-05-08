@@ -77,6 +77,7 @@
 
 	Router::connect('/mybalance/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'check_balance'));
 	Router::connect('/quotes/*', array('plugin' => '', 'controller' => 'mt4_prices', 'action' => 'quotes'));
+	Router::connect('/affilliate/*', array('plugin' => '', 'controller' => 'cabinets', 'action' => 'affilliate'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

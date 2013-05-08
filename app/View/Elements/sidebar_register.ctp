@@ -119,21 +119,20 @@
                 <li><a href="#"><span class="iconsweets-download2"></span> Platform Downloads</a></li>
                 
             </ul>-->
-        </div><!--leftmenu-->
-		
-		<li class="nav-header">Partnership</li>
-		 <?php
-			 
-					$menu = array(
-									'options'=>array('class'=>'nav nav-tabs nav-stacked'),
-									'items'=>	array(
-												array('title'=>'Register Affilliate',  'url'=> array('controller'=>'cabinets', 'action'=>'affilliate')),
-											),
-										);
-									 
 			
-			//debug($menu);die();
-			echo $this->Menu->render($menu);
-			?>
-        
+			<li class="nav-header">Partnership</li>
+			 <?php
+				 
+						$menu = array(
+										'options'=>array('class'=>'nav nav-tabs nav-stacked'),
+										'items'=>	array(
+													array('title'=>'Register Affilliate',  'url'=> array('controller'=>'cabinets', 'action'=>'affilliate')),
+												),
+											);
+										 
+				
+				//debug($menu);die();
+				echo $this->Menu->render($menu);
+				?>
+        </div><!--leftmenu-->
     </div><!--mainleft-->
