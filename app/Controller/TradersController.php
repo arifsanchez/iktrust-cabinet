@@ -155,11 +155,13 @@ class TradersController extends AppController {
 			$this->set('deposit', $deposit);
 			
 			if (isset($this->request->data['submit'])) {
+			
+				//debug($deposit);die();
 				//send email
 						$Email = new CakeEmail();
 						$Email->template('deposit');
 						$Email->viewVars(array('deposit' => $deposit));
-						$Email->emailFormat('both');
+						$Email->emailFormat('html');
 						$Email->from(array('admin@trustxe.com' => 'IKTust'));
 						$Email->to('webteam@iktrust.com');
 						$Email->subject('Deposit Ik Trust');
