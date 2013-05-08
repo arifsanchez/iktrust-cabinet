@@ -293,6 +293,41 @@ class TradersController extends AppController {
 			$this->render();
 		}
 		
+		public function upload($pid){
+			$this->layout = 'kabinet';
+			$id = base64_decode($pid);
+			$this->loadModel('Withdrawal');
+			$check = $this->Withdrawal->find('list' , array(
+									'conditions' => array( 'Withdrawal.id' => $id),
+									'fields' => 'id',
+									));
+			//debug($check);die();
+			if ($this->request->is('post')){
+				
+				if (!empty($this->request->data['UserDoc']['form'])){
+					$form 	= $this->request->data['UserDoc']['form'];
+					$info1				 = pathinfo($form['name']); // split filename and extension
+					$saveName1 	= md5($info1['basename']) . '.' . $info1['extension'] ;
+					$savePath1 	= WWW_ROOT . 'img/withdrawal' . DS . $saveName1;
+				}
+				
+				if (move_uploaded_file($form['tmp_name'], $savePath1)){
+					$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName1);
+					if(!empty($check)){
+						$this->Withdrawal->id = $check;
+						$data1 = array('id' => $id , 'upload' =>$saveName1 );
+						$this->Withdrawal->save($data1);
+						$this->Session->setFlash(__('Your file has been saved, Thank You'));
+						$this->redirect(array('action' => 'transaction_withdrawal'));
+						
+					}else{
+						$this->Session->setFlash(__('Your file can not be saved, Please Try Again'));
+					}
+				}
+				
+			}
+	}
+		
 		
 	
 }	

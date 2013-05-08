@@ -3,13 +3,14 @@
 	$num = str_pad($withdrawal['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); 
 	$pid  = base64_encode($withdrawal['Withdrawal']['id']);
 	$link = Router::url("/traders/withdrawal_pdf/$pid",true);
+	$link2 = Router::url("/traders/upload/$pid",true);
 ?>
 
 <h3>Withdrawal Transfer instructions</h3>
 
 <p>Dear <?php echo $withdrawal['Withdrawal']['name']; ?>
 
-<p>You will find link  withdrawal details below , that contains all the information about withdrawal from IKTrust.</p><p><?php echo $link ; ?></p><p> Please print this out and certified , then email to finance@iktrust.com. </p>
+<p>You will find link  withdrawal details below , that contains all the information about withdrawal from IKTrust.</p><p><?php echo $link ; ?></p><p> Please print this out and certified , then upload to  <?php echo $link2 ; ?> </p>
 
 <p>Please find below details of your transaction.</p>
  

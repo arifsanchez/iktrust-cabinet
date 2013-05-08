@@ -47,7 +47,7 @@ class Withdrawal extends AppModel {
 			),
 		), 
 		
-		'ikbank_id' => array(
+		'trans_type_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -121,7 +121,7 @@ class Withdrawal extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'notes' => array(
+		'upload' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -159,9 +159,9 @@ class Withdrawal extends AppModel {
 			'order' => ''
 		),
 		
-		'Ikbank' => array(
-			'className' => 'Ikbank',
-			'foreignKey' => 'ikbank_id',
+		'TransType' => array(
+			'className' => 'TransType',
+			'foreignKey' => 'trans_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
