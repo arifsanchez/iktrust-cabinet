@@ -127,7 +127,7 @@ class TradersController extends AppController {
 			$this->set('userbank' , $userbank);
 		
 			if ($this->request->is('post')) {
-				//debug($this->request->data);die();
+				//debug($this->request->data);die();test
 				$this->request->data['Withdrawal']['local_status_id'] = 1;
 				$this->Withdrawal->create();
 				if ($this->Withdrawal->save($this->request->data)) {
