@@ -1,11 +1,15 @@
 
- <?php  $num = str_pad($deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
+ <?php  
+	$num = str_pad($deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); 
+	$enid  = base64_encode($deposit['Deposit']['id']);
+	$link = Router::url("/traders/view_deposit/$enid",true);
+?>
 
 <h3>Deposit Transfer instructions</h3>
 
 <p>Dear <?php echo $deposit['Deposit']['name']; ?>
 
-<p>You will find link  transfer instruction sheet below , that contains all the information that require to make the payment to IKTrust.</p><p><?php echo $this->Html->link(__('Payment Instruction'), array('action' => 'view_deposit', $enid )); ?></p><p> Please print this out and send it to your bank for processing. </p>
+<p>You will find link  transfer instruction sheet below , that contains all the information that require to make the payment to IKTrust.</p><p><?php echo $link ; ?></p><p> Please print this out and send it to your bank for processing. </p>
 
 <p>Please find below details of your transaction.</p>
  
@@ -16,7 +20,7 @@
 	</tr>
 	<tr>
 		<td>TRANSACTION TYPE</td> 
-		<td>:	deposit					</td>
+		<td>:	Deposit					</td>
 	</tr>
 	<tr>
 		<td>PAYMENT METHOD</td>
