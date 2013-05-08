@@ -1,9 +1,8 @@
 		
-		<div class="maincontent"><!--maincontent open--> 
-			<div class="contentinner"><!--contentinner open-->	
+		<div class="maincontent">
+			<div class="contentinner">
 			<?php echo $this->element('newsticker'); ?>
 				
-				<!--FIRST TTLE/HEADER-->
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
@@ -61,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-						
+
 				<h6>
 					Your use of the services will be treated as your informed acknowledgement that you have carefully read and are prepared to accept the provisions of this Account Opening Application Form and the Terms and Conditions regardless <br>of whether or not you have returned a signed copy to us.
 				</h6>
@@ -70,17 +69,35 @@
 				<?php 
 					echo $this->Form->create('Local', array('type' => '', 'id'=>'' , 'class' => '')); 	
 					// data to save in local
-
-					echo $this->Form->input('user_detail_id', array('type' => 'hidden', 'value' => $userD['UserDetail']['id']));
-					echo $this->Form->input('user_bank_id', array('type' => 'hidden', 'value' => $bank['UserBank']['id']));
-					echo $this->Form->input('user_acctype_id', array('type' => 'hidden', 'value' => $acc['UserAcctypes']['id']));
-					echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $user['User']['id']));
-					echo $this->Form->input('user_ecr_id', array('type' => 'hidden', 'value' => $ecr['UserEcr']['id']));
+					echo $this->Form->input('user_acctype_id', array(
+						'type' => 'hidden', 
+						'value' =>$acc['UserAcctypes']['id']
+					));
+					
+					echo $this->Form->input('user_id', array(
+						'type' => 'hidden', 
+						'value' =>$user['User']['id']
+					));
+					
+					echo $this->Form->input('user_detail_id', array(
+						'type' => 'hidden', 
+						'value' =>$userD['UserDetail']['id']
+					));
+					
+					echo $this->Form->input('user_bank_id', array(
+						'type' => 'hidden', 
+						'value' =>$bank['UserBank']['id']
+					));
+					
+					echo $this->Form->input('user_ecr_id', array(
+						'type' => 'hidden', 
+						'value' =>$ecr['UserEcr']['id']
+					));
 				?>
 				<p>
 					<?php echo $this->Form->Submit(__('Finish'), array('class'=>'btn btn-primary'));?>
 					<?php echo $this->Form->end(); ?>
 				</p>
 				
-			</div><!--contentinner close-->
-		</div><!--mainconten closet-->
+			</div>
+		</div>
