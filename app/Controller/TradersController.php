@@ -131,7 +131,7 @@ class TradersController extends AppController {
 				$this->request->data['Withdrawal']['local_status_id'] = 1;
 				$this->Withdrawal->create();
 				if ($this->Withdrawal->save($this->request->data)) {
-					$this->Session->setFlash(__('Your Withdrawal has been saved'));
+					//$this->Session->setFlash(__('Your Withdrawal has been saved'));
 					$enid  = base64_encode($this->Withdrawal->id);
 					$this->redirect(array('action' => 'view_withdrawal', $enid));
 				} else {
@@ -296,6 +296,7 @@ class TradersController extends AppController {
 		public function upload($pid){
 			$this->layout = 'kabinet';
 			$id = base64_decode($pid);
+			//debug($id);die();
 			$this->loadModel('Withdrawal');
 			$check = $this->Withdrawal->find('list' , array(
 									'conditions' => array( 'Withdrawal.id' => $id),

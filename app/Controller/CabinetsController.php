@@ -165,7 +165,6 @@ class CabinetsController extends AppController {
 	
 	public function ecurrency(){
 		$this->layout = 'kabinet';
-		
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
@@ -298,7 +297,7 @@ class CabinetsController extends AppController {
 			$Email = new CakeEmail();
 			$Email->template('newtrader');
 			$Email->viewVars(array('user' => $user));
-			$Email->emailFormat('both');
+			$Email->emailFormat('html');
 			$Email->from(array('admin@trustxe.com' => 'IKTust'));
 			$Email->to('webteam@iktrust.com');
 			$Email->subject('New Trader IKTrust');

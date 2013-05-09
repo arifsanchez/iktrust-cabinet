@@ -45,7 +45,7 @@ $htmlcontent = <<<EOF
 		<table border="0">
 			<tr>
 				<td><strong><small><em>$create</em></small></strong></td>
-				<td align="right"><strong><small><em>DOP/IK#$num</em></small></strong></td>
+				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
 		
