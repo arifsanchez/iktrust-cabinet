@@ -20,7 +20,7 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo $deposit['Deposit']['id']; ?>
+								<? echo str_pad( $deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
 							<td class="center">
 								<? echo $deposit['Mt4User']['LOGIN']; ?>

@@ -225,6 +225,7 @@ class LocalsController extends AppController {
 			'conditions' => array( 'Withdrawal.id' => $id)
 		));
 		$this->set('withdrawal', $withdrawal);
+		//debug($withdrawal);die();
 		//display table
 		
 		$login = $withdrawal['Withdrawal']['mt4_user_LOGIN'];
@@ -232,6 +233,7 @@ class LocalsController extends AppController {
 		$dc = $this->paginate('WdComment',
 			array('WdComment.mt4_user_LOGIN' => $login)
 		);
+		
 		$this->set('dc', $dc);
 		//submit form test cc
 		

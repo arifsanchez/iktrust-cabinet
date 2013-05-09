@@ -17,7 +17,7 @@
 								<div class="form-inline">
 									<p>
 										<label>Withdrawal Id : </label>
-										<?php echo $withdrawal['Withdrawal']['id'];   ?>
+										<? echo str_pad($withdrawal['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); ?>
 									</p>
 								</div>
 								<div class="form-inline">
@@ -35,6 +35,24 @@
 										<label>email  : </label>
 										<?php echo $withdrawal['Withdrawal']['email'];   ?>
 									</p>
+									<div class="form-inline">
+									<p>
+										<label>Phone : </label>
+										<?php echo $withdrawal['Mt4User']['PHONE'];   ?>
+									</p>
+								</div>
+								<div class="form-inline">
+									<p>
+										<label>Country : </label>
+										<?php echo $withdrawal['Mt4User']['COUNTRY'];   ?>
+									</p>
+								</div>
+								<div class="form-inline">
+									<p>
+										<label>Upload Withdrawal form</label>
+										<a href="<?php echo $this->webroot; ?>img/withdrawal/<?echo $withdrawal['Withdrawal']['upload']?>">Withdrawal Form</a>
+									</p>
+								</div>
 								</fieldset>
 								</div>
 								<div class = "span6 well" >
@@ -147,7 +165,7 @@
 												<tbody>
 													<tr class="gradeX">
 														<td class="center">
-															<? echo $dc['Withdrawal']['id']; ?>
+															<? echo str_pad($dc['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); ?>
 														</td>
 														<td class="center">
 															<? echo $dc['Withdrawal']['amount']; ?>
@@ -155,24 +173,32 @@
 														<td class="center">
 															<? echo $dc['UserBank']['name']; ?>
 														</td>
-														 <td class="center">
-															<? echo $dc['Withdrawal']['name']; ?>
-														</td>
+														 
 														<td class="center">
 															<? echo $dc['Withdrawal']['created']; ?>
 														</td>
 														
 														<td class="center">
-															<? echo $dc['WithdrawalComment']['amount']; ?>
+															<? echo $dc['WdComment']['amount']; ?>
 														</td>
 														<td class="center">
-															<? echo $dc['WithdrawalComment']['created']; ?>
+															<? echo $dc['WdComment']['created']; ?>
 														</td>
 														<td class="center">
-															<? echo $dc['WithdrawalComment']['comment']; ?>
+															<? echo $dc['WdComment']['comment']; ?>
 														</td>
 														<td class="center">
-															<? echo $dc['Withdrawal']['local_status_id']; ?>
+															<? 
+																if ($dc['Withdrawal']['local_status_id'] == 1){
+																	echo 'Pending';
+																}
+																if ($dc['Withdrawal']['local_status_id'] == 2){
+																	echo 'Verified';
+																}
+																if ($dc['Withdrawal']['local_status_id'] == 3){
+																	echo 'Rejected';
+																}
+															?>
 														</td>
 														<td class="center"><span class="icon-edit"></span>
 															<?php echo $this->Html->link(__('view'), array('action' => 'edit_withdrawal', $dc['Withdrawal']['id'] )); ?>
