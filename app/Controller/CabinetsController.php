@@ -515,9 +515,9 @@ class CabinetsController extends AppController {
 						'first', array(
 							'conditions' =>array( 'Local.user_id' => $userId),
 							'fields' 		=> 'Local.local_status_id',
-							'recursive' 	=> -1
 						)
 					);
+					$this -> set('status',$status);
 					//debug($status);die();//
 					$user = $this->User->find(
 						'first', array(

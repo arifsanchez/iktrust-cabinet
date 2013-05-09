@@ -10,16 +10,27 @@
 						<h2>My Accounts</h2>
 					</div>
 					<div class="span4">
-					<?php  if($user['User']['email_verified'] == 1){
+					<?php  
 					
-						echo $this->Html->link('<span class=" iconfa-folder-open"></span>&nbsp; Live Account', '/cabinets/acc_type', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
-						echo $this->Html->link('<span class=" iconfa-tags"></span>&nbsp; Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
+						if ($status['Local']['local_status_id'] == 2){
+							
+							echo $this->Html->link('<span class=" iconfa-folder-open"></span>&nbsp; Another Account', '/cabinets/acc_type', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
+							echo $this->Html->link('<span class=" iconfa-tags"></span>&nbsp; Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
 						
 						}else{
-							echo "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
-								<strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>";
+						
+							if($user['User']['email_verified'] == 1){
+							
+								echo $this->Html->link('<span class=" iconfa-folder-open"></span>&nbsp; Live Account', '/cabinets/acc_type', array('class' => 'btn btn-rounded btn-success enable span6 ', 'target' => '_blank', 'escape' => false));
+								echo $this->Html->link('<span class=" iconfa-tags"></span>&nbsp; Demo Account', '/pages/home', array('class' => 'btn btn-rounded btn-warning enable span6 ', 'target' => '_blank', 'escape' => false));
+								
+							}else{
+									echo "<div class=\"alert alert-info\"><button class=\"close\" type=\"button\" data-dismiss=\"alert\">X</button>
+										<strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>";
+							}
+						
 						}
-						?>
+					?>
 					</div>
 				</div>
 				<!--TABLE OF CONTENT-->
