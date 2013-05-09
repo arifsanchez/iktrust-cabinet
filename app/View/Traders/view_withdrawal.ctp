@@ -1,4 +1,4 @@
-		<?php //var
+		<?php //varnn
 		$name = $withdrawal['Withdrawal']['name'];
 		$ic = $ic['UserDetail']['ic'];
 		//$userbank = $withdrawal['Withdrawal']['userbank'];
