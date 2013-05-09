@@ -239,6 +239,7 @@ class CabinetsController extends AppController {
 	public function acknowledge(){		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Local');
 		$userId 	= $this->UserAuth->getUserId();
 		
 		$this->loadModel('UserAcctypes');		
@@ -287,6 +288,7 @@ class CabinetsController extends AppController {
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
+			debug($this->request->data);die();
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
 			if($this->Local->save($this->request->data)){
@@ -629,6 +631,7 @@ class CabinetsController extends AppController {
 				}
 					if (isset($this->request->data['signup'])){	
 						if ($this->request -> isPost()) {
+							//debug($this->request->data);die();
 							$this->User->set($this->data);
 							$UserRegisterValidate = $this->User->RegisterValidate();
 								if($this->RequestHandler->isAjax()) {

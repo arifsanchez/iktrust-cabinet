@@ -8,7 +8,7 @@
                 <div class="widgetcontent bordered shadowed nopadding">
                     
 					<?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2")); ?>
-					
+				
  							<p>
                                 <label>Username</label>
                               <span class="field">  <?php echo $this->Form->input("username" ,array('label' => false ,'div' => false,'class'=>'input-xlarge' ))?></span>
@@ -290,7 +290,7 @@
                                 <label>Comfirm Password</label>
                                 <span class="field"><?php echo $this->Form->input("cpassword" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
                             </p>
-                                                    
+                                  <?php echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2'))?>                   
                             <p class="stdformbutton">
                                <?php echo $this->Form->button(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
                                 <?php echo $this->Form->button(__('Reset'), array('type' => 'reset' ,'class' => "btn"));?>
