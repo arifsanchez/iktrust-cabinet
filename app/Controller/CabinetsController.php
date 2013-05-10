@@ -253,7 +253,6 @@ class CabinetsController extends AppController {
 			'recursive' => 0
 		));
 		$this->set('acc',$acc);
-
 		$this->loadModel('User');
 		$user = $this->User->find('first', array(
 			'fields' => array('User.id'),
@@ -289,10 +288,8 @@ class CabinetsController extends AppController {
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
-			debug($this->request->data);die();
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
-			debug(); die();
 			if($this->Local->save($this->request->data)){
 				$this->Session->setFlash(_('The bank details have been saved'));
 			}
