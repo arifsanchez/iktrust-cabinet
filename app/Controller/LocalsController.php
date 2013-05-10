@@ -11,16 +11,18 @@ class LocalsController extends AppController {
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
 		$a = $this->Local->Find('first',array(
-											'conditions' =>array( 'Local.id' => $id),
-											));
+			'conditions' =>array( 'Local.id' => $id),
+		));
+		
 		$try = $this->Local->Find('list',array(
-												'conditions' =>array( 'Local.id' => $id),
-												'fields' => 'Local.user_id' ,
-												));
+			'conditions' =>array( 'Local.id' => $id),
+			'fields' => 'Local.user_id' ,
+		));
 		
 		$b = $this->UserDoc->find('first' , array(
-												'conditions' => array( 'user_id' => $try),
-												));
+			'conditions' => array( 'user_id' => $try),
+		));
+		
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -48,21 +50,20 @@ class LocalsController extends AppController {
 				
 				//parameter
 				$fields = array(
-				
-					'action' 				=> 'register',
-					'agent' 				=> $ibagent,
-					'country' 			=> $country,
-					'state' 				=> $state,
-					'city' 					=> $city,
-					'address' 			=> $address,
-					'leverage'			=> $test,
-					'phone'				=> $phone,
-					'comment' 		=> $comment,
-					'acctype' 			=> $acctype,
-					'name' 				=> $name,
-					'email' 				=> $email,
-					'mpass' 			=> $key,
-					'ipass' 				=> $investor,
+					'action' 		=> 'register',
+					'agent' 		=> $ibagent,
+					'country' 		=> $country,
+					'state' 			=> $state,
+					'city' 			=> $city,
+					'address' 	=> $address,
+					'leverage'	=> $test,
+					'phone'		=> $phone,
+					'comment' 	=> $comment,
+					'acctype' 	=> $acctype,
+					'name' 		=> $name,
+					'email' 		=> $email,
+					'mpass' 		=> $key,
+					'ipass' 		=> $investor,
 					
 				);
 				
@@ -87,13 +88,25 @@ class LocalsController extends AppController {
 		if(!empty($this->request->params['named']['status'])){
 			$this->Local->id = $id;
 			$locals = $this->paginate('Local',
-						array("Local.local_status_id" => $this->request->params['named']['status'])
-						);
+				array("Local.local_status_id" => $this->request->params['named']['status'])
+			);
 			$this->set('locals',$locals);
 		} else {
 			$locals = $this->paginate('Local');
 			$this->set('locals',$locals);
 		}
+	}
+	
+	public function affilliateindex($id = null){
+		$this->layout = 'admin';
+		$this->loadModel('Affilliate');
+		
+		$locals = $this->Affilliate->find('all');
+		//debug($all); die();
+		$this->set('locals',$locals);
+		//$pending = $this->Article->find('all', array(
+			//'conditions' => array('Article.status' => 'pending')
+		//));
 	}
 	
 	
