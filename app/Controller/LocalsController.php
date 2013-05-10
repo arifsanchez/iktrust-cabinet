@@ -134,7 +134,7 @@ class LocalsController extends AppController {
 			'conditions' => array( 'Deposit.id' => $id)
 		));
 		$this->set('deposit', $deposit);
-		//display table
+		//display table....
 		
 		$login = $deposit['Deposit']['mt4_user_LOGIN'];
 		$dc = $this->paginate('DepositComment',

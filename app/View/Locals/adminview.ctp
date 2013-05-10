@@ -12,7 +12,7 @@
 			$ip = explode(',',$_SERVER['REMOTE_ADDR']);
 			$ip = trim($ip[0]);
 		} else {
-		  $ip = $_SERVER['REMOTE_ADDR'];
+		  $ip = $_SERVER['REMOTE_ADDR']; 
 		}
 	?>
 	
