@@ -189,6 +189,7 @@ class CabinetsController extends AppController {
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
 		$this->Cookie->write('latest', $this->UserAcctypes->id); 	//sent current id
+		//debug($this->UserAcctypes->id); die();
 		
 		$this->loadModel('User');
 		$this->User->UserId = $ud['user_cl']['User']['id'];
@@ -291,6 +292,7 @@ class CabinetsController extends AppController {
 			debug($this->request->data);die();
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
+			debug(); die();
 			if($this->Local->save($this->request->data)){
 				$this->Session->setFlash(_('The bank details have been saved'));
 			}
