@@ -514,7 +514,7 @@ class CabinetsController extends AppController {
 					//find email verified utk user
 				$this->loadModel('Local');	
 					$status = $this->Local->find(
-						'list', array(
+						'first', array(
 							'conditions' =>array( 'Local.user_id' => $userId),
 							'fields' 		=> 'Local.local_status_id',
 						)
