@@ -82,6 +82,32 @@ class LocalsController extends AppController {
 		}
 	}
 	
+	public function affilliateindex($id = null){
+		$this->layout = 'admin';
+		$this->loadModel('Affilliate');
+
+		$locals = $this->Affilliate->find('all');
+		//debug($all); die();
+		$this->set('locals',$locals);
+	} 
+	
+	public function affilliatedelete($id = null) {
+		$this->layout = 'admin';
+		$this->loadModel('Affilliate');
+		
+		$this->Affilliate->id = $id;
+		if (!$this->Affilliate->exists()) {
+			throw new NotFoundException(__('Invalid mt4 trade'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Affilliate->delete()) {
+			$this->Session->setFlash(__('Mt4 trade deleted'));
+			$this->redirect(array('action' => 'affilliateindex'));
+		}
+		$this->Session->setFlash(__('Mt4 trade was not deleted'));
+		$this->redirect(array('action' => 'affilliateindex'));
+	}
+	
 	public function tradersindex($id = null){
 		$this->layout = 'admin';
 		if(!empty($this->request->params['named']['status'])){

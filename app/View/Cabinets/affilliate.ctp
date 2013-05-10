@@ -20,15 +20,14 @@
 
 				<div class="row-fluid">
 					<div class="widgetcontent bordered shadowed nopadding span7">
-						<?php echo $this->Form->create('Affilliate', array('id'=>'registerAffilliates', 'class' => "stdform stdform2")); ?>
-						
+						<?php echo $this->Form->create('User', array('id'=>'registerAffilliates', 'class' => "stdform stdform2")); ?>
 							<h3 class="widgettitle nomargin shadowed"><span class=" iconsweets-users2"></span>&nbsp; Personal Data</h3>
 								
 								<p>
 									<label>Status</label>
 									<span class="field">
-										<input class="validate[required] radio" type="radio" name="data[Affilliate][status]" id="AffilliateStatus" value="Individual" />Individual &nbsp; 
-										<input class="validate[required] radio" type="radio" name="data[Affilliate][status]" id="AffilliateStatus" value="Company"/>Company
+										<input class="validate[required] radio" type="radio" name="data[User][status]" id="UserStatus" value="Individual" />Individual &nbsp; 
+										<input class="validate[required] radio" type="radio" name="data[User][status]" id="UserStatus" value="Company"/>Company
 									</span>
 								</p>
 								
@@ -50,7 +49,7 @@
 								
 							  <p>
                                 <label>Country</label>
-                                <span class="field"><select name="data[Affilliate][country]" id="AffilliateCountry" class="uniformselect validate[required]">
+                                <span class="field"><select name="data[User][country]" id="UserCountry" class="uniformselect validate[required]">
                                   <option value="">Choose One</option>
                                   <option value="United States">United States</option> 
                                   <option value="United Kingdom">United Kingdom</option> 
@@ -298,9 +297,7 @@
                                 
                                 </select></span>
                             </p>
-								
 
-								
 								<p>
 									<label>Email</label>
 									<span class="field"><?php echo $this->Form->input("email", array('type' => "email" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
@@ -313,21 +310,37 @@
 								
 								<p>
 									<label>Year Of Creation</label>
-									<span class="field"><?php echo $this->Form->input("year_creation", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
+									<span class="field"><?php echo $this->Form->input("creation", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
 								</p>
 								
 								<p>
 									<label>Website</label>
 									<span class="field"><?php echo $this->Form->input("website", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
 								</p>
-							<br>
+							
+							<h3 class="widgettitle nomargin shadowed"><span class="  iconsweets-locked2"></span>&nbsp; Login Details</h3>	
+							<p>
+								<label>Username</label>
+								<span class="field"><?php echo $this->Form->input("username", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
+							</p>
+							
+							<p>
+								<label>Password</label>
+								<span class="field"><?php echo $this->Form->input("password" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+							</p>
+							
+							<p>
+								<label>Confirm Password</label>
+								<span class="field"><?php echo $this->Form->input("salt" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+							</p>	
+							
 							<h3 class="widgettitle nomargin shadowed"><span class="iconsweets-create"></span>&nbsp; Optional</h3>							
 								<p>
 									<label>Affilliate Code</label>
 									<ul class="tooltipsample">
 										<span class="field">
 											<a data-placement="right" data-rel="tooltip" data-original-title="The field is optional. in this field you may enter the affiliate code of a partner who referred you to the company." >
-												<input type="text"  id="AffilliateAffilliateCode" class="span5" name="data[Affilliate][affilliate_code]">&nbsp;<span class=" iconsweets-document"></span>
+												<input type="text"  id="UserCode" class="span5" name="data[User][code]">&nbsp;<span class=" iconsweets-document"></span>
 											</a>
 										</span>
 									</ul>
@@ -338,7 +351,7 @@
 									<ul class="tooltipsample">
 										<span class="field">
 											<a data-placement="right" data-rel="tooltip" data-original-title="The field is optional. in this field you may enter the details of your project." >
-												<textarea cols="30"  rows="3" id="AffilliateComment" class="span5" name="data[Affilliate][comment]"></textarea>&nbsp;<span class=" iconsweets-document"></span>
+												<textarea cols="30"  rows="3" id="UserComment" class="span5" name="data[User][comment]"></textarea>&nbsp;<span class=" iconsweets-document"></span>
 											</a>
 										</span>
 									</ul>
@@ -352,6 +365,7 @@
 								</p>
 								
 								<p class="stdformbutton">
+									<?php echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '3'))?>  
 									<?php echo $this->Form->Button(__('Register'), array('class'=>'btn btn-danger')); ?>
 									<?php echo $this->Form->Button(__('Reset'), array('class'=>'btn', 'type' => 'reset')); ?>
 									<br>

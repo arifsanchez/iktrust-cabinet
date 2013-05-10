@@ -69,10 +69,11 @@
 				<?php 
 					echo $this->Form->create('Local', array('type' => '', 'id'=>'' , 'class' => '')); 	
 					// data to save in local
-					echo $this->Form->input('user_acctypes_id', array(
+					echo $this->Form->input('user_acctype_id', array(
 						'type' => 'hidden', 
 						'value' =>$acc['UserAcctypes']['id']
 					));
+					
 					
 					echo $this->Form->input('user_id', array(
 						'type' => 'hidden', 
@@ -83,6 +84,7 @@
 						'type' => 'hidden', 
 						'value' =>$userD['UserDetail']['id']
 					));
+					
 					
 					echo $this->Form->input('user_bank_id', array(
 						'type' => 'hidden', 
