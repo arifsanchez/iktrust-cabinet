@@ -130,7 +130,7 @@
 												<tbody>
 													<tr class="gradeX">
 														<td class="center">
-															<? echo $dc['Deposit']['id']; ?>
+															<? echo str_pad( $dc['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
 														</td>
 														<td class="center">
 															<? echo $dc['Deposit']['amount']; ?>
@@ -155,7 +155,17 @@
 															<? echo $dc['DepositComment']['comment']; ?>
 														</td>
 														<td class="center">
-															<? echo $dc['Deposit']['local_status_id']; ?>
+															<? 
+																if ($dc['Deposit']['local_status_id'] == 1){
+																	echo 'Pending';
+																}
+																if ($dc['Deposit']['local_status_id'] == 2){
+																	echo 'Verified';
+																}
+																if ($dc['Deposit']['local_status_id'] == 3){
+																	echo 'Rejected';
+																}
+															?>
 														</td>
 														<td class="center"><span class="icon-edit"></span>
 															<?php echo $this->Html->link(__('view'), array('action' => 'edit_deposit', $dc['Deposit']['id'] )); ?>

@@ -12,7 +12,8 @@
 							<th class="center">Balance</th>
 							<th class="center">Free Margin</th>
                             <th class="center">PrevMonthBalance</th>
-							  <th class="center">Status</th>
+							<th class="center">File Upload</th>
+							<th class="center">Status</th>
                             <th class="center">More Action</th>
                         </tr>
                     </thead>
@@ -20,7 +21,7 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo $withdrawal['Withdrawal']['id']; ?>
+								<? echo str_pad($withdrawal['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
 							<td class="center">
 								<? echo $withdrawal['Mt4User']['LOGIN']; ?>
@@ -40,6 +41,13 @@
 							</td>
 							<td class="center">
 								<? echo $withdrawal['Mt4User']['PREVMONTHBALANCE']; ?>
+							</td>
+							<td class="center">
+								<?php  if (empty ($withdrawal['Withdrawal']['upload'])){
+										echo 'Please upload' ;
+									}else{
+										echo 'Done';
+								}?>
 							</td>
 							<td class="center">
 								<? echo $withdrawal['LocalStatus']['name']; ?>

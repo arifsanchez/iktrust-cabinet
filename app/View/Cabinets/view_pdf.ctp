@@ -45,7 +45,7 @@ $htmlcontent = <<<EOF
 		<table border="0">
 			<tr>
 				<td><strong><small><em>$create</em></small></strong></td>
-				<td align="right"><strong><small><em>DOP/IK#$num</em></small></strong></td>
+				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
 		
@@ -150,8 +150,7 @@ $htmlcontent = <<<EOF
 		<div><br></div>
 		<div><br></div>
 		<div><br></div>
-		<div><br></div>
-		<div><br></div>
+		
 
 		<table border="0">
 			<tr>
@@ -161,13 +160,13 @@ $htmlcontent = <<<EOF
 		</table>
 		<div><br></div>
 		<div><hr></div>
-		<div align = "center"><small>IK Trust Capital Market Corporation Limited . Secured & Trusted Regulated Broker .New Zealand Company Reg. No. 3851316  </small></div>
+		<div align = "center"><small>IK Trust Capital Market Corporation Limited .</small></div>
 	</body>
 </html>
 EOF;
  
 // output the HTML content
 $tcpdf->writeHTML($htmlcontent, true, 0, true, 0);
-$tcpdf->Output('filename.pdf', 'D');
+$tcpdf->Output('registration.pdf', 'D');
 
 ?>

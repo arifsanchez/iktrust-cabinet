@@ -103,7 +103,7 @@
 			$menu = array(
 				'options'=> array('class'=>'nav nav-tabs nav-stacked'),
 				'items'=> array(
-					array('title'=>'Withdrawals',  'url'=> array('controller'=>'locals', 'action'=>'transaction_withdraw')),
+					array('title'=>'Withdrawals',  'url'=> array('controller'=>'locals', 'action'=>'transaction_withdrawal')),
 					array('title'=>'Deposits',  'url'=> array('controller'=>'locals', 'action'=>'transaction_deposit')),
 					array('title'=>'Transfers',  'url'=> array('controller'=>'locals', 'action'=>'transaction_transfer')),
 				),

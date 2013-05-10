@@ -16,7 +16,7 @@
 				<br>
 				<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Upload File</h3>	
+						<h3 class="widgettitle nomargin">Upload Withdrawal File</h3>	
 						
 						
 						<div class="row-fluid"> 

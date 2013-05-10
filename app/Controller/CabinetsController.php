@@ -165,7 +165,6 @@ class CabinetsController extends AppController {
 	
 	public function ecurrency(){
 		$this->layout = 'kabinet';
-		
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
@@ -240,6 +239,7 @@ class CabinetsController extends AppController {
 	public function acknowledge(){		
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Local');
 		$userId 	= $this->UserAuth->getUserId();
 		
 		$this->loadModel('UserAcctypes');		
@@ -288,6 +288,7 @@ class CabinetsController extends AppController {
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
+			debug($this->request->data);die();
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
 			if($this->Local->save($this->request->data)){
@@ -298,7 +299,7 @@ class CabinetsController extends AppController {
 			$Email = new CakeEmail();
 			$Email->template('newtrader');
 			$Email->viewVars(array('user' => $user));
-			$Email->emailFormat('both');
+			$Email->emailFormat('html');
 			$Email->from(array('admin@trustxe.com' => 'IKTust'));
 			$Email->to('webteam@iktrust.com');
 			$Email->subject('New Trader IKTrust');
@@ -514,9 +515,9 @@ class CabinetsController extends AppController {
 						'first', array(
 							'conditions' =>array( 'Local.user_id' => $userId),
 							'fields' 		=> 'Local.local_status_id',
-							'recursive' 	=> -1
 						)
 					);
+					$this -> set('status',$status);
 					//debug($status);die();//
 					$user = $this->User->find(
 						'first', array(
@@ -630,6 +631,7 @@ class CabinetsController extends AppController {
 				}
 					if (isset($this->request->data['signup'])){	
 						if ($this->request -> isPost()) {
+							//debug($this->request->data);die();
 							$this->User->set($this->data);
 							$UserRegisterValidate = $this->User->RegisterValidate();
 								if($this->RequestHandler->isAjax()) {
