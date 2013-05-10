@@ -97,16 +97,6 @@ class LocalsController extends AppController {
 	}
 	
 	
-	public function affilliateindex($id = null){
-		$this->layout = 'admin';
-		$this->loadModel('Affilliate');
-		
-		$locals = $this->Affilliate->find('all');
-		//debug($all); die();
-		$this->set('locals',$locals);
-	}
-	
-	
 	public function delete($now = null) {
 		$id = base64_decode($now);
 		if (!$this->request->is('post')) {
