@@ -604,19 +604,16 @@ class CabinetsController extends AppController {
 
 	public function affilliate(){
 		$this->layout = 'register_kabinet';
-		
-		
-		$this->loadModel('User');
 
-		if($this->request -> isPost()){
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-			    $this->Session->setFlash('Your have successful registered.');
-				$this->redirect(array('controller' => 'cabinets', 'action' => 'login'));
-				
-			} else {
-			   $this->Session->setFlash('Failed to register, kindly pls try again.');
+		$this->loadModel('Affilliate'); 
+		if($this->request -> isPut() || $this->request -> isPost()){
+			$this->Affilliate->create();
+			$this->request->data['Affilliate']['local_status_id'] = 1 ;
+			//debug($this->request->data); die();
+			if($this->Affilliate->save($this->request->data)){
+				$this->Session->setFlash('Your have successful registered.');
 			}
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
 		}
 	}	
 
