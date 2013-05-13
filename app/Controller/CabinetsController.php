@@ -245,6 +245,7 @@ class CabinetsController extends AppController {
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
 		$this->Cookie->write('latest', $this->UserAcctypes->id); 	//sent current id
+		//debug($this->UserAcctypes->id); die();
 		
 		$this->loadModel('User');
 		$this->User->UserId = $ud['user_cl']['User']['id'];
@@ -301,14 +302,17 @@ class CabinetsController extends AppController {
 		$this->loadModel('UserAcctypes');		
 		$data = $this->Cookie->read($latest);		//read current id from document
 		
+		
 		$acc = $this->UserAcctypes->find('first', array(
 			'fields' => array('UserAcctypes.id'),
 			'conditions' => array('UserAcctypes.id'  => $data['latest']),
 			'order' => array( 'UserAcctypes.modified' => 'desc'),
 			'recursive' => 0
 		));
+		
 		$this->set('acc',$acc);
-
+		
+		
 		$this->loadModel('User');
 		$user = $this->User->find('first', array(
 			'fields' => array('User.id'),
@@ -344,9 +348,9 @@ class CabinetsController extends AppController {
 		
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
-			debug($this->request->data);die();
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
+			
 			if($this->Local->save($this->request->data)){
 				$this->Session->setFlash(_('The bank details have been saved'));
 			}
@@ -656,17 +660,16 @@ class CabinetsController extends AppController {
 
 	public function affilliate(){
 		$this->layout = 'register_kabinet';
-		$this->loadModel('Affilliate');
 
-		if($this->request -> isPost()){
+		$this->loadModel('Affilliate'); 
+		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Affilliate->create();
-			if ($this->Affilliate->save($this->request->data)) {
-			    $this->Session->setFlash('Your have successful registered.');
-				$this->redirect(array('controller' => 'cabinets', 'action' => 'login'));
-				
-			} else {
-			   $this->Session->setFlash('Failed to register, kindly pls try again.');
+			$this->request->data['Affilliate']['local_status_id'] = 1 ;
+			//debug($this->request->data); die();
+			if($this->Affilliate->save($this->request->data)){
+				$this->Session->setFlash('Your have successful registered.');
 			}
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
 		}
 	}	
 
