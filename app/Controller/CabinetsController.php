@@ -345,14 +345,18 @@ class CabinetsController extends AppController {
 		));
 		$this->set('ecr',$ecr);
 
-		
+		$email = $this->User->find('list', array(
+			'fields' => array('User.email'),
+			'conditions' => array('User.id'  => $userId),
+			'recursive' => 0
+		));
 		$this->loadModel('Local');
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
 			
 			if($this->Local->save($this->request->data)){
-				$this->Session->setFlash(_('The bank details have been saved'));
+				//$this->Session->setFlash(_('The bank details have been saved'));
 			}
 
 			//send email
@@ -361,7 +365,7 @@ class CabinetsController extends AppController {
 			$Email->viewVars(array('user' => $user));
 			$Email->emailFormat('html');
 			$Email->from(array('admin@trustxe.com' => 'IKTust'));
-			$Email->to('webteam@iktrust.com');
+			$Email->to($email);
 			$Email->subject('New Trader IKTrust');
 			$Email->send();
 

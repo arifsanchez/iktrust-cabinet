@@ -11,16 +11,17 @@ class LocalsController extends AppController {
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
 		$a = $this->Local->Find('first',array(
-											'conditions' =>array( 'Local.id' => $id),
-											));
+			'conditions' =>array( 'Local.id' => $id),
+		));
+		
 		$try = $this->Local->Find('list',array(
-												'conditions' =>array( 'Local.id' => $id),
-												'fields' => 'Local.user_id' ,
-												));
+			'conditions' =>array( 'Local.id' => $id),
+			'fields' => 'Local.user_id' ,
+		));
 		
 		$b = $this->UserDoc->find('first' , array(
-												'conditions' => array( 'user_id' => $try),
-												));
+			'conditions' => array( 'user_id' => $try),
+		));
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -116,6 +117,65 @@ class LocalsController extends AppController {
 		$this->Session->setFlash(__('Trader was not deleted'));
 		$this->redirect(array('action' => 'tradersindex'));
 	}
+	
+	
+	public function affilliateindex($now = null) {
+		$this->layout = 'admin';
+		$id = base64_decode($now);
+		
+		$this->loadModel('Affilliate');
+		$locals = $this->Affilliate->find('all');
+		//debug($all); die();
+		$this->set('locals',$locals);
+	} 
+	
+	
+	public function affilliateview($now = null) {
+		$this->layout = 'admin';
+		$id = base64_decode($now);
+		
+		$this->loadModel('Affilliate');
+		$locals = $this->Affilliate->find('first', array(
+			'conditions' => array('Affilliate.id' => $id)
+		));
+		//debug($locals); die();
+		$this->set('locals',$locals);
+		
+		if($this->request -> isPost()){
+			$this->Affilliate->id = $id;
+			$status = $this->request->data['Affilliate']['local_status_id'];
+			
+			if($this->Affilliate->save($this->request->data)){
+				$this->Session->setFlash(_('The details have been saved'));
+				$this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
+			}
+		}
+	}
+	
+	
+		public function affilliatedelete($now = null) {
+		$id = base64_decode($now);
+		$this->loadModel('Affilliate');
+		
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Affilliate->id = $id;
+		
+		if (!$this->Affilliate->exists()) {
+			throw new NotFoundException(__('Invalid Affilliate'));
+		}
+		
+		if ($this->Affilliate->delete()) {
+			$this->Session->setFlash(__('Affilliate Deleted'));
+			$this->redirect(array('action' => 'affilliateindex'));
+		}
+		
+		$this->Session->setFlash(__('Affilliate was not deleted'));
+		$this->redirect(array('action' => 'affilliateindex'));
+	}
+	
+	
 	
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
