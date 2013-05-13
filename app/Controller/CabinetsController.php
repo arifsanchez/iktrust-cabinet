@@ -7,7 +7,63 @@ App::uses('HttpSocket', 'Network/Http');
 
 class CabinetsController extends AppController {
 	public $helpers = array('Menu');
-	public $components = array('RequestHandler');	
+	public $components = array('RequestHandler');
+
+	function ext_reg(){
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		if(!empty($this->params['named'])){
+			$data = $this->params['named'];
+			#check key
+			if($data['k'] = 'syui9f8as9dgas89dfg9as7dgaos879tdas8odgas87sa'){
+				
+				if($data['k1'] = 'qwwoiutjncyh58jdbt'){
+
+					#susun data
+					$this->request->data['User']['first_name'] = $data['fn'] ;
+					$this->request->data['User']['user_group_id'] = 2 ;
+					$this->request->data['User']['email'] 		= $data['e'];
+					$this->request->data['User']['password'] 	= $data['m'];
+					$this->request->data['User']['agent'] 		= $data['ag'];
+					$this->request->data['User']['country'] = $data['c'];
+					$this->request->data['UserDetail']['cellphone'] = $data['p'];
+					$this->request->data['UserDetail']['address'] = $data['a'];
+					$this->request->data['UserDetail']['city'] = $data['c'];
+					$this->request->data['UserDetail']['state'] = $data['s'];
+					$this->request->data['UserDetail']['postal'] = $data['po'];
+					#send to user table		
+					$salt = $this->UserAuth->makeSalt();
+					$this->request->data['User']['salt']=$salt;
+					$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+					
+					$this->User->save($this->request->data,false);
+					$userId=$this->User->getLastInsertID();
+					$this->request->data['UserDetail']['user_id']=$userId;
+					$this->UserDetail->save($this->request->data,false);
+					$user = $this->User->findById($userId);
+					//debug($user);die();
+					$this->User->sendRegistrationMail($user);
+					$this->User->sendVerificationMail($user);
+					
+					if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
+							$this->UserAuth->login($user);
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+						} else {
+						$this->Session->setFlash(__('Please check your mail and confirm your registration'));
+						$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
+						}
+					#sent user registration notification to admin & client
+				}
+				
+			}else{
+			
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'ext_reg' , "error:invalid_request"));
+			
+			}
+			
+		}	
+	
+	}
 	
 	function check_balance(){
 		$this->layout = 'logmasuk';
