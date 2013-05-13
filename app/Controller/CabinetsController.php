@@ -31,7 +31,7 @@ class CabinetsController extends AppController {
 					$this->request->data['UserDetail']['city'] = $data['c'];
 					$this->request->data['UserDetail']['state'] = $data['s'];
 					$this->request->data['UserDetail']['postal'] = $data['po'];
-					#send to user table		
+					#send to user table ..		
 					$salt = $this->UserAuth->makeSalt();
 					$this->request->data['User']['salt']=$salt;
 					$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);

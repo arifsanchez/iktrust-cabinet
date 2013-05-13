@@ -128,6 +128,18 @@ class Affilliate extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		
+		'local_status_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				'allowEmpty' => true,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		
 		'comment' => array(
 			'numeric' => array(
 				'rule' => array('notempty'),
@@ -148,16 +160,16 @@ class Affilliate extends AppModel {
  * @var array
  */
  
- /*public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+	public $belongsTo = array(
+		'LocalStatus' => array(
+			'className' => 'LocalStatus',
+			'foreignKey' => 'local_status_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		
-	);*/
+	);
 	
 	
 

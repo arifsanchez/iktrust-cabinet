@@ -74,6 +74,7 @@
 						'value' =>$acc['UserAcctypes']['id']
 					));
 					
+					
 					echo $this->Form->input('user_id', array(
 						'type' => 'hidden', 
 						'value' =>$user['User']['id']
@@ -83,6 +84,7 @@
 						'type' => 'hidden', 
 						'value' =>$userD['UserDetail']['id']
 					));
+					
 					
 					echo $this->Form->input('user_bank_id', array(
 						'type' => 'hidden', 

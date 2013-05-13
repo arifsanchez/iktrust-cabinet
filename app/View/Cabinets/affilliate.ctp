@@ -21,7 +21,6 @@
 				<div class="row-fluid">
 					<div class="widgetcontent bordered shadowed nopadding span7">
 						<?php echo $this->Form->create('Affilliate', array('id'=>'registerAffilliates', 'class' => "stdform stdform2")); ?>
-						
 							<h3 class="widgettitle nomargin shadowed"><span class=" iconsweets-users2"></span>&nbsp; Personal Data</h3>
 								
 								<p>
@@ -298,9 +297,7 @@
                                 
                                 </select></span>
                             </p>
-								
 
-								
 								<p>
 									<label>Email</label>
 									<span class="field"><?php echo $this->Form->input("email", array('type' => "email" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
@@ -313,21 +310,37 @@
 								
 								<p>
 									<label>Year Of Creation</label>
-									<span class="field"><?php echo $this->Form->input("year_creation", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
+									<span class="field"><?php echo $this->Form->input("creation", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
 								</p>
 								
 								<p>
 									<label>Website</label>
 									<span class="field"><?php echo $this->Form->input("website", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
 								</p>
-							<br>
+							
+							<h3 class="widgettitle nomargin shadowed"><span class="  iconsweets-locked2"></span>&nbsp; Login Details</h3>	
+							<p>
+								<label>Username</label>
+								<span class="field"><?php echo $this->Form->input("username", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
+							</p>
+							
+							<p>
+								<label>Password</label>
+								<span class="field"><?php echo $this->Form->input("password" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+							</p>
+							
+							<p>
+								<label>Confirm Password</label>
+								<span class="field"><?php echo $this->Form->input("salt" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+							</p>	
+							
 							<h3 class="widgettitle nomargin shadowed"><span class="iconsweets-create"></span>&nbsp; Optional</h3>							
 								<p>
 									<label>Affilliate Code</label>
 									<ul class="tooltipsample">
 										<span class="field">
 											<a data-placement="right" data-rel="tooltip" data-original-title="The field is optional. in this field you may enter the affiliate code of a partner who referred you to the company." >
-												<input type="text"  id="AffilliateAffilliateCode" class="span5" name="data[Affilliate][affilliate_code]">&nbsp;<span class=" iconsweets-document"></span>
+												<input type="text"  id="AffilliateCode" class="span5" name="data[Affilliate][code]">&nbsp;<span class=" iconsweets-document"></span>
 											</a>
 										</span>
 									</ul>

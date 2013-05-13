@@ -36,7 +36,7 @@
 								<?php echo $locals['Affilliate']['email']; ?>
 							</td>
 							<td class="center">
-								<?php  #echo $locals['LocalStatus']['name']; ?>
+								<?php  echo $locals['LocalStatus']['name']; ?>
 							</td>
                             <td class="center">
 								<?php echo $locals['Affilliate']['created']; ?>
