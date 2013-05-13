@@ -26,7 +26,7 @@ class LocalsController extends AppController {
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
 		$this->set(compact( 'localStatuses'));
-		//save data
+		//save data ,,,,
 		if($this->request -> isPost()){
 			$this->Local->id = $id;
 			$status = $this->request->data['Local']['local_status_id'];
