@@ -20,15 +20,15 @@
 		<div class="contentinner">	
 			<div class="row-fluid">
 					<div class="span12">
-						<h3 class="widgettitle nomargin">Traders Application Details</h3>
+						<h3 class="widgettitle nomargin"><span class= "iconsweets-admin2"></span>&nbsp; Traders Application Details</h3>
 						
 						<div class="row-fluid">
 							<div class="span12  widgetcontent bordered">
-								<div class="span6 well ">
+								<div class="span6 well well-small">
 									<fieldset>
-										<legend>Client's Details</legend>	
-											<hr>
-											<?php echo $this->Form->create('Local', array('type' => '', 'class' => 'editprofileform')); ?>
+										<h4 style="color : #333333">Client's Details &nbsp; <span class=" iconsweets-usercomment pull-right"></span></h4>
+										 <hr>
+											<div class="form-inline">
 											<p>
 												<label>Full Name :</label>
 												<strong><span class="field"><? echo $a['User']['first_name']; ?></span></strong>
@@ -53,13 +53,14 @@
 												<label>Mobile Number :</label>
 												<strong><span class="field"><? echo $a['UserDetail']['cellphone']; ?></span></strong>
 											</p>
+											</div>
 									</fieldset>
 								</div>
 								
 								
-								<div class="span6 well ">
+								<div class="span6 well well-small ">
 									<fieldset>
-										<legend>Bank Details</legend>	
+											<h4 style="color : #333333">Bank Details &nbsp; <span class=" iconsweets-suitcase pull-right"></span></h4>
 											<hr>
 											<div class="form-inline">
 												<p>
@@ -88,9 +89,9 @@
 							
 								<div class="row-fluid">
 									<div class="span12 ">
-										<div class="span6 well ">
+										<div class="span6 well well-small ">
 											<fieldset>
-												<legend>Eccurrency Details</legend>	
+												<h4 style="color : #333333">E-Currency Details &nbsp; <span class="  iconsweets-pricetags pull-right"></span></h4>
 												<hr>
 												<div class="form-inline">
 													<p>
@@ -112,9 +113,9 @@
 										</div>
 										
 										
-										<div class="span6 well ">
+										<div class="span6 well well-small ">
 											<fieldset>
-												<legend>Account Type Details</legend>	
+													<h4 style="color : #333333">Account Type Details &nbsp; <span class=" iconsweets-cart3 pull-right"></span></h4>
 													<hr>
 													<div class="form-inline">
 														<p>
@@ -158,7 +159,7 @@
 						
 						<div class="row-fluid">
 							<div class="span12">
-								<h3 class="widgettitle nomargin"> Document  Details</h3>
+								<h3 class="widgettitle nomargin"><span class=" iconsweets-word"></span>&nbsp; Document  Details</h3>
 									<div class="row-fluid">
 										<div class="span12  widgetcontent bordered">
 											<div class="span4 well">
@@ -189,10 +190,11 @@
 									</div>
 							</div>
 						</div>
-						
+				
+				<?php echo $this->Form->create('Local', array('type' => ' ', 'class' => ' ')); ?>
 				<div class="row-fluid">
 					<div class="span12">
-							<h3 class="widgettitle nomargin"> Ecurrency  Details & Application Status</h3>
+							<h3 class="widgettitle nomargin"><span class=" iconsweets-dropbox"></span>&nbsp; Application Status</h3>
 									
 							<div class="row-fluid">
 								<div class="span12  widgetcontent bordered">
@@ -202,16 +204,22 @@
 										</fieldset>
 									</div>
 								
-									<div class="span8 ">
-										 <fieldset>
-											<legend>Application status</legend>	
-											<hr>
-										   <span class="field">
-											<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="1" />&nbsp; Pending <br>
-											<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="2"/>&nbsp; Verified <br>
-											<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="3"/>&nbsp; Reject <br>
-										   </span>
-										 </fieldset>
+									<div class="span8 ">										 
+										 <p>
+											<label><strong>Application status</strong></label>
+											<?php $status = $a['Local']['local_status_id']; ?>
+												
+											<?php if($status == 1) { ?>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="2"/>&nbsp; Verified <br>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="3"/>&nbsp; Reject <br>
+											<?php } if($status == 2) { ?>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="1" />&nbsp; Pending <br>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="3"/>&nbsp; Reject <br>
+											<?php } if($status == 3) { ?>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="1" />&nbsp; Pending <br>
+												<input class="radio" type="radio" name="data[Local][local_status_id]" id="status" value="2"/>&nbsp; Verified <br>
+											<?php }?>
+										</p>
 										<hr>
 									
 										<?php 
