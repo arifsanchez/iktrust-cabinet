@@ -49,7 +49,7 @@ $htmlcontent = <<<EOF
 			</tr>
 		</table> 
 		
-		<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0"></a></p>
+		<p align="center"><a href="http://www.iktrust-traders.com/"><img alt="Trust XE Logo" src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0"></a></p>
 		<br><br>
 		<div><br></div>
 		<h2 align="center">IK TRUST APPLICATION FORM</h2>
