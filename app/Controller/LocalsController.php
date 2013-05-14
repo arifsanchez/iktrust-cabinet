@@ -117,8 +117,6 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
-<<<<<<< HEAD
-	
 	public function affilliateindex($now = null) {
 		$this->layout = 'admin';
 		$id = base64_decode($now);
@@ -202,11 +200,7 @@ class LocalsController extends AppController {
 		$this->Session->setFlash(__('Affilliate was not deleted'));
 		$this->redirect(array('action' => 'affilliateindex'));
 	}
-	
-	
-	
-=======
->>>>>>> 7df48d3e200f0ea8cc4d054ae6ae4a67f8bafc95
+
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
 		//layout
