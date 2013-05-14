@@ -7,7 +7,7 @@
 
 <h3>Registration Details</h3>
 
-<p>Dear <?php echo $user['User']['first_name']; ?> , >/p>
+<p>Dear <?php echo $user['User']['first_name']; ?> , </p>
 <br><br>
 
  <p><h3>Welcome to IK Trust <h3></p>
