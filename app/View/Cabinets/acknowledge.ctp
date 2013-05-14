@@ -69,7 +69,7 @@
 				<?php 
 					echo $this->Form->create('Local', array('type' => '', 'id'=>'' , 'class' => '')); 	
 					// data to save in local
-					echo $this->Form->input('user_acctype_id', array(
+					/*echo $this->Form->input('user_acctype_id', array(
 						'type' => 'hidden', 
 						'value' =>$acc['UserAcctypes']['id']
 					));
@@ -94,7 +94,7 @@
 					echo $this->Form->input('user_ecr_id', array(
 						'type' => 'hidden', 
 						'value' =>$ecr['UserEcr']['id']
-					));
+					));*/
 				?>
 				<p>
 					<?php echo $this->Form->Submit(__('Finish'), array('class'=>'btn btn-primary'));?>
