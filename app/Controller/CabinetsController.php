@@ -245,7 +245,7 @@ class CabinetsController extends AppController {
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
 		$this->Cookie->write('latest', $this->UserAcctypes->id); 	//sent current id
-		debug($this->UserAcctypes->id);
+		//debug($this->UserAcctypes->id);
 		
 		$this->loadModel('User');
 		$this->User->UserId = $ud['user_cl']['User']['id'];
@@ -298,95 +298,85 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Local');
 		$userId 	= $this->UserAuth->getUserId();
-		//debug($userId);
-		
+		//test
 		$this->loadModel('UserAcctypes');		
-		$data = $this->Cookie->read($latest);		//read current id from document
-	//	debug($data); die();
+		$data = $this->Cookie->read($latest);	
+		$acc = $this->UserAcctypes->find('first', array(
+							'conditions' => array('UserAcctypes.id'  => $data['latest']),
+							//'fields' => array('UserAcctypes.id'),
+							//'order' => array( 'UserAcctypes.modified' => 'desc'),
+							//'recursive' => 0
+								));
+		$this->set('acc',$acc);
 		
 		
-		$acc = $this->UserAcctypes->find('list', array(
-			'fields' => array('UserAcctypes.id'),
-			'conditions' => array('UserAcctypes.id'  => $data['latest']),
-			'order' => array( 'UserAcctypes.modified' => 'desc'),
-			'recursive' => 0
-		));
-		//debug($acc); die();
-		//$this->set('acc',$acc);
-		
-		
-		$this->loadModel('User');
-		$user = $this->User->find('list', array(
-			'fields' => array('User.id'),
+		$user = $this->User->find('first', array(
 			'conditions' => array('User.id'  => $userId),
 			'recursive' => 0
 		));
-		//$this->set('user',$user);
+		$this->set('user',$user);
 		
-		$this->loadModel('UserDetail');
-		$userD = $this->UserDetail->find('list', array(
-			'fields' => array('UserDetail.id'),
-			'conditions' => array('UserDetail.user_id'  => $userId),
-			'recursive' => 0
-		));
-		//$this->set('userD',$userD);
+		$this->loadModel('Usermgmt.UserDetail');
+		$userD = $this->UserDetail->find('first', array(
+								'conditions' => array('UserDetail.user_id'  => $userId),
+								//'fields' => array('UserDetail.id'),
+			//'recursive' => 0
+								));
+		$this->set('userD',$userD);
 		
 		$this->loadModel('UserBank');
-		$bank = $this->UserBank->find('list', array(
-			'conditions' => array('UserBank.user_id'  => $userId),
-			'fields' => array('UserBank.id'),
-			'recursive' => 0
-		));
-		//debug($bank); die();
-		//$this->set('bank',$bank);
+		$bank = $this->UserBank->find('first', array(
+							'conditions' => array('UserBank.user_id'  => $userId),
+							//'fields' => array('UserBank.id'),
+			//'recursive' => 0
+							));
+		$this->set('bank',$bank);
 		
 		$this->loadModel('UserEcr');
-		$ecr = $this->UserEcr->find('list', array(
-			'conditions' => array('UserEcr.user_id'  => $userId),
-			'fields' => array('UserEcr.id'),
-			'recursive' => 0
-		));
-		//debug($ecr); die();
-		//$this->set('ecr',$ecr);
+		$ecr = $this->UserEcr->find('first', array(
+								'conditions' => array('UserEcr.user_id'  => $userId),
+								//'fields' => array('UserEcr.id'),
+								//'recursive' => 0
+							));
+		$this->set('ecr',$ecr);
 		
 		
-		$this->loadModel('Local');
-		if($this->request -> isPut() || $this->request -> isPost()){
+		if( $this->request -> isPost()){
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
 			$this->request->data['Local']['user_id'] =$userId;
-			$this->request->data['Local']['user_detail_id'] = $userD;
-			$this->request->data['Local']['user_bank_id'] = $bank;
-			$this->request->data['Local']['user_ecr_id'] = $ecr;
-			$this->request->data['Local']['user_acctype_id'] = $acc;
+			//$this->request->data['Local']['user_detail_id'] = $userD;
+			//$this->request->data['Local']['user_bank_id'] = $bank;
+			//$this->request->data['Local']['user_ecr_id'] = $ecr;
+			//$this->request->data['Local']['user_acctype_id'] = $acc;
 			//debug($this->request->data); die();
 			if($this->Local->save($this->request->data)){
-				//$this->Session->setFlash(_('The bank details have been saved'));
+				
+					//send email
+					$Email = new CakeEmail();
+					$Email->template('newtrader');
+					$Email->viewVars(array('user' => $user));
+					$Email->emailFormat('html');
+					$Email->from(array('admin@trustxe.com' => 'IKTust'));
+					$Email->to('webteam@iktrust.com');
+					$Email->subject('New Trader IKTrust');
+					$Email->send();
+
+					// send sms
+					$HttpSocket = new HttpSocket();
+					$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', 
+					array(
+						'user' => 'instafx', 
+						'pass' => 'instafx8000',
+						'msisdn' => '0136454001',
+						'body' => 'iktrust test ',
+						'smstype' => 'TEXT',
+						'sender' => 'IKTRUST',
+						#'Telco' => 'CELCOM'
+					));
+					
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 			}
-
-			//send email
-			/*$Email = new CakeEmail();
-			$Email->template('newtrader');
-			$Email->viewVars(array('user' => $user));
-			$Email->emailFormat('html');
-			$Email->from(array('admin@trustxe.com' => 'IKTust'));
-			$Email->to('webteam@iktrust.com');
-			$Email->subject('New Trader IKTrust');
-			$Email->send();
-
-			// send sms
-			$HttpSocket = new HttpSocket();
-			$results = $HttpSocket->post('http://bulk.ezlynx.net:7001/BULK/BULKMT.aspx', 
-			array(
-				'user' => 'instafx', 
-				'pass' => 'instafx8000',
-				'msisdn' => '0136454001',
-				'body' => 'iktrust test ',
-				'smstype' => 'TEXT',
-				'sender' => 'IKTRUST',
-				#'Telco' => 'CELCOM'
-			));*/
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 		}
 	}
 	

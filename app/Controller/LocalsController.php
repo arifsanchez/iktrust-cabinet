@@ -11,17 +11,16 @@ class LocalsController extends AppController {
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
 		$a = $this->Local->Find('first',array(
-			'conditions' =>array( 'Local.id' => $id),
-		));
-		
+											'conditions' =>array( 'Local.id' => $id),
+											));
 		$try = $this->Local->Find('list',array(
-			'conditions' =>array( 'Local.id' => $id),
-			'fields' => 'Local.user_id' ,
-		));
+												'conditions' =>array( 'Local.id' => $id),
+												'fields' => 'Local.user_id' ,
+												));
 		
 		$b = $this->UserDoc->find('first' , array(
-			'conditions' => array( 'user_id' => $try),
-		));
+												'conditions' => array( 'user_id' => $try),
+												));
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -118,6 +117,7 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
+<<<<<<< HEAD
 	
 	public function affilliateindex($now = null) {
 		$this->layout = 'admin';
@@ -205,6 +205,8 @@ class LocalsController extends AppController {
 	
 	
 	
+=======
+>>>>>>> 7df48d3e200f0ea8cc4d054ae6ae4a67f8bafc95
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
 		//layout
