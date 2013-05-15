@@ -48,7 +48,7 @@ $htmlcontent = <<<EOF
 				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
-		 <a href="http://www.iktrust-traders.com/"><img src="http://iktrust.co.nz/img/main-logo.png"></a>
+			<a href="http://www.iktrust-traders.com/"><img src="http://www.technocash.com/pages/images/IK_Trust_Capital_Market_Corp_Logo.jpg"></a>
 		<br><br>
 		<div><br></div>
 		<h2 align="center">IK TRUST APPLICATION FORM</h2>
