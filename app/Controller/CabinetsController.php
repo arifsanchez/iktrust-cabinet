@@ -113,7 +113,6 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
 	
-		//$pdf->Image('.../img/inner/logo.png', 15, 140, 75, 113, 'JPG', 'http://www.iktrust-traders.com', '', true, 150, '', false, false, 1, false, false, false);
 		
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),

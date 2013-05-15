@@ -48,7 +48,7 @@ $htmlcontent = <<<EOF
 				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
-		<p align="center"><img alt="Trust XE Logo" src="img/inner/logo.png" width="240" height="39"  /></p>
+		 <a href="http://www.danifer.com/"><img src="http://www.danifer.com/images/invoice_logo.jpg"></a>
 		<br><br>
 		<div><br></div>
 		<h2 align="center">IK TRUST APPLICATION FORM</h2>
