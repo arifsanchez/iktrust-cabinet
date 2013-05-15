@@ -48,7 +48,6 @@ $htmlcontent = <<<EOF
 				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
-		
 		<p align="center"><a href="http://www.iktrust-traders.com/"><img alt="Trust XE Logo" src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0"></a></p>
 		<br><br>
 		<div><br></div>

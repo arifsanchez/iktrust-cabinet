@@ -112,6 +112,8 @@ class CabinetsController extends AppController {
 	function view_pdf() {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
+	
+		//$pdf->Image('.../img/inner/logo.png', 15, 140, 75, 113, 'JPG', 'http://www.iktrust-traders.com', '', true, 150, '', false, false, 1, false, false, false);
 		
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),
@@ -353,7 +355,7 @@ class CabinetsController extends AppController {
 			if($this->Local->save($this->request->data)){
 				
 					//send email
-					$Email = new CakeEmail();
+					/*$Email = new CakeEmail();
 					$Email->template('newtrader');
 					$Email->viewVars(array('user' => $user));
 					$Email->emailFormat('html');
@@ -373,7 +375,7 @@ class CabinetsController extends AppController {
 						'smstype' => 'TEXT',
 						'sender' => 'IKTRUST',
 						#'Telco' => 'CELCOM'
-					));
+					));*/
 					
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 			}
