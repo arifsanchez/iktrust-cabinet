@@ -20,6 +20,7 @@ $tcpdf->AddPage();
 		$email 			= $user['User']['email'];
 		$create 		= $user['User']['created'];
 		$type 			= $acctypes['UserAcctypes']['type'];
+		$leverage 			= $acctypes['UserAcctypes']['leverage'];
 		$NBank 		= $bank['UserBank']['name'];
 		$AccNo 		= $bank['UserBank']['acc_no'];
 		$AccName 	= $bank['UserBank']['acc_name'];
@@ -48,88 +49,98 @@ $htmlcontent = <<<EOF
 				<td align="right"><strong><small><em>RG/IK#$num</em></small></strong></td>
 			</tr>
 		</table> 
-			<a href="http://www.iktrust-traders.com/"><img src="http://www.technocash.com/pages/images/IK_Trust_Capital_Market_Corp_Logo.jpg"></a>
+		<br>
+			<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.technocash.com/pages/images/IK_Trust_Capital_Market_Corp_Logo.jpg" width="230" height="40" /></a></p>
 		<br><br>
 		<div><br></div>
-		<h2 align="center">IK TRUST APPLICATION FORM</h2>
+		<h2 align="center">TRADER APPLICATION FORM</h2>
 		<br>
-		
-		<p>
+
 			<div><hr></div>
-			<br>
-			<div><br></div>
 			<table border="0">
 				 <tr>
-					<td>FULL NAME </td>	
+					<td>Full Name </td>	
 					<td>: $name</td>	
 				</tr>
 				<tr>
-					<td>DATE OF BIRTH	</td>		 	
+					<td>Date Of Birth	</td>		 	
 					<td>: $dob</td>
 				</tr>	
 				<tr>
-					<td>GENDER	</td>			
+					<td>Gender	</td>			
 					<td>: $gent	</td>
 				</tr>	
 				<tr>
-					<td>PASSPORT / IC	</td>			
+					<td>Passport / Ic	</td>			
 					<td>: $ic</td>	
 				</tr>
 				<tr>
-					<td>CONTACT EMAIL	</td>			
+					<td>Contact Email	</td>			
 					<td>: $email</td>	
 				</tr>
 				<tr>
-					<td>MOBILE NUMBER	</td>			
+					<td>Mobile Number	</td>			
 					<td>: $ContactNo</td>	
 				</tr>
 			</table> 
-		</p>
-		<br/><br/>
+			<br>
+		<hr>
+		
 
-		<div><hr></div>
-		<div><br></div>
-		<p>
 			<table border="0">
+				<h4>Account Details : </h4>
 				<tr>
-					<td> INDIVIDUAL ACCOUNT TYPE </td>
+					<td> Individual Account Type </td>
 					<td>:  $type </td>
 				</tr>
 				<tr>
-					<td> NAME OF BANK </td>
+					<td> Laverage </td>
+					<td>:  1:$leverage </td>
+				</tr>
+				
+				<div><br></div>
+
+				<h4>Bank Details : </h4>
+				<tr>
+					<td> Bank Name </td>
 					<td>:  $NBank</td>
 				</tr>
 				<tr>
-					<td> BANK ACCOUNT NUMBER </td>
+					<td> Account Number </td>
 					<td>:  $AccNo </td>
 				</tr>
 				<tr>
-					<td> BANK ACCOUNT NAME	</td>
+					<td> Account Name	</td>
 					<td>:  $AccName	</td></tr>
 				<tr>
-					<td> IBAN NUMBER	</td>
+					<td> IBAN Number	</td>
 					<td>: $IBAN</td>
 				</tr>
 				<tr>
-					<td> SWIFT	NUMBER	</td>
+					<td> SWIFT	Number	</td>
 					<td>: $SwNo</td>
 				</tr>
+				
+				<div><br></div>
+
+				<h4>E-Currency Details : </h4>
 				<tr>
-					<td> E-CURRECY PROVIDER NAME	</td>
+					<td>Provider Name	</td>
 					<td>: $EName</td>
 				</tr>
 				<tr>
-					<td> E-CURRECY ACCOUNT NUMBER	</td>
+					<td>Account Number	</td>
 					<td>: $EAccNo</td>
 				</tr>
 				<tr>
-					<td> E-CURRECY ACCOUNT NAME	</td>
+					<td>Account Name	</td>
 					<td>: $EAccName</td>
 				</tr>
-			</table> 
-		</p>
+			</table>
+
+		<div><br></div>			
 		<hr>
-		
+		<div><br></div>
 		<p>
 			<strong>
 				I, Hereby offer to open a trading account with IK TRUST on the terms set out in the various official released documents that constitute this Account Opening Application Form.
@@ -148,16 +159,14 @@ $htmlcontent = <<<EOF
 		<div><br></div>
 		<div><br></div>
 		<div><br></div>
-		<div><br></div>
 		
-
 		<table border="0">
 			<tr>
 				<td>Signature : ____________________</td>
 				<td align="right">Date : ____________________ </td>
 			</tr>
 		</table>
-		<div><br></div>
+		<br>
 		<div><hr></div>
 		<div align = "center"><small>IK Trust Capital Market Corporation Limited .</small></div>
 	</body>

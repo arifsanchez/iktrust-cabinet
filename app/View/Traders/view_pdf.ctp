@@ -39,7 +39,7 @@ $htmlcontent = <<<EOF
 <!DOCTYPE html>
 <html>
 	<body>
-		<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.iktrust-traders.com/img/inner/logo.png" width="240" height="39" border="0" /></a></p>
+		<p align="center"><a href="http://www.iktrust-traders.com/"><img src="http://www.technocash.com/pages/images/IK_Trust_Capital_Market_Corp_Logo.jpg" width="230" height="40" /></a></p>
 		<br>
 		 <h1 align="center">Depositor's Account Details</h1>
 		 <div><br></div>

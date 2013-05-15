@@ -354,7 +354,7 @@ class CabinetsController extends AppController {
 			if($this->Local->save($this->request->data)){
 				
 					//send email
-					/*$Email = new CakeEmail();
+					$Email = new CakeEmail();
 					$Email->template('newtrader');
 					$Email->viewVars(array('user' => $user));
 					$Email->emailFormat('html');
@@ -374,7 +374,7 @@ class CabinetsController extends AppController {
 						'smstype' => 'TEXT',
 						'sender' => 'IKTRUST',
 						#'Telco' => 'CELCOM'
-					));*/
+					));
 					
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 			}
