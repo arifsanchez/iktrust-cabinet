@@ -34,10 +34,17 @@
 						<label>Select Account Type </label>
 						<span class="field"><select id="type" name="data[UserAcctypes][type]" id="UserDetailType">
 							<option value="">-----</option>
-							<option value="MINIFlex">MINI (Flex)</option>
-							<option value="MINIFix">MINI (Fix)</option>
-							<option value="STANDARDFlex">STANDARD</option>
-							<option value="PREMIUMFlex">PREMIUM</option>
+							<option value="IK-Mini-Flex">MINI (Flexi)</option>
+							<option value="IK-iMini-Flex">MINI (Flexi Islamic)</option>
+							
+							<option value="IK-Mini-Fix">MINI (Fix)</option>
+							<option value="IK-iMini-Fix">MINI (Fix Islamic)</option>
+							
+							<option value="IK-Standard-Flex">STANDARD</option>
+							<option value="IK-iStandard-Flex">STANDARD (Islamic)</option>
+							
+							<option value="IK-PREMIUM-Flex">PREMIUM</option>
+							<option value="IK-iPREMIUM-Flex">PREMIUM (Islamic)</option>
 						</select></span>
 					</div>
 					
@@ -46,26 +53,42 @@
 						<label>Laverage Amount </label>
 						<span class="field"><select id="leverage" name="data[UserAcctypes][leverage]" id="UserDetailLeverage">
 							<option value="">-----</option>
-							<option value="1:10" class="MINIFlex">1:10</option>
-							<option value="1:100" class="MINIFlex">1:100</option>
-							<option value="1:200" class="MINIFlex">1:200</option>
-							<option value="1:500" class="MINIFlex">1:500</option>
-							<option value="1:1000" class="MINIFlex">1:1000</option>
+							<option value="100" class="IK-Mini-Flex">1:100</option>
+							<option value="200" class="IK-Mini-Flex">1:200</option>
+							<option value="500" class="IK-Mini-Flex">1:500</option>
+							<option value="1000" class="IK-Mini-Flex">1:1000</option>
 							
-							<option value="1:10" class="MINIFix">1:10</option>
-							<option value="1:100" class="MINIFix">1:100</option>
-							<option value="1:200" class="MINIFix">1:200</option>
-							<option value="1:500" class="MINIFix">1:500</option>
-							<option value="1:1000" class="MINIFix">1:1000</option>
+							<option value="100" class="IK-iMini-Flex">1:100</option>
+							<option value="200" class="IK-iMini-Flex">1:200</option>
+							<option value="500" class="IK-iMini-Flex">1:500</option>
+							<option value="1000" class="IK-iMini-Flex">1:1000</option>
 							
-							<option value="1:10" class="STANDARDFlex">1:10</option>
-							<option value="1:100" class="STANDARDFlex">1:100</option>
-							<option value="1:200" class="STANDARDFlex">1:200</option>
-							<option value="1:500" class="STANDARDFlex">1:500</option>
 							
-							<option value="1:10" class="PREMIUMFlex">1:10</option>
-							<option value="1:100" class="PREMIUMFlex">1:100</option>
-							<option value="1:200" class="PREMIUMFlex">1:200</option>
+							<option value="100" class="IK-Mini-Fix">1:100</option>
+							<option value="200" class="IK-Mini-Fix">1:200</option>
+							<option value="500" class="IK-Mini-Fix">1:500</option>
+							<option value="1000" class="IK-Mini-Fix">1:1000</option>
+							
+							<option value="100" class="IK-iMini-Fix">1:100</option>
+							<option value="200" class="IK-iMini-Fix">1:200</option>
+							<option value="500" class="IK-iMini-Fix">1:500</option>
+							<option value="1000" class="IK-iMini-Fix">1:1000</option>
+							
+							
+							<option value="100" class="IK-Standard-Flex">1:100</option>
+							<option value="200" class="IK-Standard-Flex">1:200</option>
+							<option value="500" class="IK-Standard-Flex">1:500</option>
+							
+							<option value="100" class="IK-iStandard-Flex">1:100</option>
+							<option value="200" class="IK-iStandard-Flex">1:200</option>
+							<option value="500" class="IK-iStandard-Flex">1:500</option>
+							
+							
+							<option value="100" class="IK-PREMIUM-Flex">1:100</option>
+							<option value="200" class="IK-PREMIUM-Flex">1:200</option>
+							
+							<option value="100" class="IK-iPREMIUM-Flex">1:100</option>
+							<option value="200" class="IK-iPREMIUM-Flex">1:200</option>
 						</select></span>
 					</div>
 					

@@ -319,19 +319,15 @@
 								</p>
 							
 							<h3 class="widgettitle nomargin shadowed"><span class="  iconsweets-locked2"></span>&nbsp; Login Details</h3>	
-							<p>
-								<label>Username</label>
-								<span class="field"><?php echo $this->Form->input("username", array('type' => "text" , 'label' => false, 'div' => false, 'class'=>"span5" ))?></span>
-							</p>
-							
+			
 							<p>
 								<label>Password</label>
-								<span class="field"><?php echo $this->Form->input("password" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+								<span class="field"><?php echo $this->Form->input("key" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
 							</p>
 							
 							<p>
 								<label>Confirm Password</label>
-								<span class="field"><?php echo $this->Form->input("salt" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
+								<span class="field"><?php echo $this->Form->input("confirm" ,array('type' => "password" ,'label' => false,'div' => false,'class'=>"span5" ))?></span>
 							</p>	
 							
 							<h3 class="widgettitle nomargin shadowed"><span class="iconsweets-create"></span>&nbsp; Optional</h3>							

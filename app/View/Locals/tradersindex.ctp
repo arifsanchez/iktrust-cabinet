@@ -48,8 +48,6 @@
 							<td class="center">
 								<span class="  icon-tasks"></span>
 								<?php echo $this->Html->link(__('View'), array('action' => 'adminview', $id)); ?>&nbsp;|&nbsp;
-								<span class="icon-edit"></span>
-								<?php echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $id)); ?>&nbsp;|&nbsp;
 								<span class=" icon-exclamation-sign"></span>
 								<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $id), null, __('Are you sure you want to delete # %s?', $locals['Local']['id'])); ?>
 							</td>

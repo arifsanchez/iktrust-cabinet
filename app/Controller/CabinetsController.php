@@ -112,6 +112,7 @@ class CabinetsController extends AppController {
 	function view_pdf() {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
+	
 		
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),
@@ -353,7 +354,7 @@ class CabinetsController extends AppController {
 			if($this->Local->save($this->request->data)){
 				
 					//send email
-					$Email = new CakeEmail();
+					/*$Email = new CakeEmail();
 					$Email->template('newtrader');
 					$Email->viewVars(array('user' => $user));
 					$Email->emailFormat('html');
@@ -373,7 +374,7 @@ class CabinetsController extends AppController {
 						'smstype' => 'TEXT',
 						'sender' => 'IKTRUST',
 						#'Telco' => 'CELCOM'
-					));
+					));*/
 					
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'view_pdf'));
 			}
@@ -659,11 +660,12 @@ class CabinetsController extends AppController {
 
 	public function affilliate(){
 		$this->layout = 'register_kabinet';
-
+		
 		$this->loadModel('Affilliate'); 
 		if($this->request -> isPut() || $this->request -> isPost()){
 			$this->Affilliate->create();
 			$this->request->data['Affilliate']['local_status_id'] = 1 ;
+			$this->request->data['Affilliate']['key'] = base64_encode($this->request->data['Affilliate']['key']);
 			//debug($this->request->data); die();
 			if($this->Affilliate->save($this->request->data)){
 				$this->Session->setFlash('Your have successful registered.');

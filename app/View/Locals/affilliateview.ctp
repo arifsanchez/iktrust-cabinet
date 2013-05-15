@@ -23,7 +23,7 @@
 				<div class="span8">
 					<h3 class="widgettitle nomargin shadowed">Affilliate Application Details : &nbsp;IK<?php  echo str_pad($locals['Affilliate']['id'], 8, '0', STR_PAD_LEFT); ?> </h3>
 					<div class="widgetcontent bordered shadowed nopadding">
-						<?php echo $this->Form->create('Local', array('type' => '', 'class' => 'stdform stdform2')); ?>
+						<?php echo $this->Form->create('User', array('type' => '', 'class' => 'stdform stdform2')); ?>
 							<p>
 								<label>Status</label>
 								<strong><span class="field"><?php echo $locals['Affilliate']['status']; ?></span></strong>
@@ -81,25 +81,37 @@
 							
 							<p>
 								<label>Application status</label>
-								<strong><span class="field">
-									<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="1" />&nbsp;Pending &nbsp;
-									<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="2"/>&nbsp;Verified &nbsp;
-									<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="3"/>&nbsp;Reject &nbsp; 
-							   </span></strong>
+								<?php $status = $locals['Affilliate']['local_status_id']; ?>
+									
+								<?php if($status == 1) { ?>
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="2"/>&nbsp;Verified &nbsp;
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="3"/>&nbsp;Reject &nbsp; 
+								<?php } if($status == 2) { ?>
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="1" />&nbsp;Pending &nbsp;
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="3"/>&nbsp;Reject &nbsp; 
+								<?php } if($status == 3) { ?>
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="1" />&nbsp;Pending &nbsp;
+										<input class="radio" type="radio" name="data[Affilliate][local_status_id]" id="AffilliateLocalStatusId" value="2"/>&nbsp;Verified &nbsp;
+								<?php }?>
 							</p>
 
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['status'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$locals['Affilliate']['id'])); ?>
-							<?php  echo $this->Form->input('user', array('type' => 'hidden', 'value' =>$acc['UserAcctypes']['id'])); ?>
+							<?php #echo $this->Form->input("User.user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '3'))?>
+							<?php  #echo $this->Form->input('User.status', array('type' => 'hidden', 'value' =>$locals['Affilliate']['status'])); ?>
+							
+							<?php  echo $this->Form->input('status', array('type' => 'hidden', 'value' =>$locals['Affilliate']['status'])); ?>
+							<?php  echo $this->Form->input('name', array('type' => 'hidden', 'value' =>$locals['Affilliate']['name'])); ?>
+							<?php  echo $this->Form->input('phone', array('type' => 'hidden', 'value' =>$locals['Affilliate']['phone'])); ?>
+							<?php  echo $this->Form->input('address', array('type' => 'hidden', 'value' =>$locals['Affilliate']['address'])); ?>
+							<?php  echo $this->Form->input('country', array('type' => 'hidden', 'value' =>$locals['Affilliate']['country'])); ?>
+							<?php  echo $this->Form->input('email', array('type' => 'hidden', 'value' =>$locals['Affilliate']['email'])); ?>
+							<?php  echo $this->Form->input('project_name', array('type' => 'hidden', 'value' =>$locals['Affilliate']['project_name'])); ?>
+							<?php  echo $this->Form->input('year_creation', array('type' => 'hidden', 'value' =>$locals['Affilliate']['year_creation'])); ?>
+							<?php  echo $this->Form->input('website', array('type' => 'hidden', 'value' =>$locals['Affilliate']['website'])); ?>
+							<?php  echo $this->Form->input('affilliate_code', array('type' => 'hidden', 'value' =>$locals['Affilliate']['affilliate_code'])); ?>
+							<?php  echo $this->Form->input('comment', array('type' => 'hidden', 'value' =>$locals['Affilliate']['comment'])); ?>
+							<?php  echo $this->Form->input('key', array('type' => 'hidden', 'value' =>$locals['Affilliate']['key'])); ?>
+							<?php  echo $this->Form->input('term', array('type' => 'hidden', 'value' =>$locals['Affilliate']['term'])); ?>
+							<?php  echo $this->Form->input('user_group_id', array('type' => 'hidden', 'value' => 3)); ?>
 							<p class="stdformbutton">
                                 <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
                             </p>
