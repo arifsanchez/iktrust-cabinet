@@ -3,8 +3,18 @@
 		<div class="contentinner">
 			<h3 class="widgettitle">Summary Withdrawal Transaction</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
+				<div align = 'right' >	
+					<?php 
+				
+						echo $this->Html->link(__("All Withdrawal",true),"transaction_withdrawal",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Pending",true ),"transaction_withdrawal/s:1",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Approved",true ),"transaction_withdrawal/s:2",array('class' => "btn btn-primary btn"));
+						echo $this->Html->link(__("Rejected",true),"transaction_withdrawal/s:3",array('class' => "btn btn-primary btn")); 
+					?>
+				</div>
+				<hr>
 					<thead>
-                        <tr>
+                        <tr class = "warning" >
                             <th class="center">Withdrawal Id</th>
                             <th class="center">Login Id</th>
 							<th class="center">Transaction Type</th>

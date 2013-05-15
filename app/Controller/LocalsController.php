@@ -10,19 +10,17 @@ class LocalsController extends AppController {
 		$this->loadModel('UserDoc');
 		$this->Local->id = $id;
 		$this->set('local', $this->Local->read(null, $id));
-		
 		$a = $this->Local->Find('first',array(
-			'conditions' =>array( 'Local.id' => $id),
-		));
-		
+											'conditions' =>array( 'Local.id' => $id),
+											));
 		$try = $this->Local->Find('list',array(
-			'conditions' =>array( 'Local.id' => $id),
-			'fields' => 'Local.user_id' ,
-		));
+												'conditions' =>array( 'Local.id' => $id),
+												'fields' => 'Local.user_id' ,
+												));
 		
 		$b = $this->UserDoc->find('first' , array(
-			'conditions' => array( 'user_id' => $try),
-		));
+												'conditions' => array( 'user_id' => $try),
+												));
 		$this->set('b',$b);
 		$this->set('a',$a);
 		$localStatuses = $this->Local->LocalStatus->find('list');
@@ -119,90 +117,6 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
-	public function affilliateindex($now = null) {
-		$this->layout = 'admin';
-		$id = base64_decode($now);
-		
-		$this->loadModel('Affilliate');
-		$locals = $this->Affilliate->find('all');
-		$this->set('locals',$locals);
-	} 
-	
-	
-	public function affilliateview($now = null) {
-		$this->layout = 'admin';
-		$id = base64_decode($now);
-		$this->loadModel('Usermgmt.User');
-		$this->loadModel('Usermgmt.UserDetail');
-		
-		$this->loadModel('Affilliate');
-		$locals = $this->Affilliate->find('first', array(
-			'conditions' => array('Affilliate.id' => $id)
-		));
-		$this->set('locals',$locals);
-		 
-		if($this->request -> isPost()){
-			$this->Affilliate->id = $id;
-			$status = $this->request->data['Affilliate']['local_status_id'];
-			$data = array('id' => $id , 'local_status_id' => $status );
-			$this->Affilliate->save($data);
-			
-			if($status == 2){
-				$salt = $this->UserAuth->makeSalt();
-				$this->request->data['User']['password'] = base64_decode($this->request->data['User']['key']);
-				//debug($this->request->data['User']['password'] ); die();
-				$this->request->data['User']['salt']=$salt;
-				$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-				//debug($this->request->data); die();
-					
-				$this->User->save($this->request->data,false);
-				$userId=$this->User->getLastInsertID();
-				$this->request->data['UserDetail']['user_id']=$userId;
-				$this->UserDetail->save($this->request->data,false);
-				$user = $this->User->findById($userId);
-				//debug($user);die();
-				
-				$this->User->sendRegistrationMail($user);
-				$this->User->sendVerificationMail($user);
-				if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
-					$this->UserAuth->login($user);
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
-				} else {
-					$this->Session->setFlash(__('Please check your mail and confirm your registration'));
-					$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
-				}
-			}
-			//if($this->Affilliate->save($this->request->data)){
-				//$this->Session->setFlash(_(' Affilliate account status has been update'));
-				$this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
-			//}
-		}
-
-	}
-	
-	
-		public function affilliatedelete($now = null) {
-		$id = base64_decode($now);
-		$this->loadModel('Affilliate');
-		
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Affilliate->id = $id;
-		
-		if (!$this->Affilliate->exists()) {
-			throw new NotFoundException(__('Invalid Affilliate'));
-		}
-		
-		if ($this->Affilliate->delete()) {
-			$this->Session->setFlash(__('Affilliate Deleted'));
-			$this->redirect(array('action' => 'affilliateindex'));
-		}
-		
-		$this->Session->setFlash(__('Affilliate was not deleted'));
-		$this->redirect(array('action' => 'affilliateindex'));
-	}
-
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
 		//layout
@@ -289,8 +203,19 @@ class LocalsController extends AppController {
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
 			$this->loadModel('DepositComment');
+			
+		if(!empty($this->request->params['named'])){
+			$data = $this->params['named'];
+			$locals = $this->paginate('Deposit',
+						array("Deposit.local_status_id" => $data['s'],
+						));
+			$this->set('deposit', $deposit);
+		} else {
 			$deposit = $this->paginate('Deposit');
-			$this->set('deposit', $deposit);			 
+			$this->set('deposit', $deposit);
+		}
+			
+						 
 		//
 	}
 	
@@ -385,8 +310,17 @@ class LocalsController extends AppController {
 			$this->loadModel('User');
 			$this->loadmodel('Mt4User');
 			//$this->loadModel('DepositComment');
+			if(!empty($this->request->params['named'])){
+			$data = $this->params['named'];
+			$locals = $this->paginate('Withdrawal',
+						array("Withdrawal.local_status_id" => $data['s'],
+						));
+			$this->set('withdrawal', $withdrawal);
+		} else {
 			$withdrawal = $this->paginate('Withdrawal');
-			$this->set('withdrawal', $withdrawal);			 
+			$this->set('withdrawal', $withdrawal);	
+		}
+					 
 		//
 	}
 
