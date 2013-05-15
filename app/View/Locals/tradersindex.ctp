@@ -8,15 +8,15 @@
 				<div align = 'right' >	
 					<?php 
 				
-						echo $this->Html->link(__("All Traders",true),"tradersindex",array('class' => "btn btn-mini btn-info")); 
-						echo $this->Html->link(__("Pending",true ),"tradersindex/s:1",array('class' => "btn btn-mini btn-warning")); 
-						echo $this->Html->link(__("Approved",true ),"tradersindex/s:2",array('class' => "btn btn-mini btn-success"));
-						echo $this->Html->link(__("Rejected",true),"tradersindex/s:3",array('class' => "btn btn-mini btn-danger")); 
+						echo $this->Html->link(__("All Traders",true),"tradersindex",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Pending",true ),"tradersindex/s:1",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Approved",true ),"tradersindex/s:2",array('class' => "btn btn-primary btn"));
+						echo $this->Html->link(__("Rejected",true),"tradersindex/s:3",array('class' => "btn btn-primary btn")); 
 					?>
 				</div>
 				<hr>
 					<thead>
-                        <tr>
+                        <tr class = "warning" >
                             <th class="center">Register ID</th>
                             <th class="center">Name</th>
 							<th class="center">Email</th>

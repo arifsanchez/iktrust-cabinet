@@ -4,7 +4,7 @@
 			<h3 class="widgettitle">Summary Account Balance</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
 					<thead>
-                        <tr >
+                        <tr class = "warning" >
                             <th class="center">Login Id</th>
                             <th class="center">Balance</th>
 							<th class="center">PrevMonthBalance</th>
@@ -65,5 +65,5 @@
 			</p>
 			<br><br>
 			</div>
-		</div><!--contentinner-->
+		</div><!--contentinner-aaa->
 	</div><!--maincontent-->

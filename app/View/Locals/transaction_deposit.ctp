@@ -3,8 +3,18 @@
 		<div class="contentinner">
 			<h3 class="widgettitle">Summary Deposit Transaction</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
-					<thead>
-                        <tr>
+				<div align = 'right' >	
+					<?php 
+				
+						echo $this->Html->link(__("All  Deposit",true),"transaction_deposit",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Pending",true ),"transaction_deposit/s:1",array('class' => "btn btn-primary btn")); 
+						echo $this->Html->link(__("Approved",true ),"transaction_deposit/s:2",array('class' => "btn btn-primary btn"));
+						echo $this->Html->link(__("Rejected",true),"transaction_deposit/s:3",array('class' => "btn btn-primary btn")); 
+					?>
+				</div>
+				<hr>
+					<tbody>
+                        <tr class = "warning" >
                             <th class="center">Deposit Id</th>
                             <th class="center">Login Id</th>
 							<th class="center">Transaction Type</th>
@@ -15,9 +25,9 @@
 							  <th class="center">Status</th>
                             <th class="center">More Action</th>
                         </tr>
-                    </thead>
+                   
 					<?php	foreach ($deposit as $deposit): ?>
-                    <tbody>
+                   
                         <tr class="gradeX">
                             <td class="center">
 								<? echo str_pad( $deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
