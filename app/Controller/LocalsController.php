@@ -117,6 +117,62 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
+	public function affilliateindex($now = null) {
+		$this->layout = 'admin';
+		$id = base64_decode($now);
+		
+		$this->loadModel('Affilliate');
+		$locals = $this->Affilliate->find('all');
+		//debug($all); die();
+		$this->set('locals',$locals);
+	} 
+	
+	
+	public function affilliateview($now = null) {
+		$this->layout = 'admin';
+		$id = base64_decode($now);
+		
+		$this->loadModel('Affilliate');
+		$locals = $this->Affilliate->find('first', array(
+			'conditions' => array('Affilliate.id' => $id)
+		));
+		//debug($locals); die();
+		$this->set('locals',$locals);
+		
+		if($this->request -> isPost()){
+			$this->Affilliate->id = $id;
+			$status = $this->request->data['Affilliate']['local_status_id'];
+			
+			if($this->Affilliate->save($this->request->data)){
+				$this->Session->setFlash(_('The details have been saved'));
+				$this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
+			}
+		}
+	}
+	
+	
+		public function affilliatedelete($now = null) {
+		$id = base64_decode($now);
+		$this->loadModel('Affilliate');
+		
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Affilliate->id = $id;
+		
+		if (!$this->Affilliate->exists()) {
+			throw new NotFoundException(__('Invalid Affilliate'));
+		}
+		
+		if ($this->Affilliate->delete()) {
+			$this->Session->setFlash(__('Affilliate Deleted'));
+			$this->redirect(array('action' => 'affilliateindex'));
+		}
+		
+		$this->Session->setFlash(__('Affilliate was not deleted'));
+		$this->redirect(array('action' => 'affilliateindex'));
+	}
+	
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
 		//layout
