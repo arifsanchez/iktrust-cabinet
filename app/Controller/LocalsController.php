@@ -84,11 +84,11 @@ class LocalsController extends AppController {
 	
 	public function tradersindex($id = null){
 		$this->layout = 'admin';
-		if(!empty($this->request->params['named']['status'])){
-			$this->Local->id = $id;
+		if(!empty($this->request->params['named'])){
+			$data = $this->params['named'];
 			$locals = $this->paginate('Local',
-						array("Local.local_status_id" => $this->request->params['named']['status'])
-						);
+						array("Local.local_status_id" => $data['s'],
+						));
 			$this->set('locals',$locals);
 		} else {
 			$locals = $this->paginate('Local');

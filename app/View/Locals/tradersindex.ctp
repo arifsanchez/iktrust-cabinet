@@ -5,13 +5,16 @@
 			
 			<h3 class="widgettitle">IKTRUST Trader Details</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
+				<div align = 'right' >	
 					<?php 
-						echo $this->Html->link(__("All",true),"tradersindex")."&nbsp;|&nbsp;"; 
-						echo $this->Html->link(__("Pending",true),"tradersindex/status:1")."&nbsp;|&nbsp;"; 
-						echo $this->Html->link(__("Approved",true),"tradersindex/status:2")."&nbsp;|&nbsp;";
-						echo $this->Html->link(__("Rejected",true),"tradersindex/status:3"); 
-					?>
 				
+						echo $this->Html->link(__("All Traders",true),"tradersindex",array('class' => "btn btn-mini btn-info")); 
+						echo $this->Html->link(__("Pending",true ),"tradersindex/s:1",array('class' => "btn btn-mini btn-warning")); 
+						echo $this->Html->link(__("Approved",true ),"tradersindex/s:2",array('class' => "btn btn-mini btn-success"));
+						echo $this->Html->link(__("Rejected",true),"tradersindex/s:3",array('class' => "btn btn-mini btn-danger")); 
+					?>
+				</div>
+				<hr>
 					<thead>
                         <tr>
                             <th class="center">Register ID</th>
