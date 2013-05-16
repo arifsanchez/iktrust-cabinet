@@ -11,7 +11,7 @@
 				'database' => 'heroku_9f2a562c4bcc93f',
 				'prefix' => '',
 				'encoding' => 'utf8',
-		);*/
+		);*///
 
 		var $default = array(
 			'datasource' => 'Database/Mysql',
