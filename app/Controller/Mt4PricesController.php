@@ -24,6 +24,11 @@ class Mt4PricesController extends AppController {
 		#$this->set('mt4Prices', $this->paginate());		
 		
 		//search data MYSQL like = '#'
+		$time = $this->Mt4Price->find('all', array (
+			'conditions' => array ("OR" => array ("Mt4Price.SYMBOL LIKE" => "%#%"))
+		));
+		$this->set('time', $time);	
+		
 		$quotes = $this->Mt4Price->find('all', array (
 			'conditions' => array ("OR" => array ("Mt4Price.SYMBOL LIKE" => "%#%"))
 		));

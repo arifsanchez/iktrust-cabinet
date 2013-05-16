@@ -8,7 +8,8 @@
 
 <div class="maincontent">
 	<div class="contentinner">
-	<abbr class="timeago" title="July 17, 2008"><?php echo h($quote['Mt4Price']['TIME']); ?></abbr>
+	<?php echo $this->element('newsticker'); ?>
+	<abbr class="timeago" title="July 17, 2008"><?php //echo h($quotes['Mt4Price']['TIME']); ?></abbr>
 		<h3 class="widgettitle nomargin shadowed">Live Quotes</h3>
 		<div style="overflow:auto">
 			<table class="table table-striped">
