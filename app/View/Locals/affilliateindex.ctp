@@ -14,6 +14,7 @@
 						?>
 					</div>
 					<hr-->
+					
 					<thead>
                         <tr>
                             <th class="center">Register ID</th>
