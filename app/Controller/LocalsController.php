@@ -123,8 +123,18 @@ class LocalsController extends AppController {
 		
 		$this->loadModel('Affilliate');
 		$locals = $this->Affilliate->find('all');
-		//debug($all); die();
 		$this->set('locals',$locals);
+		
+		if(!empty($this->request->params['named'])){
+			$data = $this->params['named'];
+			$locals = $this->paginate('Affilliate',
+				array("Affilliate.local_status_id" => $data['s'],
+			));
+			$this->set('locals',$locals);
+		} else {
+			$locals = $this->paginate('Affilliate');
+			$this->set('locals',$locals);
+		}
 	} 
 	
 	
