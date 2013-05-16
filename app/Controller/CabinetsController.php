@@ -109,6 +109,7 @@ class CabinetsController extends AppController {
 	}
 	
 	
+	
 	function acc_bal_mt4() {
 		$this->autoRender = false;
 		$x = $this->params['named']['x'];
