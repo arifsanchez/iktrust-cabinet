@@ -110,7 +110,7 @@ class CabinetsController extends AppController {
 	
 	
 	function acc_bal_mt4() {
-		
+		$this->autoRender = false;
 		$x = $this->params['named']['x'];
 		$this->loadModel('Mt4User');
 	
@@ -120,6 +120,7 @@ class CabinetsController extends AppController {
 			));
 			
 			$balance = $query['Mt4User']['BALANCE'];
+			//debug($balance); die();
 			return $balance;
 		
 	}
