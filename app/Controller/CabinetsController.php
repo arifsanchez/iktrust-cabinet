@@ -107,6 +107,22 @@ class CabinetsController extends AppController {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
 		}
 	}
+	
+	
+	function acc_bal_mt4() {
+		
+		$x = $this->params['named']['x'];
+		$this->loadModel('Mt4User');
+	
+			$query = $this->Mt4User->Find('first' ,array(
+				'conditions' => array('Mt4User.LOGIN' =>$x),
+				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE'),
+			));
+			
+			$balance = $query['Mt4User']['BALANCE'];
+			return $balance;
+		
+	}
 
 	
 	function view_pdf() {
