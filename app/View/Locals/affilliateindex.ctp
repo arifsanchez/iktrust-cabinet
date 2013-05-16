@@ -16,7 +16,7 @@
 					<hr>
 					
 					<thead>
-                        <tr>
+                        <tr class = "warning" >
                             <th class="center">Register ID</th>
                             <th class="center">Name</th>
 							<th class="center">Email</th>
