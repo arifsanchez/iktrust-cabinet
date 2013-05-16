@@ -5,13 +5,15 @@
 			
 			<h3 class="widgettitle">IKTRUST Affilliates Details</h3>
             	<table class="table table-bordered table-hover" id="dyntable">
-					<?php 
-						#echo $this->Html->link(__("All",true),"affilliateindex")."&nbsp;|&nbsp;"; 
-						#echo $this->Html->link(__("Pending",true),"affilliateindex/status:1")."&nbsp;|&nbsp;"; 
-						#echo $this->Html->link(__("Approved",true),"affilliateindex/status:2")."&nbsp;|&nbsp;";
-						#echo $this->Html->link(__("Rejected",true),"affilliateindex/status:3"); 
-					?>
-				
+					<!--div align = 'right' >	
+						<?php 
+							/*echo $this->Html->link(__("All Traders",true),"affilliateindex",array('class' => "btn btn-primary btn")); 
+							echo $this->Html->link(__("Pending",true ),"affilliateindex/s:1",array('class' => "btn btn-primary btn")); 
+							echo $this->Html->link(__("Approved",true ),"affilliateindex/s:2",array('class' => "btn btn-primary btn"));
+							echo $this->Html->link(__("Rejected",true),"affilliateindex/s:3",array('class' => "btn btn-primary btn")); */
+						?>
+					</div>
+					<hr-->
 					<thead>
                         <tr>
                             <th class="center">Register ID</th>

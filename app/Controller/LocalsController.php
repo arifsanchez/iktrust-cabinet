@@ -147,6 +147,7 @@ class LocalsController extends AppController {
 				$this->Session->setFlash(_('The details have been saved'));
 				$this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
 			}
+		
 		}
 	}
 	
