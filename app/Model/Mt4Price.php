@@ -11,6 +11,16 @@ class Mt4Price extends AppModel {
  *
  * @var array
  */
+ //table information
+	var $name = 'Mt4Price';
+	// define which database driver the model
+	// needs to look upon
+	var $useDbConfig = 'mt4';
+	// Table Name
+	var $useTable = 'MT4_PRICES';
+	 //var $primaryKey = 'TICKET';
+ 
+ 
 	public $validate = array(
 		'SYMBOL' => array(
 			'notempty' => array(

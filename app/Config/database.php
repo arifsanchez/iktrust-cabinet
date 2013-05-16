@@ -25,7 +25,7 @@
 			'encoding' => 'utf8',
 		);
 		
-		/*var $mt4 = array(
+		var $mt4 = array(
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
 			'host' => 'external-db.s138565.gridserver.com',

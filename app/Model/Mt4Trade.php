@@ -10,7 +10,16 @@ class Mt4Trade extends AppModel {
  * Validation rules
  *
  * @var array
+  // 
+	
  */
+	//table information
+	var $name = 'Mt4Trade';
+	// define which database driver the model
+	// needs to look upon
+	var $useDbConfig = 'mt4';
+	// Table Name
+	var $useTable = 'MT4_TRADES';
 	 var $primaryKey = 'TICKET';
  
 	public $validate = array(

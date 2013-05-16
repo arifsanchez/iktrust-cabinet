@@ -12,12 +12,12 @@ class Mt4User extends AppModel {
  * @var array
   */
 	  // table information
-	//var $name = 'Mt4User';
+	var $name = 'Mt4User';
 	// define which database driver the model
 	// needs to look upon
-	//var $useDbConfig = 'mt4';
+	var $useDbConfig = 'mt4';
 	// Table Name
-	//var $useTable = 'MT4_USERS';
+	var $useTable = 'MT4_USERS';
 	var $primaryKey = 'LOGIN';
 
 	public $validate = array(
