@@ -125,7 +125,7 @@ class CabinetsController extends AppController {
 			} else {
 				$avail = $query['Mt4User']['BALANCE'] - $query['Mt4User']['MARGIN_FREE'];
 			}
-			return $avail;
+			return number_format($avail, 2 , '.' , ''); 
 		
 	}
 
