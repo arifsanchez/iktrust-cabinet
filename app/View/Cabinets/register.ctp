@@ -36,7 +36,7 @@
                           
 							<p>
                                 <label>Your Country is  </label>
-                                <span class="field"><?php echo //$a ; ?> <?php  echo $this->Form->input("country" ,array('type' => 'hidden' ,'label' => false,'div' => false,'class'=>"input-xlarge" , 'value' => //$a ))?></span>
+                                <span class="field"><?php echo '1' ; ?> <?php  echo $this->Form->input("country" ,array('type' => 'hidden' ,'label' => false,'div' => false,'class'=>"input-xlarge" , 'value' => '1' ))?></span>
                             </p>
                            
 							
