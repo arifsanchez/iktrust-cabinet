@@ -125,7 +125,7 @@ class CabinetsController extends AppController {
 			} else {
 				$avail = $query['Mt4User']['BALANCE'] - $query['Mt4User']['MARGIN_FREE'];
 			}
-			return number_format($avail, 2 , '.' , ''); 
+			return $avail;
 		
 	}
 
@@ -701,7 +701,7 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
 		$userId = $this->UserAuth->getUserId();
-		//get user location
+		//get user location test la ni
 		$HttpSocket = new HttpSocket();		
 		$ipla = getenv('HTTP_X_FORWARDED_FOR');
 		$results = $HttpSocket->post('http://api.ipinfodb.com/v3/ip-country/?key=b3305824775cffe95f11e87bad777ca407f1cb113fee069461b2bcf62cee0de5&ip='.$ipla.'&format=json');
