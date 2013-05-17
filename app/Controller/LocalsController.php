@@ -209,7 +209,7 @@ class LocalsController extends AppController {
 	
 	public function edit_deposit($now = null) {
 		$id = base64_decode($now);
-		//layout
+		//layout...
 		$this->layout = 'admin';	
 		//load model
 		$this->loadModel('Deposit');
