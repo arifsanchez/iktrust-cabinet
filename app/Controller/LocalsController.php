@@ -117,6 +117,7 @@ class LocalsController extends AppController {
 		$this->redirect(array('action' => 'tradersindex'));
 	}
 	
+	
 	public function affilliateindex($now = null) {
 		$this->layout = 'admin';
 		$id = base64_decode($now);
@@ -136,33 +137,55 @@ class LocalsController extends AppController {
 			$this->set('locals',$locals);
 		}
 	} 
-	
+
 	
 	public function affilliateview($now = null) {
 		$this->layout = 'admin';
 		$id = base64_decode($now);
-		
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		 
 		$this->loadModel('Affilliate');
 		$locals = $this->Affilliate->find('first', array(
-			'conditions' => array('Affilliate.id' => $id)
+		   'conditions' => array('Affilliate.id' => $id)
 		));
-		//debug($locals); die();
 		$this->set('locals',$locals);
-		
+	  
 		if($this->request -> isPost()){
-			$this->Affilliate->id = $id;
-			$status = $this->request->data['Affilliate']['local_status_id'];
+		   $this->Affilliate->id = $id;
+		   $status = $this->request->data['Affilliate']['local_status_id'];
+			$data = array('id' => $id , 'local_status_id' => $status );
+			$this->Affilliate->save($data);
 			
-			if($this->Affilliate->save($this->request->data)){
-				$this->Session->setFlash(_('The details have been saved'));
+			if($this->Affilliate->save($this->request->data)){				
+				if($status == 2){
+					$salt = $this->UserAuth->makeSalt();
+					$this->request->data['User']['password'] = base64_decode($this->request->data['User']['key']);
+					$this->request->data['User']['salt']=$salt;
+					$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+					  
+					$this->User->save($this->request->data,false);
+					$userId=$this->User->getLastInsertID();
+					$this->request->data['UserDetail']['user_id']=$userId;
+					$this->UserDetail->save($this->request->data,false);
+					$user = $this->User->findById($userId);
+					
+					$this->User->sendRegistrationMail($user);
+					$this->User->sendVerificationMail($user);
+					if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
+					  $this->UserAuth->login($user);
+					  $this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+					} else {
+					  $this->Session->setFlash(__('Please check your email and confirm your registration'));
+					  $this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
+					}
+				}
 				$this->redirect(array('controller' => 'locals' , 'action' => 'affilliateindex'));
-			}
-		
+			} 
 		}
 	}
 	
-	
-		public function affilliatedelete($now = null) {
+	public function affilliatedelete($now = null) {
 		$id = base64_decode($now);
 		$this->loadModel('Affilliate');
 		

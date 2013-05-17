@@ -31,26 +31,26 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo str_pad($withdrawal['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); ?>
+								<?php	 echo str_pad($withdrawal['Withdrawal']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
 							<td class="center">
-								<? echo $withdrawal['Mt4User']['LOGIN']; ?>
+								<?php  echo $withdrawal['Mt4User']['LOGIN']; ?>
 							</td>
 							<td class="center">
 								 Bank Transfer
 							</td>
 							 <td class="center">
-								<? echo $withdrawal['Withdrawal']['amount']; ?>
+								<?php echo $withdrawal['Withdrawal']['amount']; ?>
 							</td>
                             <td class="center">
-								<? echo $withdrawal['Mt4User']['BALANCE']; ?>
+								<?php echo $withdrawal['Mt4User']['BALANCE']; ?>
 							</td>
                             
 							<td class="center">
-								<? echo $withdrawal['Mt4User']['MARGIN_FREE']; ?>
+								<?php echo $withdrawal['Mt4User']['MARGIN_FREE']; ?>
 							</td>
 							<td class="center">
-								<? echo $withdrawal['Mt4User']['PREVMONTHBALANCE']; ?>
+								<?php echo $withdrawal['Mt4User']['PREVMONTHBALANCE']; ?>
 							</td>
 							<td class="center">
 								<?php  if (empty ($withdrawal['Withdrawal']['upload'])){
@@ -60,9 +60,9 @@
 								}?>
 							</td>
 							<td class="center">
-								<? echo $withdrawal['LocalStatus']['name']; ?>
+								<?php echo $withdrawal['LocalStatus']['name']; ?>
 							</td>
-							<? $id = base64_encode($withdrawal['Withdrawal']['id']); ?>
+							<?php $id = base64_encode($withdrawal['Withdrawal']['id']); ?>
 							<td class="center"><span class="icon-edit"></span>
 								<?php echo $this->Html->link(__('view'), array('action' => 'edit_withdrawal', $id )); ?>
 							</td>
