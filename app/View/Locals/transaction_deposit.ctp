@@ -30,29 +30,29 @@
                    
                         <tr class="gradeX">
                             <td class="center">
-								<? echo str_pad( $deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
+								<?php echo str_pad( $deposit['Deposit']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['Mt4User']['LOGIN']; ?>
+								<?php echo $deposit['Mt4User']['LOGIN']; ?>
 							</td>
 							<td class="center">
 								 Bank Transfer
 							</td>
 							 <td class="center">
-								<? echo $deposit['Deposit']['amount']; ?>
+								<?php echo $deposit['Deposit']['amount']; ?>
 							</td>
                             <td class="center">
-								<? echo $deposit['Mt4User']['BALANCE']; ?>
+								<?php echo $deposit['Mt4User']['BALANCE']; ?>
 							</td>
                             
 							<td class="center">
-								<? echo $deposit['Mt4User']['MARGIN_FREE']; ?>
+								<?php echo $deposit['Mt4User']['MARGIN_FREE']; ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['Mt4User']['PREVMONTHBALANCE']; ?>
+								<?php echo $deposit['Mt4User']['PREVMONTHBALANCE']; ?>
 							</td>
 							<td class="center">
-								<? echo $deposit['LocalStatus']['name']; ?>
+								<?php echo $deposit['LocalStatus']['name']; ?>
 							</td>
 							<? $id = base64_encode($deposit['Deposit']['id']); ?>
 							<td class="center"><span class="icon-edit"></span>

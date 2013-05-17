@@ -49,6 +49,10 @@
 								
 								<?php  echo $this->Form->input("cpassword" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
 								
+								<?php  echo $this->Form->input("mpass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								
+								<?php  echo $this->Form->input("ipass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								
                                  <?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2'))?>     
 								 
                             <p class="stdformbutton">

@@ -29,19 +29,19 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								IK<? echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
+								IK<?php echo str_pad($locals['User']['id'], 8, '0', STR_PAD_LEFT); ?>
 							</td>
                             <td class="center">
-								<? echo $locals['User']['first_name'].' '.$locals['User']['last_name']; ?>
+								<?php echo $locals['User']['first_name'].' '.$locals['User']['last_name']; ?>
 							</td>
                             <td class="center">
-								<? echo $locals['User']['email']; ?>
+								<?php echo $locals['User']['email']; ?>
 							</td>
 							<td class="center">
-								<? echo $locals['LocalStatus']['name']; ?>
+								<?php echo $locals['LocalStatus']['name']; ?>
 							</td>
                             <td class="center">
-								<? echo $locals['Local']['created']; ?>
+								<?php echo $locals['Local']['created']; ?>
 							</td>
 							
 							<?php $id = base64_encode($locals['Local']['id']); ?>
@@ -57,13 +57,15 @@
 					<?php endforeach; ?>
                 </table>	
 				
-				<div class="pagination pagination-small" align="right">
+				<div class="pagination">
+				<p>
 					<ul>
-						<li class="disabled"><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li class="active"><a href="#">2</a></li>
-						<li class="active"><a href="#">3</a></li>
+						<li ><?php  echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));?> </li>
+						<li ><?php  echo $this->Paginator->numbers(array('separator' => ''));?></li>
+						<li ><?php  echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));?></li>
 					</ul>
+				</p>
+				<br><br>
 				</div>
 	
 		</div><!--contentinnerm-->
