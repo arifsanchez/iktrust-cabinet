@@ -20,23 +20,23 @@
                     
                             <p>
                                 <label>First Name</label>
-                                <span class="field"><?php echo $this->Form->input("first_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
+                                <span class="field"><?php echo $this->Form->input("first_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" )); ?></span>
                             </p>
                           
                             
                             <p>
                                 <label>Last Name</label>
-                                <span class="field"><?php echo $this->Form->input("last_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
+                                <span class="field"><?php echo $this->Form->input("last_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" )); ?></span>
                             </p>
                             
                             <p>
                                 <label>Email</label>
-                                <span class="field"><?php echo $this->Form->input("email" ,array('label' => false,'div' => false,'class'=>"input-xlarge" ))?></span>
+                                <span class="field"><?php echo $this->Form->input("email" ,array('label' => false,'div' => false,'class'=>"input-xlarge" )); ?></span>
                             </p>
                           
 							<p>
                                 <label>Your Country is  </label>
-                                <span class="field"><?php echo '1' ; ?> <?php  echo $this->Form->input("country" ,array('type' => 'hidden' ,'label' => false,'div' => false,'class'=>"input-xlarge" , 'value' => '1' ))?></span>
+                                <span class="field"><?php echo $a ; ?> <?php  echo $this->Form->input("country" ,array('type' => 'hidden' ,'label' => false,'div' => false,'class'=>"input-xlarge" , 'value' => $a )) ; ?></span>
                             </p>
                            
 							
@@ -45,15 +45,15 @@
                                 <span class="field"> <?php echo $mpassword ; ?> </span>
                             </p>
 							
-								<?php  echo $this->Form->input("password" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								<?php  echo $this->Form->input("password" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword )); ?>
 								
-								<?php  echo $this->Form->input("cpassword" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								<?php  echo $this->Form->input("cpassword" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword )); ?>
 								
-								<?php  echo $this->Form->input("mpass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								<?php  echo $this->Form->input("mpass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword )); ?>
 								
-								<?php  echo $this->Form->input("ipass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword ))?>
+								<?php  echo $this->Form->input("ipass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword )); ?>
 								
-                                 <?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2'))?>     
+                                 <?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2')); ?>     
 								 
                             <p class="stdformbutton">
                                <?php echo $this->Form->button(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
