@@ -113,18 +113,12 @@ class CabinetsController extends AppController {
 	function acc_bal_mt4() {
 		$this->autoRender = false;
 		$x = $this->params['named']['x'];
-		$this->loadModel('Mt4User');
+		$this->loadModel('Mt4User');			
 	
 			$query = $this->Mt4User->Find('first' ,array(
 				'conditions' => array('Mt4User.LOGIN' =>$x),
 				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE','Mt4User.MARGIN_FREE', 'Mt4User.REGDATE'),
 			));
-			
-			$reg = $this->Mt4User->Find('first' ,array(
-				'conditions' => array('Mt4User.LOGIN' =>$x),
-				'fields'		=>array ( 'Mt4User.REGDATE'),
-			));
-			//debug($reg);
 			
 			if($query['Mt4User']['MARGIN_FREE']  >= $query['Mt4User']['BALANCE']){
 				$avail = $query['Mt4User']['BALANCE'];
@@ -132,7 +126,20 @@ class CabinetsController extends AppController {
 				$avail = $query['Mt4User']['BALANCE'] - $query['Mt4User']['MARGIN_FREE'];
 			}
 			return number_format($avail, 2 , '.' , '');
-			return $reg;
+	}
+	
+	
+	function reg_date_mt4() {
+		$this->autoRender = false;
+		$x = $this->params['named']['x'];
+		$this->loadModel('Mt4User');
+		
+			$reg = $this->Mt4User->Find('first' ,array(
+				'conditions' => array('Mt4User.LOGIN' =>$x),
+				'fields'		=>array ( 'Mt4User.REGDATE'),
+			));
+			$date = $reg['Mt4User']['REGDATE'];
+			return $date;
 	}
 
 	
