@@ -117,8 +117,14 @@ class CabinetsController extends AppController {
 	
 			$query = $this->Mt4User->Find('first' ,array(
 				'conditions' => array('Mt4User.LOGIN' =>$x),
-				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE','Mt4User.MARGIN_FREE'),
+				'fields'		=>array ('Mt4User.LOGIN', 'Mt4User.BALANCE','Mt4User.MARGIN_FREE', 'Mt4User.REGDATE'),
 			));
+			
+			$reg = $this->Mt4User->Find('first' ,array(
+				'conditions' => array('Mt4User.LOGIN' =>$x),
+				'fields'		=>array ( 'Mt4User.REGDATE'),
+			));
+			//debug($reg);
 			
 			if($query['Mt4User']['MARGIN_FREE']  >= $query['Mt4User']['BALANCE']){
 				$avail = $query['Mt4User']['BALANCE'];
@@ -126,6 +132,7 @@ class CabinetsController extends AppController {
 				$avail = $query['Mt4User']['BALANCE'] - $query['Mt4User']['MARGIN_FREE'];
 			}
 			return number_format($avail, 2 , '.' , '');
+			return $reg;
 	}
 
 	
