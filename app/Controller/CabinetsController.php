@@ -140,6 +140,7 @@ class CabinetsController extends AppController {
 			));
 			$date = $reg['Mt4User']['REGDATE'];
 			return $date;
+			debug($date); die();
 	}
 
 	
