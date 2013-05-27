@@ -25,7 +25,7 @@
       echo $this->Html->script('bootstrap.min.js');
       echo $this->Html->script('jquery.uniform.min.js');
       echo $this->Html->script('jquery.validate.min.js');
-      echo $this->Html->script('custom.js');
+      //echo $this->Html->script('custom.js');
       echo $this->Html->script('jquery.validate.min.js');
       echo $this->Html->script('jquery.tagsinput.min.js');
       echo $this->Html->script('jquery.autogrow-textarea.js');
@@ -33,8 +33,8 @@
       echo $this->Html->script('jquery.tagsinput.min.js');
       echo $this->Html->script('chosen.jquery.min.js');
       echo $this->Html->script('jquery.cookie.js');
-      echo $this->Html->script('custom.js');
-      echo $this->Html->script('forms.js');
+    //  echo $this->Html->script('custom.js');
+     // echo $this->Html->script('forms.js');
       echo $this->Html->script('bootstrap-fileupload.min.js');
       echo $this->Html->script('bootstrap-timepicker.min.js');
 ?>

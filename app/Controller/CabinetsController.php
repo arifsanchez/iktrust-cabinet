@@ -715,13 +715,6 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
 		$userId = $this->UserAuth->getUserId();
-		//get user location test la ni
-		$HttpSocket = new HttpSocket();		
-		$ipla = getenv('HTTP_X_FORWARDED_FOR');
-		$results = $HttpSocket->post('http://api.ipinfodb.com/v3/ip-country/?key=b3305824775cffe95f11e87bad777ca407f1cb113fee069461b2bcf62cee0de5&ip='.$ipla.'&format=json');
-		$a = json_decode($results,true);
-		$this->set('a', $a);
-		
 		
 		if ($userId) {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
@@ -733,7 +726,15 @@ class CabinetsController extends AppController {
 				}
 					if (isset($this->request->data['signup'])){	
 						if ($this->request -> isPost()) {
-							debug($this->request->data);die();
+							$a = $this->request ->data['location'];
+							$b = $this->request ->data['country'];
+							if (!empty( $a)){
+								$this->request ->data['User']['country']  = $a;
+							}else{
+								$this->request ->data['User']['country']  = $b;
+							}
+							//debug ($test);die();
+							//debug($this->request->data);die();
 							$this->User->set($this->data);
 							$UserRegisterValidate = $this->User->RegisterValidate();
 								if($this->RequestHandler->isAjax()) {
