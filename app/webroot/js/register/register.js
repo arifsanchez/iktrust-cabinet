@@ -2,7 +2,7 @@
 REGISTER5! SCRIPTS
 */
 
-$(document).ready(function() {
+  $(document).ready(function() {
 	
 	var ac_country = "#country-type";
 	var $submit_wrapper = $("#submit-wrapper"); 
@@ -170,7 +170,7 @@ $(document).ready(function() {
 		max:0,
 		formatItem: function(row, i, max, term) {
 			$(ac_country).addClass('browsing-countries');
-			return "<img src='../img/flags/" + row.code.toLowerCase() + ".gif'/> " + row.name;
+			return "<img src='accountry/images/flags/" + row.code.toLowerCase() + ".gif'/> " + row.name;
 		},
 		formatResult: function(row) {
 			return row.name;

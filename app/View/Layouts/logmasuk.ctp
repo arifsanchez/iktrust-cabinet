@@ -23,7 +23,7 @@
       echo $this->Html->script('jquery.flot.resize.min.js');
       echo $this->Html->script('bootstrap.min.js');
       echo $this->Html->script('jquery.cookie.js');
-      echo $this->Html->script('custom.js');
+     echo $this->Html->script('custom.js');
 ?>
 <style type="text/css" media="all">
 .frm {
