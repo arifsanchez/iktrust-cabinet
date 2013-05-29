@@ -6,6 +6,7 @@ App::uses('HttpSocket', 'Network/Http');
 
 
 class CabinetsController extends AppController {
+	 var $name = 'Cabinets';
 	public $helpers = array('Menu');
 	public $components = array('RequestHandler');
 

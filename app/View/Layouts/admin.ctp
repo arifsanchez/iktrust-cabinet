@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>IKtrust | Traders Cabinet</title>
+<title><?php echo Configure::read('Application.name') ?>IK Trust | <?php echo !empty($title_for_layout) ? $title_for_layout : ''; ?></title>
 
 
  <?php 

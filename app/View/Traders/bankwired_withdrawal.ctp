@@ -18,22 +18,22 @@
                     <tbody>
                         <tr class="gradeX">
                             <td class="center">
-								<? echo $mt4user['Mt4User']['LOGIN']; ?>
+								<?php echo $mt4user['Mt4User']['LOGIN']; ?>
 							</td>
                             <td class="center">
-								<? echo $mt4user['Mt4User']['BALANCE']; ?>
+								<?php echo $mt4user['Mt4User']['BALANCE']; ?>
 							</td>
                             <td class="center">
-								<? echo $mt4user['Mt4User']['PREVMONTHBALANCE']; ?>
+								<?php echo $mt4user['Mt4User']['PREVMONTHBALANCE']; ?>
 							</td>
 							 <td class="center">
-								<? echo $mt4user['Mt4User']['CREDIT']; ?>
+								<?php echo $mt4user['Mt4User']['CREDIT']; ?>
 							</td>
 							<td class="center">
-								<? echo $mt4user['Mt4User']['MARGIN_FREE']; ?>
+								<? php echo $mt4user['Mt4User']['MARGIN_FREE']; ?>
 							</td>
 							<td class="center">
-								<? echo $mt4user['Mt4User']['GROUP']; ?>
+								<?php  echo $mt4user['Mt4User']['GROUP']; ?>
 							</td>
 							<? $login = base64_encode($mt4user['Mt4User']['LOGIN']); ?>
 							<td class="center">

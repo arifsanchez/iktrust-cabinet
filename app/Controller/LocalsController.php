@@ -303,6 +303,7 @@ class LocalsController extends AppController {
 		} else {
 			$deposit = $this->paginate('Deposit');
 			$this->set('deposit', $deposit);
+			//debug($deposit);die();
 		}
 			
 						 
