@@ -4,7 +4,7 @@
 		echo $this->Html->script('register/register.js'); 
 		echo $this->Html->script('register/jquery.js');
 		echo $this->Html->script('register/jquery-color.js'); 
-		echo $this->Html->script('register/raphael.js'); 
+		//echo $this->Html->script('register/raphael.js'); 
 		echo $this->Html->script('register/accountry/jquery.autocomplete.js'); 
 		echo $this->Html->script('register/accountry/countries.en.js'); 
 		echo $this->Html->script('http://maps.google.com/maps/api/js?sensor=false'); 

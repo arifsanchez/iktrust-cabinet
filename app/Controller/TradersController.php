@@ -71,6 +71,7 @@ class TradersController extends AppController {
 							array( 'conditions' => array('Mt4User.LOGIN' => $LOGIN),
 								 'fields' => array('Mt4User.AGENT_ACCOUNT'),
 								));
+			//debug($mt4user);die();
 			$ikbanks = $this->Deposit->Ikbank->find('list', 
 							array( 'conditions' => array('Ikbank.agentid' => $mt4user ),
 								  'fields' => array('fullname'),

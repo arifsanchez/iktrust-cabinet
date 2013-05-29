@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <head>
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>IKtrust | Traders Cabinet</title>
+<meta name="description" content="">
+ <meta name="author" content="">
+
+
+<title><?php echo Configure::read('Application.name') ?>IK Trust | <?php echo !empty($title_for_layout) ? $title_for_layout : ''; ?></title>
+
 
 
  <?php 
@@ -24,6 +30,16 @@
       echo $this->Html->script('custom.js');
 	  
 	  echo $this->Html->script('jquery.timeago');
+	  
+	  echo $this->Html->meta(
+		    'keywords',
+		    'iktrust, iktrust,E-Currency Exchange Money , ecurrency exchanger, Paypal, Payza, Alertpay, Liberty Reserve,Bank Wire'
+		);
+
+		echo $this->Html->meta(
+		    'description',
+		    'Iktrust cabinet, Selling & Buying Liberty Reserve'
+		);
 ?>
 <style type="text/css" media="all">
 .frm {
