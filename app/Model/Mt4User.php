@@ -5,12 +5,6 @@ App::uses('AppModel', 'Model');
  *
  */
 class Mt4User extends AppModel {
-
-/**
- * Validation rules
- *
- * @var array
-  */
 	  // table information
 	var $name = 'Mt4User';
 	// define which database driver the model
@@ -19,7 +13,7 @@ class Mt4User extends AppModel {
 	// Table Name
 	var $useTable = 'MT4_USERS';
 	var $primaryKey = 'LOGIN';
-
+	
 	public $validate = array(
 		'LOGIN' => array(
 			'numeric' => array(

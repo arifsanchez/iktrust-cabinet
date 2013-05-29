@@ -660,7 +660,7 @@ class CabinetsController extends AppController {
 	
 	public function platformdownload(){
 		$this->layout = 'kabinet';
-	}	
+	}		
 	
 	
 	public function forgot_password(){
