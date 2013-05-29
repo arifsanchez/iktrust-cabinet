@@ -32,7 +32,7 @@
 							</a>
 						</li>
 					</ul>
-												
+
 					<div id="wiz1step3_1" class="formwiz">
 						<h4>Step 1: Basic Information</h4> 
 						
@@ -45,7 +45,7 @@
 								<label>Last Name</label>
 								<span class="field"><input type="text" name="lastname" class="input-xlarge" /></span>
 							</p>
-															
+
 							<p>
 								<label>Gender</label>
 								<span class="field"><select name="selection" class="uniformselect">
