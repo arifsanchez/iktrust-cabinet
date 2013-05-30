@@ -12,7 +12,7 @@ class Mt4Trade extends AppModel {
  * @var array
   // 
 	
- */
+ */	
 	//table information
 	var $name = 'Mt4Trade';
 	// define which database driver the model

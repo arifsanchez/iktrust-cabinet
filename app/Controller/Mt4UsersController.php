@@ -39,6 +39,21 @@ class Mt4UsersController extends AppController {
 		$this->set('mt4Users', $this->paginate('Mt4User', array('Mt4User.AGENT_ACCOUNT LIKE' => ''.$acc.'%')));
 
 	}
+	
+	public function top_traders(){
+		$this->layout = 'register_kabinet';		
+		$this->loadModel('Mt4User');
+		$data = $this->Mt4User->find('all', 
+			array('conditions' => array(
+				'Mt4User.BALANCE >' => '100', 
+				'Mt4User.GROUP LIKE' => '%IK-i%',
+				'Mt4User.COUNTRY !=' => array('Iran', 'India'),
+			),
+				'limit' => 30,
+				'order' => array('Mt4User.BALANCE DESC')
+		));
+		$this->set('data', $data);	
+	}	
 
 	/*public function index() {
 		$this->layout = 'admin';
