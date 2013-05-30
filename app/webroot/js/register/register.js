@@ -170,7 +170,7 @@ REGISTER5! SCRIPTS
 		max:0,
 		formatItem: function(row, i, max, term) {
 			$(ac_country).addClass('browsing-countries');
-			return "<img src='accountry/images/flags/" + row.code.toLowerCase() + ".gif'/> " + row.name;
+			return "<img src='../js/register/accountry/images/flags/" + row.code.toLowerCase() + ".gif'/> " + row.name;
 		},
 		formatResult: function(row) {
 			return row.name;
