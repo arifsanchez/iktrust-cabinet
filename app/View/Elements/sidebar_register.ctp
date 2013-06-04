@@ -102,11 +102,9 @@
 				'items'=>	array(
 							array('title'=>'Check Balance',  'url'=> array('controller'=>'cabinets', 'action'=>'check_balance')),
 							array('title'=>'Live Quotes',  'url'=> array('controller'=>'mt4_prices', 'action'=>'quotes')),		
-														
+							array('title'=>'Top Traders',  'url'=> array('controller'=>'mt4_users', 'action'=>'top_traders')),	
 						),
 					);
-						 
-			
 			//debug($menu);die();
 			echo $this->Menu->render($menu);
 			?>

@@ -1,4 +1,4 @@
-	
+
 	<div class="maincontent">
 		<div class="contentinner">
 		
@@ -15,21 +15,43 @@
 						<td class="center">Country</td>
 					</tr>			
 
-					
 					<?php foreach ($data as $data): 
 						$gain = $data['Mt4User']['BALANCE'] - $data['Mt4User']['PREVMONTHBALANCE'] / $data['Mt4User']['BALANCE'] * 100; 
 						$percentage = number_format($gain, 2 , '.' , '');
-						
-						$var = $data['Mt4User']['LOGIN'];
+						$var = $data['Mt4User']['LOGIN']; 
 					?>
 					<tr>
 						<td class="center muted"><?php echo substr_replace($var, 'XXX', 1, 3); ?>&nbsp;</td>
 						<td class="center"><?php echo $percentage, "%"; ?>&nbsp;</td>
 						<td class="center"><?php echo "1:", ($data['Mt4User']['LEVERAGE']); ?>&nbsp;</td>
-						<td class="center"><?php echo h($data['Mt4User']['COUNTRY']); ?>&nbsp;</td>
+						<td align="center">
+							<?php
+								switch ($data['Mt4User']['COUNTRY']) {
+									case "Malaysia":
+										echo '<img width="22" height="16" title="Malaysia (MY)" alt="" src="../img/flags/my.gif">';
+										break;
+									case "United States":
+										echo '<img width="22" height="16" title="United States (US)" alt="" src="../img/flags/us.gif">';
+										break;
+									case "U.A.E.":
+										echo '<img width="22" height="16" title="U.A.E (AE)" alt="" src="../img/flags/ae.gif">';
+										break;
+									case "United Kingdom":
+										echo '<img width="22" height="16" title="United Kingdom (UK)" alt="" src="../img/flags/gb.gif">';
+										break;
+									case "Bangladesh":
+										echo '<img width="22" height="16" title="Bangladesh (BD)" alt="" src="../img/flags/bd.gif">';
+										break;
+									case "Malta":
+										echo '<img width="22" height="16" title="Malta (MT)" alt="" src="../img/flags/mt.gif">';
+										break;
+								}								
+							?>
+						</td>
 					</tr>
 					<?php endforeach; ?>
 				</table>
+				<br>
 			</div>
 			
 		</div>
