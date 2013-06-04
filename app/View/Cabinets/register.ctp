@@ -1,5 +1,9 @@
 <?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); 
 
+		echo $this->Html->css('register/register.css');
+		echo $this->Html->css('register/country/jquery.autocomplete.css');
+		echo $this->Html->css('register/country/jquery.autocomplete.country.css');
+		//echo $this->Html->css('register/country/main.css');
 		
 		echo $this->Html->script('register/register.js'); 
 		echo $this->Html->script('register/jquery.js');
@@ -8,6 +12,8 @@
 		echo $this->Html->script('register/accountry/jquery.autocomplete.js'); 
 		echo $this->Html->script('register/accountry/countries.en.js'); 
 		echo $this->Html->script('http://maps.google.com/maps/api/js?sensor=false'); 
+		
+		
 
 // generate password according to MT4 security rules
     $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -18,8 +24,6 @@
 ?>
 
 
-
-
 <div class="contentinner">  
 	<div class="row-fluid">
 		<div class="span7">  
@@ -27,12 +31,12 @@
                 <div class="widgetcontent bordered shadowed nopadding">
                     
 					<?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2")); ?>
-                            <p>
+                           
+						   
+						   <p>
                                 <label>First Name</label>
                                 <span class="field"><?php echo $this->Form->input("first_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" )); ?></span>
                             </p>
-                          
-                            
                             <p>
                                 <label>Last Name</label>
                                 <span class="field"><?php echo $this->Form->input("last_name" ,array('label' => false,'div' => false,'class'=>"input-xlarge" )); ?></span>
@@ -52,27 +56,34 @@
 								<input type="hidden" name="location" value="" id="form-field-location" />
 								
 								<!-- In case Geolocation worked, display question -->
-							 	<section id="geolocation-worked"><span class="field">
-									<p id="location-detection">We detected you’re from  <span class="location-name" id="location-name"></span>, is that right?</p></span>
+							 	 <span class="field">
+									<section id="geolocation-worked">
+									<p id="location-detection">
+									 <span class="field">
+									We detected you’re from  <span class="location-name" id="location-name"></span>, is that right?
+									
 									<div id="location-answers-switch">
-										<div class="switch"><span class="field">
+										<div class="switch">
 											<a href="#" title="" class="left-switch" id="switch-yes">Yes</a>
 											<a href="#" title="" class="right-switch" id="switch-no">No</a>
-										</span></div>
+										</div>
 									</div>
-								</section> 
+									</span>
+									</section>
+								</span>
 								
-								 <span class="field"><section id="geolocation-fix">
+								<span class="field">
+								<section id="geolocation-fix">
 									<!-- In case Geolocation didn't work -->
 									<label class="location-type-correction"  for="country-type" id="no-geolocation">We couldn't detect your location.</label>
 								
 									<!-- In case the user clicked No and in case Geolocation didn't work -->
 									<label class="location-type-correction" for="country-type" id="other-location">Do you mind typing in your country’s name?</label>
-								
+								<div>
 									<input type="text" id="country-type" class="field" name="country" value='' />
 									<p id="geolocation-fix-approval"></p>
-								</section></span>
-																
+								</section>
+								</span>								
 								<script>
 									var geolocation_fix_height = $("#geolocation-fix").height();
 									$("#location-wrapper").css('display', 'none');

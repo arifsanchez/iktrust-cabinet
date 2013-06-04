@@ -1,33 +1,10 @@
 /* Main CSS - Register5! */
 
-@import url('reset.css');
+
 @font-face { font-family: 'font-face museo sans'; src: url(../../font/MuseoSans.otf); }
 @font-face { font-family: 'font-face chunkfive'; src: url(../../font/Chunkfive.otf); }
 
-body, a {
-	color: #403d3a;
-	font-family: "museo sans", "font-face museo sans", helvetica, arial, sans-serif;
-}
 
-body {
-	padding-bottom: 200px;
-}
-
-header {
-	border-bottom: 1px solid #fff;
-}
-
-h1 {
-	padding: 40px 10px;
-	display: block;
-	border-bottom: 1px solid #eeece9;
-	
-	text-align: center;
-	letter-spacing: -1px;
-	font-size: 30pt;
-	font-family: "chunkfive", "font-face chunkfive", "museo slab", "romeral", sans-serif;
-	text-shadow: 0px 2px 2px #EFEBE7, 0px 4px 2px #CFC8C2; 
-}
 
 #progress {
 	border-top: 1px solid #fff;
@@ -214,28 +191,13 @@ h1 {
 	transform: rotate(-40deg);
 }
 
-p { 
-	line-height: 1.4; 
-}
+
 
 #form-container, #process-container {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-table {
-	width: 100%;
-	text-align: left;
-}
-
-tr {
-	height: auto;
-	vertical-align: middle;
-}
-
-th, td {
-	vertical-align: middle;
-}
 
 #form-container th {
 	width: 150px;
@@ -254,23 +216,7 @@ th, td {
 	padding: 10px 0px;
 }
 
-.field, .ac_results {
-	padding: 11px 7px;
-	font-size: 1.5em;
-	border: 1px solid #dedede;
-	width: 280px;
-	color: #403d3a;
-	
-	background: #f4f4f4;
-	background: -moz-linear-gradient(top,  #f2f2f2,  #ffffff);
-	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#ffffff));
-	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#f2f2f2', EndColorStr='#ffffff', GradientType=0);
-	
-	border-radius : 5px;
-	-moz-border-radius : 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-}
+
 
 .form-field-error {
 	border: 1px solid #dc3a3a;
@@ -306,9 +252,9 @@ th, td {
 }
 
 #location-answers-switch {
-	height: 30px;
+	height: 40px;
 	overflow: auto;
-	padding-top: 7px;
+	padding-left: 25px;
 }
 
 .switch a {
