@@ -21,9 +21,9 @@
 					<table class="table table-striped">
 						<tr>
 							<th class="center">SYMBOL</th>
-							<th class="center">BID</th>
-							<th class="center">ASK</th> 
-							<th class="center">SPREAD</th>
+							<th class="center  text-error">BID</th>
+							<th class="center  text-info">ASK</th> 
+							<th class="center  text-warning">SPREAD</th>
 							<th class="center">TICK TIME (GMT+0)</th>
 
 						</tr>
@@ -37,9 +37,9 @@
 							
 							<tr class="success">
 								<td class="center muted"><?php echo str_replace(" ","%#%", $quote['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
-								<td class="center"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
-								<td class="center"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
-								<td class="center"><?php echo h($cal_spread); ?>&nbsp;</td>
+								<td class="center text-error"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
+								<td class="center text-info"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
+								<td class="center  text-warning"><?php echo h($cal_spread); ?>&nbsp;</td>
 								<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
 							</tr>
 								
@@ -47,9 +47,9 @@
 						
 							<tr class="error">
 								<td class="center muted"><?php echo h($quote['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
-								<td class="center"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
-								<td class="center"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
-								<td class="center"><?php echo h($cal_spread); ?>&nbsp;</td>
+								<td class="center text-error"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
+								<td class="center text-info"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
+								<td class="center  text-warning"><?php echo h($cal_spread); ?>&nbsp;</td>
 								<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
 							</tr>
 						<?php } ?>
