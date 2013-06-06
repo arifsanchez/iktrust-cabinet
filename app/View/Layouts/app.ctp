@@ -1,0 +1,6 @@
+
+<?php
+
+	var $layout = 'app';
+	
+?>

@@ -49,7 +49,7 @@
 								<td class="center muted"><?php echo h($quote['Mt4Price']['SYMBOL']); ?>&nbsp;</td>
 								<td class="center text-error"><?php echo number_format($quote['Mt4Price']['BID'], 5, '.', ''); ?>&nbsp;</td>
 								<td class="center text-info"><?php echo number_format($quote['Mt4Price']['ASK'], 5, '.', ''); ?>&nbsp;</td>
-								<td class="center  text-warning"><?php echo h($cal_spread); ?>&nbsp;</td>
+								<td class="center text-warning"><?php echo h($cal_spread); ?>&nbsp;</td>
 								<td class="center"><?php echo h($quote['Mt4Price']['TIME']); ?>&nbsp;</td>
 							</tr>
 						<?php } ?>

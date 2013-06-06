@@ -53,6 +53,8 @@ App::uses('Controller', 'Controller');
  *
  * @package       Cake.Error
  */
+
+	
 class ExceptionRenderer {
 
 /**

@@ -347,7 +347,8 @@
 									<ul class="tooltipsample">
 										<span class="field">
 											<a data-placement="right" data-rel="tooltip" data-original-title="The field is optional. in this field you may enter the details of your project." >
-												<textarea cols="30"  rows="3" id="AffilliateComment" class="span5" name="data[Affilliate][comment]"></textarea>&nbsp;<span class=" iconsweets-document"></span>
+												<textarea cols="30"  rows="3" id="AffilliateComment" class="span5" name="data[Affilliate][comment]"></textarea>&nbsp;
+												<span class=" iconsweets-document"></span>
 											</a>
 										</span>
 									</ul>
@@ -396,7 +397,6 @@
 							jQuery(this).attr('rel', jQuery(this).data('rel'));
 						});
 					});
-				</script>      
-			
+				</script>   			
 			</div>
 		</div>

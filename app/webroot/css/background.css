@@ -1,0 +1,36 @@
+/* 
+* Theme Name: Wizm 404!
+* Theme URI: http://www.themeforest.com
+* Description: A Responsive Error Theme Page For You
+* Author: Jogres
+* Author URI: http://www.jogres.com
+*/
+
+	p.ouch {
+		background:none;
+		text-shadow:4px 3px #9E9999;
+	}
+	
+	h1.headers {
+		background:none;
+		text-shadow:2px 2px #9E9999;
+	}
+	
+	h4.txt {
+		background:none;
+		text-shadow:2px 2px #9E9999;
+	}
+	
+	a.link {
+		background:none;
+		text-shadow:2px 1px #9B9B9B;
+	}
+
+.bgdarkpattern {
+    background: url(../img/error/background/01.png) no-repeat fixed center center / cover  transparent ;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+	}

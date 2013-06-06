@@ -96,6 +96,7 @@ App::uses('Router', 'Routing');
  * @package       Cake.Error
  * @see ExceptionRenderer for more information on how to customize exception rendering.
  */
+	
 class ErrorHandler {
 
 /**
@@ -132,6 +133,7 @@ class ErrorHandler {
 			trigger_error($message, E_USER_ERROR);
 		}
 	}
+
 
 /**
  * Generates a formatted error message

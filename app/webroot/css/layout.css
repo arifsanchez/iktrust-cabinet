@@ -1,0 +1,246 @@
+/*!
+ * Bootstrap v2.1.1
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ *
+ * Theme Name: Wizm 404!
+ * Theme URI: http://www.themeforest.com
+ * Description: A Responsive Error Theme Page For You
+ * Author: Jogres
+ * Author URI: http://www.jogres.com
+ */
+
+body {
+	font-family: 'Bebas', Arial, sans-serif;
+	width:100%;
+	height:100%;
+	margin: 0;
+	}
+
+.nav-content{
+	padding-top: 30px;
+}
+.nav-content:{
+	left: 0px;
+	opacity: 1;
+}
+.nav-content a{
+	text-align: left;
+	display: block;
+	font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+	text-decoration: none;
+	border: 8px solid #fff;
+	padding: 2%;
+	font-size: 40px;
+	text-shadow: 0px 0px 10px rgba(255,255,255,0.9);
+	color: rgba(255,255,255,0.1);
+	line-height: 66px;
+	margin: 0 0 20px 0;
+	outline: none;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+	-webkit-background-size: 100%; -moz-background-size: 100%; -o-background-size: 100%; background-size: 100%; 
+	background-clip: padding-box;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.nav-content a:hover{
+	box-shadow: 1px 3px 7px rgba(0,0,0,0.25);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	color: rgba(255,255,255,0.9);
+	border: 8px solid #000;
+}
+
+/* Main Items */
+.with-slideshow a{
+	background: url(../images/background/01.png) no-repeat center center;
+	margin: 0 0 30px;
+}
+.without-slideshow a{
+	background: url(../images/background/12.png) no-repeat center center;
+	margin: 0 0 30px;
+}
+.light-pattern a{
+	background: url(../images/background/09.png) no-repeat center center;
+	margin: 0 0 30px;
+}
+.dark-pattern a{
+	background: url(../images/background/13.png) no-repeat center center;
+	margin: 0 0 30px;
+}
+
+/* Main Items */
+.light, .light a {
+	color: #fff;
+}
+.dark, .dark a {
+	color: #666;
+}
+.logo {
+	margin: 60px 0 20px;
+	position: relative;
+	display: inherit;
+	font-size: 210px;
+	line-height: 220px;
+}
+.navigation, .socmed {
+	margin-bottom: 20px;
+}
+.navigation {
+	font-size: 14px;
+	position: relative;
+	display: block;
+	line-height: 18px;
+}
+.navigation a{
+	text-decoration: none;
+	-o-transition:all .3s;
+	-moz-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+.navigation a:hover {
+	color:#00d2ff;
+}
+
+.slash {
+	margin: 0 4px;
+	display: inline;
+}
+.socmed {
+	width: 255px;
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+.twitter a,.facebook a,.tumblr a,.dribbble a,.linkedin a,.rss a,.delicious a,.devianart a,.digg a,.digg2 a,.flickr a,.lastfm a,.myspace a,.picasa a,.sharethis a,.skype a,.twitter2 a,.vimeo a,.youtube a,.yahoo a,.yahoo2 a,.wikipedia a {
+	float:left;
+	background:url(../images/socmed.png) no-repeat left bottom;
+	text-indent:8000px;
+	width:32px;
+	height:32px;
+	margin-right:10px;
+	-o-transition:all .3s;
+	-moz-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+.twitter a:hover,.facebook a:hover,.tumblr a:hover,.dribbble a:hover,.linkedin a:hover,.rss a:hover,.delicious a:hover,.devianart a:hover,.digg a:hover,.digg2 a:hover,.flickr a:hover,.lastfm a:hover,.myspace a:hover,.picasa a:hover,.sharethis a:hover,.skype a:hover,.twitter2 a:hover,.vimeo a:hover,.youtube a:hover,.yahoo a:hover,.yahoo2 a:hover,.wikipedia a:hover {
+	background:url(../images/socmed.png) no-repeat left top;
+}
+.twitter,.twitter a{background-position:-0px bottom}
+.twitter a:hover{background-position:-0px top}
+.twitter2,.twitter2 a{background-position:-528px bottom}
+.twitter2 a:hover{background-position:-528px top}
+.facebook,.facebook a{background-position:-33px bottom}
+.facebook a:hover{background-position:-33px top}
+.tumblr,.tumblr a{background-position:-66px bottom}
+.tumblr a:hover{background-position:-66px top}
+.dribbble,.dribbble a{background-position:-99px bottom}
+.dribbble a:hover{background-position:-99px top}
+.linkedin,.linkedin a{background-position:-133px bottom}
+.linkedin a:hover{background-position:-133px top}
+.rss,.rss a{background-position:-166px bottom}
+.rss a:hover{background-position:-166px top}
+.delicious,.delicious a{background-position:-199px bottom}
+.delicious a:hover{background-position:-199px top}
+.devianart,.devianart a{background-position:-233px bottom}
+.devianart a:hover{background-position:-233px top}
+.digg,.digg a{background-position:-266px bottom}
+.digg a:hover{background-position:-266px top}
+.digg2,.digg2 a{background-position:-299px bottom}
+.digg2 a:hover{background-position:-299px top}
+.flickr,.flickr a{background-position:-331px bottom}
+.flickr a:hover{background-position:-331px top}
+.lastfm,.lastfm a{background-position:-364px bottom}
+.lastfm a:hover{background-position:-364px top}
+.myspace,.myspace a{background-position:-397px bottom}
+.myspace a:hover{background-position:-397px top}
+.picasa,.picasa a{background-position:-431px bottom}
+.picasa a:hover{background-position:-431px top}
+.sharethis,.sharethis a{background-position:-464px bottom}
+.sharethis a:hover{background-position:-464px top}
+.skype,.skype a{background-position:-497px bottom}
+.skype a:hover{background-position:-497px top}
+.vimeo,.vimeo a{background-position:-562px bottom}
+.vimeo a:hover{background-position:-562px top}
+.youtube,.youtube a{background-position:-594px bottom}
+.youtube a:hover{background-position:-594px top}
+.yahoo,.yahoo a{background-position:-628px bottom}
+.yahoo a:hover{background-position:-628px top}
+.yahoo2,.yahoo2 a{background-position:-662px bottom}
+.yahoo2 a:hover{background-position:-662px top}
+.wikipedia,.wikipedia a{background-position:-694px bottom}
+.wikipedia a:hover{background-position:-694px top}
+
+.copy {
+	width: 100%;
+	position: relative;
+	display: block;
+	margin-bottom: 40px;
+}
+.copy a {
+	text-decoration: none;
+	-o-transition:all .3s;
+	-moz-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+.copy a:hover {
+	color:#00d2ff;
+}
+
+/* #Media Queries
+================================================== */
+	
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (min-width: 976px) {
+	}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 976px) {
+	}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+	}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {
+	}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 480px) {
+.logo {
+	font-size: 100px;
+	line-height: 140px;
+}	
+.slash {
+	margin: 0 15px;
+}
+	}
+	
+
+/* #Font-Face
+================================================== */
+/* 	This is the proper syntax for an @font-face file 
+		Just create a "fonts" folder at the root, 
+		copy your FontName into code below and remove
+		comment brackets */
+		
+/*	@font-face {
+	    font-family: 'FontName';
+	    src: url('../fonts/FontName.eot');
+	    src: url('../fonts/FontName.eot?iefix') format('eot'),
+	         url('../fonts/FontName.woff') format('woff'),
+	         url('../fonts/FontName.ttf') format('truetype'),
+	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
+	    font-weight: normal;
+	    font-style: normal; }
+*/
