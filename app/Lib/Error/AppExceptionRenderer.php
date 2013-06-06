@@ -45,7 +45,7 @@ class AppExceptionRenderer extends ExceptionRenderer {
         $this->controller->render('/Errors/error501');
         $this->controller->response->send();
     }
-
+   
     /*-------------------------------------------------------------------------*/
     /* -- Other
     /*-------------------------------------------------------------------------*/
