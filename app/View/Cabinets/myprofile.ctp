@@ -1,4 +1,13 @@
 <?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN)); ?>
+<script src="../js//jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	jQuery(document).ready(function(){
+		// binds form submission and fields to the validation engine
+		jQuery("#img_valid").validationEngine();
+	});
+</script> 
+
 		<div class="maincontent"><!--maincontent open--> 
 			<div class="contentinner"><!--contentinner open-->	
 			<?php echo $this->element('newsticker'); ?>
@@ -27,17 +36,8 @@
 								</li>
 								
 								<li>
-									<a href="#tab3" data-toggle="tab">Upload Documents</a>
-								</li>
-								
-								<li>
-									<a href="#tab4" data-toggle="tab">Subscriptions</a>
-								</li>
-								
-								<li>
-									<a href="#tab5" data-toggle="tab">Platform Credentials</a>
-								</li>
-								
+									<a href="#tab3" data-toggle="tab">Pending Verification</a>
+								</li>								
 							</ul>
 							
 		<!-----------------TAB SEPERATER ------------------ TAB SEPERATER -----------------TAB SEPERATER -------------------->
@@ -72,7 +72,7 @@
 														</p>
 														<p>
 															<label style="padding:0">Password</label>
-															<a href="">Change Password?</a>
+															<a href="myprofile#tab2" id="myprofile#tab2">Change Password?</a>
 														</p>
 														
 														<br />
@@ -145,39 +145,17 @@
 								<!-- CHANGE PASSWORD PANE-->
 								<div class="tab-pane" id="tab2">
 									<div class="row-fluid">
-										<div class="span8">
+										<div class="span1">
+										</div>
+										
+										<div class="span7">
 											<br>
 											<h3>Change Password</h3>
 											<br>
 											<form class="form-horizontal">
 												<div class="control-group">
-													<label class="control-label" for="#">*Full Name</label>
-													<div class="controls">
-													<!--input type="password" id="#" placeholder="Full Name"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Full Name',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">*Email</label>
-													<div class="controls">
-													<!--input type="password" id="#" placeholder="Valid Email"-->
-													<?php echo $this->Form->input('P.edit', array(
-														'type' => 'text',
-														'placeholder' => 'Valid Email',
-														'label' => "")); 
-													?>
-													</div>
-												</div>
-												
-												<div class="control-group">
 													<label class="control-label" for="#">*Enter Current Password</label>
 													<div class="controls">
-													<!--input type="password" id="#" placeholder="Enter Current Password"-->
 													<?php echo $this->Form->input('P.edit', array(
 														'type' => 'text',
 														'placeholder' => 'Current Password',
@@ -189,7 +167,6 @@
 												<div class="control-group">
 													<label class="control-label" for="#">*New Password</label>
 													<div class="controls">
-													<!--input type="password" id="#" placeholder="New Password"-->
 													<?php echo $this->Form->input('P.edit', array(
 														'type' => 'text',
 														'placeholder' => 'New Password',
@@ -201,7 +178,6 @@
 												<div class="control-group">
 													<label class="control-label" for="#">*Re-Enter New Password</label>
 													<div class="controls">
-													<!--input type="password" id="#" placeholder="Re-Enter New Password"-->
 													<?php echo $this->Form->input('P.edit', array(
 														'type' => 'text',
 														'placeholder' => 'Re-Enter New Password',
@@ -220,10 +196,10 @@
 									
 										<div class="span4">
 											<br>
-											<p>
-												<h6>Important Notes</h6>
-												To reset your Account Password, please enter a new password
-											</p>
+											<blockquote>
+												<p>Important Notes</p>
+												<small>To reset your Account Password, please enter a new password</small>
+											</blockquote>
 										</div>
 									</div>
 								</div>
@@ -231,86 +207,130 @@
 								<!-- UPLOAD DOCUMENTS PANE-->
 								<div class="tab-pane" id="tab3">
 									<div class="row-fluid">
-										<div class="span8">
-											<br>
-											<h3>Upload Documents</h3>
-											<br>
-											<form class="form-horizontal">
-												<div class="control-group">
-													<label class="control-label" for="#">
-														<h6>Colour Copy Of Passport Or The Front Of The Id:</h6>
-													</label>
-													
-													<div class="control-group">
-														<div class="controls">
-															<p><button class="btn btn-mini" type="button">Browse...</button></p>
-															<p>
-																To open an FxPro account you must provide a full, clear and valid (colour) copy of your international passport or national I.D. card or photocard driving license, in addition to the documents required to verify your address.
-															</p>
-														</div>
-													</div>
-												</div>
+										<div class="span1">
+										</div>
+										
+										<div class="span10 alert alert-error" align="center">
+											<p>
+												<h3 style="color: #F26F6F;">ANTI MONEY LAUNDERING & DATA PROTECTION ACT</h3>
+												<p style="color: #D36767;">
+												<small>
+													In order to comply with worldwide financial regulations for the avoidance of money laundering and terrorist financing , we will require you to provide such additional information and documentary proof of identity as we deem necessary.
+												</small>
+												</p>
 												
-												<div class="control-group">
-													<label class="control-label" for="#">
-														 <h6>Colour Copy Of The Back Of The Id:</h6>
-													</label>
+												<p style="color: #D36767;">
+												<small>
+													We will process your personal data in accordance with our obligations under the Data Protection Act 1998 and other applicable data protection legislation. In providing you with our services it may be necessary for us to disclose your personal details to registered by law third parties. Full details disclosures are contained in our Terms and Conditions.
+												</small>
+												</p>
+											</p>
+										</div>
+									</div>
+									
+									<hr class="invisible">
+									
+									<div class="row-fluid">
+										<div class="span1">
+										</div>
+										
+										<div class="span5">
+											<?php echo $this->Form->create('UserDoc', array('type' => 'file', 'id'=>'img_valid' , 'class' => 'stdform')); ?>
+											<h3>PROOF OF IDENTITY</h3>
+											<br>
+											<ul class="list-nostyle">
+												<li>
+													<ul>
+													  <li><span class="icon-check"></span> &nbsp;National Passport</li>
+													  <li><span class="icon-check"></span> &nbsp;National Identity Card</li>
+													  <li><span class="icon-check"></span> &nbsp;Driver License</li>
+													  <li><span class="icon-check"></span> &nbsp;Others Government Issued Photo ID</li>
+													  <li><span class="icon-check"></span> &nbsp;Signed &amp; Notarised Financial Statement</li>
+													</ul>
+												</li>
+											</ul>
+											<br>
+											<strong>Select File : </strong> 
+											<div>
+												<i class=" iconsweets-paperclip"></i> &nbsp;  
+												<input type="file" class="validate[required] text-input span2"  id="UserDocDoc1" name="data[UserDoc][doc1]"/>
+											</div>
+										</div>
+										
+										<div class="span5">
+											<h3>PROOF OF IDENTITY</h3>
+											<br>
+											<ul class="list-nostyle">
+												<li>
+													<ul>
+													  <li><span class="icon-check"></span> &nbsp;Utility Bill</li>
+													  <li><span class="icon-check"></span> &nbsp;Government Issued Letter</li>
+													  <li><br></li>
+													  <li><br></li>
+													  <li><br></li>
+													</ul>
+												</li>
+											</ul>
+											<br>
+											<strong>Select File : </strong> 
+											<div>
+												<i class=" iconsweets-paperclip"></i> &nbsp;  
+												<input type="file" class="validate[required] text-input span2"  id="UserDocDoc2" name="data[UserDoc][doc2]"/>
+											</div>
+										</div>
+									</div>
+									
+									<hr>
+									
+									<div class="row-fluid">
+										<div class="span1">
+										</div>
+										
+										<div class="span10">
+											<h3 class="widgettitle">Upload history</h3>
+											<table class="table table-striped">
+												<colgroup>
+													<col class="con0" />
+													<col class="con1" />
+													<col class="con0" />
+													<col class="con1" />
+													<col class="con0" />
+												</colgroup>
+												<thead>
+													<tr>
+														<th>Rendering engine</th>
+														<th>Browser</th>
+														<th>Platform(s)</th>
+														<th>Engine version</th>
+														<th>CSS grade</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Trident</td>
+														<td>Internet Explorer 4.0</td>
+														<td>Win 95+</td>
+														<td class="center">4</td>
+														<td class="center">X</td>
+													</tr>
 													
-													<div class="control-group">
-														<div class="controls">
-															<p><button class="btn btn-mini" type="button">Browse...</button></p>
-														</div>
-													</div>
-												</div>
-												
-												<div class="control-group">
-													<label class="control-label" for="#">
-														<h6>Proof Of Residence:</h6>
-													</label>
-													
-													<div class="control-group">
-														<div class="controls">
-															<p><button class="btn btn-mini" type="button">Browse...</button></p>
-															<p>
-																Recent utility bill dated within the last six months, current local authority tax bill, bank or credit card statement.
-															</p>
-														</div>
-													</div>
-													
-													<label class="control-label" for="#">
-														<h6>Proof Of Signature:</h6>
-													</label>
-													
-													<div class="control-group">
-														<div class="controls">
-															<p><button class="btn btn-mini" type="button">Browse...</button></p>
-															<p>
-																If your signature is not contained within your identification documents, you may upload a document to verify your signature here. Alternatively, if you do not have a document containing your signature 
-															</p>
-														</div>
-													</div>
-													
-													<label class="control-label" for="#">
-														<h6>Debit/Credit Card Scan:</h6>
-													</label>
-													
-													<div class="control-group">
-														<div class="controls">
-															<p><button class="btn btn-mini" type="button">Browse...</button></p>
-															<p>
-																FxPro reserves the right to request a copy of your credit/debit card and credit/debit card statements for security purposes. If a copy of your card has been requested by our accounting department, please black out the 2nd to 12th numbers on the front (and back if necessary) of your credit/debit card image. Also black out the three digit CVV number on the back of your credit/debit card image. Once uploaded, please allow 24 hours for your card scans to be verified. For more information, please click 
-															</p>
-														</div>
-													</div>
-												</div>
-											</form>
+													<tr>
+														<td>Trident</td>
+														<td>Internet Explorer 4.0</td>
+														<td>Win 95+</td>
+														<td class="center">4</td>
+														<td class="center">X</td>
+													</tr>
+												</tbody>
+											</table>
+											<hr class="invisible">
 										</div>
 									</div>
 								</div>
-								
-								<!-- Subsription Pane-->
+
+								<!-- Subsription Pane>
 								<div class="tab-pane" id="tab4">
-									<!--TITLE-->
+									<!--TITLE>
 									<div class="row-fluid">
 										<div class="span3" align="right">
 											<br>
@@ -319,17 +339,13 @@
 										</div>
 									</div>
 									
-									<!--LIST OF CHECKBOX-->
+									<!--LIST OF CHECKBOX>
 									<div class="row-fluid">
 										<div class="span5" align="right">
 											<label class="chckbox">
-												* FxPro Daily Forex Brief and Market Insights
+												* IKTrust Daily Forex Brief and Market Insights
 											</label>
 										</div>
-										
-										<!--div class="span7">
-											<input type="checkbox" id="inlineCheckbox3" value="option3">
-										</div-->
 										
 										<div class="span7">
 											<div id="sub_chck" class="checker">
@@ -347,10 +363,6 @@
 											</label>
 										</div>
 										
-										<!--div class="span7">
-											<input type="checkbox" id="inlineCheckbox4" value="option4">
-										</div-->
-										
 										<div class="span7">
 											<div id="sub_chck" class="checker">
 												<span class="unchecked">
@@ -367,10 +379,6 @@
 											</label>
 										</div>
 										
-										<!--div class="span7">
-											<input type="checkbox" id="inlineCheckbox5" value="option5">
-										</div-->
-										
 										<div class="span7">
 											<div id="sub_chck" class="checker">
 												<span class="unchecked">
@@ -383,13 +391,9 @@
 									<div class="row-fluid">
 										<div class="span5" align="right">
 											<label class="chckbox">
-												* FxPro Company News and Account Updates
+												* IKTrust Company News and Account Updates
 											</label>
 										</div>
-										
-										<!--div class="span7">
-											<input type="checkbox" id="inlineCheckbox6" value="option6">
-										</div-->
 										
 										<div class="span7">
 											<div id="sub_chck" class="checker">
@@ -410,9 +414,9 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div-->
 								
-								<!-- DEMO METATRADER Pane-->
+								<!-- DEMO METATRADER Pane>
 								<div class="tab-pane" id="tab5">
 									<div class="row-fluid">
 										<div class="span12">
@@ -444,14 +448,14 @@
 									
 									<div class="row-fluid">
 										<div class="span3">
-											<h6>FxPro MT4 Demo Server:</h6>
+											<h6>IKTrust MT4 Demo Server:</h6>
 										</div>
 										
 										<div class="span9">
-											<p>FxPro.com-Demo2</p>
+											<p>IKTrust.com-Demo2</p>
 										</div>
 									</div>
-								</div>
+								</div-->
 
 							</div> <!--Close Tab Content-->
 						</div><!--Footer Span10-->
