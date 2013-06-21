@@ -572,6 +572,84 @@ class CabinetsController extends AppController {
 		} else {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myprofile'));
 		}
+		
+		
+		//upload file site
+
+		/*$this->loadModel('UserDoc');
+		
+		$userId 		= $this->UserAuth->getUserId();
+		$check = $this->UserDoc->find('first' , array(
+			'conditions' => array( 'user_id' => $userId),
+			'fields' => 'id',
+		));
+
+		if ($this->request->is('post')){
+			if (!empty($this->request->data['UserDoc']['form'])){
+				$form 				= $this->request->data['UserDoc']['form'];
+				$info1				= pathinfo($form['name']); // split filename and extension
+				$saveName1 = md5($info1['basename']) . '.' . $info1['extension'] ;
+				$savePath1 	= WWW_ROOT . 'img/uploads' . DS . $saveName1;
+			}
+			
+			if (!empty($this->request->data['UserDoc']['doc1'])){
+				$file1 				= $this->request->data['UserDoc']['doc1'];
+				$info2				= pathinfo($file1['name']); // split filename and extension
+				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
+				$savePath2 	= WWW_ROOT . 'img/uploads' . DS . $saveName2;
+			}
+			
+			if (!empty($this->request->data['UserDoc']['doc2'])){
+				$file2 				= $this->request->data['UserDoc']['doc2'];
+				$info3				= pathinfo($file2['name']); // split filename and extension
+				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
+				$savePath3 	= WWW_ROOT . 'img/uploads' . DS . $saveName3;
+			}
+			
+			if (move_uploaded_file($form['tmp_name'], $savePath1)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName1);
+				if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data1 = array('user_id' => $userId , 'form' =>$saveName1 );
+					$this->UserDoc->save($data1);
+				}else{
+					$data1 = array('user_id' => $userId , 'form' =>$saveName1 );
+					$this->UserDoc->save($data1);
+			
+				}
+			}
+			
+			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
+				if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data2 = array('user_id' => $userId , 'doc1' =>$saveName2 );
+					$this->UserDoc->save($data2);
+				}else{
+					$data2 = array('user_id' => $userId ,  'doc1' =>$saveName2 );
+					$this->UserDoc->save($data2);
+				
+				}
+			}
+			
+			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
+					if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data3 = array('user_id' => $userId ,  'doc2' =>$saveName3 );
+					$this->UserDoc->save($data3);
+				}else{
+					$data3 = array('user_id' => $userId , 'doc2' =>$saveName3 );
+					$this->UserDoc->save($data3);
+				}
+			}
+			$this->redirect(array( 'action' => 'myaccount'));
+		}
+		
+		/*$this->loadModel('Countries');
+		$country = $this->Countries->find('list');
+		//debug($country); die();
+		$this->set('country', 'country');*/
 	}
 
 	
