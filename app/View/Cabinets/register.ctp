@@ -100,8 +100,8 @@
 								
 								<?php  echo $this->Form->input("ipass" ,array('type' =>'hidden','label' => false,'div' => false,'class'=>"input-xlarge" ,'value' => $mpassword )); ?>
 								
-                                 <?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2')); ?>     
-								 
+                                <?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '2')); ?>     
+					
                             <p class="stdformbutton">
                                <?php echo $this->Form->button(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
                                 <?php echo $this->Form->button(__('Reset'), array('type' => 'reset' ,'class' => "btn"));?>

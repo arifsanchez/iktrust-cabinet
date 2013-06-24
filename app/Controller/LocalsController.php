@@ -305,9 +305,10 @@ class LocalsController extends AppController {
 			$this->set('deposit', $deposit);
 			//debug($deposit);die();
 		}
-			
-						 
-		//
+	}
+	
+	function register_pro(){
+		$this->layout = 'admin';
 	}
 	
 	public function edit_withdrawal($now = null) {
