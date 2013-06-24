@@ -576,7 +576,7 @@ class CabinetsController extends AppController {
 		
 		//upload file site
 
-		/*$this->loadModel('UserDoc');
+		$this->loadModel('UserDoc');
 		
 		$userId 		= $this->UserAuth->getUserId();
 		$check = $this->UserDoc->find('first' , array(
@@ -651,7 +651,14 @@ class CabinetsController extends AppController {
 		//debug($country); die();
 		$this->set('country', 'country');*/
 	}
-
+	
+	public function change_pass(){
+		$this->layout = 'kabinet';
+	}	
+	
+	public function pending(){
+		$this->layout = 'kabinet';
+	}	
 	
 	public function depositfund(){
 		$this->layout = 'kabinet';
