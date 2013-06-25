@@ -307,8 +307,16 @@ class LocalsController extends AppController {
 		}
 	}
 	
-	function register_pro(){
+	function admin_pro(){
 		$this->layout = 'admin';
+		$this->loadModel('User');
+		
+		$data = $this->User->find('all', array(
+			'condition' => array('User.user_group_id' => 21)
+		));
+		debug($data);
+		
+       $this->set('data', 'data');
 	}
 	
 	public function edit_withdrawal($now = null) {
