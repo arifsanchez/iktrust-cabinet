@@ -84,8 +84,8 @@
 											array('title'=>'Go to home',  'url'=> 'http://www.iktrust.com'),
 											array('title'=>'Log In Cabinet',  'url'=> array('controller'=>'cabinets', 'action'=>'login')),
 											array('title'=>'Register Now',  'url'=> array('controller'=>'cabinets', 'action'=>'register')),
+											array('title'=>'Register ProVault',  'url'=> array('controller'=>'cabinets', 'action'=>'register_pro')),
 											array('title'=>'Support Centre',  'url'=> 'http://support.iktrust.com'),
-										
 										),
 									);
 								 
@@ -102,7 +102,7 @@
 				'items'=>	array(
 							array('title'=>'Check Balance',  'url'=> array('controller'=>'cabinets', 'action'=>'check_balance')),
 							array('title'=>'Live Quotes',  'url'=> array('controller'=>'mt4_prices', 'action'=>'quotes')),		
-							array('title'=>'Top Traders',  'url'=> array('controller'=>'mt4_users', 'action'=>'top_traders')),	
+							//array('title'=>'Top Traders',  'url'=> array('controller'=>'mt4_users', 'action'=>'top_traders')),	
 						),
 					);
 			//debug($menu);die();
