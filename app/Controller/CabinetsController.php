@@ -15,11 +15,8 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.UserDetail');
 		if(!empty($this->params['named'])){
 			$data = $this->params['named'];
-			#check key
 			if($data['k'] = 'syui9f8as9dgas89dfg9as7dgaos879tdas8odgas87sa'){
-				
 				if($data['k1'] = 'qwwoiutjncyh58jdbt'){
-
 					#susun data
 					$this->request->data['User']['first_name'] = $data['fn'] ;
 					$this->request->data['User']['user_group_id'] = 2 ;
@@ -345,8 +342,6 @@ class CabinetsController extends AppController {
 							//'recursive' => 0
 								));
 		$this->set('acc',$acc);
-		
-		
 		$user = $this->User->find('first', array(
 			'conditions' => array('User.id'  => $userId),
 			'recursive' => 0
@@ -431,6 +426,7 @@ class CabinetsController extends AppController {
 		));
 
 		if ($this->request->is('post')){
+		debug($this->request->data);die();
 			if (!empty($this->request->data['UserDoc']['form'])){
 				$form 				= $this->request->data['UserDoc']['form'];
 				$info1				= pathinfo($form['name']); // split filename and extension
@@ -1149,70 +1145,54 @@ class CabinetsController extends AppController {
 		$this->layout = 'register_kabinet';
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
-		
-		if($this->request -> isPut() || $this->request -> isPost()){
-			$this->User->create();
-			$this->request->data['User']['local_status_id'] = 1 ;
-			$this->request->data['User']['key'] = base64_encode($this->request->data['User']['key']);
-			//debug($this->request->data); die();
-			if($this->User->save($this->request->data)){
-				$this->Session->setFlash('Your have successful registered.');
-			}
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
-		}
-		
-		/*$userId = $this->UserAuth->getUserId();
-		//debug($userId); die();
 		$this->loadModel('ProDoc');
-		
 		$userId 	= $this->UserAuth->getUserId();
-		$check 	= $this->ProDoc->find('first' , array(
-			'conditions' => array( 'user_id' => $userId),
-			'fields' => 'id',
-		));
-		debug($check); die();
-
-		if ($this->request->is('post')){
+		
+		if($this->request -> isPost()){
+			//debug($this->request->data);die();
+			
+			$this->request->data['User']['local_status_id'] = 1 ;
+			
+			//debug($this->request->data); die();
 			if (!empty($this->request->data['ProDoc']['doc1'])){
 				$file1 				= $this->request->data['ProDoc']['doc1'];
 				$info2				= pathinfo($file1['name']); // split filename and extension
 				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
-				$savePath2 	= WWW_ROOT . 'img/uploads/pro_doc' . DS . $saveName2;
+				$savePath2 	= WWW_ROOT . 'img/uploads/' . DS . $saveName2;
 			}
 			
 			if (!empty($this->request->data['ProDoc']['doc2'])){
 				$file2 				= $this->request->data['ProDoc']['doc2'];
 				$info3				= pathinfo($file2['name']); // split filename and extension
 				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
-				$savePath3 	= WWW_ROOT . 'img/uploads/pro_doc' . DS . $saveName3;
+				$savePath3 	= WWW_ROOT . 'img/uploads/' . DS . $saveName3;
 			}
 			
 			
 			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
-				if(!empty($check)){
-					$this->ProDoc->id = $check;
-					$data2 = array('user_id' => $userId , 'doc1' =>$saveName2 );
-					$this->ProDoc->save($data2);
-				}else{
+			
 					$data2 = array('user_id' => $userId ,  'doc1' =>$saveName2 );
 					$this->ProDoc->save($data2);
-				}
+				
 			}
 			
 			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
-					if(!empty($check)){
-					$this->ProDoc->id = $check;
-					$data3 = array('user_id' => $userId ,  'doc2' =>$saveName3 );
-					$this->ProDoc->save($data3);
-				}else{
+				
 					$data3 = array('user_id' => $userId , 'doc2' =>$saveName3 );
 					$this->ProDoc->save($data3);
-				}
+				
 			}
-			//$this->redirect(array( 'action' => 'login'));
-		}*/
+			$salt = $this->UserAuth->makeSalt();
+			$this->request->data['User']['salt']=$salt;
+			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+			if($this->User->save($this->request->data)){
+				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
+			}
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
+		}
+		
 	}
 
 	public function register(){

@@ -5,9 +5,9 @@
 			<div class="container">
 				<h3 class="widgettitle nomargin shadowed">Register Pro Account</h3>
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2")); ?>
+                    <?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2" ,'type' =>'file')); ?>
 					<?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '21')); ?>   
-					<?php echo $this->Form->input('ProDoc', array('type' => 'hidden', 'label' => false,'div' => false))?>
+					
 						
 						<div class="row-fluid">
 							<div class="span12 alert alert-error" align="center">
@@ -30,27 +30,27 @@
 						
 						<p>
 							<label>First Name</label>
-							<span class="field"><?php echo $this->Form->input("first_name" ,array('type' => 'text', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
+							<span class="field"><?php echo $this->Form->input("User.first_name" ,array('type' => 'text', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
 						</p>
 						
 						<p>
 							<label>Last Name</label>
-							<span class="field"><?php echo $this->Form->input("last_name" ,array('type' => 'text', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
+							<span class="field"><?php echo $this->Form->input("User.last_name" ,array('type' => 'text', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
 						</p>
 
 						<p>
 							<label>Email</label>
-							<span class="field"><?php echo $this->Form->input("email" ,array('type' => 'email', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
+							<span class="field"><?php echo $this->Form->input("User.email" ,array('type' => 'email', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
 						</p>
 
 						<p>
 							<label>Password</label>
-							<span class="field"><?php echo $this->Form->input("password" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
+							<span class="field"><?php echo $this->Form->input("User.password" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
 						</p>
 
 						<p>
 							<label>Confirm Password</label>
-							<span class="field"><?php echo $this->Form->input("salt" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
+							<span class="field"><?php echo $this->Form->input("User.cpassword" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"input-xxlarge" )); ?></span>
 						</p>
                             
 						<hr>
@@ -61,7 +61,7 @@
 							</div>
 							
 							<div class="span6">
-								<?php #echo $this->Form->create('UserDoc', array('type' => 'file', 'id'=>'img_valid' , 'class' => 'stdform')); ?>
+								
 								<h3>PROOF OF IDENTITY</h3>
 								<br>
 								<ul class="list-nostyle">
