@@ -32,11 +32,11 @@
 								</li>
 								
 								<li>
-									<a href="#tab2" data-toggle="tab">Change Password</a>
+									<a href="change_pass">Change Password</a>
 								</li>
 								
 								<li>
-									<a href="#tab3" data-toggle="tab">Pending Verification</a>
+									<a href="pending">Pending Verification</a>
 								</li>								
 							</ul>
 							
@@ -73,7 +73,7 @@
 														</p>
 														<p>
 															<label style="padding:0">Password</label>
-															<a href="myprofile#tab2" id="myprofile#tab2">Change Password?</a>
+															<a href="change_pass">Change Password?</a>
 														</p>
 														
 														<br />
@@ -386,159 +386,16 @@
 														<p>
 															<?php echo $this->Form->Submit(__('Update Profile'), array('class'=>'btn btn-primary'));?>
 														</p>
-													<?php #echo $this->Form->end(); ?>
+													<?php echo $this->Form->end(); ?>
 													
 												</div><!--span9-->
 											</div><!--row-fluid-->
 										</div><!--widgetcontent-->
 									</div>
-								
-
-								<!-- CHANGE PASSWORD PANE-->
-								<div class="tab-pane" id="tab2">
-									
-								</div>
-								
-								<!-- UPLOAD DOCUMENTS PANE-->
-								<div class="tab-pane" id="tab3">
-
-								</div>
-							</div>
-
-								<!-- Subsription Pane>
-								<div class="tab-pane" id="tab4">
-									<!--TITLE>
-									<div class="row-fluid">
-										<div class="span3" align="right">
-											<br>
-											<h3>Subscriptions Mailing</h3>
-											<br>
-										</div>
-									</div>
-									
-									<!--LIST OF CHECKBOX>
-									<div class="row-fluid">
-										<div class="span5" align="right">
-											<label class="chckbox">
-												* IKTrust Daily Forex Brief and Market Insights
-											</label>
-										</div>
-										
-										<div class="span7">
-											<div id="sub_chck" class="checker">
-												<span class="unchecked">
-													<input type="checkbox" checked="checked" name="check2" style="opacity: 0;">
-												</span>
-											</div>
-										</div>
-									</div>
-									
-									<div class="row-fluid">
-										<div class="span5" align="right">
-											<label class="chckbox">
-												* Daily Technical Analysis - Pre EU Open
-											</label>
-										</div>
-										
-										<div class="span7">
-											<div id="sub_chck" class="checker">
-												<span class="unchecked">
-													<input type="checkbox" checked="checked" name="check3" style="opacity: 0;">
-												</span>
-											</div>
-										</div>
-									</div>
-									
-									<div class="row-fluid">
-										<div class="span5" align="right">
-											<label class="chckbox">
-												* Daily Technical Analysis - Pre US Open
-											</label>
-										</div>
-										
-										<div class="span7">
-											<div id="sub_chck" class="checker">
-												<span class="unchecked">
-													<input type="checkbox" checked="checked" name="check4" style="opacity: 0;">
-												</span>
-											</div>
-										</div>
-									</div>
-									
-									<div class="row-fluid">
-										<div class="span5" align="right">
-											<label class="chckbox">
-												* IKTrust Company News and Account Updates
-											</label>
-										</div>
-										
-										<div class="span7">
-											<div id="sub_chck" class="checker">
-												<span class="unchecked">
-													<input type="checkbox" checked="checked" name="check5" style="opacity: 0;">
-												</span>
-											</div>
-										</div>
-										
-									</div>
-									
-									<div class='row-fluid'>
-										<div class="span2" align="right">
-											<div class="control-group">
-												<div class="controls">
-													<button type="submit" class="btn">Submit</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div-->
-								
-								<!-- DEMO METATRADER Pane>
-								<div class="tab-pane" id="tab5">
-									<div class="row-fluid">
-										<div class="span12">
-											<br>
-											<h3>Demo MetaTrader 4</h3>
-										</div>
-									</div>
-									
-									<br>
-									<div class="row-fluid">
-										<div class="span3">
-											<h6>Your MT4 Login:</h6>
-										</div>
-										
-										<div class="span9">
-											<p>4102730</p>
-										</div>
-									</div>
-									
-									<div class="row-fluid">
-										<div class="span3">
-											<h6>Your MT4 Password:</h6>
-										</div>
-										
-										<div class="span9">
-											<p>a3Ae3Db7</p>
-										</div>
-									</div>
-									
-									<div class="row-fluid">
-										<div class="span3">
-											<h6>IKTrust MT4 Demo Server:</h6>
-										</div>
-										
-										<div class="span9">
-											<p>IKTrust.com-Demo2</p>
-										</div>
-									</div>
-								</div-->
-
 							</div> <!--Close Tab Content-->
 						</div><!--Footer Span10-->
 					</div><!--Close ROW-FLUID-->						
 				</div>
 
 			</div><!--contentinner close-->
-			
 		</div><!--mainconten closet-->
