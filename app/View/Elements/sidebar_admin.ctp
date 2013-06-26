@@ -77,6 +77,7 @@
 				'items'=>	array(
 					array('title'=>'Cabinet Users',  'url'=> array('controller'=>'locals', 'action'=>'tradersindex')),
 					array('title'=>'Cabinet Affilliates',  'url'=> array('controller'=>'locals', 'action'=>'affilliateindex')),
+					array('title'=>'Cabinet ProVault',  'url'=> array('controller'=>'locals', 'action'=>'provaultindex')),
 					array('title'=>'Traders',  'url'=> array('controller'=>'Mt4Users', 'action'=>'trader')),
 					array('title'=>'Partners',  'url'=> array('controller'=>'Mt4Users', 'action'=>'partner')),
 				),

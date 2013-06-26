@@ -35,9 +35,12 @@
 						<p>
 							<label>Upload Document</label>
 							<br>
-							<span id="dualselect" class="dualselect">
+							<span class="field">
 								<div class="row-fluid">
-									<div class="span5">
+									<div class="span1">
+									</div>
+									
+									<div class="span6">
 										<h3>PROOF OF IDENTITY</h3>
 										<br>
 										<ul class="list-nostyle">
@@ -58,8 +61,8 @@
 											<input type="file" class="text-input span2"  id="ProDocDoc1" name="data[ProDoc][doc1]"/>
 										</div>
 									</div>
-								
-									<div class="span4">
+									
+									<div class="span5">
 										<h3>PROOF OF IDENTITY</h3>
 										<br>
 										<ul class="list-nostyle">
@@ -120,7 +123,6 @@
 				</div>
 			</div>
 		</div>
-	   <hr class="invisible">
 	   <hr class="invisible">
 	   <hr class="invisible">
 	   <hr class="invisible">
