@@ -31,14 +31,14 @@
 							<label>Confirm Password</label>
 							<span class="field"><?php echo $this->Form->input("User.cpassword" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"span8" )); ?></span>
 						</p>
-						
 						<p>
-							<label>Upload Document</label>
-							<br>
+				
+							<h3>Upload Document</h3>
+							
 							<span id="dualselect" class="dualselect">
 								<div class="row-fluid">
-									<div class="span5">
-										<h3>PROOF OF IDENTITY</h3>
+									
+										<h5>PROOF OF IDENTITY</h5>
 										<br>
 										<ul class="list-nostyle">
 											<li>
@@ -57,19 +57,16 @@
 											<i class=" iconsweets-paperclip"></i> &nbsp;  
 											<input type="file" class="text-input span2"  id="ProDocDoc1" name="data[ProDoc][doc1]"/>
 										</div>
-									</div>
+										<br>
 								
-									<div class="span4">
-										<h3>PROOF OF IDENTITY</h3>
+									
+										<h5>PROOF OF RESIDENCE</h5>
 										<br>
 										<ul class="list-nostyle">
 											<li>
 												<ul>
 												  <li><span class="icon-check"></span> &nbsp;Utility Bill</li>
 												  <li><span class="icon-check"></span> &nbsp;Government Issued Letter</li>
-												  <li><br></li>
-												  <li><br></li>
-												  <li><br></li>
 												</ul>
 											</li>
 										</ul>
@@ -79,11 +76,11 @@
 											<i class=" iconsweets-paperclip"></i> &nbsp;  
 											<input type="file" class="text-input span2"  id="ProDocDoc2" name="data[ProDoc][doc2]"/>
 										</div>
-									</div>
+									
 								</div>
 							</span>
 							<br>
-						</p>
+						
 						
 						<p class="stdformbutton">
 							<button class="btn btn-primary">Submit Button</button>
