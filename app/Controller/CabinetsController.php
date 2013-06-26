@@ -1147,9 +1147,15 @@ class CabinetsController extends AppController {
 		$this->loadModel('Usermgmt.UserDetail');
 		$this->loadModel('ProDoc');
 		$userId 	= $this->UserAuth->getUserId();
+		
+		if ($userId) {
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+		}
+		
 		if($this->request -> isPost()){
 			//debug($this->request->data);
 			$this->request->data['User']['local_status_id'] = 1 ;
+			$email = $this->request->data['User']['email'] ;
 			
 			if (!empty($this->request->data['ProDoc']['doc1'])){
 				$file1 				= $this->request->data['ProDoc']['doc1'];
@@ -1168,22 +1174,21 @@ class CabinetsController extends AppController {
 			
 			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
-			
-					$data2 = array('doc1' =>$saveName2 );
+					$data2 = array('email' => $email ,'doc1' =>$saveName2 );
 					$this->ProDoc->save($data2);
 				
 			}
 			
 			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
 				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
-				
-					$data3 = array('doc2' =>$saveName3 );
+					$data3 = array('email' => $email ,'doc2' =>$saveName3 );
 					$this->ProDoc->save($data3);
-				
 			}
+			
 			$salt = $this->UserAuth->makeSalt();
 			$this->request->data['User']['salt']=$salt;
 			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+			
 			if($this->User->save($this->request->data)){
 				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
 			}
