@@ -13,7 +13,7 @@
  <p><h3>Welcome to IK Trust <h3></p>
 
 <p>Your application has been successfully received. </p><br>
-<p><h4> Your Register Id is WD/IK# <? echo $num; ?></h4> </p><br>
+<p><h4> Your Register Id is IK# <? echo $num; ?></h4> </p><br>
 <p>Please print this form <?php echo $link ; ?> ,which contain all your details and signed . </p><br>
 <p> Then,upload the form to <?php echo $link2 ; ?> for us to verify the registration </p> <br>
 <p>

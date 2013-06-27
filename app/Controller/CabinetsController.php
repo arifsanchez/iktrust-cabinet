@@ -389,7 +389,7 @@ class CabinetsController extends AppController {
 					$Email->template('newtrader');
 					$Email->viewVars(array('user' => $user));
 					$Email->emailFormat('html');
-					$Email->from(array('admin@trustxe.com' => 'IKTust'));
+					$Email->from(array('support@iktrust.com' => 'IKTust'));
 					$Email->to('webteam@iktrust.com');
 					$Email->subject('New Trader IKTrust');
 					$Email->send();
