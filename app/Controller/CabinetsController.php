@@ -1180,7 +1180,7 @@ class CabinetsController extends AppController {
 			}
 			if($this->Provault->save($this->request->data)){
 				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
-				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload'z));
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload'));
 			}
 		}
 		
