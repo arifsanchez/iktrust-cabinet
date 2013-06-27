@@ -52,15 +52,10 @@ class CabinetsController extends AppController {
 						}
 					#sent user registration notification to admin & client
 				}
-				
 			}else{
-			
 				$this->redirect(array('controller' => 'cabinets' , 'action' => 'ext_reg' , "error:invalid_request"));
-			
 			}
-			
-		}	
-	
+		}
 	}
 	
 	function check_balance(){
@@ -73,7 +68,6 @@ class CabinetsController extends AppController {
 				$check = $this->Mt4User->Find('first' ,array(
 					'conditions' => array('Mt4User.LOGIN' =>$login, 'Mt4User.EMAIL' =>$email),
 				));
-
 				if(!empty ($check)){
 					$acc_id = base64_encode($login);
 					$this->redirect(array('controller' => 'cabinets' , 'action' => 'account_balance' , $acc_id));
@@ -82,7 +76,6 @@ class CabinetsController extends AppController {
 				}
 			}
 	}
-
 	
 	function account_balance($acc_id = null){
 		if($acc_id){
@@ -104,9 +97,7 @@ class CabinetsController extends AppController {
 		} else {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'check_balance'));
 		}
-	}
-	
-	  
+	} 
 	
 	function acc_bal_mt4() {
 		$this->autoRender = false;
@@ -131,7 +122,6 @@ class CabinetsController extends AppController {
 		$this->autoRender = false;
 		$x = $this->params['named']['x'];
 		$this->loadModel('Mt4User');
-		
 			$reg = $this->Mt4User->Find('first' ,array(
 				'conditions' => array('Mt4User.LOGIN' =>$x),
 				'fields'		=>array ( 'Mt4User.REGDATE'),
@@ -140,12 +130,10 @@ class CabinetsController extends AppController {
 			return $date;
 			debug($date); die();
 	}
-
 	
 	function view_pdf() {
 		$this->loadModel('Usermgmt.User');
 		$userId = $this->UserAuth->getUserId();
-	
 		
 		$user = $this->User->Find('first',array(
 			'conditions' => array( 'User.id' => $userId),
@@ -231,7 +219,6 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
-		
 		//get userid
 		$userId = $this->UserAuth->getUserId();
 		$this->set('user',$userId);
@@ -240,7 +227,6 @@ class CabinetsController extends AppController {
 			'fields'			 => array('UserDetail.id'),
 		));
 		$this->set('detail', $detail);
-		
 		//get tradersid
 		$this->loadModel('UserBank');
 		// save data
@@ -251,7 +237,6 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-
 	
 	public function ecurrency(){
 		$this->layout = 'kabinet';
@@ -274,21 +259,17 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 		$ud = $this->Cookie->read($user_eC);
 	//	debug($ud);
-		
 		$this->loadModel('UserAcctypes');
 		$this->UserAcctypes->UserId = $ud['user_acc']['UserAcctypes']['user_id'];
 		$this->UserAcctypes->save($ud['user_acc']['UserAcctypes']);
 		$this->Cookie->write('latest', $this->UserAcctypes->id); 	//sent current id
 		//debug($this->UserAcctypes->id);
-		
 		$this->loadModel('User');
 		$this->User->UserId = $ud['user_cl']['User']['id'];
 		$this->User->save($ud['user_cl']['User']);
-		
 		$this->loadModel('UserDetail');
 		$this->UserDetail->UserId = $ud['user_cl']['UserDetail']['id'];
 		$this->UserDetail->save($ud['user_cl']['UserDetail']);
-
 		//create new row jika empty finding user id yg matching (BANK)
 		$userId 	= $this->UserAuth->getUserId();
 		$this->loadModel('UserBank');
@@ -296,7 +277,6 @@ class CabinetsController extends AppController {
 			'conditions' => array( 'user_id' => $userId),
 			'fields' => 'id',
 		));		
-
 		//create new row jika empty finding user id yg matching (BANK)
 		if (($ud['user_b']['UserBank']['user_id']) == ($ud['user_b']['UserBank']['user_id'])){
 			$this->UserBank->id = $checkB;
@@ -306,7 +286,6 @@ class CabinetsController extends AppController {
 			$NewBdata = $this->UserBank->save($ud['user_b']['UserBank']);
 			$this->UserBank->save($NewBdata);
 		}
-
 		//create new row jika empty finding user id yg matching (ECURRENCY)
 		$userId 	= $this->UserAuth->getUserId();
 		$this->loadModel('UserEcr');
@@ -314,7 +293,6 @@ class CabinetsController extends AppController {
 			'conditions' => array( 'user_id' => $userId),
 			'fields' => 'id',
 		));
-
 		//create new row jika empty finding user id yg matching (ECURRENCY)
 		if (($ud['user_eC']['UserEcr']['user_id']) == ($ud['user_eC']['UserEcr']['user_id'])){
 			$this->UserEcr->id = $checkEc;
@@ -324,8 +302,7 @@ class CabinetsController extends AppController {
 			$NewEdata = $this->UserEcr->save($ud['user_eC']['UserEcr']);
 			$this->UserEcr->save($NewEdata);
 		}
-	}	
-	
+	}
 	
 	public function acknowledge(){		
 		$this->layout = 'kabinet';
@@ -372,7 +349,6 @@ class CabinetsController extends AppController {
 							));
 		$this->set('ecr',$ecr);
 		
-		
 		if( $this->request -> isPost()){
 			$this->Local->create();
 			$this->request->data['Local']['local_status_id'] = 1 ;
@@ -411,63 +387,6 @@ class CabinetsController extends AppController {
 			}
 		}
 	}
-	
-	
-	public function upload(){
-		$this->layout = 'register_kabinet';
-		$this->loadModel('Usermgmt.User');
-		$this->loadModel('Usermgmt.UserDetail');
-		$this->loadModel('ProDoc');
-		$userId = $this->UserAuth->getUserId();
-
-		if ($userId) {
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
-		}
-		
-		if($this->request -> isPost()){
-			//debug($this->request->data);
-			$this->request->data['User']['local_status_id'] = 1 ;
-			$email = $this->request->data['User']['email'] ;
-			
-			if (!empty($this->request->data['ProDoc']['doc1'])){
-				$file1 				= $this->request->data['ProDoc']['doc1'];
-				$info2				= pathinfo($file1['name']); // split filename and extension
-				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
-				$savePath2 	= WWW_ROOT . 'img/uploads/' . DS . $saveName2;
-			}
-			
-			if (!empty($this->request->data['ProDoc']['doc2'])){
-				$file2 				= $this->request->data['ProDoc']['doc2'];
-				$info3				= pathinfo($file2['name']); // split filename and extension
-				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
-				$savePath3 	= WWW_ROOT . 'img/uploads/' . DS . $saveName3;
-			}
-			
-			
-			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
-				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
-					$data2 = array('email' => $email ,'doc1' =>$saveName2 );
-					$this->ProDoc->save($data2);
-				
-			}
-			
-			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
-				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
-					$data3 = array('email' => $email ,'doc2' =>$saveName3 );
-					$this->ProDoc->save($data3);
-			}
-			
-			$salt = $this->UserAuth->makeSalt();
-			$this->request->data['User']['salt']=$salt;
-			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-			
-			if($this->User->save($this->request->data)){
-				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
-			}
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'upload'));
-		}
-	}
-	
 	
 	public function myprofile(){
 		$this->layout = 'kabinet';
@@ -997,7 +916,6 @@ class CabinetsController extends AppController {
 				}
 			}
 		}
-	
 	}		
 
 
@@ -1005,6 +923,81 @@ class CabinetsController extends AppController {
 		$this->layout = 'kabinet';
 	}
 
+	public function upload(){
+		$this->layout = 'kabinet';
+		$userId = $this->UserAuth->getUserId();
+		#debug($userId); die();
+		$this->loadModel('UserDoc');
+		
+		$userId 		= $this->UserAuth->getUserId();
+		$check = $this->UserDoc->find('first' , array(
+			'conditions' => array( 'user_id' => $userId),
+			'fields' => 'id',
+		));
+
+		if ($this->request->is('post')){
+		debug($this->request->data);die();
+			if (!empty($this->request->data['UserDoc']['form'])){
+				$form 				= $this->request->data['UserDoc']['form'];
+				$info1				= pathinfo($form['name']); // split filename and extension
+				$saveName1 = md5($info1['basename']) . '.' . $info1['extension'] ;
+				$savePath1 	= WWW_ROOT . 'img/uploads' . DS . $saveName1;
+			}
+			
+			if (!empty($this->request->data['UserDoc']['doc1'])){
+				$file1 				= $this->request->data['UserDoc']['doc1'];
+				$info2				= pathinfo($file1['name']); // split filename and extension
+				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
+				$savePath2 	= WWW_ROOT . 'img/uploads' . DS . $saveName2;
+			}
+			
+			if (!empty($this->request->data['UserDoc']['doc2'])){
+				$file2 				= $this->request->data['UserDoc']['doc2'];
+				$info3				= pathinfo($file2['name']); // split filename and extension
+				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
+				$savePath3 	= WWW_ROOT . 'img/uploads' . DS . $saveName3;
+			}
+			
+			if (move_uploaded_file($form['tmp_name'], $savePath1)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName1);
+				if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data1 = array('user_id' => $userId , 'form' =>$saveName1 );
+					$this->UserDoc->save($data1);
+				}else{
+					$data1 = array('user_id' => $userId , 'form' =>$saveName1 );
+					$this->UserDoc->save($data1);
+			
+				}
+			}
+			
+			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
+				if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data2 = array('user_id' => $userId , 'doc1' =>$saveName2 );
+					$this->UserDoc->save($data2);
+				}else{
+					$data2 = array('user_id' => $userId ,  'doc1' =>$saveName2 );
+					$this->UserDoc->save($data2);
+				
+				}
+			}
+			
+			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
+					if(!empty($check)){
+					$this->UserDoc->id = $check;
+					$data3 = array('user_id' => $userId ,  'doc2' =>$saveName3 );
+					$this->UserDoc->save($data3);
+				}else{
+					$data3 = array('user_id' => $userId , 'doc2' =>$saveName3 );
+					$this->UserDoc->save($data3);
+				}
+			}
+			$this->redirect(array( 'action' => 'myaccount'));
+		}
+	}
 	
 	public function myaccount(){
 		$this->loadModel('Usermgmt.User');
@@ -1119,23 +1112,78 @@ class CabinetsController extends AppController {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
 		}
 	}	
-
-	public function register_pro(){
+	
+	public function pro_upload(){
 		$this->layout = 'register_kabinet';
 		
-		//$this->loadModel('Provault'); 
-		//if($this->request -> isPut() || $this->request -> isPost()){
-		//debug($this->request->data); die();
-			/*$this->Provault->create();
-			$this->request->data['Provault']['local_status_id'] = 1;
-			$this->request->data['Provault']['key'] = base64_encode($this->request->data['Provault']['key']);
-			debug($this->request->data); die();
+		$this->loadModel('ProDoc');
+		$userId = $this->UserAuth->getUserId();
+		
+		if($this->request -> isPost()){
+			//debug($this->request->data);
+			if (!empty($this->request->data['ProDoc']['doc1'])){
+				$file1 				= $this->request->data['ProDoc']['doc1'];
+				$info2				= pathinfo($file1['name']); // split filename and extension
+				$saveName2 = md5($info2['basename']) . '.' . $info2['extension'] ;
+				$savePath2 	= WWW_ROOT . 'img/uploads/' . DS . $saveName2;
+			}
+			if (!empty($this->request->data['ProDoc']['doc2'])){
+				$file2 				= $this->request->data['ProDoc']['doc2'];
+				$info3				= pathinfo($file2['name']); // split filename and extension
+				$saveName3	= md5($info3['basename']) . '.' . $info3['extension'] ;
+				$savePath3 	= WWW_ROOT . 'img/uploads/' . DS . $saveName3;
+			}
+			if (move_uploaded_file($file1['tmp_name'], $savePath2)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName2);
+					$data2 = array('email' => $email ,'doc1' =>$saveName2 );
+					$this->ProDoc->save($data2);
+			}
+			if (move_uploaded_file($file2['tmp_name'], $savePath3)){
+				$this->set('fileURL', FULL_BASE_URL . $this->webroot . '/img/uploads' . $saveName3);
+					$data3 = array('email' => $email ,'doc2' =>$saveName3 );
+					$this->ProDoc->save($data3);
+			}
 			
-			/*if($this->Provault->save($this->request->data)){
-				//$this->Session->setFlash('Your have successful registered.');
-			}*/
-			//$this->redirect(array('controller' => 'cabinets' , 'action' => 'upload'));
-		//}
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'upload'));
+		}
+	}
+	
+	public function register_pro(){
+	
+		$this->layout = 'register_kabinet';
+		$userId = $this->UserAuth->getUserId();
+		$this->loadModel('Usermgmt.User');
+		$this->loadModel('Usermgmt.UserDetail');
+		$this->loadModel('Provault'); 
+		
+		if ($userId) {
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+		}
+		
+		if($this->request -> isPost()){
+		
+			//$this->Provault->create();
+			$email = $this->request->data['User']['email'] ;
+			$this->request->data['Provault']['local_status_id'] = 1;
+			$this->request->data['Provault']['email'] = $email;
+			$this->request->data['User']['local_status_id'] = 1 ;
+			
+			
+			//debug($this->request->data); die();
+			
+			$salt = $this->UserAuth->makeSalt();
+			$this->request->data['User']['salt']=$salt;
+			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+			
+			if($this->User->save($this->request->data)){
+				
+			}
+			if($this->Provault->save($this->request->data)){
+				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload'z));
+			}
+		}
+		
 	}
 
 	public function register(){

@@ -5,8 +5,8 @@
 			<div class="span7">  
 				<h4 class="widgettitle nomargin shadowed">Register ProVault</h4>
 				<div class="widgetcontent bordered shadowed nopadding">
-					<?php echo $this->Form->create('Provault', array('id'=>'registerProVault' ,'class' => "stdform stdform2" ,'type' =>'file')); ?>
-					<?php  #echo $this->Form->input("user_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '21')); ?>   
+					<?php echo $this->Form->create('User', array('id'=>'registerUser' ,'class' => "stdform stdform2" )); ?>
+					<?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '21')); ?>   
 
 						<p>
 							<label>First Name</label>
@@ -34,7 +34,7 @@
 						</p>
 						
 						<p class="stdformbutton">
-							<button class="btn btn-primary">Submit Button</button>
+							<button class="btn btn-primary">Next</button>
 							<button type="reset" class="btn">Reset Button</button>
 						</p>
 					<?php echo $this->Form->end(); ?>	
