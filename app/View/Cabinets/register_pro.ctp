@@ -1,11 +1,11 @@
-
+<?php echo $this->Html->script(array('/usermgmt/js/ajaxValidation.js?q='.QRDN));  ?>
 
 	<div class="contentinner"> 
 		<div class="row-fluid">
 			<div class="span7">  
 				<h4 class="widgettitle nomargin shadowed">Register ProVault</h4>
 				<div class="widgetcontent bordered shadowed nopadding">
-					<?php echo $this->Form->create('User', array('id'=>'registerUser' ,'class' => "stdform stdform2" )); ?>
+					<?php echo $this->Form->create('User', array('id'=>'registerForm' ,'class' => "stdform stdform2")); ?>
 					<?php  echo $this->Form->input("user_group_id" ,array('type' =>'hidden','label' => false ,'div' => false,'class'=>'input-xlarge' ,'value' => '21')); ?>   
 
 						<p>
@@ -33,10 +33,10 @@
 							<span class="field"><?php echo $this->Form->input("cpassword" ,array('type' => 'password', 'label' => false,'div' => false,'class'=>"span8" )); ?></span>
 						</p>
 						
-						<p class="stdformbutton">
-							<button class="btn btn-primary">Next</button>
-							<button type="reset" class="btn">Reset Button</button>
-						</p>
+						  <p class="stdformbutton">
+                               <?php echo $this->Form->button(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
+                                <?php echo $this->Form->button(__('Reset'), array('type' => 'reset' ,'class' => "btn"));?>
+                            </p>
 					<?php echo $this->Form->end(); ?>	
 				</div>				
 			</div>

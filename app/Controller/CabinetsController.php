@@ -1113,14 +1113,20 @@ class CabinetsController extends AppController {
 		}
 	}	
 	
-	public function pro_upload(){
+	public function pro_upload($mail){
 		$this->layout = 'register_kabinet';
-		
+		$email = base64_decode ($mail);
 		$this->loadModel('ProDoc');
-		$userId = $this->UserAuth->getUserId();
+		$this->loadModel('Provault');
 		
+	
 		if($this->request -> isPost()){
-			//debug($this->request->data);
+		
+			//$this->request->data['Provault']['email'] = $email;
+			$this->request->data['ProDoc']['local_status_id'] = 1;
+			
+					
+			//debug($this->request->data);die();
 			if (!empty($this->request->data['ProDoc']['doc1'])){
 				$file1 				= $this->request->data['ProDoc']['doc1'];
 				$info2				= pathinfo($file1['name']); // split filename and extension
@@ -1143,47 +1149,82 @@ class CabinetsController extends AppController {
 					$data3 = array('email' => $email ,'doc2' =>$saveName3 );
 					$this->ProDoc->save($data3);
 			}
-			
-			$this->redirect(array('controller' => 'cabinets' , 'action' => 'upload'));
+						
+			$this->Session->setFlash('Your have successful registered.');
+			$this->redirect(array('controller' => 'cabinets' , 'action' => 'login'));
 		}
 	}
 	
 	public function register_pro(){
-	
-		$this->layout = 'register_kabinet';
-		$userId = $this->UserAuth->getUserId();
+	$this->layout = 'register_kabinet';
 		$this->loadModel('Usermgmt.User');
 		$this->loadModel('Usermgmt.UserDetail');
-		$this->loadModel('Provault'); 
+		$userId = $this->UserAuth->getUserId();
 		
 		if ($userId) {
 			$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
 		}
-		
-		if($this->request -> isPost()){
-			//$this->Provault->create();
-			$email = $this->request->data['User']['email'] ;
+			if (SITE_REGISTRATION) {
 			
-			$this->request->data['User']['local_status_id'] = 1 ;
-			//debug($this->request->data); die();
-			$salt = $this->UserAuth->makeSalt();
-			$this->request->data['User']['salt']=$salt;
-			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
-			
-			if($this->User->save($this->request->data)){
-				
+				if (isset($this->request->data['reset'])) {
+					$this->redirect(array('controller' => 'cabinets' , 'action' => 'register_pro'));
+				}
+					if (isset($this->request->data['signup'])){	
+						if ($this->request -> isPost()) {
+							
+							$this->User->set($this->data);
+							$UserRegisterValidate = $this->User->RegisterValidate();
+								if($this->RequestHandler->isAjax()) {
+									$this->layout = 'ajax';
+									$this->autoRender = false;
+											if ($UserRegisterValidate) {
+												$response = array('error' => 0, 'message' => 'Succes');
+												return json_encode($response);
+											} else {
+												$response = array('error' => 1,'message' => 'failure');
+												$response['data']['User']   = $this->User->validationErrors;
+												return json_encode($response);
+											}
+								} else {
+									if ($UserRegisterValidate) {
+										
+												if (!EMAIL_VERIFICATION) {
+													$this->request->data['User']['email_verified']=1;
+												}
+										$this->request->data['User']['active']=1;
+												if(isset($_SERVER['REMOTE_ADDR'])) {
+													$this->request->data['User']['ip_address']=$_SERVER['REMOTE_ADDR'];
+												}
+												
+												$salt = $this->UserAuth->makeSalt();
+												$this->request->data['User']['salt']=$salt;
+												$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
+												$this->User->save($this->request->data,false);
+												$userId=$this->User->getLastInsertID();
+												$this->request->data['UserDetail']['user_id']=$userId;
+												$this->UserDetail->save($this->request->data,false);
+												$user = $this->User->findById($userId);
+												
+												if (SEND_REGISTRATION_MAIL && !EMAIL_VERIFICATION) {
+													$this->User->sendRegistrationMail($user);
+												}
+												
+											if (isset($this->request->data['User']['active']) && $this->request->data['User']['active'] && !EMAIL_VERIFICATION) {
+												$this->UserAuth->login($user);
+												$this->redirect(array('controller' => 'cabinets' , 'action' => 'myaccount'));
+											} else {
+												//$this->Session->setFlash(__('Please check your mail and confirm your registration'));
+												$mail = base64_encode ($this->request->data['User']['email']);
+												$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload' ,$mail));
+											}
+									}
+								}
+						} else {
+							$this->Session->setFlash(__('Sorry new registration is currently disabled, please try again later'));
+							$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_register'));
+						}
+					}
 			}
-			$userId = $this->UserAuth->getUserId();
-			$this->request->data['Provault']['local_status_id'] = 1;
-			$this->request->data['Provault']['email'] = $email;
-			$this->request->data['Provault']['user_id'] = $userId;
-			
-			if($this->Provault->save($this->request->data)){
-				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
-				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload' ));
-			}
-		}
-		
 	}
 
 	public function register(){
