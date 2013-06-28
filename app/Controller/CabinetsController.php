@@ -1161,16 +1161,11 @@ class CabinetsController extends AppController {
 		}
 		
 		if($this->request -> isPost()){
-		
 			//$this->Provault->create();
 			$email = $this->request->data['User']['email'] ;
-			$this->request->data['Provault']['local_status_id'] = 1;
-			$this->request->data['Provault']['email'] = $email;
+			
 			$this->request->data['User']['local_status_id'] = 1 ;
-			
-			
 			//debug($this->request->data); die();
-			
 			$salt = $this->UserAuth->makeSalt();
 			$this->request->data['User']['salt']=$salt;
 			$this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
@@ -1178,9 +1173,14 @@ class CabinetsController extends AppController {
 			if($this->User->save($this->request->data)){
 				
 			}
+			$userId = $this->UserAuth->getUserId();
+			$this->request->data['Provault']['local_status_id'] = 1;
+			$this->request->data['Provault']['email'] = $email;
+			$this->request->data['Provault']['user_id'] = $userId;
+			
 			if($this->Provault->save($this->request->data)){
 				$this->Session->setFlash('Your have successful registered.You will get an email after verification ');
-				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload'));
+				$this->redirect(array('controller' => 'cabinets' , 'action' => 'pro_upload' ));
 			}
 		}
 		
