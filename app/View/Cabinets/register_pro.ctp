@@ -34,7 +34,7 @@
 						</p>
 						
 						  <p class="stdformbutton">
-                               <?php echo $this->Form->button(__('Sign Up'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
+                               <?php echo $this->Form->button(__('Next'), array('name' => 'signup' ,'id'=>'registerSubmitBtn' , 'class' => "btn btn-danger"));?>
                                 <?php echo $this->Form->button(__('Reset'), array('type' => 'reset' ,'class' => "btn"));?>
                             </p>
 					<?php echo $this->Form->end(); ?>	
