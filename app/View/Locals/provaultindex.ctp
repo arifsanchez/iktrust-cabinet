@@ -39,20 +39,26 @@
 								<?php echo $pro['User']['email']; ?>
 							</td>
 							<td class="center">
-								<?php  echo "KIV"; ?>
+								<?php 
+								if ($pro['User']['email_verified'] == 0){
+									echo "not verified";
+								}else{
+									echo "not verified";
+								}
+								?>
 							</td>
                             <td class="center">
 								<?php echo $pro['User']['created']; ?>
 							</td>
 							
-							<?php $id = base64_encode($pro['User']['id']); ?>
+							<?php $mail = base64_encode($pro['User']['email']); ?>
 							<td class="center">
 								<span class="  icon-tasks"></span>
-								<?php echo $this->Html->link(__('View '), array('action' => 'admin_pro', $id)); ?>&nbsp;|&nbsp;
+								<?php echo $this->Html->link(__('View '), array('action' => 'admin_pro', $mail)); ?>&nbsp;|&nbsp;
 								<!--span class="icon-edit"></span-->
-								<?php #echo $this->Html->link(__('Edit'), array('action' => 'adminedit', $id)); ?>
+								
 								<span class=" icon-exclamation-sign"></span>
-								<?php echo $this->Form->postLink(__('Delete'), array('action' => '#', $id), null, __('Are you sure you want to delete # %s?', $pro['User']['id'])); ?>
+								<?php echo $this->Form->postLink(__('Delete'), array('action' => '#', $mail), null, __('Are you sure you want to delete # %s?', $pro['User']['email'])); ?>
 							</td>
                         </tr>
                     </tbody>

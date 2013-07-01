@@ -316,20 +316,29 @@ class LocalsController extends AppController {
 		));
 		$this->set('pro',$pro);
 		
-		/*if(!empty($this->request->params['named'])){
-			$data = $this->params['named'];
-			$locals = $this->paginate('Affilliate',
-				array("Affilliate.local_status_id" => $data['s'],
-			));
-			$this->set('locals',$locals);
-		} else {
-			$locals = $this->paginate('Affilliate');
-			$this->set('locals',$locals);
-		}*/
+		
 	}
 	
-	function admin_pro(){
+	function admin_pro($mail = null){
 		$this->layout = 'admin';
+		$this->loadmodel('Mt4User');
+		$this->loadModel('Usermgmt.User');
+		$this->loadmodel('ProDoc');
+		
+		$email = base64_decode ($mail);
+		
+		$mt4user = $this->ProDoc->find('first' ,
+						array("Mt4User.EMAIL" => $email));
+		$this->set('mt4user',$mt4user);
+		
+		$doc = $this->ProDoc->find('first' , array(
+						'conditions' => array( 'ProDoc.email' => $email),
+						));
+		$this->set('doc',$doc);
+		
+		
+		
+		
 		
 	}
 	

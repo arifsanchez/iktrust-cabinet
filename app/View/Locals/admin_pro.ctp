@@ -14,12 +14,9 @@
 											<div class="form-inline">
 												<p>
 													<label>Full Name :</label>
-													<strong><span class="field"><? echo $a['User']['first_name']; ?></span></strong>
+													<strong><span class="field"><? echo $mt4user['Mt4User']['LOGIN'];?></span></strong>
 												</p>
-												<p>
-													<label>Last name :</label>
-													<strong><span class="field"><? echo $a['User']['last_name']; ?></span></strong>
-												</p>
+												
 												<p>
 													<label>Email Address :</label>
 													<strong><span class="field"><? echo $a['User']['email']; ?></span></strong>

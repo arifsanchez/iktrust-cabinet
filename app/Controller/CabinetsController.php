@@ -1121,12 +1121,6 @@ class CabinetsController extends AppController {
 		
 	
 		if($this->request -> isPost()){
-		
-			//$this->request->data['Provault']['email'] = $email;
-			$this->request->data['ProDoc']['local_status_id'] = 1;
-			
-					
-			//debug($this->request->data);die();
 			if (!empty($this->request->data['ProDoc']['doc1'])){
 				$file1 				= $this->request->data['ProDoc']['doc1'];
 				$info2				= pathinfo($file1['name']); // split filename and extension
